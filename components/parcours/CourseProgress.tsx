@@ -7,21 +7,23 @@
 // - "bar" : la barre complète, utilisée sur l'écran parcours.
 // - "badge" : un badge compact, utilisé sur les écrans module et leçon.
 
-import { useCompletedLessons } from "@/lib/useProgress";
+import { useProgressSnapshot } from "@/lib/useProgress";
 import { computeCourseProgress } from "@/lib/courseProgress";
-import type { Course } from "@/lib/courseTypes";
+import type { Course, ModuleRequirements } from "@/lib/courseTypes";
 
 type CourseProgressProps = {
   course: Course;
+  moduleRequirements: Record<string, ModuleRequirements>;
   variant?: "bar" | "badge";
 };
 
 export default function CourseProgress({
   course,
+  moduleRequirements,
   variant = "bar",
 }: CourseProgressProps) {
-  const completedLessonIds = useCompletedLessons();
-  const progress = computeCourseProgress(course, completedLessonIds);
+  const progressSnapshot = useProgressSnapshot();
+  const progress = computeCourseProgress(course, moduleRequirements, progressSnapshot);
 
   if (variant === "badge") {
     return (

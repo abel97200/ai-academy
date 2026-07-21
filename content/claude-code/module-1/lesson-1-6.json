@@ -1,0 +1,38 @@
+{
+  "id": "lesson-1-6",
+  "schemaVersion": 2,
+  "title": "Navigateur, serveur et hébergement",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Le navigateur (Chrome, Safari...) affiche l'application sur ton écran. Le serveur, lui, est un ordinateur allumé en permanence, ailleurs, qui répond aux demandes. L'hébergement, c'est le service qui fait tourner ce serveur pour toi, pour que l'application soit accessible à tout moment, même quand ton propre ordinateur est éteint."
+    },
+    {
+      "type": "demo",
+      "content": "AI Academy elle-même fonctionne ainsi : le code est hébergé (sur Vercel), un serveur le fait tourner en permanence, et ton navigateur affiche le résultat quand tu visites le site — que ton ordinateur personnel soit allumé ou non."
+    },
+    {
+      "type": "exercice",
+      "question": "Pourquoi ne peut-on pas simplement laisser son propre ordinateur allumé pour héberger son application ?",
+      "hints": [
+        "Pense à ce qui se passe si ton ordinateur s'éteint, plante, ou perd sa connexion internet.",
+        "Un hébergeur professionnel garantit une disponibilité que ton ordinateur personnel ne peut pas offrir."
+      ],
+      "solution": "Parce que si ton ordinateur s'éteint, plante ou perd sa connexion, l'application ne serait plus accessible à personne. Un hébergeur garde le serveur allumé et surveillé en continu."
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "Quel est le rôle de l'hébergement ?",
+          "options": ["Dessiner l'interface", "Faire tourner le serveur en permanence pour que l'application reste accessible", "Stocker les mots de passe"],
+          "answer": 1,
+          "explanation": "L'hébergement garde le serveur allumé et accessible en continu, indépendamment de l'ordinateur personnel du développeur."
+        }
+      ]
+    },
+    {
+      "type": "validation"
+    }
+  ]
+}

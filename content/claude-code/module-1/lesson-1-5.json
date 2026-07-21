@@ -1,0 +1,70 @@
+{
+  "id": "lesson-1-5",
+  "schemaVersion": 2,
+  "title": "Les API et la circulation des informations",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Une API, c'est la porte par laquelle l'interface demande une information au serveur, ou lui envoie une information à enregistrer. C'est un peu comme un guichet : tu fais une demande précise, et tu reçois une réponse précise."
+    },
+    {
+      "type": "schema",
+      "diagram": {
+        "kind": "flow",
+        "direction": "horizontal",
+        "nodes": [
+          {
+            "id": "interface",
+            "label": "Interface",
+            "definition": "L'utilisateur coche une tâche : l'interface doit maintenant prévenir le reste de l'application."
+          },
+          {
+            "id": "api",
+            "label": "API",
+            "color": "#6366F1",
+            "definition": "L'API reçoit la demande (\"marque la tâche 1 comme terminée\") et la transmet au serveur, dans un format que celui-ci comprend."
+          },
+          {
+            "id": "serveur",
+            "label": "Serveur",
+            "definition": "Le serveur applique la demande : il décide quoi faire et va lire ou écrire dans la base de données."
+          },
+          {
+            "id": "donnees",
+            "label": "Données",
+            "definition": "La base de données enregistre le nouvel état de la tâche, de façon durable."
+          }
+        ],
+        "links": [
+          { "from": "interface", "to": "api" },
+          { "from": "api", "to": "serveur" },
+          { "from": "serveur", "to": "donnees" }
+        ]
+      },
+      "caption": "Le trajet d'une information, de l'écran jusqu'à la base de données."
+    },
+    {
+      "type": "exercice",
+      "question": "Dans ce trajet, à quel endroit la tâche est-elle réellement enregistrée pour de bon ?",
+      "hints": [
+        "L'interface et l'API ne font que transmettre la demande.",
+        "Le serveur décide, mais où range-t-il le résultat final ?"
+      ],
+      "solution": "Dans les données (la base de données), à la toute fin du trajet. C'est le seul endroit où l'information reste durablement."
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "À quoi sert une API ?",
+          "options": ["À dessiner les couleurs de l'interface", "À faire circuler une demande entre l'interface et le serveur", "À remplacer la base de données"],
+          "answer": 1,
+          "explanation": "L'API est l'intermédiaire qui transmet les demandes de l'interface vers le serveur (et les réponses en retour), un peu comme un guichet."
+        }
+      ]
+    },
+    {
+      "type": "validation"
+    }
+  ]
+}

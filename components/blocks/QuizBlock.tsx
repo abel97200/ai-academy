@@ -9,15 +9,13 @@
 import { useState } from "react";
 import { useLessonContext } from "@/components/lesson/LessonContext";
 import type { QuizQuestion } from "@/lib/content";
+import { QUIZ_PASS_THRESHOLD } from "@/lib/courseProgress";
+import { recordQuizScore } from "@/lib/progress";
 
 type QuizBlockProps = {
   id: string; // identifiant unique du bloc dans la leçon
   questions: QuizQuestion[];
 };
-
-// Seuil de réussite du quiz, en proportion de bonnes réponses (0.75 = au
-// moins 75%). Facile à ajuster : il suffit de changer ce nombre.
-const PASS_THRESHOLD_RATIO = 0.75;
 
 export default function QuizBlock({ id, questions }: QuizBlockProps) {
   const { registerQuizPassed, isQuizPassed } = useLessonContext();
@@ -34,7 +32,7 @@ export default function QuizBlock({ id, questions }: QuizBlockProps) {
   const dejaReussi = isQuizPassed(id);
   const currentQuestion = questions[currentIndex];
   const isLastQuestion = currentIndex === questions.length - 1;
-  const requiredCorrect = Math.ceil(questions.length * PASS_THRESHOLD_RATIO);
+  const requiredCorrect = Math.ceil((questions.length * QUIZ_PASS_THRESHOLD) / 100);
   const correctCount = results.filter((result) => result === true).length;
   const reponseCorrecte = answered && selection === currentQuestion.answer;
 
@@ -55,7 +53,12 @@ export default function QuizBlock({ id, questions }: QuizBlockProps) {
       // "correctCount" tient déjà compte de la réponse qu'on vient de
       // valider (le clic sur "Valider" a mis à jour "results" avant ce
       // second clic sur "Question suivante").
-      if (correctCount >= requiredCorrect) {
+      const percentage = Math.round((correctCount / questions.length) * 100);
+      // On enregistre le score dans le localStorage (le meilleur score est
+      // conservé) : c'est ce qui permet au module de vérifier la condition
+      // "au moins 75% au quiz", même après avoir quitté la leçon.
+      recordQuizScore(id, percentage);
+      if (percentage >= QUIZ_PASS_THRESHOLD) {
         registerQuizPassed(id);
       }
     } else {

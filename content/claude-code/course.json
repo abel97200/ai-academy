@@ -2,70 +2,241 @@
   "slug": "claude-code",
   "title": "Créer une application avec Claude Code",
   "promise": "À la fin, tu sauras construire une application seul ou avec l'aide de l'IA",
+  "levels": [
+    {
+      "number": 1,
+      "slug": "niveau-1",
+      "title": "Niveau 1",
+      "theme": "Comprendre et préparer",
+      "modules": ["module-1", "module-2", "module-3"],
+      "project": {
+        "title": "Cadrer et démarrer le tracker",
+        "description": "Poser les bases du tracker d'apprentissage : ce qu'il doit faire, et un environnement prêt pour commencer à le construire."
+      }
+    },
+    {
+      "number": 2,
+      "slug": "niveau-2",
+      "title": "Niveau 2",
+      "theme": "Comprendre et modifier le code utile",
+      "modules": ["module-4", "module-5", "module-6"],
+      "project": {
+        "title": "Créer le tracker interactif",
+        "description": "Construire une première version du tracker : une interface propre qui réagit vraiment aux clics de l'utilisateur."
+      }
+    },
+    {
+      "number": 3,
+      "slug": "niveau-3",
+      "title": "Niveau 3",
+      "theme": "Construire une véritable application",
+      "modules": ["module-7", "module-8", "module-9"],
+      "project": {
+        "title": "Transformer le tracker en application complète",
+        "description": "Passer d'une page qui fonctionne à une vraie application : composants, données sauvegardées, API sécurisée."
+      }
+    },
+    {
+      "number": 4,
+      "slug": "niveau-4",
+      "title": "Niveau 4",
+      "theme": "Tester, publier et devenir autonome",
+      "modules": ["module-10", "module-11", "module-12"],
+      "project": {
+        "title": "Finaliser et publier le tracker",
+        "description": "Tester le tracker, corriger ses derniers défauts, et le publier en ligne pour qu'il soit accessible à tous."
+      }
+    }
+  ],
   "modules": [
     {
       "number": 1,
       "slug": "module-1",
-      "title": "Comment fonctionne une application",
-      "objective": "Comprendre les trois piliers de toute application : l'interface, les données et la logique.",
-      "usefulness": "Cette base te permet de comprendre n'importe quel projet, même écrit par quelqu'un d'autre, et de savoir où chercher quand quelque chose ne marche pas.",
-      "lessons": ["lesson-1-1"]
+      "title": "Comprendre comment fonctionne une application",
+      "level": "niveau-1",
+      "objective": "Expliquer le trajet d'une action utilisateur jusqu'à l'affichage et à l'enregistrement d'un résultat.",
+      "usefulness": "Cette base permet de comprendre n'importe quel projet, même écrit par quelqu'un d'autre, et de savoir où chercher quand quelque chose ne marche pas.",
+      "prerequisites": [],
+      "skills": ["Identifier interface/données/logique", "Distinguer frontend et backend", "Comprendre le rôle d'une API"],
+      "deliverable": "Une explication écrite, dans ses propres mots, du fonctionnement du tracker.",
+      "estimatedMinutes": 90,
+      "lessons": [
+        "lesson-1-1",
+        "lesson-1-2",
+        "lesson-1-3",
+        "lesson-1-4",
+        "lesson-1-5",
+        "lesson-1-6",
+        "lesson-1-7"
+      ]
     },
     {
       "number": 2,
       "slug": "module-2",
-      "title": "Prendre en main Claude Code",
-      "objective": "Découvrir Claude Code : comment lui parler, lui donner des instructions claires, et comprendre ce qu'il fait dans ton projet.",
-      "usefulness": "Tu sauras travailler efficacement avec ton copilote IA au lieu de deviner comment l'utiliser.",
+      "title": "Transformer une idée en projet réalisable",
+      "level": "niveau-1",
+      "objective": "Passer d'une idée floue à un projet cadré et réalisable.",
+      "usefulness": "Évite de partir dans toutes les directions : un projet bien cadré se termine, un projet flou s'abandonne.",
+      "prerequisites": ["module-1"],
+      "skills": ["Définir un objectif clair", "Découper un projet en étapes", "Écrire un cahier des charges simple"],
+      "deliverable": "Le cadrage écrit du tracker (objectif, fonctionnalités, étapes).",
+      "estimatedMinutes": 60,
       "lessons": []
     },
     {
       "number": 3,
       "slug": "module-3",
-      "title": "Les bases utiles du code",
-      "objective": "Apprendre le strict nécessaire de programmation pour lire et comprendre le code que Claude Code écrit pour toi.",
-      "usefulness": "Tu pourras relire une modification proposée et savoir si elle fait ce que tu attends, sans être expert.",
+      "title": "Préparer son environnement de travail",
+      "level": "niveau-1",
+      "objective": "Installer et comprendre les outils nécessaires pour développer.",
+      "usefulness": "Un environnement bien configuré évite des heures perdues à déboguer des problèmes d'installation plutôt que de code.",
+      "prerequisites": ["module-2"],
+      "skills": ["Installer Node.js et un éditeur de code", "Utiliser un terminal", "Configurer Claude Code"],
+      "deliverable": "Un environnement de travail fonctionnel, prêt à démarrer le tracker.",
+      "estimatedMinutes": 60,
       "lessons": []
     },
     {
       "number": 4,
       "slug": "module-4",
-      "title": "Créer une interface",
-      "objective": "Construire ce que l'utilisateur voit et touche : pages, boutons, formulaires.",
-      "usefulness": "Tu pourras transformer une idée en écran concret que n'importe qui peut utiliser.",
+      "title": "Construire une interface avec HTML",
+      "level": "niveau-2",
+      "objective": "Structurer une page web avec HTML.",
+      "usefulness": "HTML est le squelette de toute interface web : sans lui, rien ne s'affiche.",
+      "prerequisites": ["module-3"],
+      "skills": ["Structurer une page avec des balises sémantiques", "Créer un formulaire", "Comprendre le DOM"],
+      "deliverable": "La structure HTML de la page du tracker.",
+      "estimatedMinutes": 90,
       "lessons": []
     },
     {
       "number": 5,
       "slug": "module-5",
-      "title": "Manipuler des données",
-      "objective": "Comprendre comment une application stocke, lit et met à jour des informations.",
-      "usefulness": "Indispensable dès que ton app doit retenir quelque chose : un compte, une liste, une progression...",
+      "title": "Concevoir une interface avec CSS et les bases UI/UX",
+      "level": "niveau-2",
+      "objective": "Mettre en forme une interface lisible et agréable.",
+      "usefulness": "Une interface claire et agréable rend une application utilisable — et donne confiance dans le résultat.",
+      "prerequisites": ["module-4"],
+      "skills": ["Mettre en page avec CSS", "Appliquer des principes UI/UX de base", "Rendre une interface responsive"],
+      "deliverable": "Le tracker mis en forme, lisible sur mobile et ordinateur.",
+      "estimatedMinutes": 120,
       "lessons": []
     },
     {
       "number": 6,
       "slug": "module-6",
-      "title": "Tester et corriger",
-      "objective": "Apprendre à repérer un bug, comprendre le message d'erreur, et vérifier qu'une correction fonctionne vraiment.",
-      "usefulness": "Tu gagneras en autonomie pour résoudre les problèmes au lieu de rester bloqué.",
+      "title": "Ajouter de la logique avec JavaScript et TypeScript",
+      "level": "niveau-2",
+      "objective": "Rendre une interface interactive et fiable.",
+      "usefulness": "C'est ce qui transforme une page statique en véritable application qui réagit à l'utilisateur.",
+      "prerequisites": ["module-5"],
+      "skills": ["Manipuler le DOM en JavaScript", "Typer son code avec TypeScript", "Gérer les événements utilisateur"],
+      "deliverable": "Le tracker interactif : cocher une tâche met à jour l'affichage.",
+      "estimatedMinutes": 150,
       "lessons": []
     },
     {
       "number": 7,
       "slug": "module-7",
-      "title": "Utiliser GitHub",
-      "objective": "Sauvegarder ton travail, suivre son historique, et le partager grâce à Git et GitHub.",
-      "usefulness": "Tu ne perdras plus jamais de travail, et tu pourras montrer ou partager ton code facilement.",
+      "title": "Organiser l'application avec React et Next.js",
+      "level": "niveau-3",
+      "objective": "Structurer une vraie application en composants et pages.",
+      "usefulness": "React et Next.js sont les outils utilisés par Claude Code pour construire des applications modernes — comme AI Academy elle-même.",
+      "prerequisites": ["module-6"],
+      "skills": ["Découper une interface en composants", "Créer des pages avec Next.js", "Comprendre serveur vs client"],
+      "deliverable": "Le tracker réécrit en application React/Next.js.",
+      "estimatedMinutes": 150,
       "lessons": []
     },
     {
       "number": 8,
       "slug": "module-8",
-      "title": "Publier son application",
-      "objective": "Mettre ton application en ligne pour que n'importe qui puisse l'utiliser depuis un navigateur.",
-      "usefulness": "Le moment où ton projet cesse d'être un exercice pour devenir une vraie application accessible à tous.",
+      "title": "Enregistrer et organiser les données",
+      "level": "niveau-3",
+      "objective": "Stocker et manipuler des données de façon fiable.",
+      "usefulness": "Une application utile doit retenir l'information au-delà d'un simple rafraîchissement de page.",
+      "prerequisites": ["module-7"],
+      "skills": ["Modéliser des données", "Utiliser une base de données simple", "Lire et écrire des données"],
+      "deliverable": "Le tracker avec une vraie sauvegarde des tâches.",
+      "estimatedMinutes": 150,
       "lessons": []
+    },
+    {
+      "number": 9,
+      "slug": "module-9",
+      "title": "API, authentification et sécurité",
+      "level": "niveau-3",
+      "objective": "Faire circuler et protéger les informations d'une application.",
+      "usefulness": "Dès qu'une application a des utilisateurs, elle doit savoir qui ils sont et protéger leurs données.",
+      "prerequisites": ["module-8"],
+      "skills": ["Créer une API simple", "Comprendre l'authentification", "Appliquer des bonnes pratiques de sécurité"],
+      "deliverable": "Le tracker avec une API et un accès protégé.",
+      "estimatedMinutes": 150,
+      "lessons": []
+    },
+    {
+      "number": 10,
+      "slug": "module-10",
+      "title": "Piloter Claude Code efficacement",
+      "level": "niveau-4",
+      "objective": "Collaborer efficacement avec un copilote IA.",
+      "usefulness": "Savoir bien formuler ses demandes fait gagner un temps considérable et évite les erreurs.",
+      "prerequisites": ["module-9"],
+      "skills": ["Écrire des instructions claires", "Relire et valider une proposition de code", "Itérer efficacement avec l'IA"],
+      "deliverable": "Un historique de demandes bien formulées sur le projet tracker.",
+      "estimatedMinutes": 90,
+      "lessons": []
+    },
+    {
+      "number": 11,
+      "slug": "module-11",
+      "title": "Tester et corriger une application",
+      "level": "niveau-4",
+      "objective": "Repérer, comprendre et corriger des problèmes.",
+      "usefulness": "Une application qui n'est jamais testée casse à la première utilisation réelle.",
+      "prerequisites": ["module-10"],
+      "skills": ["Lire un message d'erreur", "Écrire un test simple", "Déboguer méthodiquement"],
+      "deliverable": "Le tracker testé, avec ses bugs connus corrigés.",
+      "estimatedMinutes": 120,
+      "lessons": []
+    },
+    {
+      "number": 12,
+      "slug": "module-12",
+      "title": "Publier, maintenir et améliorer",
+      "level": "niveau-4",
+      "objective": "Mettre une application en ligne et la faire évoluer.",
+      "usefulness": "C'est le moment où le projet cesse d'être un exercice pour devenir une vraie application accessible à tous.",
+      "prerequisites": ["module-11"],
+      "skills": ["Déployer une application", "Suivre son bon fonctionnement", "Planifier des améliorations"],
+      "deliverable": "Le tracker publié en ligne, avec une adresse accessible.",
+      "estimatedMinutes": 90,
+      "lessons": []
+    }
+  ],
+  "finalProject": {
+    "title": "Wayli",
+    "description": "Une application qui guide un débutant dans un parcours de vie ou une démarche complexe, à l'aide d'étapes, de conseils, de checklists et de progression.",
+    "steps": [
+      "Cadrer une version simple de Wayli",
+      "Définir son MVP",
+      "Construire un parcours guidé",
+      "Enregistrer la progression",
+      "Tester",
+      "Corriger",
+      "Publier l'application"
+    ]
+  },
+  "specializations": [
+    {
+      "slug": "make",
+      "title": "Automatiser avec Make",
+      "description": "Connecter des outils entre eux et automatiser des tâches répétitives, sans écrire de code."
+    },
+    {
+      "slug": "agents-ia",
+      "title": "Construire des agents IA",
+      "description": "Concevoir des agents capables d'exécuter des tâches de façon autonome."
     }
   ]
 }

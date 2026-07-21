@@ -1,0 +1,113 @@
+{
+  "id": "lesson-1-7",
+  "schemaVersion": 2,
+  "title": "Synthèse : que se passe-t-il quand on coche une tâche ?",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Reprenons tout le trajet, du début à la fin : tu cliques sur une case dans l'interface (frontend), la logique décide quoi faire, une API transmet la demande, un serveur backend l'exécute, et une base de données enregistre le nouvel état. Ensuite l'information revient jusqu'à l'interface, qui se met à jour. Sept notions, un seul trajet."
+    },
+    {
+      "type": "schema",
+      "diagram": {
+        "kind": "flow",
+        "direction": "horizontal",
+        "nodes": [
+          {
+            "id": "interface",
+            "label": "Interface",
+            "definition": "Tu coches une case : l'interface capte ton clic."
+          },
+          {
+            "id": "logique",
+            "label": "Logique",
+            "color": "#6366F1",
+            "definition": "La logique décide quoi faire de ce clic, et prépare une demande."
+          },
+          {
+            "id": "api",
+            "label": "API",
+            "definition": "L'API transmet la demande jusqu'au serveur."
+          },
+          {
+            "id": "serveur",
+            "label": "Serveur",
+            "definition": "Le serveur backend exécute la demande."
+          },
+          {
+            "id": "donnees",
+            "label": "Données",
+            "definition": "La base de données enregistre le nouvel état, pour de bon."
+          }
+        ],
+        "links": [
+          { "from": "interface", "to": "logique" },
+          { "from": "logique", "to": "api" },
+          { "from": "api", "to": "serveur" },
+          { "from": "serveur", "to": "donnees" }
+        ]
+      },
+      "caption": "Le trajet complet, du clic à l'enregistrement."
+    },
+    {
+      "type": "exercice",
+      "question": "En une ou deux phrases, résume ce qui se passe entre le moment où tu coches une tâche et le moment où la case apparaît cochée à l'écran.",
+      "hints": [
+        "Commence par l'action de l'utilisateur : le clic.",
+        "Termine par le retour à l'interface : pourquoi la case finit-elle par changer visuellement ?"
+      ],
+      "solution": "Le clic est capté par l'interface, la logique décide de marquer la tâche comme terminée, cette information est enregistrée (aujourd'hui dans le navigateur, plus tard via une API et une base de données), puis l'interface se met à jour pour montrer la case cochée."
+    },
+    {
+      "type": "action",
+      "id": "expliquer-tracker",
+      "title": "Explique le fonctionnement du tracker avec tes propres mots",
+      "instructions": "Sans regarder les leçons précédentes, décris ce qui se passe, étape par étape, du clic de l'utilisateur jusqu'à l'affichage du résultat.",
+      "successCriteria": "Ton explication mentionne bien l'interface, la logique et les données — même sans utiliser exactement ces mots.",
+      "evidence": "Écris ton explication ici (3 à 5 phrases)…"
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "Qu'est-ce qui distingue le plus une application web d'un site web ?",
+          "options": ["Le nombre de pages", "Le fait qu'elle réagisse et retienne de l'information", "La taille des images"],
+          "answer": 1,
+          "explanation": "Une application réagit aux actions de l'utilisateur et retient de l'information dans le temps — ce n'est pas une question de taille ou de nombre de pages."
+        },
+        {
+          "question": "Le frontend s'exécute...",
+          "options": ["Sur le serveur", "Dans le navigateur de l'utilisateur", "Dans la base de données"],
+          "answer": 1,
+          "explanation": "Le frontend, c'est l'interface qui s'exécute dans le navigateur de l'utilisateur."
+        },
+        {
+          "question": "Que fait une API ?",
+          "options": ["Elle stocke les données pour toujours", "Elle transmet les demandes entre l'interface et le serveur", "Elle dessine les couleurs de l'application"],
+          "answer": 1,
+          "explanation": "L'API sert d'intermédiaire : elle transmet les demandes de l'interface vers le serveur, et les réponses en retour."
+        },
+        {
+          "question": "Pourquoi héberge-t-on une application sur un serveur dédié plutôt que sur son propre ordinateur ?",
+          "options": ["Parce que c'est plus joli", "Pour qu'elle reste accessible en continu, même quand l'ordinateur personnel est éteint", "Parce que c'est obligatoire par la loi"],
+          "answer": 1,
+          "explanation": "Un hébergeur garde le serveur allumé et accessible en permanence, ce qu'un ordinateur personnel ne peut pas garantir."
+        }
+      ]
+    },
+    {
+      "type": "assessment",
+      "title": "Évaluation finale du module",
+      "requirements": [
+        "Je sais nommer les trois piliers d'une application : interface, données, logique.",
+        "Je sais expliquer la différence entre frontend et backend.",
+        "Je sais dire à quoi sert une base de données.",
+        "Je sais décrire le trajet d'une information via une API.",
+        "Je sais expliquer pourquoi on héberge une application sur un serveur dédié."
+      ]
+    },
+    {
+      "type": "validation"
+    }
+  ]
+}

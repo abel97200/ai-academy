@@ -1,0 +1,46 @@
+{
+  "id": "lesson-1-4",
+  "schemaVersion": 2,
+  "title": "La base de données",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Une base de données, c'est l'endroit où une application range ses informations de façon durable et organisée — un peu comme un classeur bien rangé plutôt qu'une pile de papiers en vrac. Chaque tâche du tracker pourrait y être rangée comme une fiche, avec ses propres informations."
+    },
+    {
+      "type": "demo",
+      "content": "Pense à un classeur avec une fiche par tâche : chaque fiche a les mêmes cases à remplir (un titre, une case \"terminé\"), mais avec des valeurs différentes selon la tâche. Une base de données fonctionne pareil : elle range des enregistrements qui suivent tous la même structure."
+    },
+    {
+      "type": "code",
+      "filename": "tache.json",
+      "language": "json",
+      "code": "{\n  \"id\": 1,\n  \"titre\": \"Faire les courses\",\n  \"terminee\": false\n}",
+      "focusLines": [4],
+      "explanation": "Voici à quoi pourrait ressembler une tâche stockée en base de données. \"terminee\" est la donnée qui change quand on coche la case : elle passe de false à true."
+    },
+    {
+      "type": "exercice",
+      "question": "Si on ajoute un système de dates limites au tracker, quelle nouvelle information faudrait-il ajouter à chaque fiche de tâche ?",
+      "hints": [
+        "Regarde l'exemple de fiche ci-dessus : chaque information a un nom et une valeur.",
+        "Une \"date limite\" est une nouvelle information à part entière, comme le titre ou l'état terminé."
+      ],
+      "solution": "Il faudrait ajouter un champ comme \"dateLimite\", à côté de \"titre\" et \"terminee\", qui contiendrait la date limite propre à cette tâche."
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "À quoi sert une base de données ?",
+          "options": ["À afficher les boutons de l'interface", "À ranger les informations de façon durable et organisée", "À dessiner les couleurs de l'application"],
+          "answer": 1,
+          "explanation": "Une base de données range les informations de manière structurée et durable, pour qu'elles restent disponibles même après avoir fermé l'application."
+        }
+      ]
+    },
+    {
+      "type": "validation"
+    }
+  ]
+}

@@ -3,8 +3,11 @@
 // Composant générique : il dessine des nœuds (des boîtes avec un libellé)
 // reliés par des liens, à partir d'une simple liste de nœuds + une liste
 // de liens. On ne donne jamais de coordonnées dans le JSON : ce composant
-// calcule lui-même où placer chaque nœud, en les répartissant sur un
-// cercle (ce qui dessine un joli triangle pour 3 nœuds, un "trio").
+// calcule lui-même où placer chaque nœud, selon le "layout" demandé :
+// - "circle" : réparti sur un cercle (schéma "trio" — un joli triangle pour
+//   3 nœuds) ;
+// - "line" : aligné en ligne, horizontale ou verticale (schéma "flow" —
+//   pour représenter un trajet séquentiel, ex: Navigateur → Serveur → BDD).
 //
 // Chaque nœud est cliquable : un clic affiche sa définition juste en
 // dessous du schéma, et la fait lire à voix haute (synthèse vocale du
@@ -13,32 +16,68 @@
 import { useEffect, useState } from "react";
 import type { DiagramLink, DiagramNode } from "@/lib/content";
 
+type Layout = "circle" | "line";
+
 type NodesLinksDiagramProps = {
   nodes: DiagramNode[];
   links: DiagramLink[];
+  layout?: Layout; // par défaut "circle" (comportement historique du schéma "trio")
+  direction?: "horizontal" | "vertical"; // utilisé seulement si layout === "line"
 };
 
-// Dimensions du dessin, exprimées en "unités SVG" (indépendantes de la
-// taille réelle à l'écran grâce au viewBox : le schéma reste net et
-// s'adapte à toutes les largeurs, du mobile au grand écran).
-const VIEW_WIDTH = 400;
-const VIEW_HEIGHT = 260;
-const CENTER_X = VIEW_WIDTH / 2;
-const CENTER_Y = VIEW_HEIGHT / 2 + 6;
-const RADIUS = 85;
 const BOX_WIDTH = 128;
 const BOX_HEIGHT = 56;
 
 const DEFAULT_BORDER_COLOR = "rgba(245, 245, 247, 0.2)";
 const ACCENT_COLOR = "#6366f1";
 
-// Position du nœud numéro "index" parmi "total" nœuds, répartis
-// régulièrement sur un cercle en commençant tout en haut.
-function getNodePosition(index: number, total: number) {
-  const angle = (-90 + (360 / total) * index) * (Math.PI / 180);
+type Position = { x: number; y: number };
+
+// Calcule la position de chaque nœud et la taille du dessin ("viewBox"),
+// selon le layout choisi. Le dessin reste exprimé en "unités SVG"
+// indépendantes de la taille réelle à l'écran : il reste net et s'adapte
+// à toutes les largeurs, du mobile au grand écran.
+function computeLayout(
+  nodeCount: number,
+  layout: Layout,
+  direction: "horizontal" | "vertical"
+): { positions: Position[]; viewWidth: number; viewHeight: number } {
+  if (layout === "circle") {
+    const viewWidth = 400;
+    const viewHeight = 260;
+    const centerX = viewWidth / 2;
+    const centerY = viewHeight / 2 + 6;
+    const radius = 85;
+
+    const positions = Array.from({ length: nodeCount }, (_, index) => {
+      const angle = (-90 + (360 / nodeCount) * index) * (Math.PI / 180);
+      return {
+        x: centerX + radius * Math.cos(angle),
+        y: centerY + radius * Math.sin(angle),
+      };
+    });
+
+    return { positions, viewWidth, viewHeight };
+  }
+
+  // layout "line" : les nœuds s'alignent les uns après les autres.
+  const isHorizontal = direction === "horizontal";
+  const gap = isHorizontal ? 180 : 110; // distance entre deux nœuds consécutifs
+  const margin = isHorizontal ? BOX_WIDTH / 2 + 20 : BOX_HEIGHT / 2 + 30;
+  const crossAxisSize = isHorizontal ? 140 : 260; // largeur (vertical) / hauteur (horizontal) fixe
+  const mainAxisSize = margin * 2 + gap * Math.max(nodeCount - 1, 0);
+
+  const positions = Array.from({ length: nodeCount }, (_, index) => {
+    const mainPos = margin + index * gap;
+    return isHorizontal
+      ? { x: mainPos, y: crossAxisSize / 2 }
+      : { x: crossAxisSize / 2, y: mainPos };
+  });
+
   return {
-    x: CENTER_X + RADIUS * Math.cos(angle),
-    y: CENTER_Y + RADIUS * Math.sin(angle),
+    positions,
+    viewWidth: isHorizontal ? mainAxisSize : crossAxisSize,
+    viewHeight: isHorizontal ? crossAxisSize : mainAxisSize,
   };
 }
 
@@ -70,7 +109,12 @@ function speakFrench(
   window.speechSynthesis.speak(utterance);
 }
 
-export default function NodesLinksDiagram({ nodes, links }: NodesLinksDiagramProps) {
+export default function NodesLinksDiagram({
+  nodes,
+  links,
+  layout = "circle",
+  direction = "horizontal",
+}: NodesLinksDiagramProps) {
   // Le nœud survolé (temporaire) et le nœud sélectionné (persiste après un
   // clic, jusqu'au clic sur un autre nœud). "activeId" est celui des deux
   // qui doit être mis en avant visuellement à l'instant présent.
@@ -93,8 +137,13 @@ export default function NodesLinksDiagram({ nodes, links }: NodesLinksDiagramPro
     };
   }, []);
 
+  const { positions: computedPositions, viewWidth, viewHeight } = computeLayout(
+    nodes.length,
+    layout,
+    direction
+  );
   const positions = new Map(
-    nodes.map((node, index) => [node.id, getNodePosition(index, nodes.length)])
+    nodes.map((node, index) => [node.id, computedPositions[index]])
   );
   const selectedNode = nodes.find((node) => node.id === selectedId) ?? null;
 
@@ -140,7 +189,7 @@ export default function NodesLinksDiagram({ nodes, links }: NodesLinksDiagramPro
   return (
     <>
       <svg
-        viewBox={`0 0 ${VIEW_WIDTH} ${VIEW_HEIGHT}`}
+        viewBox={`0 0 ${viewWidth} ${viewHeight}`}
         className="h-auto w-full overflow-visible"
         role="img"
         aria-label={`Schéma reliant : ${nodes.map((node) => node.label).join(", ")}`}

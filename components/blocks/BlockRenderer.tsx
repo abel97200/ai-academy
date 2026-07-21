@@ -12,18 +12,22 @@
 // 2. créer son composant (ex: components/blocks/SchemaBlock.tsx),
 // 3. ajouter un "case" ici.
 
-import { Block } from "@/lib/content";
+import type { Block } from "@/lib/contentTypes";
 import ExplicationBlock from "@/components/blocks/ExplicationBlock";
 import SchemaBlock from "@/components/blocks/SchemaBlock";
 import DemoBlock from "@/components/blocks/DemoBlock";
 import ExerciceBlock from "@/components/blocks/ExerciceBlock";
 import QuizBlock from "@/components/blocks/QuizBlock";
 import ValidationBlock from "@/components/blocks/ValidationBlock";
+import CodeBlock from "@/components/blocks/CodeBlock";
+import ActionBlock from "@/components/blocks/ActionBlock";
+import ProjectBlock from "@/components/blocks/ProjectBlock";
+import AssessmentBlock from "@/components/blocks/AssessmentBlock";
 
 type BlockRendererProps = {
   block: Block;
-  // Identifiant unique du bloc dans la leçon (utile pour les quiz,
-  // qui doivent savoir "qui" a été réussi).
+  // Identifiant unique du bloc dans la leçon (utile pour les quiz et
+  // évaluations, qui doivent savoir "qui" a été réussi/confirmé).
   blockId: string;
 };
 
@@ -52,6 +56,47 @@ export default function BlockRenderer({ block, blockId }: BlockRendererProps) {
 
     case "validation":
       return <ValidationBlock />;
+
+    case "code":
+      return (
+        <CodeBlock
+          filename={block.filename}
+          language={block.language}
+          code={block.code}
+          explanation={block.explanation}
+          focusLines={block.focusLines}
+        />
+      );
+
+    case "action":
+      return (
+        <ActionBlock
+          id={block.id}
+          title={block.title}
+          instructions={block.instructions}
+          successCriteria={block.successCriteria}
+          evidence={block.evidence}
+        />
+      );
+
+    case "project":
+      return (
+        <ProjectBlock
+          title={block.title}
+          brief={block.brief}
+          deliverables={block.deliverables}
+          successCriteria={block.successCriteria}
+          hints={block.hints}
+        />
+      );
+
+    case "assessment":
+      // Les blocs "assessment" n'ont pas d'identifiant propre dans le JSON
+      // (voir docs/CONTENT-SCHEMA-V2.md) : on utilise l'identifiant généré
+      // automatiquement pour ce bloc, comme pour les quiz.
+      return (
+        <AssessmentBlock id={blockId} title={block.title} requirements={block.requirements} />
+      );
 
     default:
       // Si un type de bloc inconnu apparaît un jour dans le JSON,

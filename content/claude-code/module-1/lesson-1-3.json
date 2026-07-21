@@ -1,0 +1,44 @@
+{
+  "id": "lesson-1-3",
+  "schemaVersion": 2,
+  "title": "Frontend et backend",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Le frontend, c'est tout ce qui tourne dans le navigateur de l'utilisateur : l'interface, ce qu'il voit et touche. Le backend, c'est tout ce qui tourne ailleurs, sur un serveur : la logique qui prend des décisions importantes et l'accès aux données partagées. Aujourd'hui, notre tracker n'a que du frontend — tout se passe dans le navigateur, y compris la mémoire (localStorage)."
+    },
+    {
+      "type": "demo",
+      "content": "Imagine un restaurant. La salle où tu es servi, c'est le frontend : ce que tu vois et avec quoi tu interagis. La cuisine, que tu ne vois pas, c'est le backend : c'est là que la vraie préparation a lieu, avec les stocks (les données) que le serveur en salle ne gère pas lui-même."
+    },
+    {
+      "type": "exercice",
+      "question": "Aujourd'hui, notre tracker enregistre la progression dans le navigateur (localStorage). Est-ce qu'il a un backend ?",
+      "hints": [
+        "Un backend, c'est un serveur séparé du navigateur.",
+        "localStorage vit entièrement dans le navigateur de l'utilisateur."
+      ],
+      "solution": "Non, pas encore : tout se passe dans le navigateur. Le tracker n'a pour l'instant que du frontend. Il aura un vrai backend plus tard dans le cursus, quand on voudra que la progression survive au changement d'appareil."
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "Le frontend, c'est...",
+          "options": ["Ce qui tourne sur le serveur", "Ce qui tourne dans le navigateur de l'utilisateur", "La base de données"],
+          "answer": 1,
+          "explanation": "Le frontend s'exécute dans le navigateur de l'utilisateur : c'est l'interface qu'il voit et avec laquelle il interagit directement."
+        },
+        {
+          "question": "Pourquoi une application a-t-elle parfois besoin d'un backend ?",
+          "options": ["Pour avoir un plus joli design", "Pour partager et protéger des données entre plusieurs utilisateurs ou appareils", "Pour aller plus vite au chargement"],
+          "answer": 1,
+          "explanation": "Le backend permet de centraliser des données (pour qu'elles survivent au changement d'appareil, par exemple) et de les protéger, ce qu'un simple navigateur ne peut pas garantir seul."
+        }
+      ]
+    },
+    {
+      "type": "validation"
+    }
+  ]
+}

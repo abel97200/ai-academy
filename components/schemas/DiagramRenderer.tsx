@@ -17,7 +17,17 @@ type DiagramRendererProps = {
 export default function DiagramRenderer({ diagram }: DiagramRendererProps) {
   switch (diagram.kind) {
     case "trio":
-      return <NodesLinksDiagram nodes={diagram.nodes} links={diagram.links} />;
+      return <NodesLinksDiagram nodes={diagram.nodes} links={diagram.links} layout="circle" />;
+
+    case "flow":
+      return (
+        <NodesLinksDiagram
+          nodes={diagram.nodes}
+          links={diagram.links}
+          layout="line"
+          direction={diagram.direction}
+        />
+      );
 
     default:
       return null;
