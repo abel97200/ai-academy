@@ -4,11 +4,23 @@
   "blocks": [
     {
       "type": "explication",
-      "content": "Une API est une manière organisée pour deux programmes de communiquer. Le terme signifie « interface de programmation d’application », mais tu peux surtout retenir l’idée d’un intermédiaire."
+      "content": "Une API est une manière organisée pour deux programmes de communiquer. Imagine un guichet : tu présentes une demande selon certaines règles, puis le guichet te remet une réponse."
+    },
+    {
+      "type": "demo",
+      "content": "À la poste, tu ne vas pas directement fouiller dans l’entrepôt pour chercher ton colis. Tu donnes ton numéro au guichet, l’employé consulte le système et te rapporte le bon colis."
     },
     {
       "type": "explication",
-      "content": "Le programme qui a besoin d’une information envoie une demande, appelée requête. L’autre programme traite cette demande et renvoie une réponse."
+      "content": "Le terme API signifie « interface de programmation d’application ». Tu peux surtout retenir qu’elle définit comment un programme doit demander une information ou une action à un autre programme."
+    },
+    {
+      "type": "explication",
+      "content": "Le programme qui a besoin d’une information envoie une demande, appelée requête. Une requête ressemble à un formulaire correctement rempli : elle indique clairement ce que l’on souhaite."
+    },
+    {
+      "type": "demo",
+      "content": "Une application météo peut envoyer une requête demandant : donne-moi la météo de Paris pour aujourd’hui. Le service météo traite la demande et prépare le résultat."
     },
     {
       "type": "schema",
@@ -53,27 +65,51 @@
     },
     {
       "type": "explication",
-      "content": "L’analogie du restaurant peut aider. Le client passe une commande, le serveur la transmet à la cuisine, puis rapporte le résultat."
-    },
-    {
-      "type": "explication",
-      "content": "Dans cette analogie, l’API représente les règles et le moyen utilisés pour transmettre correctement la commande et la réponse."
+      "content": "Le programme qui reçoit la requête la traite, puis renvoie une réponse. La réponse peut contenir l’information demandée, une confirmation ou une erreur."
     },
     {
       "type": "demo",
-      "content": "Dans le tracker, lorsque tu coches une leçon, le frontend peut envoyer une requête contenant l’identifiant de la leçon et son nouvel état. Le backend vérifie la demande, enregistre la progression, puis renvoie une réponse."
+      "content": "Si tu demandes la météo de Paris, la réponse peut contenir la température et la pluie prévue. Si tu écris une ville inconnue, la réponse peut signaler que la recherche a échoué."
     },
     {
       "type": "explication",
-      "content": "Une réponse peut indiquer un succès, fournir des informations ou signaler une erreur. Le frontend utilise cette réponse pour afficher le bon message."
+      "content": "L’analogie du restaurant fonctionne aussi. Le client passe une commande, le serveur la transmet à la cuisine, puis rapporte le plat."
     },
     {
       "type": "demo",
-      "content": "Si l’enregistrement réussit, l’application peut afficher « Progression enregistrée ». Si le serveur refuse la demande, elle doit afficher un message d’erreur au lieu de faire croire que tout a fonctionné."
+      "content": "Le client ne donne pas des instructions directement à chaque cuisinier. Il utilise un intermédiaire qui connaît les règles de communication entre la salle et la cuisine."
     },
     {
       "type": "explication",
-      "content": "Erreur fréquente : croire qu’une API est forcément liée à une intelligence artificielle. Une API peut aussi fournir la météo, enregistrer un utilisateur ou récupérer une liste de leçons."
+      "content": "Dans une application, le frontend prépare souvent la requête à partir de l’action de l’utilisateur. L’API définit la forme attendue de cette demande."
+    },
+    {
+      "type": "demo",
+      "content": "Dans le tracker, lorsque tu coches une leçon, le frontend peut envoyer l’identifiant « lesson-1-5 » et le nouvel état « terminée ». Ces informations permettent au backend de comprendre précisément la demande."
+    },
+    {
+      "type": "explication",
+      "content": "Le backend traite ensuite la demande. Il peut vérifier que l’utilisateur a le droit de modifier cette progression avant de l’enregistrer."
+    },
+    {
+      "type": "demo",
+      "content": "Si tout est correct, le backend enregistre la progression et renvoie une réponse de succès. Le frontend peut alors afficher « Progression enregistrée »."
+    },
+    {
+      "type": "explication",
+      "content": "Une erreur n’est pas forcément un problème incompréhensible. C’est souvent une réponse indiquant que la demande ne peut pas être satisfaite."
+    },
+    {
+      "type": "demo",
+      "content": "Si la connexion Internet est coupée, le frontend peut recevoir une erreur au lieu d’une confirmation. Il doit alors afficher un message clair plutôt que prétendre que l’enregistrement a réussi."
+    },
+    {
+      "type": "explication",
+      "content": "Erreur fréquente : croire qu’une API est forcément liée à une intelligence artificielle. Une API est seulement une porte de communication standardisée."
+    },
+    {
+      "type": "demo",
+      "content": "Une API peut fournir la météo, enregistrer un paiement, envoyer un courriel ou accéder à une IA. C’est le service situé derrière l’API qui change."
     },
     {
       "type": "exercice",

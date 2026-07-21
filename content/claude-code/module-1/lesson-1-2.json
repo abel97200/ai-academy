@@ -4,7 +4,7 @@
   "blocks": [
     {
       "type": "explication",
-      "content": "Une application simple peut être comprise à travers trois grandes parties : l’interface, la logique et les données. Elles travaillent ensemble pour transformer une action en résultat."
+      "content": "Une application peut être comprise à travers trois grandes parties : l’interface, la logique et les données. Imagine un distributeur automatique : l’écran et les boutons sont l’interface, les règles qui vérifient ton paiement sont la logique, et la liste des produits disponibles représente les données."
     },
     {
       "type": "schema",
@@ -49,31 +49,51 @@
     },
     {
       "type": "explication",
-      "content": "L’interface est tout ce que l’utilisateur voit ou utilise : textes, menus, formulaires, boutons et cases à cocher. Elle permet d’agir sans connaître le fonctionnement interne de l’application."
+      "content": "L’interface est tout ce que l’utilisateur voit ou utilise : textes, menus, formulaires, boutons et cases à cocher. Elle ressemble au tableau de bord d’une voiture : tu peux conduire grâce au volant et aux pédales sans voir directement le moteur."
     },
     {
       "type": "demo",
-      "content": "Dans le tracker, le nom des leçons, les cases à cocher et la barre de progression appartiennent à l’interface. Ce sont les éléments que tu vois et manipules directement."
+      "content": "Dans le tracker, le nom des leçons, les cases à cocher et la barre de progression appartiennent à l’interface. Ce sont les éléments que tu regardes et manipules directement."
     },
     {
       "type": "explication",
-      "content": "La logique correspond aux règles de fonctionnement. Elle décide par exemple qu’une leçon cochée doit être comptée comme terminée."
+      "content": "La logique correspond aux règles de fonctionnement. Dans un distributeur, la machine ne délivre le produit que si le paiement est suffisant et si le produit est disponible."
     },
     {
       "type": "demo",
-      "content": "Si quatre leçons sur huit sont terminées, la logique calcule 4 divisé par 8, puis transforme le résultat en 50 %. L’interface affiche ensuite ce pourcentage."
+      "content": "Dans le tracker, la logique décide qu’une leçon cochée doit être comptée comme terminée. Elle peut aussi empêcher la validation d’un module lorsque le score au quiz est inférieur à 75 %."
     },
     {
       "type": "explication",
-      "content": "Les données sont les informations utilisées par l’application. Elles peuvent être temporaires ou conservées plus longtemps."
+      "content": "La logique réalise également les calculs. Elle prend des informations de départ, applique une règle, puis produit un résultat."
     },
     {
       "type": "demo",
-      "content": "Dans le tracker, le titre d’une leçon, son identifiant et son état terminé ou non terminé sont des données."
+      "content": "Si quatre leçons sur huit sont terminées, la logique calcule 4 divisé par 8, puis transforme le résultat en 50 %. L’interface affiche ensuite ce pourcentage dans la barre de progression."
     },
     {
       "type": "explication",
-      "content": "Erreur fréquente : confondre l’affichage d’une information avec son enregistrement. Voir une case cochée à l’écran ne garantit pas qu’elle le restera après la fermeture du navigateur."
+      "content": "Les données sont les informations utilisées par l’application. Dans un carnet d’adresses, les noms, les numéros de téléphone et les adresses sont des données."
+    },
+    {
+      "type": "demo",
+      "content": "Dans le tracker, le titre d’une leçon, son identifiant et son état terminé ou non terminé sont des données. L’application utilise ces informations pour construire l’écran et calculer la progression."
+    },
+    {
+      "type": "explication",
+      "content": "Les trois parties sont liées. L’interface reçoit ton action, la logique décide du traitement, puis les données sont consultées ou modifiées avant que l’interface affiche le résultat."
+    },
+    {
+      "type": "demo",
+      "content": "Quand tu coches une leçon, la case appartient à l’interface. La règle qui change son état appartient à la logique. L’information « cette leçon est terminée » appartient aux données."
+    },
+    {
+      "type": "explication",
+      "content": "Erreur fréquente : confondre l’affichage d’une information avec son enregistrement. Écrire une note sur une ardoise permet de la voir, mais elle disparaît si l’ardoise est effacée ; il faut la recopier dans un carnet pour la conserver."
+    },
+    {
+      "type": "demo",
+      "content": "De la même manière, voir une case cochée à l’écran ne garantit pas qu’elle le restera après la fermeture du navigateur. L’application doit aussi enregistrer cette donnée."
     },
     {
       "type": "exercice",

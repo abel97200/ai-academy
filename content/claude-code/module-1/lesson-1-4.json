@@ -4,11 +4,15 @@
   "blocks": [
     {
       "type": "explication",
-      "content": "Une base de données est un système organisé qui conserve les informations d’une application. Elle permet ensuite de les retrouver, les ajouter, les modifier ou les supprimer."
+      "content": "Une base de données est un système organisé qui conserve les informations d’une application. Imagine le fichier clients d’un magasin : chaque client possède une fiche que l’on peut retrouver et mettre à jour."
+    },
+    {
+      "type": "demo",
+      "content": "Sans ce fichier, le magasin devrait redemander ton nom, ton adresse et ton historique à chaque visite. La base de données évite de repartir de zéro."
     },
     {
       "type": "explication",
-      "content": "Tu peux l’imaginer comme un classeur très bien rangé. Chaque catégorie d’information possède sa place, ce qui permet à l’application de retrouver rapidement ce dont elle a besoin."
+      "content": "Une application utilise une base de données pour retrouver, ajouter, modifier ou supprimer des informations. Ces quatre actions représentent une grande partie du travail réalisé avec les données."
     },
     {
       "type": "schema",
@@ -49,27 +53,59 @@
     },
     {
       "type": "explication",
-      "content": "Les informations sont souvent regroupées dans des tables. Une table ressemble à un tableau composé de colonnes et de lignes."
-    },
-    {
-      "type": "explication",
-      "content": "Une colonne décrit un type d’information, comme un titre, une date ou un état. Une ligne représente un élément précis."
+      "content": "Tu peux aussi imaginer la base comme un classeur très bien rangé. Chaque type d’information possède une place précise, ce qui facilite les recherches."
     },
     {
       "type": "demo",
-      "content": "Une table « leçons » peut contenir les colonnes identifiant, titre et module. Une ligne peut représenter la leçon « Frontend et backend »."
+      "content": "Dans un classeur scolaire, tu peux avoir une feuille pour les élèves, une pour les cours et une pour les notes. Dans une application, ces catégories peuvent devenir des tables."
     },
     {
       "type": "explication",
-      "content": "Un identifiant est une valeur unique qui permet de reconnaître précisément un élément. Deux leçons peuvent avoir un titre proche, mais elles ne doivent pas partager le même identifiant."
+      "content": "Une table ressemble à un tableau composé de colonnes et de lignes. Elle regroupe des informations qui parlent du même type d’élément."
     },
     {
       "type": "demo",
-      "content": "Dans le tracker, « lesson-1-4 » est l’identifiant unique de cette leçon. L’application peut l’utiliser pour savoir exactement quelle leçon doit être marquée comme terminée."
+      "content": "Une table « leçons » peut regrouper toutes les leçons d’AI Academy. Une autre table « utilisateurs » peut regrouper les personnes inscrites."
     },
     {
       "type": "explication",
-      "content": "Erreur fréquente : enregistrer la même information à plusieurs endroits sans nécessité. Cela peut créer des contradictions si une version est mise à jour et pas l’autre."
+      "content": "Une colonne décrit un type d’information. Dans un carnet de contacts, les colonnes pourraient être « nom », « numéro » et « adresse électronique »."
+    },
+    {
+      "type": "demo",
+      "content": "Dans la table « leçons », les colonnes peuvent être « identifiant », « titre », « numéro du module » et « durée estimée »."
+    },
+    {
+      "type": "explication",
+      "content": "Une ligne représente un élément précis. Dans une liste d’élèves, chaque ligne correspond à une personne différente."
+    },
+    {
+      "type": "demo",
+      "content": "Dans la table « leçons », une ligne peut représenter « Frontend et backend » et une autre « La base de données »."
+    },
+    {
+      "type": "explication",
+      "content": "Un identifiant est une valeur unique qui permet de reconnaître précisément un élément. Il joue un rôle proche du numéro attribué à un dossier administratif."
+    },
+    {
+      "type": "demo",
+      "content": "Dans le tracker, « lesson-1-4 » est l’identifiant unique de cette leçon. Même si son titre change plus tard, l’application peut continuer à reconnaître la bonne leçon grâce à cet identifiant."
+    },
+    {
+      "type": "explication",
+      "content": "Pour enregistrer la progression, l’application doit relier plusieurs informations. Elle doit savoir quelle personne a terminé quelle leçon."
+    },
+    {
+      "type": "demo",
+      "content": "Une ligne de progression peut contenir l’identifiant de l’utilisateur, l’identifiant de la leçon et l’état « terminée ». Cela ressemble à une fiche indiquant : Abel a terminé la leçon 1-4."
+    },
+    {
+      "type": "explication",
+      "content": "Erreur fréquente : enregistrer la même information à plusieurs endroits sans nécessité. C’est comme écrire deux adresses différentes pour la même personne dans deux carnets."
+    },
+    {
+      "type": "demo",
+      "content": "Si une progression est enregistrée comme terminée dans un fichier et non terminée dans un autre, l’application ne saura plus quelle version afficher. Une bonne organisation limite ce type de contradiction."
     },
     {
       "type": "exercice",

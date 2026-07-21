@@ -4,7 +4,11 @@
   "blocks": [
     {
       "type": "explication",
-      "content": "Le frontend et le backend sont deux parties différentes d’une application. Ils collaborent, mais ils ne remplissent pas le même rôle."
+      "content": "Le frontend et le backend sont deux parties différentes d’une application. Imagine un restaurant : la salle visible par les clients ressemble au frontend, tandis que la cuisine cachée ressemble au backend."
+    },
+    {
+      "type": "demo",
+      "content": "Dans la salle, tu consultes le menu, choisis un plat et passes ta commande. Tu interagis avec la partie visible du restaurant sans entrer dans la cuisine."
     },
     {
       "type": "explication",
@@ -12,7 +16,7 @@
     },
     {
       "type": "demo",
-      "content": "Dans AI Academy, le frontend affiche la liste des modules, les boutons précédent et suivant, les questions du quiz et la barre de progression."
+      "content": "Dans AI Academy, le frontend affiche la liste des modules, les boutons précédent et suivant, les questions du quiz et la barre de progression. Lorsque tu sélectionnes une réponse, le frontend reçoit ton clic."
     },
     {
       "type": "schema",
@@ -57,7 +61,11 @@
     },
     {
       "type": "explication",
-      "content": "Le backend fonctionne généralement sur un serveur. Il peut vérifier une identité, appliquer des règles, consulter une base de données et préparer une réponse."
+      "content": "Le backend ressemble à la cuisine du restaurant. Le client ne la voit pas, mais c’est là que la commande est vérifiée, préparée et transformée en résultat."
+    },
+    {
+      "type": "explication",
+      "content": "Dans une application web, le backend fonctionne généralement sur un serveur. Il peut vérifier une identité, appliquer des règles, consulter une base de données et préparer une réponse."
     },
     {
       "type": "demo",
@@ -65,7 +73,15 @@
     },
     {
       "type": "explication",
-      "content": "Certaines petites applications peuvent fonctionner sans backend. Elles conservent alors leur logique et leurs données directement dans le navigateur."
+      "content": "Le frontend et le backend communiquent souvent comme un serveur de restaurant qui fait l’aller-retour entre la salle et la cuisine. Le frontend transmet la demande, puis affiche la réponse reçue."
+    },
+    {
+      "type": "demo",
+      "content": "Tu cliques sur « Enregistrer ». Le frontend envoie les informations au backend. Le backend les vérifie, les enregistre et répond « Enregistrement réussi », puis le frontend affiche ce message."
+    },
+    {
+      "type": "explication",
+      "content": "Toutes les applications n’ont pas forcément besoin d’un backend dès leur première version. Une liste de courses conservée uniquement sur ton téléphone peut fonctionner localement."
     },
     {
       "type": "demo",
@@ -73,7 +89,19 @@
     },
     {
       "type": "explication",
-      "content": "Erreur fréquente : faire confiance uniquement au frontend pour une règle sensible. Comme le code du navigateur peut être observé ou modifié, les contrôles importants doivent aussi être réalisés côté backend."
+      "content": "Un backend devient utile lorsque plusieurs utilisateurs doivent retrouver leurs informations sur différents appareils. Il permet aussi de protéger les données et d’appliquer des règles communes."
+    },
+    {
+      "type": "demo",
+      "content": "Avec un compte AI Academy, tu pourrais commencer une leçon sur ton ordinateur et retrouver la même progression sur ton téléphone. Le backend et une base distante permettraient cette synchronisation."
+    },
+    {
+      "type": "explication",
+      "content": "Erreur fréquente : faire confiance uniquement au frontend pour une règle sensible. Ce serait comme laisser chaque client du restaurant décider lui-même du montant de l’addition."
+    },
+    {
+      "type": "demo",
+      "content": "Le frontend peut afficher qu’un utilisateur est administrateur, mais le backend doit vérifier réellement son autorisation avant de lui permettre de supprimer des données."
     },
     {
       "type": "exercice",

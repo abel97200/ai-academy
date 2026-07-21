@@ -7,8 +7,16 @@
       "content": "Le navigateur est le logiciel que tu utilises pour ouvrir une application web. Chrome, Safari, Firefox et Edge sont des navigateurs."
     },
     {
+      "type": "demo",
+      "content": "Le navigateur ressemble à une fenêtre donnant accès au Web. Tu saisis une adresse, puis il récupère et assemble les éléments nécessaires pour afficher la page."
+    },
+    {
       "type": "explication",
-      "content": "Le navigateur reçoit les fichiers nécessaires, exécute le code du frontend et affiche le résultat. Il permet aussi à l’utilisateur de cliquer, saisir du texte et naviguer entre les pages."
+      "content": "Le navigateur reçoit les fichiers de l’application, exécute le code du frontend et affiche le résultat. Il transforme donc du code en boutons, textes, images et formulaires utilisables."
+    },
+    {
+      "type": "demo",
+      "content": "Lorsque tu ouvres AI Academy, tu ne vois pas directement les fichiers TypeScript ou CSS. Le navigateur les interprète et te présente une interface lisible."
     },
     {
       "type": "schema",
@@ -53,31 +61,59 @@
     },
     {
       "type": "explication",
-      "content": "Un serveur est un ordinateur ou un service qui répond à des demandes. Il peut envoyer les fichiers de l’application, exécuter du code backend ou communiquer avec une base de données."
+      "content": "Un serveur est un ordinateur ou un service qui répond à des demandes. Imagine le stock d’un magasin : lorsque la boutique demande un produit, le stock le retrouve et l’envoie."
     },
     {
       "type": "demo",
-      "content": "Lorsque tu ouvres AI Academy, ton navigateur demande les fichiers de l’application. Le serveur les envoie, puis le navigateur construit la page que tu vois."
+      "content": "Lorsque ton navigateur demande la page d’accueil d’AI Academy, le serveur lui fournit les fichiers nécessaires. Le navigateur les reçoit puis construit la page."
     },
     {
       "type": "explication",
-      "content": "L’hébergement est le service qui garde l’application disponible sur Internet. Il permet à d’autres personnes d’y accéder même lorsque ton ordinateur est éteint."
+      "content": "Un serveur peut aussi exécuter le backend. Il peut vérifier une connexion, chercher une donnée ou enregistrer une modification avant de répondre."
     },
     {
       "type": "demo",
-      "content": "Vercel héberge actuellement AI Academy et lui fournit une adresse en vercel.app. Cette adresse peut être ouverte depuis différents appareils connectés à Internet."
+      "content": "Si AI Academy possédait des comptes, le serveur pourrait vérifier ton mot de passe puis récupérer ta progression avant d’envoyer la page."
     },
     {
       "type": "explication",
-      "content": "Pendant le développement, l’application peut fonctionner uniquement sur ton ordinateur. Une adresse comme localhost indique que le navigateur communique avec un serveur local lancé sur ta machine."
+      "content": "L’hébergement est le service qui garde l’application disponible sur Internet. C’est un peu comme louer un local ouvert en permanence pour que les visiteurs puissent venir."
     },
     {
       "type": "demo",
-      "content": "Avec la commande « npm run dev », Node.js lance généralement un serveur local. Tu ouvres ensuite une adresse comme « http://localhost:3000 » pour voir l’application avant de la publier."
+      "content": "Vercel héberge AI Academy. Même lorsque ton ordinateur personnel est éteint, les serveurs de Vercel continuent de rendre l’application accessible."
     },
     {
       "type": "explication",
-      "content": "Erreur fréquente : croire que localhost est déjà accessible à tout le monde. Tant que l’application n’est pas déployée sur un hébergement, elle reste généralement visible uniquement depuis ton ordinateur."
+      "content": "Pendant le développement, l’application fonctionne souvent uniquement sur ton ordinateur. Tu utilises alors un serveur local."
+    },
+    {
+      "type": "demo",
+      "content": "C’est comparable à préparer une boutique témoin dans ton garage avant d’ouvrir le véritable magasin. Tu peux tester tranquillement sans que le public voie chaque modification."
+    },
+    {
+      "type": "explication",
+      "content": "Une adresse comme localhost indique que le navigateur communique avec ton propre ordinateur. Le mot local signifie que le service fonctionne près de toi, sur ta machine."
+    },
+    {
+      "type": "demo",
+      "content": "Avec la commande « npm run dev », Node.js lance généralement un serveur local. Tu peux ensuite ouvrir « http://localhost:3000 » pour voir l’application en cours de développement."
+    },
+    {
+      "type": "explication",
+      "content": "Déployer une application signifie envoyer une version prête sur un hébergement. Elle reçoit alors une adresse accessible depuis Internet."
+    },
+    {
+      "type": "demo",
+      "content": "Quand Claude Code envoie le projet sur GitHub, Vercel peut récupérer le code, construire l’application et publier la nouvelle version sur l’adresse vercel.app."
+    },
+    {
+      "type": "explication",
+      "content": "Erreur fréquente : croire que localhost est déjà accessible à tout le monde. C’est comme une répétition dans une salle privée : le public ne la voit pas encore."
+    },
+    {
+      "type": "demo",
+      "content": "Tant que l’application n’est pas déployée sur un hébergement, une personne située ailleurs ne peut généralement pas ouvrir ton adresse localhost."
     },
     {
       "type": "exercice",

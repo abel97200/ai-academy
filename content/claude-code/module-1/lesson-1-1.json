@@ -4,11 +4,15 @@
   "blocks": [
     {
       "type": "explication",
-      "content": "Un site web et une application web s’ouvrent tous les deux dans un navigateur, comme Chrome, Safari ou Firefox. La différence principale se trouve dans ce que l’utilisateur peut y faire."
+      "content": "Un site web et une application web s’ouvrent tous les deux dans un navigateur, comme Chrome, Safari ou Firefox. Visuellement, ils peuvent même se ressembler, mais ils ne servent pas toujours au même usage."
+    },
+    {
+      "type": "demo",
+      "content": "Imagine deux établissements : une affiche placée devant un restaurant et une borne de commande. L’affiche te donne les horaires et le menu. La borne, elle, te laisse choisir un repas, modifier ta commande et la confirmer."
     },
     {
       "type": "explication",
-      "content": "Un site principalement informatif sert surtout à consulter du contenu : lire une présentation, regarder des photos ou vérifier des horaires. L’utilisateur reçoit une information déjà préparée."
+      "content": "Un site principalement informatif ressemble à l’affiche du restaurant. Il sert surtout à consulter du contenu déjà préparé : lire une présentation, regarder des photos ou vérifier des horaires."
     },
     {
       "type": "schema",
@@ -48,24 +52,44 @@
       "caption": "Le fonctionnement simplifié d’un site principalement informatif."
     },
     {
+      "type": "demo",
+      "content": "Une page présentant les horaires d’une mairie est principalement informative. Tu peux lire les heures d’ouverture, mais la page ne calcule rien pour toi et ne conserve pas une action personnelle."
+    },
+    {
       "type": "explication",
-      "content": "Une application web permet généralement d’effectuer davantage d’actions. L’utilisateur peut saisir des informations, créer un élément, modifier son contenu ou retrouver plus tard ce qu’il a enregistré."
+      "content": "Une application web ressemble davantage à la borne de commande. Elle reçoit une action de l’utilisateur, applique des règles et affiche un nouveau résultat."
     },
     {
       "type": "demo",
-      "content": "Dans le tracker d’apprentissage, tu peux cocher une leçon, voir ton pourcentage de progression changer et retrouver cet état après avoir rechargé la page. Le tracker ne se contente donc pas d’afficher du contenu : il réagit à tes actions."
+      "content": "Dans une application bancaire, tu saisis un montant puis tu confirmes un virement. L’application vérifie les informations, enregistre l’opération et met à jour ton solde."
     },
     {
       "type": "explication",
-      "content": "La frontière n’est pas toujours parfaite. Un même produit peut comporter des pages informatives et des fonctions interactives."
+      "content": "Une application permet donc souvent de créer, modifier ou enregistrer des informations. Elle ne se contente pas de montrer la même chose à tous les visiteurs."
+    },
+    {
+      "type": "demo",
+      "content": "Dans le tracker d’apprentissage, tu peux cocher une leçon, voir ton pourcentage de progression changer et retrouver cet état après avoir rechargé la page. Le tracker réagit à ton action et conserve une information qui te concerne."
     },
     {
       "type": "explication",
-      "content": "AI Academy affiche des explications comme un site de contenu, mais elle enregistre aussi ta progression comme une application. C’est donc bien une application web comportant une partie pédagogique informative."
+      "content": "La frontière n’est toutefois pas toujours parfaite. Un même produit peut comporter des pages informatives et des fonctions interactives."
+    },
+    {
+      "type": "demo",
+      "content": "Le site d’un cinéma peut présenter les films et leurs horaires comme un site informatif. Dès que tu choisis une séance, sélectionnes des places et règles ta réservation, tu utilises une fonction d’application."
     },
     {
       "type": "explication",
-      "content": "Erreur fréquente : croire qu’un bouton suffit à transformer un site en application. Il faut surtout regarder ce que le bouton déclenche réellement."
+      "content": "AI Academy fonctionne de la même manière. Elle affiche des explications à lire, mais elle enregistre aussi ta progression, corrige tes quiz et adapte ce qui est affiché selon tes actions."
+    },
+    {
+      "type": "explication",
+      "content": "Erreur fréquente : croire qu’un bouton suffit à transformer un site en application. Un bouton peut simplement ouvrir une autre page ; il faut surtout regarder ce qu’il déclenche réellement."
+    },
+    {
+      "type": "demo",
+      "content": "Un bouton « Nous contacter » qui ouvre une page reste une navigation simple. Un bouton « Valider la leçon » qui vérifie ton score, enregistre ton résultat et actualise ta progression déclenche une véritable logique d’application."
     },
     {
       "type": "exercice",

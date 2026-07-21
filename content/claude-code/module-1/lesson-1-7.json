@@ -4,7 +4,11 @@
   "blocks": [
     {
       "type": "explication",
-      "content": "Tu connais maintenant les principales parties d’une application. Cette leçon relie toutes les notions à travers une seule action : cocher une leçon dans le tracker."
+      "content": "Tu connais maintenant les principales parties d’une application. Nous allons les relier à travers une action très simple : cocher une leçon dans le tracker."
+    },
+    {
+      "type": "demo",
+      "content": "Imagine une chaîne de livraison. Tu passes une commande, elle est vérifiée, préparée, enregistrée puis livrée. Cocher une leçon déclenche aussi plusieurs étapes, même si elles se déroulent très vite."
     },
     {
       "type": "explication",
@@ -12,15 +16,31 @@
     },
     {
       "type": "demo",
-      "content": "Tu coches la leçon « Frontend et backend ». L’interface connaît l’identifiant de cette leçon et transmet l’action à la logique de l’application."
+      "content": "Tu coches la leçon « Frontend et backend ». La case visible appartient à l’interface et possède un identifiant permettant de reconnaître cette leçon."
     },
     {
       "type": "explication",
-      "content": "Deuxième étape : la logique détermine ce qui doit changer. Elle transforme l’état de la leçon de non terminée à terminée."
+      "content": "Le frontend reçoit donc ton action. Il joue un rôle proche du vendeur qui note correctement ta commande avant de la transmettre."
     },
     {
       "type": "demo",
-      "content": "Si deux leçons sur sept étaient terminées, la logique passe maintenant à trois leçons terminées. Elle recalcule ensuite la progression à environ 43 %."
+      "content": "Le frontend comprend que l’action concerne « lesson-1-3 » et que son nouvel état doit devenir « terminée ». Il transmet ensuite cette information à la logique."
+    },
+    {
+      "type": "explication",
+      "content": "Deuxième étape : la logique détermine ce qui doit changer. Elle applique les règles prévues par le développeur."
+    },
+    {
+      "type": "demo",
+      "content": "La logique transforme l’état de la leçon de non terminée à terminée. Elle vérifie aussi combien de leçons sont maintenant achevées."
+    },
+    {
+      "type": "explication",
+      "content": "La logique recalcule ensuite la progression. C’est comparable à un professeur qui compte les exercices terminés pour calculer ton avancement."
+    },
+    {
+      "type": "demo",
+      "content": "Si deux leçons sur sept étaient terminées, le total passe maintenant à trois. Le calcul donne environ 43 % de progression."
     },
     {
       "type": "schema",
@@ -61,23 +81,51 @@
     },
     {
       "type": "explication",
-      "content": "Troisième étape : l’application conserve éventuellement le nouvel état. Dans le MVP, elle peut utiliser localStorage."
-    },
-    {
-      "type": "explication",
-      "content": "Dans une version avec comptes utilisateurs, elle pourrait envoyer une requête API vers un backend, qui enregistrerait l’information dans une base de données."
-    },
-    {
-      "type": "explication",
-      "content": "Quatrième étape : l’interface reçoit le nouvel état et se met à jour. La case apparaît cochée, la barre avance et le nouveau pourcentage est affiché."
+      "content": "Troisième étape : l’application conserve éventuellement le nouvel état. Sans cette étape, la progression pourrait disparaître après le rechargement."
     },
     {
       "type": "demo",
-      "content": "Le trajet complet est donc : clic dans le frontend, traitement par la logique, enregistrement local ou distant, puis nouvel affichage. Lorsqu’un bug apparaît, chacune de ces étapes peut être vérifiée séparément."
+      "content": "C’est comme cocher une liste sur une feuille puis jeter la feuille. Pour retrouver l’information plus tard, il faut conserver la liste dans un endroit durable."
     },
     {
       "type": "explication",
-      "content": "Erreur fréquente : dire simplement « le bouton enregistre la leçon ». En réalité, le bouton déclenche une suite d’étapes. Comprendre cette chaîne t’aidera à mieux piloter Claude Code."
+      "content": "Dans le MVP, AI Academy peut utiliser localStorage. Il s’agit d’un petit espace de rangement fourni par le navigateur."
+    },
+    {
+      "type": "demo",
+      "content": "Le navigateur enregistre localement que « lesson-1-3 » est terminée. Lorsque tu reviens, l’application lit cette information et recochera la bonne case."
+    },
+    {
+      "type": "explication",
+      "content": "Dans une version avec comptes utilisateurs, le frontend pourrait envoyer une requête API au backend. Le backend enregistrerait ensuite la progression dans une base de données."
+    },
+    {
+      "type": "demo",
+      "content": "Ce fonctionnement permettrait de cocher une leçon sur ton ordinateur puis de retrouver le même état sur ton téléphone, car les données ne seraient plus limitées à un seul navigateur."
+    },
+    {
+      "type": "explication",
+      "content": "Quatrième étape : l’interface se met à jour. Elle reçoit le nouvel état et transforme cette information en résultat visible."
+    },
+    {
+      "type": "demo",
+      "content": "La case apparaît cochée, la barre de progression avance et le nouveau pourcentage s’affiche. L’utilisateur voit immédiatement que son action a été prise en compte."
+    },
+    {
+      "type": "explication",
+      "content": "Le trajet complet est donc : action dans l’interface, traitement par la logique, enregistrement des données, puis nouvel affichage. Chaque étape possède un rôle précis."
+    },
+    {
+      "type": "demo",
+      "content": "Si la case ne réagit pas, le problème peut venir du frontend. Si elle réagit mais se décoche après rechargement, le problème vient probablement de l’enregistrement. Cette décomposition aide à chercher un bug."
+    },
+    {
+      "type": "explication",
+      "content": "Erreur fréquente : dire simplement « le bouton enregistre la leçon ». C’est comme dire que le bouton d’un ascenseur déplace seul la cabine."
+    },
+    {
+      "type": "demo",
+      "content": "Le bouton déclenche l’action, mais plusieurs mécanismes prennent ensuite le relais. Comprendre cette chaîne t’aidera à formuler des demandes précises à Claude Code."
     },
     {
       "type": "exercice",
