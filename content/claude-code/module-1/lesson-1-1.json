@@ -1,0 +1,85 @@
+{
+  "id": "lesson-1-1",
+  "title": "Une app, c'est trois choses",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Toute application repose sur trois piliers : l'interface (ce que l'on voit), les données (ce que l'app retient) et la logique (ce qui relie les deux). Comprendre ce trio suffit à comprendre n'importe quelle application."
+    },
+    {
+      "type": "schema",
+      "diagram": {
+        "kind": "trio",
+        "nodes": [
+          {
+            "id": "interface",
+            "label": "Interface",
+            "definition": "L'interface, c'est tout ce que l'utilisateur voit et touche à l'écran : les boutons, les textes, les listes. C'est la partie visible de l'application."
+          },
+          {
+            "id": "logique",
+            "label": "Logique",
+            "color": "#6366F1",
+            "definition": "La logique, c'est le code qui réagit aux actions de l'utilisateur : il décide quoi faire, met à jour les données, puis demande à l'interface de se rafraîchir."
+          },
+          {
+            "id": "donnees",
+            "label": "Données",
+            "definition": "Les données, c'est ce que l'application retient : les informations qui doivent rester vraies même après avoir fermé puis rouvert l'application."
+          }
+        ],
+        "links": [
+          { "from": "interface", "to": "logique" },
+          { "from": "logique", "to": "donnees" }
+        ]
+      },
+      "caption": "Le trio fondamental de toute application"
+    },
+    {
+      "type": "demo",
+      "content": "Prenons un tracker d'apprentissage : une simple to-do list de leçons à suivre. L'interface, c'est la liste affichée à l'écran, avec une case à cocher devant chaque leçon. Les données, c'est le tableau qui retient le titre de chaque leçon et si elle est cochée ou non. La logique, c'est ce qui se passe quand on clique sur une case : on met à jour les données, puis l'interface se redessine pour montrer la case cochée."
+    },
+    {
+      "type": "exercice",
+      "question": "Dans notre tracker d'apprentissage, où range-t-on l'information \"cette leçon est terminée\" : dans l'interface, dans les données, ou dans la logique ?",
+      "hints": [
+        "L'interface se contente d'afficher ce qu'on lui donne, elle ne retient rien elle-même.",
+        "La logique agit sur l'information au moment du clic, mais elle ne la stocke pas durablement.",
+        "Pense à ce qui doit rester vrai même si tu fermes puis rouvres l'app."
+      ],
+      "solution": "Dans les données. C'est leur rôle de retenir l'état de chaque leçon (terminée ou non) ; l'interface se contente de l'afficher, et la logique se contente de le modifier."
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "Quand tu coches une case dans le tracker, quelle partie décide de mettre à jour les données puis de rafraîchir l'affichage ?",
+          "options": ["L'interface", "Les données", "La logique"],
+          "answer": 2,
+          "explanation": "C'est la logique qui réagit au clic : elle met à jour les données, puis redemande à l'interface de s'afficher. L'interface, elle, ne fait qu'afficher ce qu'on lui donne — elle ne décide de rien elle-même."
+        },
+        {
+          "question": "Le titre de chaque leçon et son état \"coché ou non\", c'est...",
+          "options": ["Une donnée", "Une interface", "De la logique"],
+          "answer": 0,
+          "explanation": "C'est une donnée : une information que l'application doit retenir dans le temps. Ce n'est ni ce qu'on voit (l'interface), ni une règle de comportement (la logique)."
+        },
+        {
+          "question": "La case à cocher affichée devant chaque leçon fait partie de...",
+          "options": ["la logique", "l'interface", "les données"],
+          "answer": 1,
+          "explanation": "C'est un élément d'interface : quelque chose que l'utilisateur voit et peut toucher à l'écran. Elle ne retient rien par elle-même — c'est juste une représentation visuelle."
+        },
+        {
+          "question": "Dans une appli de quiz de musique qui affiche \"Bravo !\" quand la réponse est bonne, quelle partie a décidé d'afficher ce message ?",
+          "options": ["Les données", "L'interface", "La logique"],
+          "answer": 2,
+          "explanation": "C'est la logique qui compare la réponse donnée à la bonne réponse et décide quoi afficher ensuite. Les données stockent juste le score, et l'interface se contente de montrer ce qu'on lui dit d'afficher."
+        }
+      ]
+    },
+    {
+      "type": "validation"
+    }
+  ]
+}

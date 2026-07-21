@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+/*
+  Palette de couleurs de "AI Academy".
+  On définit ces couleurs une seule fois ici, puis on les utilise
+  partout dans l'app avec des classes Tailwind comme "bg-background"
+  ou "text-accent".
+*/
+:root {
+  --background: #0f1115; /* fond principal, thème sombre */
+  --foreground: #f5f5f7; /* couleur du texte principal */
+  --accent: #6366f1; /* indigo : couleur d'accent unique du site */
+  --success: #22c55e; /* vert : réservé aux messages de réussite (étapes suivantes) */
+  --hint: #f59e0b; /* ambre : réservé aux indices (étapes suivantes) */
+}
+
+/* On expose ces variables à Tailwind pour pouvoir écrire bg-background, text-accent, etc. */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-success: var(--success);
+  --color-hint: var(--hint);
+  --font-sans: var(--font-inter);
+}
+
+/*
+  AI Academy est toujours en thème sombre (ce n'est pas basé sur les
+  préférences du système), donc pas de media query "prefers-color-scheme" ici.
+*/
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+}
+
+/*
+  Célébration affichée par le bloc "validation" quand on vient de terminer
+  une leçon : le ✓ qui "pop", entouré d'un anneau qui s'étend puis
+  s'efface. Comme pour les schémas, tout est neutralisé si l'utilisateur
+  préfère moins d'animations (le ✓ et le message restent visibles, juste
+  sans mouvement).
+*/
+@keyframes pop-in {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes celebrate-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+
+.celebrate-ring {
+  /* État de repos : invisible tant que l'animation ci-dessous ne joue pas
+     (et donc invisible en permanence si l'utilisateur préfère moins
+     d'animations, plutôt que de laisser un anneau statique à l'écran). */
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .celebrate-pop {
+    animation: pop-in 0.4s ease-out;
+  }
+
+  .celebrate-ring {
+    animation: celebrate-ring 0.8s ease-out;
+  }
+}
+
+/*
+  Schémas SVG dessinés par le code (NodesLinksDiagram) :
+  - apparition en fondu + léger glissement vers le haut, au chargement ;
+  - transitions douces pour la mise en avant au survol d'un nœud.
+  Les deux respectent "prefers-reduced-motion" : si l'utilisateur a
+  désactivé les animations dans son système, le schéma s'affiche
+  directement dans son état final, sans mouvement.
+*/
+@keyframes schema-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .schema-animate {
+    animation: schema-in 0.5s ease-out both;
+  }
+}
+
+.schema-node,
+.schema-link {
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    filter 0.2s ease,
+    stroke 0.2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .schema-node,
+  .schema-link {
+    transition: none;
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "slug": "claude-code",
+  "title": "Créer une application avec Claude Code",
+  "promise": "À la fin, tu sauras construire une application seul ou avec l'aide de l'IA",
+  "modules": [
+    {
+      "number": 1,
+      "slug": "module-1",
+      "title": "Comment fonctionne une application",
+      "objective": "Comprendre les trois piliers de toute application : l'interface, les données et la logique.",
+      "usefulness": "Cette base te permet de comprendre n'importe quel projet, même écrit par quelqu'un d'autre, et de savoir où chercher quand quelque chose ne marche pas.",
+      "lessons": ["lesson-1-1"]
+    },
+    {
+      "number": 2,
+      "slug": "module-2",
+      "title": "Prendre en main Claude Code",
+      "objective": "Découvrir Claude Code : comment lui parler, lui donner des instructions claires, et comprendre ce qu'il fait dans ton projet.",
+      "usefulness": "Tu sauras travailler efficacement avec ton copilote IA au lieu de deviner comment l'utiliser.",
+      "lessons": []
+    },
+    {
+      "number": 3,
+      "slug": "module-3",
+      "title": "Les bases utiles du code",
+      "objective": "Apprendre le strict nécessaire de programmation pour lire et comprendre le code que Claude Code écrit pour toi.",
+      "usefulness": "Tu pourras relire une modification proposée et savoir si elle fait ce que tu attends, sans être expert.",
+      "lessons": []
+    },
+    {
+      "number": 4,
+      "slug": "module-4",
+      "title": "Créer une interface",
+      "objective": "Construire ce que l'utilisateur voit et touche : pages, boutons, formulaires.",
+      "usefulness": "Tu pourras transformer une idée en écran concret que n'importe qui peut utiliser.",
+      "lessons": []
+    },
+    {
+      "number": 5,
+      "slug": "module-5",
+      "title": "Manipuler des données",
+      "objective": "Comprendre comment une application stocke, lit et met à jour des informations.",
+      "usefulness": "Indispensable dès que ton app doit retenir quelque chose : un compte, une liste, une progression...",
+      "lessons": []
+    },
+    {
+      "number": 6,
+      "slug": "module-6",
+      "title": "Tester et corriger",
+      "objective": "Apprendre à repérer un bug, comprendre le message d'erreur, et vérifier qu'une correction fonctionne vraiment.",
+      "usefulness": "Tu gagneras en autonomie pour résoudre les problèmes au lieu de rester bloqué.",
+      "lessons": []
+    },
+    {
+      "number": 7,
+      "slug": "module-7",
+      "title": "Utiliser GitHub",
+      "objective": "Sauvegarder ton travail, suivre son historique, et le partager grâce à Git et GitHub.",
+      "usefulness": "Tu ne perdras plus jamais de travail, et tu pourras montrer ou partager ton code facilement.",
+      "lessons": []
+    },
+    {
+      "number": 8,
+      "slug": "module-8",
+      "title": "Publier son application",
+      "objective": "Mettre ton application en ligne pour que n'importe qui puisse l'utiliser depuis un navigateur.",
+      "usefulness": "Le moment où ton projet cesse d'être un exercice pour devenir une vraie application accessible à tous.",
+      "lessons": []
+    }
+  ]
+}
