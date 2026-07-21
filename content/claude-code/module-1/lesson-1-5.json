@@ -1,65 +1,142 @@
 {
   "id": "lesson-1-5",
-  "schemaVersion": 2,
   "title": "Les API et la circulation des informations",
   "blocks": [
     {
       "type": "explication",
-      "content": "Une API, c'est la porte par laquelle l'interface demande une information au serveur, ou lui envoie une information à enregistrer. C'est un peu comme un guichet : tu fais une demande précise, et tu reçois une réponse précise."
+      "content": "Une API est une manière organisée pour deux programmes de communiquer. Le terme signifie « interface de programmation d’application », mais tu peux surtout retenir l’idée d’un intermédiaire."
+    },
+    {
+      "type": "explication",
+      "content": "Le programme qui a besoin d’une information envoie une demande, appelée requête. L’autre programme traite cette demande et renvoie une réponse."
     },
     {
       "type": "schema",
       "diagram": {
-        "kind": "flow",
-        "direction": "horizontal",
+        "kind": "trio",
         "nodes": [
           {
-            "id": "interface",
-            "label": "Interface",
-            "definition": "L'utilisateur coche une tâche : l'interface doit maintenant prévenir le reste de l'application."
+            "id": "frontend",
+            "label": "Frontend",
+            "color": "#6366F1",
+            "definition": "Il prépare la demande à partir de l’action de l’utilisateur."
           },
           {
             "id": "api",
             "label": "API",
-            "color": "#6366F1",
-            "definition": "L'API reçoit la demande (\"marque la tâche 1 comme terminée\") et la transmet au serveur, dans un format que celui-ci comprend."
+            "color": "#F59E0B",
+            "definition": "Elle définit comment envoyer une demande et recevoir une réponse."
           },
           {
-            "id": "serveur",
-            "label": "Serveur",
-            "definition": "Le serveur applique la demande : il décide quoi faire et va lire ou écrire dans la base de données."
-          },
-          {
-            "id": "donnees",
-            "label": "Données",
-            "definition": "La base de données enregistre le nouvel état de la tâche, de façon durable."
+            "id": "backend",
+            "label": "Backend",
+            "color": "#14B8A6",
+            "definition": "Il traite la demande et prépare le résultat."
           }
         ],
         "links": [
-          { "from": "interface", "to": "api" },
-          { "from": "api", "to": "serveur" },
-          { "from": "serveur", "to": "donnees" }
+          {
+            "from": "frontend",
+            "to": "api"
+          },
+          {
+            "from": "api",
+            "to": "backend"
+          },
+          {
+            "from": "backend",
+            "to": "frontend"
+          }
         ]
       },
-      "caption": "Le trajet d'une information, de l'écran jusqu'à la base de données."
+      "caption": "Une API organise la communication entre le frontend et le backend."
+    },
+    {
+      "type": "explication",
+      "content": "L’analogie du restaurant peut aider. Le client passe une commande, le serveur la transmet à la cuisine, puis rapporte le résultat."
+    },
+    {
+      "type": "explication",
+      "content": "Dans cette analogie, l’API représente les règles et le moyen utilisés pour transmettre correctement la commande et la réponse."
+    },
+    {
+      "type": "demo",
+      "content": "Dans le tracker, lorsque tu coches une leçon, le frontend peut envoyer une requête contenant l’identifiant de la leçon et son nouvel état. Le backend vérifie la demande, enregistre la progression, puis renvoie une réponse."
+    },
+    {
+      "type": "explication",
+      "content": "Une réponse peut indiquer un succès, fournir des informations ou signaler une erreur. Le frontend utilise cette réponse pour afficher le bon message."
+    },
+    {
+      "type": "demo",
+      "content": "Si l’enregistrement réussit, l’application peut afficher « Progression enregistrée ». Si le serveur refuse la demande, elle doit afficher un message d’erreur au lieu de faire croire que tout a fonctionné."
+    },
+    {
+      "type": "explication",
+      "content": "Erreur fréquente : croire qu’une API est forcément liée à une intelligence artificielle. Une API peut aussi fournir la météo, enregistrer un utilisateur ou récupérer une liste de leçons."
     },
     {
       "type": "exercice",
-      "question": "Dans ce trajet, à quel endroit la tâche est-elle réellement enregistrée pour de bon ?",
+      "question": "Remets ces étapes dans le bon ordre : le backend enregistre la progression, le frontend envoie une requête, l’utilisateur coche une leçon, le frontend affiche le résultat et le backend renvoie une réponse.",
       "hints": [
-        "L'interface et l'API ne font que transmettre la demande.",
-        "Le serveur décide, mais où range-t-il le résultat final ?"
+        "Tout commence par l’action de l’utilisateur.",
+        "La requête part du frontend vers le backend.",
+        "L’affichage final se produit après la réponse."
       ],
-      "solution": "Dans les données (la base de données), à la toute fin du trajet. C'est le seul endroit où l'information reste durablement."
+      "solution": "1. L’utilisateur coche une leçon. 2. Le frontend envoie une requête. 3. Le backend enregistre la progression. 4. Le backend renvoie une réponse. 5. Le frontend affiche le résultat."
     },
     {
       "type": "quiz",
       "questions": [
         {
           "question": "À quoi sert une API ?",
-          "options": ["À dessiner les couleurs de l'interface", "À faire circuler une demande entre l'interface et le serveur", "À remplacer la base de données"],
+          "options": [
+            "À organiser la communication entre des programmes",
+            "À choisir uniquement les polices d’écriture",
+            "À éteindre automatiquement l’ordinateur"
+          ],
+          "answer": 0,
+          "explanation": "Une API définit comment des programmes peuvent échanger des demandes et des réponses. Elle n’est pas un outil de design et ne sert pas à éteindre l’ordinateur."
+        },
+        {
+          "question": "Comment appelle-t-on généralement le message envoyé pour demander une action ou une information ?",
+          "options": [
+            "Une requête",
+            "Une couleur",
+            "Un composant visuel"
+          ],
+          "answer": 0,
+          "explanation": "Le message envoyé est une requête. Une couleur et un composant appartiennent à l’interface, pas au mécanisme de communication."
+        },
+        {
+          "question": "Que peut contenir la réponse d’une API ?",
+          "options": [
+            "Des données, une confirmation ou une erreur",
+            "Uniquement une image",
+            "Toujours un mot de passe"
+          ],
+          "answer": 0,
+          "explanation": "Une réponse peut transmettre des données, confirmer une opération ou signaler une erreur. Elle n’est pas limitée aux images et ne doit pas contenir automatiquement un mot de passe."
+        },
+        {
+          "question": "Dans le tracker, quelle information permet d’indiquer précisément la leçon à modifier ?",
+          "options": [
+            "Son identifiant",
+            "La position actuelle de la souris",
+            "La couleur de fond de la page"
+          ],
+          "answer": 0,
+          "explanation": "L’identifiant permet de désigner précisément la leçon concernée. La souris et la couleur de fond ne permettent pas de reconnaître une donnée."
+        },
+        {
+          "question": "Toutes les API utilisent-elles une intelligence artificielle ?",
+          "options": [
+            "Oui",
+            "Non",
+            "Seulement les API gratuites"
+          ],
           "answer": 1,
-          "explanation": "L'API est l'intermédiaire qui transmet les demandes de l'interface vers le serveur (et les réponses en retour), un peu comme un guichet."
+          "explanation": "Non. Une API est d’abord un moyen de communication. Elle peut donner accès à une IA, mais aussi à une base de données, un service météo ou un moyen de paiement. Son prix ne change pas sa définition."
         }
       ]
     },

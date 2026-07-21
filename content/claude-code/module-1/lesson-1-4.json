@@ -1,41 +1,138 @@
 {
   "id": "lesson-1-4",
-  "schemaVersion": 2,
   "title": "La base de données",
   "blocks": [
     {
       "type": "explication",
-      "content": "Une base de données, c'est l'endroit où une application range ses informations de façon durable et organisée — un peu comme un classeur bien rangé plutôt qu'une pile de papiers en vrac. Chaque tâche du tracker pourrait y être rangée comme une fiche, avec ses propres informations."
+      "content": "Une base de données est un système organisé qui conserve les informations d’une application. Elle permet ensuite de les retrouver, les ajouter, les modifier ou les supprimer."
+    },
+    {
+      "type": "explication",
+      "content": "Tu peux l’imaginer comme un classeur très bien rangé. Chaque catégorie d’information possède sa place, ce qui permet à l’application de retrouver rapidement ce dont elle a besoin."
+    },
+    {
+      "type": "schema",
+      "diagram": {
+        "kind": "trio",
+        "nodes": [
+          {
+            "id": "application",
+            "label": "Application",
+            "color": "#6366F1",
+            "definition": "Elle demande, crée ou modifie des informations."
+          },
+          {
+            "id": "database",
+            "label": "Base de données",
+            "color": "#14B8A6",
+            "definition": "Elle organise et conserve les informations."
+          },
+          {
+            "id": "resultat",
+            "label": "Résultat",
+            "color": "#F59E0B",
+            "definition": "L’application affiche les informations retrouvées."
+          }
+        ],
+        "links": [
+          {
+            "from": "application",
+            "to": "database"
+          },
+          {
+            "from": "database",
+            "to": "resultat"
+          }
+        ]
+      },
+      "caption": "L’application utilise la base pour enregistrer puis retrouver les informations."
+    },
+    {
+      "type": "explication",
+      "content": "Les informations sont souvent regroupées dans des tables. Une table ressemble à un tableau composé de colonnes et de lignes."
+    },
+    {
+      "type": "explication",
+      "content": "Une colonne décrit un type d’information, comme un titre, une date ou un état. Une ligne représente un élément précis."
     },
     {
       "type": "demo",
-      "content": "Pense à un classeur avec une fiche par tâche : chaque fiche a les mêmes cases à remplir (un titre, une case \"terminé\"), mais avec des valeurs différentes selon la tâche. Une base de données fonctionne pareil : elle range des enregistrements qui suivent tous la même structure."
+      "content": "Une table « leçons » peut contenir les colonnes identifiant, titre et module. Une ligne peut représenter la leçon « Frontend et backend »."
     },
     {
-      "type": "code",
-      "filename": "tache.json",
-      "language": "json",
-      "code": "{\n  \"id\": 1,\n  \"titre\": \"Faire les courses\",\n  \"terminee\": false\n}",
-      "focusLines": [4],
-      "explanation": "Voici à quoi pourrait ressembler une tâche stockée en base de données. \"terminee\" est la donnée qui change quand on coche la case : elle passe de false à true."
+      "type": "explication",
+      "content": "Un identifiant est une valeur unique qui permet de reconnaître précisément un élément. Deux leçons peuvent avoir un titre proche, mais elles ne doivent pas partager le même identifiant."
+    },
+    {
+      "type": "demo",
+      "content": "Dans le tracker, « lesson-1-4 » est l’identifiant unique de cette leçon. L’application peut l’utiliser pour savoir exactement quelle leçon doit être marquée comme terminée."
+    },
+    {
+      "type": "explication",
+      "content": "Erreur fréquente : enregistrer la même information à plusieurs endroits sans nécessité. Cela peut créer des contradictions si une version est mise à jour et pas l’autre."
     },
     {
       "type": "exercice",
-      "question": "Si on ajoute un système de dates limites au tracker, quelle nouvelle information faudrait-il ajouter à chaque fiche de tâche ?",
+      "question": "Imagine une table destinée à enregistrer la progression d’un utilisateur. Quelles informations minimales faudrait-il conserver ?",
       "hints": [
-        "Regarde l'exemple de fiche ci-dessus : chaque information a un nom et une valeur.",
-        "Une \"date limite\" est une nouvelle information à part entière, comme le titre ou l'état terminé."
+        "Il faut reconnaître l’utilisateur.",
+        "Il faut reconnaître la leçon.",
+        "Il faut connaître l’état de progression."
       ],
-      "solution": "Il faudrait ajouter un champ comme \"dateLimite\", à côté de \"titre\" et \"terminee\", qui contiendrait la date limite propre à cette tâche."
+      "solution": "Une structure minimale peut contenir l’identifiant de l’utilisateur, l’identifiant de la leçon et un état indiquant si elle est terminée. Une date de validation peut aussi être ajoutée, mais elle n’est pas indispensable au fonctionnement de base."
     },
     {
       "type": "quiz",
       "questions": [
         {
-          "question": "À quoi sert une base de données ?",
-          "options": ["À afficher les boutons de l'interface", "À ranger les informations de façon durable et organisée", "À dessiner les couleurs de l'application"],
+          "question": "À quoi sert principalement une base de données ?",
+          "options": [
+            "À conserver et organiser les informations",
+            "À choisir automatiquement les couleurs de l’interface",
+            "À remplacer le navigateur"
+          ],
+          "answer": 0,
+          "explanation": "Une base de données conserve et organise les informations. Elle ne décide pas automatiquement du design et ne remplace pas le navigateur."
+        },
+        {
+          "question": "Dans une table, que représente généralement une colonne ?",
+          "options": [
+            "Un type d’information",
+            "L’application entière",
+            "Un clic de souris"
+          ],
+          "answer": 0,
+          "explanation": "Une colonne décrit un type d’information, comme un titre ou un état. L’application entière comprend beaucoup d’autres éléments et un clic est une action temporaire."
+        },
+        {
+          "question": "Pourquoi utiliser un identifiant unique pour chaque leçon ?",
+          "options": [
+            "Pour distinguer précisément chaque leçon",
+            "Pour rendre tous les titres identiques",
+            "Pour augmenter la taille du texte"
+          ],
+          "answer": 0,
+          "explanation": "L’identifiant permet de retrouver sans ambiguïté un élément précis. Il ne modifie ni le titre ni son apparence."
+        },
+        {
+          "question": "Que faut-il enregistrer pour conserver la progression d’une leçon ?",
+          "options": [
+            "Uniquement la couleur de la case",
+            "L’identifiant de la leçon et son état de progression",
+            "La position de la souris"
+          ],
           "answer": 1,
-          "explanation": "Une base de données range les informations de manière structurée et durable, pour qu'elles restent disponibles même après avoir fermé l'application."
+          "explanation": "L’application doit reconnaître la leçon et connaître son état. La couleur n’est qu’un affichage et la position de la souris ne représente pas la progression."
+        },
+        {
+          "question": "Afficher une donnée à l’écran signifie-t-il qu’elle est forcément enregistrée dans une base ?",
+          "options": [
+            "Oui, toujours",
+            "Non",
+            "Seulement lorsque le texte est en gras"
+          ],
+          "answer": 1,
+          "explanation": "Une information peut être affichée temporairement sans être enregistrée. Le style du texte n’a aucun lien avec sa conservation."
         }
       ]
     },

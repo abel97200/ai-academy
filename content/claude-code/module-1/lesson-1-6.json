@@ -1,33 +1,146 @@
 {
   "id": "lesson-1-6",
-  "schemaVersion": 2,
   "title": "Navigateur, serveur et hébergement",
   "blocks": [
     {
       "type": "explication",
-      "content": "Le navigateur (Chrome, Safari...) affiche l'application sur ton écran. Le serveur, lui, est un ordinateur allumé en permanence, ailleurs, qui répond aux demandes. L'hébergement, c'est le service qui fait tourner ce serveur pour toi, pour que l'application soit accessible à tout moment, même quand ton propre ordinateur est éteint."
+      "content": "Le navigateur est le logiciel que tu utilises pour ouvrir une application web. Chrome, Safari, Firefox et Edge sont des navigateurs."
+    },
+    {
+      "type": "explication",
+      "content": "Le navigateur reçoit les fichiers nécessaires, exécute le code du frontend et affiche le résultat. Il permet aussi à l’utilisateur de cliquer, saisir du texte et naviguer entre les pages."
+    },
+    {
+      "type": "schema",
+      "diagram": {
+        "kind": "trio",
+        "nodes": [
+          {
+            "id": "navigateur",
+            "label": "Navigateur",
+            "color": "#6366F1",
+            "definition": "Il affiche et exécute l’interface de l’application."
+          },
+          {
+            "id": "serveur",
+            "label": "Serveur",
+            "color": "#14B8A6",
+            "definition": "Il fournit des fichiers, des données ou des traitements."
+          },
+          {
+            "id": "hebergement",
+            "label": "Hébergement",
+            "color": "#F59E0B",
+            "definition": "Il permet au projet de rester accessible en ligne."
+          }
+        ],
+        "links": [
+          {
+            "from": "navigateur",
+            "to": "serveur"
+          },
+          {
+            "from": "serveur",
+            "to": "navigateur"
+          },
+          {
+            "from": "serveur",
+            "to": "hebergement"
+          }
+        ]
+      },
+      "caption": "Le navigateur demande l’application à un serveur accessible grâce à un hébergement."
+    },
+    {
+      "type": "explication",
+      "content": "Un serveur est un ordinateur ou un service qui répond à des demandes. Il peut envoyer les fichiers de l’application, exécuter du code backend ou communiquer avec une base de données."
     },
     {
       "type": "demo",
-      "content": "AI Academy elle-même fonctionne ainsi : le code est hébergé (sur Vercel), un serveur le fait tourner en permanence, et ton navigateur affiche le résultat quand tu visites le site — que ton ordinateur personnel soit allumé ou non."
+      "content": "Lorsque tu ouvres AI Academy, ton navigateur demande les fichiers de l’application. Le serveur les envoie, puis le navigateur construit la page que tu vois."
+    },
+    {
+      "type": "explication",
+      "content": "L’hébergement est le service qui garde l’application disponible sur Internet. Il permet à d’autres personnes d’y accéder même lorsque ton ordinateur est éteint."
+    },
+    {
+      "type": "demo",
+      "content": "Vercel héberge actuellement AI Academy et lui fournit une adresse en vercel.app. Cette adresse peut être ouverte depuis différents appareils connectés à Internet."
+    },
+    {
+      "type": "explication",
+      "content": "Pendant le développement, l’application peut fonctionner uniquement sur ton ordinateur. Une adresse comme localhost indique que le navigateur communique avec un serveur local lancé sur ta machine."
+    },
+    {
+      "type": "demo",
+      "content": "Avec la commande « npm run dev », Node.js lance généralement un serveur local. Tu ouvres ensuite une adresse comme « http://localhost:3000 » pour voir l’application avant de la publier."
+    },
+    {
+      "type": "explication",
+      "content": "Erreur fréquente : croire que localhost est déjà accessible à tout le monde. Tant que l’application n’est pas déployée sur un hébergement, elle reste généralement visible uniquement depuis ton ordinateur."
     },
     {
       "type": "exercice",
-      "question": "Pourquoi ne peut-on pas simplement laisser son propre ordinateur allumé pour héberger son application ?",
+      "question": "Explique la différence entre ouvrir AI Academy sur localhost et l’ouvrir sur son adresse vercel.app.",
       "hints": [
-        "Pense à ce qui se passe si ton ordinateur s'éteint, plante, ou perd sa connexion internet.",
-        "Un hébergeur professionnel garantit une disponibilité que ton ordinateur personnel ne peut pas offrir."
+        "Demande-toi où le serveur fonctionne.",
+        "Localhost correspond à ton ordinateur.",
+        "Vercel permet l’accès depuis Internet."
       ],
-      "solution": "Parce que si ton ordinateur s'éteint, plante ou perd sa connexion, l'application ne serait plus accessible à personne. Un hébergeur garde le serveur allumé et surveillé en continu."
+      "solution": "Sur localhost, le serveur de développement fonctionne sur ton ordinateur et l’application est généralement accessible uniquement localement. Sur l’adresse vercel.app, l’application a été déployée sur un service d’hébergement et peut être consultée depuis Internet."
     },
     {
       "type": "quiz",
       "questions": [
         {
-          "question": "Quel est le rôle de l'hébergement ?",
-          "options": ["Dessiner l'interface", "Faire tourner le serveur en permanence pour que l'application reste accessible", "Stocker les mots de passe"],
+          "question": "Quel est le rôle principal du navigateur ?",
+          "options": [
+            "Afficher et exécuter le frontend",
+            "Remplacer toutes les bases de données",
+            "Créer automatiquement le cahier des charges"
+          ],
+          "answer": 0,
+          "explanation": "Le navigateur affiche et exécute le frontend. Il peut conserver quelques données locales, mais ne remplace pas toutes les bases. Il ne définit pas non plus automatiquement le besoin produit."
+        },
+        {
+          "question": "Qu’est-ce qu’un serveur ?",
+          "options": [
+            "Un système qui répond à des demandes",
+            "Une couleur d’interface",
+            "Un type de bouton"
+          ],
+          "answer": 0,
+          "explanation": "Un serveur répond à des demandes et peut fournir des fichiers, des données ou des traitements. Les autres options appartiennent à l’interface."
+        },
+        {
+          "question": "À quoi sert l’hébergement ?",
+          "options": [
+            "À rendre l’application accessible en ligne",
+            "À remplacer toutes les étapes de test",
+            "À écrire automatiquement toutes les leçons"
+          ],
+          "answer": 0,
+          "explanation": "L’hébergement rend l’application disponible sur Internet. Il ne remplace ni les tests ni la création pédagogique du contenu."
+        },
+        {
+          "question": "Que signifie généralement localhost ?",
+          "options": [
+            "Un serveur qui fonctionne sur ton propre ordinateur",
+            "Une application déjà publiée mondialement",
+            "Une base de données obligatoire"
+          ],
+          "answer": 0,
+          "explanation": "Localhost désigne ta propre machine. L’application n’est pas automatiquement publique et localhost n’est pas une base de données."
+        },
+        {
+          "question": "Une application visible sur localhost est-elle forcément accessible à une autre personne sur Internet ?",
+          "options": [
+            "Oui",
+            "Non",
+            "Seulement si son écran est grand"
+          ],
           "answer": 1,
-          "explanation": "L'hébergement garde le serveur allumé et accessible en continu, indépendamment de l'ordinateur personnel du développeur."
+          "explanation": "Non. Il faut généralement déployer l’application sur un hébergement pour qu’elle soit accessible en ligne. La taille de l’écran n’a aucun rapport."
         }
       ]
     },

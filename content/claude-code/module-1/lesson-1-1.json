@@ -1,33 +1,134 @@
 {
   "id": "lesson-1-1",
-  "schemaVersion": 2,
   "title": "Site web ou application web ?",
   "blocks": [
     {
       "type": "explication",
-      "content": "Un site web affiche surtout du contenu à lire : un article, une recette, une page \"à propos\". Une application web, elle, réagit à ce que tu fais et retient des choses : coche une tâche, elle reste cochée. Le tracker qu'on va construire est une application, pas un simple site."
+      "content": "Un site web et une application web s’ouvrent tous les deux dans un navigateur, comme Chrome, Safari ou Firefox. La différence principale se trouve dans ce que l’utilisateur peut y faire."
+    },
+    {
+      "type": "explication",
+      "content": "Un site principalement informatif sert surtout à consulter du contenu : lire une présentation, regarder des photos ou vérifier des horaires. L’utilisateur reçoit une information déjà préparée."
+    },
+    {
+      "type": "schema",
+      "diagram": {
+        "kind": "trio",
+        "nodes": [
+          {
+            "id": "visiteur",
+            "label": "Visiteur",
+            "color": "#6366F1",
+            "definition": "La personne ouvre le site pour consulter son contenu."
+          },
+          {
+            "id": "contenu",
+            "label": "Informations",
+            "color": "#14B8A6",
+            "definition": "Le site présente des textes, des images ou des informations pratiques."
+          },
+          {
+            "id": "consultation",
+            "label": "Consultation",
+            "color": "#F59E0B",
+            "definition": "L’utilisateur lit ou regarde principalement le contenu proposé."
+          }
+        ],
+        "links": [
+          {
+            "from": "visiteur",
+            "to": "contenu"
+          },
+          {
+            "from": "contenu",
+            "to": "consultation"
+          }
+        ]
+      },
+      "caption": "Le fonctionnement simplifié d’un site principalement informatif."
+    },
+    {
+      "type": "explication",
+      "content": "Une application web permet généralement d’effectuer davantage d’actions. L’utilisateur peut saisir des informations, créer un élément, modifier son contenu ou retrouver plus tard ce qu’il a enregistré."
     },
     {
       "type": "demo",
-      "content": "Compare deux pages : la fiche d'une recette de cuisine (tu la lis, rien ne change si tu cliques quelque part) et un traducteur en ligne (tu tapes un mot, une traduction apparaît, et si tu reviens plus tard tes derniers mots tapés sont parfois encore là). La première est un site web. La seconde est une application web : elle réagit et elle retient."
+      "content": "Dans le tracker d’apprentissage, tu peux cocher une leçon, voir ton pourcentage de progression changer et retrouver cet état après avoir rechargé la page. Le tracker ne se contente donc pas d’afficher du contenu : il réagit à tes actions."
+    },
+    {
+      "type": "explication",
+      "content": "La frontière n’est pas toujours parfaite. Un même produit peut comporter des pages informatives et des fonctions interactives."
+    },
+    {
+      "type": "explication",
+      "content": "AI Academy affiche des explications comme un site de contenu, mais elle enregistre aussi ta progression comme une application. C’est donc bien une application web comportant une partie pédagogique informative."
+    },
+    {
+      "type": "explication",
+      "content": "Erreur fréquente : croire qu’un bouton suffit à transformer un site en application. Il faut surtout regarder ce que le bouton déclenche réellement."
     },
     {
       "type": "exercice",
-      "question": "Un blog de voyage où tu peux seulement lire les articles : site web ou application web ? Et une messagerie en ligne où tu envoies des messages ?",
+      "question": "Classe ces exemples en deux groupes : un article de presse, une page affichant les horaires d’un restaurant, un formulaire de réservation et le tracker d’apprentissage.",
       "hints": [
-        "Demande-toi : est-ce que la page réagit à ce que je fais ?",
-        "Demande-toi : est-ce que la page retient quelque chose entre deux visites ?"
+        "Demande-toi si l’utilisateur consulte seulement une information.",
+        "Une application transforme souvent une saisie ou un clic en nouveau résultat.",
+        "Le formulaire de réservation et le tracker traitent des actions de l’utilisateur."
       ],
-      "solution": "Le blog de voyage est un site web : tu le lis, rien ne change. La messagerie est une application web : elle réagit (tu envoies un message) et elle retient (tes messages restent là au prochain passage)."
+      "solution": "L’article de presse et la page d’horaires sont principalement informatifs. Le formulaire de réservation et le tracker correspondent davantage à des fonctions d’application, car ils traitent une action et produisent un résultat. Un même produit peut toutefois combiner les deux catégories."
     },
     {
       "type": "quiz",
       "questions": [
         {
-          "question": "Qu'est-ce qui distingue le plus une application web d'un simple site web ?",
-          "options": ["Elle a plus de belles couleurs", "Elle réagit à l'utilisateur et retient de l'information", "Elle a plus de pages"],
+          "question": "Quelle est la fonction principale d’un site vitrine ?",
+          "options": [
+            "Présenter des informations",
+            "Enregistrer obligatoirement les données de chaque visiteur",
+            "Installer un programme sur l’ordinateur"
+          ],
+          "answer": 0,
+          "explanation": "Présenter des informations est la bonne réponse. Un site vitrine peut afficher des textes, des images ou des services sans enregistrer les données de chaque visiteur. Il n’a pas non plus besoin d’installer un programme sur l’ordinateur."
+        },
+        {
+          "question": "Quelle caractéristique décrit le mieux une application web ?",
+          "options": [
+            "Elle ne contient jamais de texte",
+            "Elle permet à l’utilisateur d’agir et produit un résultat",
+            "Elle fonctionne uniquement sur téléphone"
+          ],
           "answer": 1,
-          "explanation": "Le nombre de pages ou le style visuel ne changent rien : ce qui définit une application, c'est qu'elle réagit à des actions et qu'elle retient de l'information dans le temps."
+          "explanation": "Une application web permet à l’utilisateur d’effectuer des actions et d’obtenir un résultat. Elle peut contenir du texte et fonctionner sur ordinateur, téléphone ou tablette."
+        },
+        {
+          "question": "Dans AI Academy, quelle fonction correspond le mieux à une application ?",
+          "options": [
+            "Afficher le logo",
+            "Enregistrer les leçons terminées",
+            "Afficher le titre d’une page"
+          ],
+          "answer": 1,
+          "explanation": "Enregistrer les leçons terminées est une fonction d’application, car une action modifie puis conserve une information. Le logo et le titre sont principalement des éléments affichés."
+        },
+        {
+          "question": "Une application web peut-elle contenir des pages purement informatives ?",
+          "options": [
+            "Non, jamais",
+            "Oui",
+            "Seulement si elle est payante"
+          ],
+          "answer": 1,
+          "explanation": "Oui. Une application peut mélanger des pages informatives et des fonctions interactives. Le fait qu’elle soit gratuite ou payante ne change pas sa nature."
+        },
+        {
+          "question": "Un bouton visible suffit-il à prouver qu’un site est une application ?",
+          "options": [
+            "Oui, tous les boutons transforment un site en application",
+            "Non, il faut observer ce que le bouton permet réellement de faire",
+            "Oui, uniquement si le bouton est coloré"
+          ],
+          "answer": 1,
+          "explanation": "Il faut regarder l’action déclenchée par le bouton. Un bouton qui ouvre simplement une autre page ne suffit pas forcément. Sa couleur n’a aucun rapport avec la nature du produit."
         }
       ]
     },

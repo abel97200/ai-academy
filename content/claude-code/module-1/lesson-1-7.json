@@ -1,109 +1,147 @@
 {
   "id": "lesson-1-7",
-  "schemaVersion": 2,
-  "title": "Synthèse : que se passe-t-il quand on coche une tâche ?",
+  "title": "Synthèse : que se passe-t-il quand tu coches une leçon ?",
   "blocks": [
     {
       "type": "explication",
-      "content": "Reprenons tout le trajet, du début à la fin : tu cliques sur une case dans l'interface (frontend), la logique décide quoi faire, une API transmet la demande, un serveur backend l'exécute, et une base de données enregistre le nouvel état. Ensuite l'information revient jusqu'à l'interface, qui se met à jour. Sept notions, un seul trajet."
+      "content": "Tu connais maintenant les principales parties d’une application. Cette leçon relie toutes les notions à travers une seule action : cocher une leçon dans le tracker."
+    },
+    {
+      "type": "explication",
+      "content": "Première étape : l’utilisateur agit sur l’interface. Le navigateur détecte le clic sur la case associée à une leçon précise."
+    },
+    {
+      "type": "demo",
+      "content": "Tu coches la leçon « Frontend et backend ». L’interface connaît l’identifiant de cette leçon et transmet l’action à la logique de l’application."
+    },
+    {
+      "type": "explication",
+      "content": "Deuxième étape : la logique détermine ce qui doit changer. Elle transforme l’état de la leçon de non terminée à terminée."
+    },
+    {
+      "type": "demo",
+      "content": "Si deux leçons sur sept étaient terminées, la logique passe maintenant à trois leçons terminées. Elle recalcule ensuite la progression à environ 43 %."
     },
     {
       "type": "schema",
       "diagram": {
-        "kind": "flow",
-        "direction": "horizontal",
+        "kind": "trio",
         "nodes": [
           {
-            "id": "interface",
-            "label": "Interface",
-            "definition": "Tu coches une case : l'interface capte ton clic."
-          },
-          {
-            "id": "logique",
-            "label": "Logique",
+            "id": "action",
+            "label": "Action utilisateur",
             "color": "#6366F1",
-            "definition": "La logique décide quoi faire de ce clic, et prépare une demande."
+            "definition": "L’utilisateur coche une leçon."
           },
           {
-            "id": "api",
-            "label": "API",
-            "definition": "L'API transmet la demande jusqu'au serveur."
+            "id": "traitement",
+            "label": "Traitement",
+            "color": "#F59E0B",
+            "definition": "L’application modifie l’état et recalcule la progression."
           },
           {
-            "id": "serveur",
-            "label": "Serveur",
-            "definition": "Le serveur backend exécute la demande."
-          },
-          {
-            "id": "donnees",
-            "label": "Données",
-            "definition": "La base de données enregistre le nouvel état, pour de bon."
+            "id": "resultat",
+            "label": "Résultat",
+            "color": "#14B8A6",
+            "definition": "Le nouvel état est enregistré puis affiché."
           }
         ],
         "links": [
-          { "from": "interface", "to": "logique" },
-          { "from": "logique", "to": "api" },
-          { "from": "api", "to": "serveur" },
-          { "from": "serveur", "to": "donnees" }
+          {
+            "from": "action",
+            "to": "traitement"
+          },
+          {
+            "from": "traitement",
+            "to": "resultat"
+          }
         ]
       },
-      "caption": "Le trajet complet, du clic à l'enregistrement."
+      "caption": "Une action est traitée avant de devenir un résultat visible."
+    },
+    {
+      "type": "explication",
+      "content": "Troisième étape : l’application conserve éventuellement le nouvel état. Dans le MVP, elle peut utiliser localStorage."
+    },
+    {
+      "type": "explication",
+      "content": "Dans une version avec comptes utilisateurs, elle pourrait envoyer une requête API vers un backend, qui enregistrerait l’information dans une base de données."
+    },
+    {
+      "type": "explication",
+      "content": "Quatrième étape : l’interface reçoit le nouvel état et se met à jour. La case apparaît cochée, la barre avance et le nouveau pourcentage est affiché."
+    },
+    {
+      "type": "demo",
+      "content": "Le trajet complet est donc : clic dans le frontend, traitement par la logique, enregistrement local ou distant, puis nouvel affichage. Lorsqu’un bug apparaît, chacune de ces étapes peut être vérifiée séparément."
+    },
+    {
+      "type": "explication",
+      "content": "Erreur fréquente : dire simplement « le bouton enregistre la leçon ». En réalité, le bouton déclenche une suite d’étapes. Comprendre cette chaîne t’aidera à mieux piloter Claude Code."
     },
     {
       "type": "exercice",
-      "question": "En une ou deux phrases, résume ce qui se passe entre le moment où tu coches une tâche et le moment où la case apparaît cochée à l'écran.",
+      "question": "Explique avec tes propres mots le trajet complet suivi lorsque tu coches une leçon. Mentionne au minimum l’interface, la logique, les données et l’affichage final.",
       "hints": [
-        "Commence par l'action de l'utilisateur : le clic.",
-        "Termine par le retour à l'interface : pourquoi la case finit-elle par changer visuellement ?"
+        "Commence par l’action réalisée dans l’interface.",
+        "Explique ensuite ce que la logique modifie ou calcule.",
+        "Termine par l’enregistrement et le nouvel affichage."
       ],
-      "solution": "Le clic est capté par l'interface, la logique décide de marquer la tâche comme terminée, cette information est enregistrée (aujourd'hui dans le navigateur, plus tard via une API et une base de données), puis l'interface se met à jour pour montrer la case cochée."
-    },
-    {
-      "type": "action",
-      "id": "expliquer-tracker",
-      "title": "Explique le fonctionnement du tracker avec tes propres mots",
-      "instructions": "Sans regarder les leçons précédentes, décris ce qui se passe, étape par étape, du clic de l'utilisateur jusqu'à l'affichage du résultat.",
-      "successCriteria": "Ton explication mentionne bien l'interface, la logique et les données — même sans utiliser exactement ces mots.",
-      "evidence": "Écris ton explication ici (3 à 5 phrases)…"
+      "solution": "L’utilisateur coche une leçon dans l’interface. Le frontend détecte le clic et transmet l’information à la logique. La logique modifie l’état de la leçon et recalcule la progression. Le nouvel état est enregistré localement ou envoyé vers un backend et une base de données. L’interface reçoit ensuite les nouvelles informations et affiche la case cochée ainsi que le pourcentage actualisé."
     },
     {
       "type": "quiz",
       "questions": [
         {
-          "question": "Qu'est-ce qui distingue le plus une application web d'un site web ?",
-          "options": ["Le nombre de pages", "Le fait qu'elle réagisse et retienne de l'information", "La taille des images"],
-          "answer": 1,
-          "explanation": "Une application réagit aux actions de l'utilisateur et retient de l'information dans le temps — ce n'est pas une question de taille ou de nombre de pages."
+          "question": "Quelle est la première étape lorsque l’utilisateur coche une leçon ?",
+          "options": [
+            "Le frontend reçoit l’action",
+            "La base supprime toutes les données",
+            "Le serveur publie une nouvelle application"
+          ],
+          "answer": 0,
+          "explanation": "Le clic est d’abord reçu par le frontend. La base ne doit pas supprimer toutes les données et aucune nouvelle publication n’est nécessaire pour chaque clic."
         },
         {
-          "question": "Le frontend s'exécute...",
-          "options": ["Sur le serveur", "Dans le navigateur de l'utilisateur", "Dans la base de données"],
-          "answer": 1,
-          "explanation": "Le frontend, c'est l'interface qui s'exécute dans le navigateur de l'utilisateur."
+          "question": "Quelle partie calcule le nouveau pourcentage de progression ?",
+          "options": [
+            "La logique de l’application",
+            "Le nom de domaine",
+            "La police d’écriture"
+          ],
+          "answer": 0,
+          "explanation": "La logique contient la règle de calcul. Le nom de domaine sert à accéder à l’application et la police modifie seulement l’apparence du texte."
         },
         {
-          "question": "Que fait une API ?",
-          "options": ["Elle stocke les données pour toujours", "Elle transmet les demandes entre l'interface et le serveur", "Elle dessine les couleurs de l'application"],
-          "answer": 1,
-          "explanation": "L'API sert d'intermédiaire : elle transmet les demandes de l'interface vers le serveur, et les réponses en retour."
+          "question": "Pourquoi enregistrer le nouvel état de la leçon ?",
+          "options": [
+            "Pour le retrouver après la fermeture ou le rechargement",
+            "Pour changer la taille de l’écran",
+            "Pour rendre le bouton plus arrondi"
+          ],
+          "answer": 0,
+          "explanation": "L’enregistrement permet de retrouver la progression plus tard. Les autres réponses concernent l’affichage et n’ont aucun lien avec la conservation des données."
         },
         {
-          "question": "Pourquoi héberge-t-on une application sur un serveur dédié plutôt que sur son propre ordinateur ?",
-          "options": ["Parce que c'est plus joli", "Pour qu'elle reste accessible en continu, même quand l'ordinateur personnel est éteint", "Parce que c'est obligatoire par la loi"],
+          "question": "Dans une version simple sans compte, où la progression peut-elle être conservée ?",
+          "options": [
+            "Dans localStorage",
+            "Dans la couleur du logo",
+            "Dans le câble de recharge"
+          ],
+          "answer": 0,
+          "explanation": "localStorage permet au navigateur de conserver de petites informations localement. Une couleur ou un câble ne peut pas stocker la progression de l’application."
+        },
+        {
+          "question": "Quelle affirmation est la plus précise ?",
+          "options": [
+            "Le bouton fait tout tout seul",
+            "Le clic déclenche plusieurs étapes entre l’interface, la logique et les données",
+            "Une application n’a besoin que d’une belle interface"
+          ],
           "answer": 1,
-          "explanation": "Un hébergeur garde le serveur allumé et accessible en permanence, ce qu'un ordinateur personnel ne peut pas garantir."
+          "explanation": "Un clic déclenche une chaîne de traitements. Le bouton n’agit pas seul : du code traite l’action. Une belle interface est utile, mais elle ne suffit pas à créer une application fonctionnelle."
         }
-      ]
-    },
-    {
-      "type": "assessment",
-      "title": "Évaluation finale du module",
-      "requirements": [
-        "Je sais nommer les trois piliers d'une application : interface, données, logique.",
-        "Je sais expliquer la différence entre frontend et backend.",
-        "Je sais dire à quoi sert une base de données.",
-        "Je sais décrire le trajet d'une information via une API.",
-        "Je sais expliquer pourquoi on héberge une application sur un serveur dédié."
       ]
     },
     {

@@ -7,6 +7,10 @@
 // Concrètement il retient :
 // - quels quiz de la leçon ont déjà été réussis,
 // - si la leçon est déjà marquée comme complétée (lu/écrit dans le localStorage).
+//
+// La validation est AUTOMATIQUE : dès que tous les quiz de la leçon sont
+// réussis, la leçon se marque complétée toute seule (voir l'effet plus bas).
+// Il n'y a plus de bouton "Terminer la leçon" à cliquer.
 
 import {
   createContext,
@@ -25,12 +29,11 @@ type LessonContextValue = {
   registerQuizPassed: (quizId: string) => void;
   // true une fois que la leçon a été validée (et ça reste vrai après un refresh).
   completed: boolean;
-  // true seulement pendant la session où l'utilisateur vient de cliquer sur
-  // "Terminer la leçon" (jamais vrai si la leçon était déjà complétée avant
-  // l'affichage de la page). Sert à ne montrer la grande célébration
-  // qu'une fois, au moment où elle est méritée.
+  // true seulement pendant la session où la leçon vient tout juste d'être
+  // auto-validée (jamais vrai si elle était déjà complétée avant l'affichage
+  // de la page). Sert à ne montrer la grande célébration qu'une fois, au
+  // moment où elle est méritée.
   justCompleted: boolean;
-  completeLesson: () => void;
 };
 
 const LessonContext = createContext<LessonContextValue | null>(null);
@@ -73,19 +76,27 @@ export function LessonProvider({
     [passedQuizzes]
   );
 
-  const completeLesson = useCallback(() => {
-    markLessonCompleted(lessonId);
-    setCompleted(true);
-    setJustCompleted(true);
-  }, [lessonId]);
+  const allQuizzesPassed = passedQuizzes.size >= totalQuizzes;
+
+  // Auto-validation : dès que tous les quiz sont réussis, on marque la
+  // leçon comme complétée automatiquement. Le garde-fou "!completed"
+  // garantit que ça ne se déclenche qu'une seule fois : une fois "completed"
+  // passé à true, cette condition n'est plus jamais remplie pour cette leçon.
+  useEffect(() => {
+    if (allQuizzesPassed && !completed) {
+      markLessonCompleted(lessonId);
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setCompleted(true);
+      setJustCompleted(true);
+    }
+  }, [allQuizzesPassed, completed, lessonId]);
 
   const value: LessonContextValue = {
-    allQuizzesPassed: passedQuizzes.size >= totalQuizzes,
+    allQuizzesPassed,
     isQuizPassed,
     registerQuizPassed,
     completed,
     justCompleted,
-    completeLesson,
   };
 
   return (

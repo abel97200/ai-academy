@@ -1,39 +1,142 @@
 {
   "id": "lesson-1-3",
-  "schemaVersion": 2,
   "title": "Frontend et backend",
   "blocks": [
     {
       "type": "explication",
-      "content": "Le frontend, c'est tout ce qui tourne dans le navigateur de l'utilisateur : l'interface, ce qu'il voit et touche. Le backend, c'est tout ce qui tourne ailleurs, sur un serveur : la logique qui prend des décisions importantes et l'accès aux données partagées. Aujourd'hui, notre tracker n'a que du frontend — tout se passe dans le navigateur, y compris la mémoire (localStorage)."
+      "content": "Le frontend et le backend sont deux parties différentes d’une application. Ils collaborent, mais ils ne remplissent pas le même rôle."
+    },
+    {
+      "type": "explication",
+      "content": "Le frontend est la partie affichée dans le navigateur. Il construit les pages, montre les informations et reçoit les actions de l’utilisateur."
     },
     {
       "type": "demo",
-      "content": "Imagine un restaurant. La salle où tu es servi, c'est le frontend : ce que tu vois et avec quoi tu interagis. La cuisine, que tu ne vois pas, c'est le backend : c'est là que la vraie préparation a lieu, avec les stocks (les données) que le serveur en salle ne gère pas lui-même."
+      "content": "Dans AI Academy, le frontend affiche la liste des modules, les boutons précédent et suivant, les questions du quiz et la barre de progression."
+    },
+    {
+      "type": "schema",
+      "diagram": {
+        "kind": "trio",
+        "nodes": [
+          {
+            "id": "utilisateur",
+            "label": "Utilisateur",
+            "color": "#6366F1",
+            "definition": "La personne clique, écrit ou consulte une information."
+          },
+          {
+            "id": "frontend",
+            "label": "Frontend",
+            "color": "#14B8A6",
+            "definition": "La partie visible qui fonctionne dans le navigateur."
+          },
+          {
+            "id": "backend",
+            "label": "Backend",
+            "color": "#F59E0B",
+            "definition": "La partie invisible qui traite les règles et les demandes."
+          }
+        ],
+        "links": [
+          {
+            "from": "utilisateur",
+            "to": "frontend"
+          },
+          {
+            "from": "frontend",
+            "to": "backend"
+          },
+          {
+            "from": "backend",
+            "to": "frontend"
+          }
+        ]
+      },
+      "caption": "L’utilisateur passe généralement par le frontend pour communiquer avec le backend."
+    },
+    {
+      "type": "explication",
+      "content": "Le backend fonctionne généralement sur un serveur. Il peut vérifier une identité, appliquer des règles, consulter une base de données et préparer une réponse."
+    },
+    {
+      "type": "demo",
+      "content": "Imaginons qu’un utilisateur demande à supprimer une progression. Le frontend affiche le bouton. Le backend vérifie ensuite qui fait la demande et si cette personne possède réellement les données concernées."
+    },
+    {
+      "type": "explication",
+      "content": "Certaines petites applications peuvent fonctionner sans backend. Elles conservent alors leur logique et leurs données directement dans le navigateur."
+    },
+    {
+      "type": "demo",
+      "content": "Le premier MVP d’AI Academy peut enregistrer la progression avec localStorage. Cette fonction reste locale à ton navigateur et ne nécessite pas encore de serveur distant."
+    },
+    {
+      "type": "explication",
+      "content": "Erreur fréquente : faire confiance uniquement au frontend pour une règle sensible. Comme le code du navigateur peut être observé ou modifié, les contrôles importants doivent aussi être réalisés côté backend."
     },
     {
       "type": "exercice",
-      "question": "Aujourd'hui, notre tracker enregistre la progression dans le navigateur (localStorage). Est-ce qu'il a un backend ?",
+      "question": "Indique si ces fonctions appartiennent plutôt au frontend ou au backend : afficher une fenêtre, vérifier un mot de passe, changer la couleur d’un bouton et contrôler qu’un utilisateur possède une donnée.",
       "hints": [
-        "Un backend, c'est un serveur séparé du navigateur.",
-        "localStorage vit entièrement dans le navigateur de l'utilisateur."
+        "Ce qui est visible appartient généralement au frontend.",
+        "Les vérifications sensibles appartiennent généralement au backend.",
+        "Une même fonctionnalité peut avoir une partie frontend et une partie backend."
       ],
-      "solution": "Non, pas encore : tout se passe dans le navigateur. Le tracker n'a pour l'instant que du frontend. Il aura un vrai backend plus tard dans le cursus, quand on voudra que la progression survive au changement d'appareil."
+      "solution": "Afficher une fenêtre et changer la couleur d’un bouton appartiennent principalement au frontend. Vérifier un mot de passe et contrôler la propriété d’une donnée appartiennent au backend. Le formulaire de connexion est affiché par le frontend, puis les informations sont vérifiées par le backend."
     },
     {
       "type": "quiz",
       "questions": [
         {
-          "question": "Le frontend, c'est...",
-          "options": ["Ce qui tourne sur le serveur", "Ce qui tourne dans le navigateur de l'utilisateur", "La base de données"],
-          "answer": 1,
-          "explanation": "Le frontend s'exécute dans le navigateur de l'utilisateur : c'est l'interface qu'il voit et avec laquelle il interagit directement."
+          "question": "Où le frontend s’exécute-t-il principalement ?",
+          "options": [
+            "Dans le navigateur de l’utilisateur",
+            "Uniquement dans la base de données",
+            "Sur une imprimante"
+          ],
+          "answer": 0,
+          "explanation": "Le frontend s’exécute principalement dans le navigateur. Une base de données stocke des informations et une imprimante n’exécute pas l’interface d’une application web."
         },
         {
-          "question": "Pourquoi une application a-t-elle parfois besoin d'un backend ?",
-          "options": ["Pour avoir un plus joli design", "Pour partager et protéger des données entre plusieurs utilisateurs ou appareils", "Pour aller plus vite au chargement"],
+          "question": "Quel rôle correspond principalement au backend ?",
+          "options": [
+            "Choisir la taille visuelle d’un titre",
+            "Appliquer des règles et traiter des demandes",
+            "Déplacer le curseur de la souris"
+          ],
           "answer": 1,
-          "explanation": "Le backend permet de centraliser des données (pour qu'elles survivent au changement d'appareil, par exemple) et de les protéger, ce qu'un simple navigateur ne peut pas garantir seul."
+          "explanation": "Le backend applique des règles et traite des demandes. La taille d’un titre relève du frontend. Le déplacement du curseur est une action de l’utilisateur et du système."
+        },
+        {
+          "question": "Dans un système avec comptes utilisateurs, qui doit vérifier qu’une progression appartient à la bonne personne ?",
+          "options": [
+            "Le backend",
+            "La couleur de l’interface",
+            "Le texte du bouton"
+          ],
+          "answer": 0,
+          "explanation": "Le backend doit effectuer cette vérification sensible. Une couleur ou un texte ne fournit aucune protection."
+        },
+        {
+          "question": "Une application peut-elle fonctionner sans backend ?",
+          "options": [
+            "Non, jamais",
+            "Oui, pour certaines fonctions simples et locales",
+            "Seulement si elle n’a aucun bouton"
+          ],
+          "answer": 1,
+          "explanation": "Certaines applications simples fonctionnent entièrement dans le navigateur. Elles peuvent avoir des boutons et de la logique locale. Un backend devient utile lorsque les données doivent être partagées ou protégées côté serveur."
+        },
+        {
+          "question": "Pourquoi une règle de sécurité importante ne doit-elle pas exister uniquement dans le frontend ?",
+          "options": [
+            "Parce que le frontend peut être inspecté ou contourné",
+            "Parce que le frontend ne peut jamais afficher de texte",
+            "Parce que le backend choisit les couleurs"
+          ],
+          "answer": 0,
+          "explanation": "Le code du frontend arrive sur l’appareil de l’utilisateur et peut être inspecté. Les contrôles sensibles doivent donc aussi être réalisés côté backend. Le frontend peut afficher du texte et le backend ne sert pas à choisir les couleurs."
         }
       ]
     },
