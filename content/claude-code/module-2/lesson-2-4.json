@@ -1,0 +1,179 @@
+{
+  "id": "lesson-2-4",
+  "title": "Découper pour ne pas perdre le contrôle",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Demander une grosse fonctionnalité en une seule fois ressemble à demander à un artisan de rénover toute une maison sans visite intermédiaire. Tu découvriras peut-être trop tard qu’il a mal compris la disposition des pièces."
+    },
+    {
+      "type": "demo",
+      "content": "Si tu demandes « ajoute les notes, les comptes, les statistiques et refais le design », l’IA doit prendre beaucoup de décisions en même temps. Une erreur au début peut ensuite se retrouver dans toutes les étapes suivantes."
+    },
+    {
+      "type": "explication",
+      "content": "Découper signifie transformer un grand objectif en plusieurs petites étapes. Chaque étape doit produire un résultat simple que tu peux observer ou tester."
+    },
+    {
+      "type": "demo",
+      "content": "Pour créer une étagère, on mesure d’abord le mur, puis on choisit les planches, on fixe les supports et seulement ensuite on pose les objets. On ne commence pas par déposer tous les livres dans le vide."
+    },
+    {
+      "type": "schema",
+      "diagram": {
+        "kind": "trio",
+        "nodes": [
+          {
+            "id": "plan",
+            "label": "Découper",
+            "color": "#6366F1",
+            "definition": "Transformer l’objectif en étapes simples et ordonnées."
+          },
+          {
+            "id": "test",
+            "label": "Vérifier",
+            "color": "#F59E0B",
+            "definition": "Contrôler chaque étape avant de poursuivre."
+          },
+          {
+            "id": "suite",
+            "label": "Continuer",
+            "color": "#14B8A6",
+            "definition": "Passer à l’étape suivante seulement lorsque la base est stable."
+          }
+        ],
+        "links": [
+          {
+            "from": "plan",
+            "to": "test"
+          },
+          {
+            "from": "test",
+            "to": "suite"
+          }
+        ]
+      },
+      "caption": "Le projet avance par petites étapes vérifiées."
+    },
+    {
+      "type": "explication",
+      "content": "Les étapes doivent être placées dans un ordre logique. Certaines dépendent d’un travail précédent et ne peuvent pas être réalisées correctement trop tôt."
+    },
+    {
+      "type": "demo",
+      "content": "Il faut afficher une zone de note avant de tester sa saisie. Il faut permettre la saisie avant d’enregistrer son contenu. Il faut enregistrer la note avant de vérifier sa restauration."
+    },
+    {
+      "type": "explication",
+      "content": "Une première étape peut consister uniquement à afficher l’interface. Le stockage et les comportements complexes viennent ensuite."
+    },
+    {
+      "type": "demo",
+      "content": "Étape 1 : afficher une zone de texte sous chaque leçon. À ce stade, tu vérifies seulement sa position, sa lisibilité et son fonctionnement sur mobile."
+    },
+    {
+      "type": "explication",
+      "content": "Une deuxième étape peut ajouter le comportement principal. Comme l’interface est déjà validée, tu peux te concentrer sur une seule nouvelle difficulté."
+    },
+    {
+      "type": "demo",
+      "content": "Étape 2 : permettre à l’utilisateur d’écrire dans la zone. Tu vérifies que chaque leçon possède son propre contenu et que la saisie reste fluide."
+    },
+    {
+      "type": "explication",
+      "content": "Une troisième étape peut ajouter la conservation des données. Tu testes alors uniquement la sauvegarde et le rechargement."
+    },
+    {
+      "type": "demo",
+      "content": "Étape 3 : enregistrer la note dans localStorage. Tu recharges la page et contrôles que le texte réapparaît au bon endroit."
+    },
+    {
+      "type": "explication",
+      "content": "Un point de contrôle est un moment où tu arrêtes volontairement la réalisation pour vérifier le travail. Il évite d’accumuler plusieurs erreurs invisibles."
+    },
+    {
+      "type": "demo",
+      "content": "Après chaque étape, tu peux demander à Claude Code de résumer les fichiers modifiés, puis tester toi-même l’application avant de donner la consigne suivante."
+    },
+    {
+      "type": "explication",
+      "content": "Une version stable est une version qui fonctionne correctement avant d’ajouter la suite. La sauvegarder permet de revenir en arrière si la prochaine étape échoue."
+    },
+    {
+      "type": "demo",
+      "content": "Après avoir validé l’affichage des notes, tu peux créer un commit Git. Si l’enregistrement casse l’application, tu disposes encore d’une version propre."
+    },
+    {
+      "type": "explication",
+      "content": "Erreur fréquente : croire que découper ralentit le projet. En réalité, quelques vérifications intermédiaires évitent souvent des heures de correction à la fin."
+    },
+    {
+      "type": "exercice",
+      "question": "Remets ces étapes dans un ordre logique : restaurer la note au chargement, afficher une zone de texte, tester sur mobile, enregistrer la note et permettre la saisie.",
+      "hints": [
+        "Commence par rendre l’élément visible.",
+        "La donnée doit exister avant d’être enregistrée.",
+        "La restauration ne peut être vérifiée qu’après la sauvegarde."
+      ],
+      "solution": "Un ordre logique est : 1. afficher une zone de texte ; 2. tester son affichage sur mobile ; 3. permettre la saisie ; 4. enregistrer la note ; 5. restaurer la note au chargement. Le test mobile peut aussi être répété après chaque étape."
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "Que signifie découper une fonctionnalité ?",
+          "options": [
+            "La diviser en petites étapes testables",
+            "Supprimer une partie de l’idée au hasard",
+            "Demander plusieurs refontes en même temps"
+          ],
+          "answer": 0,
+          "explanation": "Découper consiste à organiser le travail en étapes simples et vérifiables. Il ne s’agit pas de supprimer au hasard ni d’accumuler plusieurs gros changements."
+        },
+        {
+          "question": "Pourquoi l’ordre des étapes est-il important ?",
+          "options": [
+            "Parce que certaines étapes dépendent des précédentes",
+            "Uniquement pour rendre la liste plus jolie",
+            "Parce que la dernière étape est toujours la plus facile"
+          ],
+          "answer": 0,
+          "explanation": "Certaines actions nécessitent qu’une base existe déjà. L’ordre n’est pas seulement visuel, et la dernière étape n’est pas forcément la plus facile."
+        },
+        {
+          "question": "Quel est un bon premier objectif pour la fonction de note ?",
+          "options": [
+            "Afficher correctement la zone de texte",
+            "Créer immédiatement une base distante et des comptes",
+            "Refaire toute l’application"
+          ],
+          "answer": 0,
+          "explanation": "Commencer par l’affichage crée une base simple à vérifier. Les autres réponses ajoutent trop de complexité et sortent du besoin initial."
+        },
+        {
+          "question": "À quoi sert un point de contrôle ?",
+          "options": [
+            "À vérifier une étape avant de continuer",
+            "À empêcher définitivement toute modification",
+            "À éviter de tester l’application"
+          ],
+          "answer": 0,
+          "explanation": "Un point de contrôle permet de confirmer que l’étape fonctionne. Il ne bloque pas le projet et rend au contraire les tests plus réguliers."
+        },
+        {
+          "question": "Pourquoi sauvegarder une version stable avant l’étape suivante ?",
+          "options": [
+            "Pour pouvoir revenir à une version qui fonctionne",
+            "Pour obliger l’IA à recommencer tout le projet",
+            "Pour supprimer les fichiers précédents"
+          ],
+          "answer": 0,
+          "explanation": "Une version stable sert de point de retour en cas de problème. Elle n’oblige pas à tout recommencer et ne supprime pas automatiquement les fichiers."
+        }
+      ]
+    },
+    {
+      "type": "validation"
+    }
+  ]
+}

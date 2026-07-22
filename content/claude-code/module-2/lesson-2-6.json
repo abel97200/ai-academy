@@ -1,0 +1,203 @@
+{
+  "id": "lesson-2-6",
+  "title": "Piloter un mini-projet du début à la fin",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Piloter un projet avec l’IA signifie guider le travail depuis l’idée jusqu’à une version vérifiée. Tu joues le rôle du chef de chantier : tu ne poses pas forcément chaque brique, mais tu définis le plan et contrôles la construction."
+    },
+    {
+      "type": "demo",
+      "content": "Notre mini-projet consiste à ajouter une note personnelle sous chaque leçon de l’application de suivi d’apprentissage, aussi appelée tracker."
+    },
+    {
+      "type": "explication",
+      "content": "La première étape consiste à clarifier le problème. Sans problème précis, la fonctionnalité risque d’être inutile."
+    },
+    {
+      "type": "demo",
+      "content": "Problème : après plusieurs leçons, l’apprenant oublie les idées importantes qu’il voulait retenir. Il a besoin d’un espace simple pour les noter."
+    },
+    {
+      "type": "explication",
+      "content": "La deuxième étape consiste à définir le résultat attendu. Ce résultat doit être visible et testable."
+    },
+    {
+      "type": "demo",
+      "content": "Résultat attendu : l’apprenant peut écrire une note propre à chaque leçon, la modifier et la retrouver après avoir rechargé la page."
+    },
+    {
+      "type": "schema",
+      "diagram": {
+        "kind": "trio",
+        "nodes": [
+          {
+            "id": "preparer",
+            "label": "Préparer",
+            "color": "#6366F1",
+            "definition": "Clarifier le besoin, le résultat et les limites."
+          },
+          {
+            "id": "construire",
+            "label": "Construire",
+            "color": "#F59E0B",
+            "definition": "Découper le travail et guider l’assistant étape par étape."
+          },
+          {
+            "id": "valider",
+            "label": "Valider",
+            "color": "#14B8A6",
+            "definition": "Examiner, tester, corriger et sauvegarder la version stable."
+          }
+        ],
+        "links": [
+          {
+            "from": "preparer",
+            "to": "construire"
+          },
+          {
+            "from": "construire",
+            "to": "valider"
+          }
+        ]
+      },
+      "caption": "Piloter un mini-projet consiste à préparer, construire progressivement puis valider."
+    },
+    {
+      "type": "explication",
+      "content": "La troisième étape consiste à fixer les limites. Elles protègent le reste de l’application et empêchent le projet de grossir inutilement."
+    },
+    {
+      "type": "demo",
+      "content": "Limites : pas de compte, pas de base distante, pas de partage entre utilisateurs et aucune refonte du design. La note doit utiliser le stockage local existant."
+    },
+    {
+      "type": "explication",
+      "content": "La quatrième étape consiste à découper la réalisation. Chaque étape doit être assez petite pour être vérifiée avant de poursuivre."
+    },
+    {
+      "type": "demo",
+      "content": "Étape 1 : afficher la zone. Étape 2 : permettre la saisie. Étape 3 : enregistrer la note. Étape 4 : restaurer la note. Étape 5 : vérifier le mobile et les erreurs."
+    },
+    {
+      "type": "explication",
+      "content": "La cinquième étape consiste à rédiger une première consigne adaptée à l’étape en cours. Il n’est pas nécessaire d’envoyer immédiatement tout le projet."
+    },
+    {
+      "type": "demo",
+      "content": "Première consigne : « Inspecte le lecteur de leçon et propose un plan pour ajouter une zone de note sous le contenu. Ne modifie encore aucun fichier. »"
+    },
+    {
+      "type": "explication",
+      "content": "La sixième étape consiste à examiner le plan de l’assistant. Tu dois vérifier qu’il a compris la bonne page, le bon stockage et les limites."
+    },
+    {
+      "type": "demo",
+      "content": "S’il propose une base Supabase et une authentification, tu peux le corriger avant qu’il commence : ces éléments ne font pas partie du mini-projet."
+    },
+    {
+      "type": "explication",
+      "content": "La septième étape consiste à autoriser une petite implémentation, puis à tester son résultat. Tu continues seulement lorsque cette étape fonctionne."
+    },
+    {
+      "type": "demo",
+      "content": "Après l’ajout de la zone de texte, tu vérifies sa position sur ordinateur et mobile. Tu ne demandes l’enregistrement qu’après avoir validé l’interface."
+    },
+    {
+      "type": "explication",
+      "content": "La huitième étape consiste à tester l’ensemble lorsque toutes les petites étapes sont réunies. Une fonction peut réussir séparément mais échouer lorsqu’elle interagit avec le reste."
+    },
+    {
+      "type": "demo",
+      "content": "Tu écris des notes dans deux leçons, changes de page, recharges l’application et contrôles que chaque texte revient au bon endroit."
+    },
+    {
+      "type": "explication",
+      "content": "La neuvième étape consiste à sauvegarder la version stable. Avec Git, cette sauvegarde peut prendre la forme d’un commit décrivant clairement la fonctionnalité."
+    },
+    {
+      "type": "demo",
+      "content": "Exemple de message : « feat: add personal notes to lessons ». Ce message permet de comprendre rapidement ce que contient la version."
+    },
+    {
+      "type": "explication",
+      "content": "La dernière étape consiste à documenter ce qui a été réalisé et les limites restantes. Cela facilite les futures modifications, pour toi comme pour l’IA."
+    },
+    {
+      "type": "demo",
+      "content": "Tu peux noter que les données sont enregistrées uniquement dans le navigateur et qu’elles ne sont pas synchronisées entre plusieurs appareils."
+    },
+    {
+      "type": "explication",
+      "content": "Erreur fréquente : croire que piloter signifie donner une longue consigne au début puis attendre. Le pilotage repose surtout sur plusieurs décisions et vérifications successives."
+    },
+    {
+      "type": "exercice",
+      "question": "Prépare le plan d’un mini-projet permettant à l’utilisateur de marquer une leçon comme favorite. Décris le problème, le résultat attendu, les limites, les étapes, les vérifications et la condition de fin.",
+      "hints": [
+        "Commence par expliquer pourquoi l’utilisateur aurait besoin de favoris.",
+        "Limite la première version à une fonction simple et locale.",
+        "Prévois un test avec plusieurs leçons et un rechargement."
+      ],
+      "solution": "Exemple : le problème est que l’utilisateur souhaite retrouver rapidement les leçons importantes. Le résultat attendu est un bouton permettant d’ajouter ou retirer une leçon des favoris. La première version utilise localStorage, sans compte ni nouvelle page complexe. Les étapes sont : afficher le bouton, gérer son état, enregistrer les favoris, les restaurer et tester le mobile. La fonction est terminée si plusieurs leçons peuvent être marquées, si leur état reste après rechargement et si la progression existante fonctionne toujours."
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "Quel est le premier travail à réaliser avant de demander du code ?",
+          "options": [
+            "Clarifier le problème et le résultat attendu",
+            "Choisir immédiatement une base de données",
+            "Demander une refonte complète"
+          ],
+          "answer": 0,
+          "explanation": "Le projet commence par la compréhension du besoin. Les choix techniques viennent ensuite. Choisir une solution trop tôt ou demander une refonte risque de produire un travail inutile."
+        },
+        {
+          "question": "Pourquoi définir les limites du mini-projet ?",
+          "options": [
+            "Pour éviter qu’une petite fonction devienne un projet beaucoup plus large",
+            "Pour empêcher toute amélioration future",
+            "Pour supprimer les tests"
+          ],
+          "answer": 0,
+          "explanation": "Les limites protègent le périmètre actuel. Elles n’interdisent pas les futures améliorations et ne remplacent pas les tests."
+        },
+        {
+          "question": "Quelle est la meilleure première consigne avant une modification importante ?",
+          "options": [
+            "Demander à l’assistant d’analyser et de proposer un plan",
+            "Lui demander de modifier tous les fichiers immédiatement",
+            "Lui demander de choisir seul l’objectif du produit"
+          ],
+          "answer": 0,
+          "explanation": "Un plan permet de vérifier la compréhension avant les changements. Modifier immédiatement augmente le risque, et l’objectif du produit doit rester sous le contrôle de l’utilisateur."
+        },
+        {
+          "question": "Quand faut-il passer à l’étape suivante ?",
+          "options": [
+            "Lorsque l’étape actuelle a été examinée et testée",
+            "Dès que l’IA commence à écrire",
+            "Seulement lorsque toute l’application est terminée"
+          ],
+          "answer": 0,
+          "explanation": "Chaque étape doit être contrôlée avant la suivante. Attendre la fin de toute l’application rend les erreurs plus difficiles à isoler, tandis que commencer à écrire ne prouve pas que le résultat fonctionne."
+        },
+        {
+          "question": "Que signifie réellement piloter un projet avec l’IA ?",
+          "options": [
+            "Définir la direction, découper le travail et contrôler les résultats",
+            "Laisser l’IA prendre toutes les décisions",
+            "Écrire soi-même chaque ligne sans utiliser l’assistant"
+          ],
+          "answer": 0,
+          "explanation": "Piloter signifie conserver la responsabilité des choix tout en utilisant l’IA pour réaliser une partie du travail. Ni l’abandon total du contrôle ni le refus complet de l’assistance ne correspondent à cette méthode."
+        }
+      ]
+    },
+    {
+      "type": "validation"
+    }
+  ]
+}

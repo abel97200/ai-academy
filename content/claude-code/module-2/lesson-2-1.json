@@ -1,0 +1,167 @@
+{
+  "id": "lesson-2-1",
+  "title": "Un assistant IA n’est pas un pilote automatique",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Un assistant IA est un outil capable d’analyser une demande et de produire une réponse. Tu peux l’imaginer comme un collaborateur très rapide qui a lu beaucoup de documents, mais qui ne connaît pas automatiquement ton projet."
+    },
+    {
+      "type": "demo",
+      "content": "Si tu demandes simplement « améliore mon application », l’assistant ne sait pas ce que tu trouves mauvais. Il peut modifier les couleurs alors que ton véritable problème concerne la navigation."
+    },
+    {
+      "type": "explication",
+      "content": "Un assistant conversationnel, comme ChatGPT, répond principalement dans une conversation. Il peut expliquer, proposer un plan ou rédiger une consigne, mais il ne modifie pas forcément directement les fichiers de ton projet."
+    },
+    {
+      "type": "demo",
+      "content": "Tu peux demander à un assistant conversationnel de t’expliquer pourquoi un bouton ne fonctionne pas. Il te donnera des pistes, mais ce sera généralement à toi ou à un autre outil d’appliquer la correction dans le projet."
+    },
+    {
+      "type": "explication",
+      "content": "Un agent est un assistant qui peut aussi réaliser des actions avec les outils auxquels tu lui donnes accès. Il peut, par exemple, lire des fichiers, les modifier ou lancer des tests."
+    },
+    {
+      "type": "demo",
+      "content": "Claude Code peut parcourir le dossier de ton application, modifier un composant et lancer une commande de test. Il agit davantage comme un technicien autorisé à intervenir dans l’atelier."
+    },
+    {
+      "type": "schema",
+      "diagram": {
+        "kind": "trio",
+        "nodes": [
+          {
+            "id": "demande",
+            "label": "Ta demande",
+            "color": "#6366F1",
+            "definition": "Tu décris le résultat que tu souhaites obtenir."
+          },
+          {
+            "id": "assistant",
+            "label": "Assistant IA",
+            "color": "#F59E0B",
+            "definition": "Il analyse la demande et propose ou réalise une action."
+          },
+          {
+            "id": "controle",
+            "label": "Ton contrôle",
+            "color": "#14B8A6",
+            "definition": "Tu vérifies que le résultat correspond réellement au besoin."
+          }
+        ],
+        "links": [
+          {
+            "from": "demande",
+            "to": "assistant"
+          },
+          {
+            "from": "assistant",
+            "to": "controle"
+          }
+        ]
+      },
+      "caption": "L’assistant réalise le travail, mais l’utilisateur reste responsable de la vérification."
+    },
+    {
+      "type": "explication",
+      "content": "L’assistant ne connaît que le contexte auquel il a accès. C’est comme un artisan qui arrive dans un appartement : s’il ne connaît ni le plan, ni le problème, ni les pièces à protéger, il risque de faire de mauvais choix."
+    },
+    {
+      "type": "demo",
+      "content": "Si Claude Code ne sait pas que la progression doit rester enregistrée dans localStorage, il peut remplacer ce fonctionnement par une solution différente. La modification peut fonctionner visuellement tout en ne respectant plus le projet."
+    },
+    {
+      "type": "explication",
+      "content": "Une IA peut aussi produire une réponse qui paraît logique mais qui est incorrecte. Elle ne ment pas volontairement : elle construit parfois une réponse plausible sans avoir correctement compris ou vérifié la situation."
+    },
+    {
+      "type": "demo",
+      "content": "Elle peut affirmer qu’un test est réussi alors qu’elle n’a vérifié qu’une partie de l’application. Elle peut aussi corriger un bouton tout en cassant la navigation mobile."
+    },
+    {
+      "type": "explication",
+      "content": "Les autorisations déterminent ce que l’assistant peut faire. Plus tu lui donnes de possibilités, plus tu dois comprendre et contrôler ses actions."
+    },
+    {
+      "type": "demo",
+      "content": "Autoriser la lecture d’un fichier est moins risqué qu’autoriser la suppression de dossiers ou l’envoi immédiat du code sur GitHub. Toutes les actions ne demandent donc pas le même niveau de vigilance."
+    },
+    {
+      "type": "explication",
+      "content": "Ton rôle n’est pas de refaire tout le travail de l’IA. Ton rôle est de définir la destination, de vérifier les étapes importantes et de refuser un résultat qui ne correspond pas au besoin."
+    },
+    {
+      "type": "demo",
+      "content": "Un GPS peut proposer un itinéraire, mais tu restes responsable si la route indiquée est fermée ou inadaptée. Avec l’IA, le principe est similaire : elle aide à avancer, mais elle ne remplace pas ton jugement."
+    },
+    {
+      "type": "exercice",
+      "question": "Pour chaque situation, décide si tu peux laisser l’assistant agir directement ou si une vérification attentive est indispensable : reformuler un titre, changer toutes les données de progression, expliquer une erreur, supprimer un dossier et modifier la couleur d’un bouton.",
+      "hints": [
+        "Une action réversible et visuelle présente généralement moins de risque.",
+        "Une suppression ou une modification de données demande davantage de contrôle.",
+        "Même une petite modification doit être vérifiée, mais toutes ne demandent pas le même niveau de prudence."
+      ],
+      "solution": "Reformuler un titre, expliquer une erreur et modifier une couleur sont des actions relativement limitées, mais leur résultat doit tout de même être relu ou observé. Changer toutes les données de progression ou supprimer un dossier sont des actions sensibles : il faut comprendre le plan, vérifier les sauvegardes et contrôler précisément le résultat."
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "Quel rôle décrit le mieux un assistant IA ?",
+          "options": [
+            "Un outil qui aide à analyser et réaliser une tâche",
+            "Un pilote toujours autonome et toujours correct",
+            "Un système qui connaît automatiquement tous tes besoins"
+          ],
+          "answer": 0,
+          "explanation": "Un assistant IA aide à analyser et réaliser une tâche. Il n’est pas toujours correct et ne connaît pas automatiquement ton projet. Il a besoin de contexte, d’instructions et de vérifications."
+        },
+        {
+          "question": "Quelle différence simple existe entre un assistant conversationnel et un agent ?",
+          "options": [
+            "L’agent peut utiliser des outils pour réaliser des actions",
+            "L’assistant conversationnel ne peut jamais écrire de texte",
+            "L’agent comprend toujours parfaitement la demande"
+          ],
+          "answer": 0,
+          "explanation": "Un agent peut utiliser des outils pour lire, modifier ou exécuter des éléments. Un assistant conversationnel peut parfaitement écrire du texte. Aucun des deux ne comprend toujours parfaitement une demande."
+        },
+        {
+          "question": "Pourquoi faut-il donner du contexte à Claude Code ?",
+          "options": [
+            "Parce qu’il ne connaît pas automatiquement les règles et les choix du projet",
+            "Parce qu’il ne sait jamais lire un fichier",
+            "Uniquement pour rendre le prompt plus long"
+          ],
+          "answer": 0,
+          "explanation": "Claude Code peut lire des fichiers lorsqu’il y est autorisé, mais il ne connaît pas automatiquement les intentions derrière chaque choix. Le contexte sert à orienter correctement son travail, pas à allonger inutilement la demande."
+        },
+        {
+          "question": "Pourquoi une réponse convaincante de l’IA doit-elle quand même être vérifiée ?",
+          "options": [
+            "Parce qu’elle peut sembler logique tout en étant incorrecte",
+            "Parce que toutes les réponses d’IA sont forcément fausses",
+            "Parce qu’une IA ne peut jamais produire de code"
+          ],
+          "answer": 0,
+          "explanation": "Une IA peut produire une réponse correcte, mais aussi une réponse plausible et incorrecte. Il faut donc vérifier les résultats importants. Cela ne signifie pas que toutes ses réponses sont fausses ni qu’elle est incapable de produire du code."
+        },
+        {
+          "question": "Quelle attitude permet de garder le contrôle ?",
+          "options": [
+            "Définir le besoin, superviser les actions et vérifier le résultat",
+            "Accepter toutes les modifications dès qu’elles sont terminées",
+            "Refuser d’utiliser l’IA pour éviter toute erreur"
+          ],
+          "answer": 0,
+          "explanation": "Garder le contrôle consiste à définir le besoin, superviser les étapes importantes et vérifier le résultat. Accepter automatiquement est risqué, mais refuser complètement l’outil empêche aussi de profiter de son aide."
+        }
+      ]
+    },
+    {
+      "type": "validation"
+    }
+  ]
+}

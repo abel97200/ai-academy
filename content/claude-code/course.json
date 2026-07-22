@@ -73,15 +73,31 @@
     {
       "number": 2,
       "slug": "module-2",
-      "title": "Transformer une idée en projet réalisable",
+      "title": "De l'idée au projet : bien piloter ton assistant IA",
       "level": "niveau-1",
-      "objective": "Passer d'une idée floue à un projet cadré et réalisable.",
-      "usefulness": "Évite de partir dans toutes les directions : un projet bien cadré se termine, un projet flou s'abandonne.",
+      "objective": "Apprendre à transformer une idée floue en instructions claires qu'un assistant IA comme Claude Code peut réaliser, puis à contrôler son travail sans devenir dépendant de lui.",
+      "usefulness": "Cette méthode fonctionne avec Claude Code, mais aussi avec ChatGPT, Make et les futurs agents IA : elle s'applique à tout assistant capable de réaliser une tâche à ta place.",
       "prerequisites": ["module-1"],
-      "skills": ["Définir un objectif clair", "Découper un projet en étapes", "Écrire un cahier des charges simple"],
-      "deliverable": "Le cadrage écrit du tracker (objectif, fonctionnalités, étapes).",
-      "estimatedMinutes": 60,
-      "lessons": []
+      "skills": [
+        "Expliquer les capacités et les limites d'un assistant IA",
+        "Transformer une demande vague en besoin précis",
+        "Rédiger une consigne structurée",
+        "Définir des contraintes et des critères de réussite",
+        "Découper une fonctionnalité en étapes",
+        "Vérifier les changements produits par l'IA",
+        "Tester avant d'accepter une modification",
+        "Expliquer le cycle produire → examiner → tester → corriger → sauvegarder"
+      ],
+      "deliverable": "Une consigne structurée et le plan d'un mini-projet piloté du début à la fin, appliqué à l'application de suivi d'apprentissage.",
+      "estimatedMinutes": 100,
+      "lessons": [
+        "lesson-2-1",
+        "lesson-2-2",
+        "lesson-2-3",
+        "lesson-2-4",
+        "lesson-2-5",
+        "lesson-2-6"
+      ]
     },
     {
       "number": 3,

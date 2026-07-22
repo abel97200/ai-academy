@@ -1,0 +1,179 @@
+{
+  "id": "lesson-2-3",
+  "title": "Construire une consigne que l’IA peut exécuter",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Un prompt est simplement une consigne envoyée à une IA. Une bonne consigne ressemble à une commande bien préparée au restaurant : elle indique ce que tu veux, les adaptations nécessaires et ce que tu ne veux pas."
+    },
+    {
+      "type": "demo",
+      "content": "Dire « apporte-moi quelque chose à manger » oblige le serveur à deviner. Dire « je voudrais un plat chaud sans viande, sans cacahuètes et servi rapidement » réduit fortement les erreurs."
+    },
+    {
+      "type": "explication",
+      "content": "Une consigne utile commence par le contexte. Le contexte explique brièvement la situation dans laquelle l’IA doit intervenir."
+    },
+    {
+      "type": "demo",
+      "content": "Contexte : « AI Academy est une application Next.js pour débutants. La progression est enregistrée dans localStorage et l’interface doit rester simple sur mobile. »"
+    },
+    {
+      "type": "explication",
+      "content": "L’objectif décrit le résultat général recherché. Il répond à la question : pourquoi cette modification est-elle nécessaire ?"
+    },
+    {
+      "type": "demo",
+      "content": "Objectif : « Aider l’apprenant à conserver une note personnelle après chaque leçon pour mieux réviser. »"
+    },
+    {
+      "type": "schema",
+      "diagram": {
+        "kind": "trio",
+        "nodes": [
+          {
+            "id": "situation",
+            "label": "Situation",
+            "color": "#6366F1",
+            "definition": "Le contexte et l’objectif donnent le sens de la demande."
+          },
+          {
+            "id": "action",
+            "label": "Action demandée",
+            "color": "#F59E0B",
+            "definition": "La tâche décrit précisément ce que l’IA doit réaliser."
+          },
+          {
+            "id": "controle",
+            "label": "Contrôle",
+            "color": "#14B8A6",
+            "definition": "Les contraintes et critères permettent de vérifier le résultat."
+          }
+        ],
+        "links": [
+          {
+            "from": "situation",
+            "to": "action"
+          },
+          {
+            "from": "action",
+            "to": "controle"
+          }
+        ]
+      },
+      "caption": "Une bonne consigne relie la situation, l’action attendue et la manière de contrôler le résultat."
+    },
+    {
+      "type": "explication",
+      "content": "La tâche décrit l’action précise que l’IA doit réaliser. Elle doit éviter les verbes vagues comme « améliorer », « moderniser » ou « optimiser » lorsqu’ils ne sont pas expliqués."
+    },
+    {
+      "type": "demo",
+      "content": "Tâche précise : « Ajoute sous chaque leçon une zone de texte permettant d’écrire et de modifier une note personnelle. »"
+    },
+    {
+      "type": "explication",
+      "content": "Les contraintes définissent les limites du travail. Elles jouent le même rôle que les barrières autour d’un chantier : elles évitent que l’intervention dépasse la zone prévue."
+    },
+    {
+      "type": "demo",
+      "content": "Contraintes : « Utilise le stockage local existant. Ne crée pas de compte. Ne modifie pas le contenu des leçons ni l’identité visuelle générale. »"
+    },
+    {
+      "type": "explication",
+      "content": "Les critères de réussite permettent de contrôler le résultat. Ils décrivent les comportements qui doivent fonctionner une fois le travail terminé."
+    },
+    {
+      "type": "demo",
+      "content": "Critères : « La note reste présente après rechargement, chaque leçon possède sa propre note, le rendu fonctionne sur mobile et le build passe. »"
+    },
+    {
+      "type": "explication",
+      "content": "Une consigne très courte n’est pas forcément mauvaise, mais elle doit contenir les informations indispensables. Une consigne très longue n’est pas forcément bonne si elle mélange plusieurs objectifs ou se contredit."
+    },
+    {
+      "type": "demo",
+      "content": "« Ajoute une note » est trop vague. À l’inverse, dix pages de consignes sur la couleur, l’authentification, les statistiques et les notifications mélangent plusieurs projets différents."
+    },
+    {
+      "type": "explication",
+      "content": "Une consigne claire peut aussi demander à l’IA de commencer par analyser et proposer un plan. Cela permet de vérifier sa compréhension avant qu’elle modifie les fichiers."
+    },
+    {
+      "type": "demo",
+      "content": "Tu peux écrire : « Inspecte d’abord le système de progression, indique les fichiers à modifier et attends mon accord avant l’implémentation. »"
+    },
+    {
+      "type": "explication",
+      "content": "Erreur fréquente : donner des instructions contradictoires. Demander une refonte complète tout en exigeant qu’aucun élément visuel ne change place l’IA dans une situation impossible."
+    },
+    {
+      "type": "exercice",
+      "question": "Rédige mentalement une consigne pour ajouter une note personnelle aux leçons. Elle doit contenir le contexte, l’objectif, la tâche, les contraintes et au moins trois critères de réussite.",
+      "hints": [
+        "Commence par expliquer rapidement le fonctionnement actuel de l’application.",
+        "Utilise un verbe d’action précis pour décrire la tâche.",
+        "Les critères de réussite doivent pouvoir être testés."
+      ],
+      "solution": "Exemple : « AI Academy est une application de suivi d’apprentissage dont la progression est enregistrée dans localStorage. Je veux aider l’utilisateur à conserver ce qu’il retient. Ajoute sous chaque leçon une zone de texte pour écrire et modifier une note personnelle. Utilise le stockage local existant, ne crée pas de compte et ne modifie pas le design général. La note doit être propre à chaque leçon, rester après rechargement, fonctionner sur mobile et ne provoquer aucune erreur de build. »"
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "À quoi sert le contexte dans une consigne ?",
+          "options": [
+            "À expliquer la situation utile avant la modification",
+            "À rendre la consigne la plus longue possible",
+            "À remplacer l’objectif"
+          ],
+          "answer": 0,
+          "explanation": "Le contexte fournit les informations nécessaires pour comprendre le projet. Il ne doit pas être inutilement long et ne remplace pas l’objectif, qui explique le résultat recherché."
+        },
+        {
+          "question": "Quelle tâche est la plus précise ?",
+          "options": [
+            "Améliore la page",
+            "Rends le projet plus moderne",
+            "Ajoute une zone de note sous chaque leçon"
+          ],
+          "answer": 2,
+          "explanation": "Ajouter une zone de note décrit une action observable. « Améliorer » et « rendre moderne » sont trop vagues tant que leur sens n’est pas précisé."
+        },
+        {
+          "question": "Pourquoi ajouter des contraintes ?",
+          "options": [
+            "Pour empêcher les modifications inutiles ou risquées",
+            "Pour interdire à l’IA de travailler",
+            "Pour supprimer la nécessité des critères de réussite"
+          ],
+          "answer": 0,
+          "explanation": "Les contraintes délimitent le travail. Elles ne bloquent pas toute action et ne remplacent pas les critères, qui servent à vérifier le résultat."
+        },
+        {
+          "question": "Quel élément est un critère de réussite ?",
+          "options": [
+            "L’application est intéressante",
+            "La note reste présente après rechargement",
+            "Claude Code doit faire de son mieux"
+          ],
+          "answer": 1,
+          "explanation": "La persistance après rechargement peut être testée. « Intéressante » est subjectif et « faire de son mieux » ne décrit pas un résultat observable."
+        },
+        {
+          "question": "Quelle pratique aide à vérifier que l’IA a compris avant de modifier le projet ?",
+          "options": [
+            "Lui demander un plan et les fichiers concernés",
+            "Lui demander de tout modifier immédiatement",
+            "Supprimer toutes les contraintes"
+          ],
+          "answer": 0,
+          "explanation": "Demander un plan permet de contrôler la compréhension et le périmètre avant l’action. Modifier immédiatement augmente le risque, et supprimer les contraintes rend le travail moins maîtrisable."
+        }
+      ]
+    },
+    {
+      "type": "validation"
+    }
+  ]
+}

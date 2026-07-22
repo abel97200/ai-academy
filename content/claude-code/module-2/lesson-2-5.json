@@ -1,0 +1,179 @@
+{
+  "id": "lesson-2-5",
+  "title": "Vérifier avant d’accepter",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Quand un garagiste te rend une voiture, tu ne te contentes pas toujours d’entendre « c’est réparé ». Tu vérifies que le problème a disparu et que la voiture fonctionne normalement."
+    },
+    {
+      "type": "demo",
+      "content": "Avec une modification produite par l’IA, le principe est le même. Le message « tâche terminée » ne prouve pas que le résultat correspond exactement à ta demande."
+    },
+    {
+      "type": "explication",
+      "content": "La première vérification consiste à comparer le résultat à la consigne initiale. Chaque critère de réussite doit être contrôlé séparément."
+    },
+    {
+      "type": "demo",
+      "content": "Si tu avais demandé une note propre à chaque leçon, il faut vérifier au moins deux leçons différentes. Tester une seule note ne suffit pas à prouver que les données sont bien séparées."
+    },
+    {
+      "type": "schema",
+      "diagram": {
+        "kind": "trio",
+        "nodes": [
+          {
+            "id": "examiner",
+            "label": "Examiner",
+            "color": "#6366F1",
+            "definition": "Comprendre ce qui a été modifié par l’assistant."
+          },
+          {
+            "id": "tester",
+            "label": "Tester",
+            "color": "#F59E0B",
+            "definition": "Vérifier le fonctionnement normal et les cas d’erreur."
+          },
+          {
+            "id": "sauvegarder",
+            "label": "Sauvegarder",
+            "color": "#14B8A6",
+            "definition": "Conserver la version seulement lorsqu’elle est suffisamment stable."
+          }
+        ],
+        "links": [
+          {
+            "from": "examiner",
+            "to": "tester"
+          },
+          {
+            "from": "tester",
+            "to": "sauvegarder"
+          }
+        ]
+      },
+      "caption": "Une modification est examinée et testée avant d’être conservée."
+    },
+    {
+      "type": "explication",
+      "content": "Examiner les changements signifie comprendre quels fichiers ont été modifiés et pourquoi. Tu n’as pas besoin de connaître chaque ligne, mais tu dois repérer les changements inattendus."
+    },
+    {
+      "type": "demo",
+      "content": "Si tu demandes une zone de note et que Claude Code modifie aussi la page d’accueil, le système de progression et dix fichiers sans explication, tu dois demander pourquoi."
+    },
+    {
+      "type": "explication",
+      "content": "Un résultat peut être visuellement correct tout en étant techniquement défectueux. Une belle case cochée ne garantit pas que la progression sera conservée."
+    },
+    {
+      "type": "demo",
+      "content": "La note apparaît correctement, mais disparaît dès que tu recharges la page. L’interface semble réussie, pourtant la fonctionnalité principale ne fonctionne pas."
+    },
+    {
+      "type": "explication",
+      "content": "Il faut tester le comportement normal, mais aussi quelques situations moins évidentes. Ces situations sont souvent appelées cas limites."
+    },
+    {
+      "type": "demo",
+      "content": "Tu peux tester une note vide, une note longue, deux leçons différentes, un rechargement et l’affichage sur un petit écran."
+    },
+    {
+      "type": "explication",
+      "content": "Un effet secondaire est un problème créé ailleurs par une modification. C’est comme réparer une fuite sous l’évier mais bloquer accidentellement un tiroir."
+    },
+    {
+      "type": "demo",
+      "content": "La nouvelle zone de note fonctionne, mais le bouton « Leçon suivante » n’est plus visible sur mobile. La fonctionnalité ajoutée a provoqué un effet secondaire."
+    },
+    {
+      "type": "explication",
+      "content": "Les tests automatisés sont des vérifications réalisées par du code. Ils sont utiles, mais ils ne remplacent pas toujours l’observation humaine."
+    },
+    {
+      "type": "demo",
+      "content": "Un test peut confirmer que les données sont enregistrées sans vérifier que le texte dépasse de l’écran. Le test technique et la vérification visuelle se complètent."
+    },
+    {
+      "type": "explication",
+      "content": "Le cycle de travail peut être résumé ainsi : produire, examiner, tester, corriger puis sauvegarder. Une étape n’est pas réellement terminée tant que ce cycle n’a pas été effectué."
+    },
+    {
+      "type": "demo",
+      "content": "Claude Code ajoute la fonction. Tu examines son résumé, testes l’application, signales un problème mobile, vérifies la correction, puis crées un commit stable."
+    },
+    {
+      "type": "explication",
+      "content": "Erreur fréquente : continuer à ajouter des fonctionnalités alors qu’un problème connu n’est pas corrigé. Cela construit la suite sur une base fragile."
+    },
+    {
+      "type": "exercice",
+      "question": "Crée une checklist de vérification pour une zone de note personnelle. Elle doit couvrir le résultat demandé, la persistance, les cas limites, le mobile et les effets secondaires.",
+      "hints": [
+        "Teste plusieurs leçons et pas seulement une.",
+        "Recharge la page pour contrôler l’enregistrement.",
+        "Vérifie aussi les fonctions qui existaient avant la modification."
+      ],
+      "solution": "Exemple de checklist : la zone apparaît sous chaque leçon ; chaque leçon conserve sa propre note ; la note reste après rechargement ; une note vide ne provoque pas d’erreur ; une note longue reste lisible ; le rendu fonctionne sur mobile ; la navigation précédent et suivant fonctionne toujours ; aucune erreur n’apparaît dans le build."
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "Pourquoi le message « tâche terminée » ne suffit-il pas ?",
+          "options": [
+            "Parce que le résultat doit être comparé aux critères et testé",
+            "Parce que l’IA ne termine jamais aucun travail",
+            "Parce qu’il faut toujours supprimer la modification"
+          ],
+          "answer": 0,
+          "explanation": "Une tâche doit être vérifiée selon les critères définis. L’IA peut réussir un travail, mais sa déclaration ne remplace pas les tests. Il n’est pas nécessaire de supprimer automatiquement le résultat."
+        },
+        {
+          "question": "Que faut-il examiner dans les changements ?",
+          "options": [
+            "Les fichiers modifiés et les changements inattendus",
+            "Uniquement la couleur du bouton",
+            "Seulement le nombre de lignes ajoutées"
+          ],
+          "answer": 0,
+          "explanation": "Il faut comprendre le périmètre des changements et repérer ce qui n’était pas demandé. La couleur ou le nombre de lignes ne suffisent pas à évaluer la qualité du travail."
+        },
+        {
+          "question": "Quel exemple montre qu’un résultat visuel ne suffit pas ?",
+          "options": [
+            "La note est jolie mais disparaît après rechargement",
+            "Le texte est lisible et reste enregistré",
+            "Le build et les tests passent"
+          ],
+          "answer": 0,
+          "explanation": "Une belle interface ne compense pas une fonction qui perd les données. Les autres réponses décrivent au contraire des signes positifs de fonctionnement."
+        },
+        {
+          "question": "Qu’est-ce qu’un effet secondaire ?",
+          "options": [
+            "Un problème créé ailleurs par la modification",
+            "Le résultat principal demandé",
+            "Une explication fournie dans le quiz"
+          ],
+          "answer": 0,
+          "explanation": "Un effet secondaire est une conséquence non souhaitée sur une autre partie de l’application. Ce n’est ni la fonction principale ni une explication pédagogique."
+        },
+        {
+          "question": "Quel est le bon ordre de contrôle ?",
+          "options": [
+            "Produire, examiner, tester, corriger, sauvegarder",
+            "Sauvegarder, produire, ne pas tester",
+            "Produire, publier immédiatement, vérifier plus tard"
+          ],
+          "answer": 0,
+          "explanation": "Le travail est d’abord produit, puis examiné et testé. Les problèmes sont corrigés avant de conserver la version stable. Publier ou sauvegarder trop tôt augmente le risque."
+        }
+      ]
+    },
+    {
+      "type": "validation"
+    }
+  ]
+}

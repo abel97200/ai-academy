@@ -1,0 +1,171 @@
+{
+  "id": "lesson-2-2",
+  "title": "Clarifier son idée avant de parler à l’IA",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Une idée peut sembler claire dans ta tête tout en restant très vague pour une autre personne. Dire « je veux une meilleure application » ressemble à demander à un architecte de construire « une belle maison » sans préciser les habitants, les pièces ou le budget."
+    },
+    {
+      "type": "demo",
+      "content": "L’architecte peut imaginer une grande maison moderne alors que tu voulais un petit logement familial. L’erreur ne vient pas forcément de son travail : la demande de départ ne permettait pas de comprendre le véritable besoin."
+    },
+    {
+      "type": "explication",
+      "content": "Avant de parler à l’IA, commence par identifier le problème à résoudre. Un problème décrit une difficulté réelle, pas encore la solution."
+    },
+    {
+      "type": "demo",
+      "content": "Dans l’application de suivi d’apprentissage, le problème peut être : « l’utilisateur oublie ce qu’il a compris dans une leçon ». La solution envisagée pourrait ensuite être d’ajouter une note personnelle."
+    },
+    {
+      "type": "explication",
+      "content": "Il faut ensuite identifier l’utilisateur concerné. Une fonctionnalité n’est pas conçue de la même manière pour un débutant, un développeur expérimenté ou un administrateur."
+    },
+    {
+      "type": "demo",
+      "content": "Un débutant a besoin d’un bouton clair et d’une consigne simple. Un développeur peut accepter une interface plus technique contenant des informations détaillées."
+    },
+    {
+      "type": "schema",
+      "diagram": {
+        "kind": "trio",
+        "nodes": [
+          {
+            "id": "probleme",
+            "label": "Problème",
+            "color": "#6366F1",
+            "definition": "La difficulté réelle que l’on souhaite résoudre."
+          },
+          {
+            "id": "utilisateur",
+            "label": "Utilisateur",
+            "color": "#F59E0B",
+            "definition": "La personne qui rencontre cette difficulté."
+          },
+          {
+            "id": "resultat",
+            "label": "Résultat attendu",
+            "color": "#14B8A6",
+            "definition": "Ce que l’utilisateur doit pouvoir faire une fois la solution créée."
+          }
+        ],
+        "links": [
+          {
+            "from": "probleme",
+            "to": "utilisateur"
+          },
+          {
+            "from": "utilisateur",
+            "to": "resultat"
+          }
+        ]
+      },
+      "caption": "Une idée devient plus claire lorsque le problème, l’utilisateur et le résultat attendu sont définis."
+    },
+    {
+      "type": "explication",
+      "content": "Le résultat attendu décrit ce qui doit changer de manière visible. Il doit être assez précis pour que tu puisses vérifier s’il a été obtenu."
+    },
+    {
+      "type": "demo",
+      "content": "« Améliorer la leçon » est difficile à vérifier. « Permettre à l’utilisateur d’écrire une note sous chaque leçon et de la retrouver après rechargement » décrit un résultat observable."
+    },
+    {
+      "type": "explication",
+      "content": "Le périmètre indique ce qui appartient à la demande et ce qui n’en fait pas partie. Il évite qu’une petite modification se transforme en refonte complète."
+    },
+    {
+      "type": "demo",
+      "content": "Pour la fonction de note, le périmètre peut préciser : une seule zone de texte par leçon, stockage local, aucune authentification et aucun changement du design général."
+    },
+    {
+      "type": "explication",
+      "content": "Définir ce qui ne doit pas être construit est aussi important que définir ce qui doit l’être. C’est comme donner à un peintre la liste des murs à peindre et lui préciser de ne pas toucher au plafond."
+    },
+    {
+      "type": "demo",
+      "content": "Sans cette limite, Claude Code pourrait ajouter un compte utilisateur ou une base distante alors qu’une simple sauvegarde locale suffisait."
+    },
+    {
+      "type": "explication",
+      "content": "Enfin, tu dois définir ce que signifie « terminé ». Cette définition prend la forme de critères concrets que tu pourras tester."
+    },
+    {
+      "type": "demo",
+      "content": "La fonction de note est terminée si l’utilisateur peut écrire, enregistrer, recharger la page et retrouver son texte sans que les autres fonctions soient cassées."
+    },
+    {
+      "type": "explication",
+      "content": "Une bonne clarification ne demande pas de connaître le code. Elle demande surtout de savoir expliquer le besoin comme tu l’expliquerais à une personne chargée de réaliser le travail."
+    },
+    {
+      "type": "exercice",
+      "question": "Transforme la demande vague « améliore mon application de suivi » en une intention claire. Précise le problème, l’utilisateur, le résultat attendu, le périmètre et la définition de terminé.",
+      "hints": [
+        "Choisis un seul problème concret rencontré par l’utilisateur.",
+        "Décris une fonctionnalité visible plutôt qu’une impression générale.",
+        "Ajoute au moins une chose que l’IA ne doit pas modifier."
+      ],
+      "solution": "Exemple : le problème est que le débutant oublie les points importants après une leçon. L’utilisateur est l’apprenant. Le résultat attendu est de pouvoir écrire une note personnelle sous chaque leçon et la retrouver après rechargement. Le périmètre se limite à une note par leçon, enregistrée localement, sans compte ni changement du design général. La fonction est terminée lorsque la note peut être écrite, sauvegardée, modifiée et retrouvée."
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "Quelle formulation décrit le mieux un problème ?",
+          "options": [
+            "L’utilisateur oublie ce qu’il a retenu après une leçon",
+            "Ajouter immédiatement une base de données",
+            "Utiliser une couleur violette"
+          ],
+          "answer": 0,
+          "explanation": "Le problème décrit une difficulté vécue par l’utilisateur. Ajouter une base de données est une solution technique possible. Utiliser une couleur est un choix visuel, pas nécessairement un problème."
+        },
+        {
+          "question": "Pourquoi faut-il préciser l’utilisateur concerné ?",
+          "options": [
+            "Parce que les besoins et le niveau de compréhension peuvent varier",
+            "Parce qu’une application ne peut avoir qu’un seul utilisateur",
+            "Uniquement pour choisir son prénom"
+          ],
+          "answer": 0,
+          "explanation": "Les besoins changent selon la personne visée. Une application peut servir plusieurs utilisateurs, et l’objectif n’est pas de choisir un prénom mais de comprendre leurs attentes."
+        },
+        {
+          "question": "Quel résultat attendu est le plus vérifiable ?",
+          "options": [
+            "Rendre l’application plus agréable",
+            "Permettre d’ajouter une note et de la retrouver après rechargement",
+            "Faire quelque chose de moderne"
+          ],
+          "answer": 1,
+          "explanation": "Ajouter une note et la retrouver peut être testé précisément. Les mots « agréable » et « moderne » sont trop subjectifs tant qu’ils ne sont pas traduits en comportements ou critères concrets."
+        },
+        {
+          "question": "À quoi sert le périmètre ?",
+          "options": [
+            "À préciser ce qui doit et ne doit pas être modifié",
+            "À demander le plus de fonctionnalités possible",
+            "À remplacer les tests"
+          ],
+          "answer": 0,
+          "explanation": "Le périmètre encadre le travail et évite les modifications inutiles. Il ne sert pas à accumuler des fonctionnalités et ne remplace jamais la vérification du résultat."
+        },
+        {
+          "question": "Que signifie définir qu’une fonctionnalité est terminée ?",
+          "options": [
+            "Écrire des critères observables permettant de vérifier son fonctionnement",
+            "Attendre que l’IA dise qu’elle a fini",
+            "Vérifier uniquement que la page est jolie"
+          ],
+          "answer": 0,
+          "explanation": "Une fonctionnalité est terminée lorsque des critères précis sont respectés. La déclaration de l’IA ne suffit pas, et l’apparence ne garantit pas que le fonctionnement réel est correct."
+        }
+      ]
+    },
+    {
+      "type": "validation"
+    }
+  ]
+}
