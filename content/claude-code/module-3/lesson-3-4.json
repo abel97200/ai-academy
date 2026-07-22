@@ -1,0 +1,187 @@
+{
+  "id": "lesson-3-4",
+  "title": "Lancer l’application sur son ordinateur",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Avant de publier une application, tu dois pouvoir la faire fonctionner sur ton propre ordinateur. C’est comme tester un plat dans ta cuisine avant de le servir aux invités."
+    },
+    {
+      "type": "demo",
+      "content": "La version locale d’AI Academy te permet de voir immédiatement les modifications réalisées par Claude Code sans publier chaque essai sur Internet."
+    },
+    {
+      "type": "explication",
+      "content": "La première étape consiste à ouvrir le terminal dans le dossier principal du projet. Les commandes npm doivent être exécutées à l’endroit où se trouve `package.json`."
+    },
+    {
+      "type": "demo",
+      "content": "Tu peux utiliser `pwd` et `ls`. Si le chemin correspond à AI Academy et que `package.json` apparaît dans la liste, tu es probablement au bon endroit."
+    },
+    {
+      "type": "explication",
+      "content": "Lorsque le projet vient d’être téléchargé, les dépendances ne sont pas toujours présentes. La commande `npm install` permet de les installer."
+    },
+    {
+      "type": "demo",
+      "content": "Imagine recevoir le plan d’un meuble sans les vis. `package.json` décrit le matériel nécessaire et `npm install` rassemble les pièces manquantes."
+    },
+    {
+      "type": "schema",
+      "diagram": {
+        "kind": "trio",
+        "nodes": [
+          {
+            "id": "preparer",
+            "label": "Préparer",
+            "color": "#6366F1",
+            "definition": "Ouvrir le bon dossier et installer les dépendances."
+          },
+          {
+            "id": "lancer",
+            "label": "Lancer",
+            "color": "#F59E0B",
+            "definition": "Démarrer le serveur de développement."
+          },
+          {
+            "id": "observer",
+            "label": "Observer",
+            "color": "#14B8A6",
+            "definition": "Ouvrir localhost et vérifier l’application."
+          }
+        ],
+        "links": [
+          {
+            "from": "preparer",
+            "to": "lancer"
+          },
+          {
+            "from": "lancer",
+            "to": "observer"
+          }
+        ]
+      },
+      "caption": "Le lancement local suit trois étapes : préparer le projet, démarrer le serveur puis ouvrir l’application."
+    },
+    {
+      "type": "explication",
+      "content": "Une fois les dépendances disponibles, la commande `npm run dev` démarre généralement le serveur de développement. Ce serveur prépare l’application et attend les demandes du navigateur."
+    },
+    {
+      "type": "demo",
+      "content": "Le terminal peut afficher une adresse comme `http://localhost:3000`. Cela indique que l’application est prête à être ouverte localement."
+    },
+    {
+      "type": "explication",
+      "content": "`localhost` désigne ton propre ordinateur. L’adresse locale permet au navigateur de communiquer avec le serveur de développement lancé sur ta machine."
+    },
+    {
+      "type": "demo",
+      "content": "Quand tu ouvres `http://localhost:3000`, tu ne visites pas encore la version publique de Vercel. Tu consultes la version actuellement exécutée sur ton ordinateur."
+    },
+    {
+      "type": "explication",
+      "content": "Le nombre placé après les deux-points est appelé port. Tu peux l’imaginer comme un numéro de porte permettant d’atteindre le bon service sur l’ordinateur."
+    },
+    {
+      "type": "demo",
+      "content": "`localhost:3000` et `localhost:3001` peuvent correspondre à deux serveurs différents. Si le port 3000 est déjà utilisé, le projet peut proposer le port 3001."
+    },
+    {
+      "type": "explication",
+      "content": "Le serveur reste actif tant que la commande continue de fonctionner dans le terminal. Il est normal que la zone de commande ne revienne pas immédiatement."
+    },
+    {
+      "type": "demo",
+      "content": "Le terminal peut afficher les pages consultées et les éventuelles erreurs pendant que tu utilises AI Academy dans le navigateur."
+    },
+    {
+      "type": "explication",
+      "content": "Pour arrêter le serveur, tu peux utiliser `Ctrl + C` dans le terminal concerné. Cette action interrompt le processus en cours sans supprimer le projet."
+    },
+    {
+      "type": "demo",
+      "content": "C’est comme éteindre un appareil après un test. Les fichiers restent présents, mais l’application locale n’est plus accessible jusqu’au prochain `npm run dev`."
+    },
+    {
+      "type": "explication",
+      "content": "Une erreur de démarrage peut venir d’une dépendance absente, d’un mauvais dossier ou d’un port déjà occupé. Le message affiché donne souvent un premier indice."
+    },
+    {
+      "type": "demo",
+      "content": "Si npm indique qu’aucun script `dev` n’existe, vérifie d’abord que tu es dans le bon projet et que son `package.json` contient bien ce script."
+    },
+    {
+      "type": "explication",
+      "content": "Erreur fréquente : fermer immédiatement le terminal après avoir lancé le serveur. Cela peut arrêter le processus et rendre localhost inaccessible."
+    },
+    {
+      "type": "exercice",
+      "question": "Décris toutes les étapes permettant de lancer AI Academy localement depuis l’ouverture du terminal jusqu’à l’arrêt du serveur.",
+      "hints": [
+        "Commence par vérifier le dossier et les dépendances.",
+        "Le serveur est lancé avant l’ouverture de localhost.",
+        "Une combinaison de touches permet d’arrêter le processus."
+      ],
+      "solution": "Ouvre le terminal dans le dossier principal d’AI Academy. Vérifie la présence de `package.json` avec `pwd` et `ls`. Exécute `npm install` si les dépendances ne sont pas installées, puis `npm run dev`. Ouvre l’adresse localhost affichée dans le navigateur. Observe et teste l’application. Termine avec `Ctrl + C` dans le terminal pour arrêter le serveur."
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "Pourquoi lancer l’application localement ?",
+          "options": [
+            "Pour tester les modifications avant de les publier",
+            "Pour supprimer automatiquement la version en ligne",
+            "Pour éviter définitivement tout hébergement"
+          ],
+          "answer": 0,
+          "explanation": "Le fonctionnement local permet de tester rapidement le projet avant publication. Il ne supprime pas la version en ligne et ne remplace pas l’hébergement nécessaire au public."
+        },
+        {
+          "question": "À quoi sert `npm install` ?",
+          "options": [
+            "À installer les dépendances décrites par le projet",
+            "À ouvrir directement GitHub",
+            "À publier automatiquement sur Vercel"
+          ],
+          "answer": 0,
+          "explanation": "`npm install` prépare les paquets nécessaires au projet. Cette commande n’ouvre pas GitHub et ne constitue pas un déploiement."
+        },
+        {
+          "question": "Que fait généralement `npm run dev` ?",
+          "options": [
+            "Il démarre le serveur de développement",
+            "Il supprime les fichiers non utilisés",
+            "Il crée automatiquement un compte utilisateur"
+          ],
+          "answer": 0,
+          "explanation": "Le script `dev` lance généralement l’environnement de développement. Il ne doit pas supprimer les fichiers et ne crée pas d’authentification."
+        },
+        {
+          "question": "Que représente `localhost` ?",
+          "options": [
+            "Ton propre ordinateur",
+            "Le dépôt GitHub public",
+            "Une base de données distante"
+          ],
+          "answer": 0,
+          "explanation": "`localhost` désigne la machine sur laquelle le navigateur fonctionne. Il ne correspond ni à GitHub ni à une base distante."
+        },
+        {
+          "question": "Que fait `Ctrl + C` pendant que le serveur fonctionne ?",
+          "options": [
+            "Il arrête le processus en cours",
+            "Il supprime le projet",
+            "Il publie la dernière version"
+          ],
+          "answer": 0,
+          "explanation": "`Ctrl + C` interrompt le serveur actif dans le terminal. Les fichiers restent présents et aucune publication n’est effectuée."
+        }
+      ]
+    },
+    {
+      "type": "validation"
+    }
+  ]
+}

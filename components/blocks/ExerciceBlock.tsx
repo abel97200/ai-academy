@@ -7,6 +7,7 @@
 //   réfléchisse vraiment avant de regarder la solution.
 
 import { useRef, useState } from "react";
+import InlineText from "@/components/blocks/InlineText";
 
 type ExerciceBlockProps = {
   question: string;
@@ -40,7 +41,7 @@ export default function ExerciceBlock({
         Exercice
       </span>
       <p className="mt-2 text-base leading-relaxed text-foreground">
-        {question}
+        <InlineText text={question} />
       </p>
 
       {/* Indices déjà révélés */}
@@ -51,7 +52,7 @@ export default function ExerciceBlock({
               key={index}
               className="rounded-xl border border-hint/30 bg-hint/[0.08] px-4 py-2 text-sm text-foreground/80"
             >
-              {hint}
+              <InlineText text={hint} />
             </li>
           ))}
         </ul>
@@ -106,7 +107,7 @@ export default function ExerciceBlock({
 
       {solutionVisible && (
         <div className="mt-4 rounded-xl border border-success/30 bg-success/[0.08] px-4 py-3 text-sm text-foreground/90">
-          {solution}
+          <InlineText text={solution} />
         </div>
       )}
     </div>

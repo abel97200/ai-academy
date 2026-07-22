@@ -1,0 +1,199 @@
+{
+  "id": "lesson-3-6",
+  "title": "Sauvegarder son travail avec Git et GitHub",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Enregistrer un fichier ne suffit pas toujours à protéger un projet. Cela conserve le dernier état sur ton ordinateur, mais ne crée pas un historique clair des versions."
+    },
+    {
+      "type": "demo",
+      "content": "Dans un document classique, tu peux écraser une bonne version avec une mauvaise modification. Sans historique, revenir précisément à l’état précédent devient difficile."
+    },
+    {
+      "type": "explication",
+      "content": "Git est un système de gestion de versions. Il permet de prendre des photographies successives du projet et de conserver l’histoire de ses modifications."
+    },
+    {
+      "type": "demo",
+      "content": "Imagine un jeu vidéo avec plusieurs points de sauvegarde. Si une nouvelle étape se passe mal, tu peux revenir à une sauvegarde antérieure."
+    },
+    {
+      "type": "explication",
+      "content": "Le dossier suivi par Git est appelé dépôt, ou repository en anglais. Il contient le projet et l’historique de ses versions."
+    },
+    {
+      "type": "demo",
+      "content": "Le dépôt AI Academy contient le code actuel, mais aussi les informations permettant de savoir quelles modifications ont été enregistrées dans chaque version."
+    },
+    {
+      "type": "schema",
+      "diagram": {
+        "kind": "trio",
+        "nodes": [
+          {
+            "id": "fichiers",
+            "label": "Fichiers modifiés",
+            "color": "#6366F1",
+            "definition": "Le travail existe d’abord sur ton ordinateur."
+          },
+          {
+            "id": "commit",
+            "label": "Commit Git",
+            "color": "#F59E0B",
+            "definition": "Une version locale stable est enregistrée dans l’historique."
+          },
+          {
+            "id": "github",
+            "label": "GitHub",
+            "color": "#14B8A6",
+            "definition": "Les commits sont envoyés vers le dépôt distant."
+          }
+        ],
+        "links": [
+          {
+            "from": "fichiers",
+            "to": "commit"
+          },
+          {
+            "from": "commit",
+            "to": "github"
+          }
+        ]
+      },
+      "caption": "Le travail passe des fichiers locaux au commit, puis du commit au dépôt GitHub."
+    },
+    {
+      "type": "explication",
+      "content": "La commande `git status` affiche l’état actuel du projet. Elle indique notamment les fichiers modifiés, ajoutés ou non suivis."
+    },
+    {
+      "type": "demo",
+      "content": "Avant de créer un commit, `git status` permet de vérifier que Claude Code n’a pas modifié un fichier inattendu."
+    },
+    {
+      "type": "explication",
+      "content": "La commande `git add` prépare les fichiers que tu souhaites inclure dans le prochain commit. Elle ressemble au fait de placer des documents dans une enveloppe avant de la fermer."
+    },
+    {
+      "type": "demo",
+      "content": "`git add .` prépare généralement toutes les modifications du dossier actuel. Comme cette commande peut inclure plusieurs fichiers, il faut consulter `git status` avant de l’utiliser."
+    },
+    {
+      "type": "explication",
+      "content": "Un commit est une version enregistrée dans l’historique local. Il comporte un message qui doit expliquer clairement ce que cette version apporte."
+    },
+    {
+      "type": "demo",
+      "content": "Le message `feat: add module 3 development environment` indique qu’une nouvelle fonctionnalité pédagogique correspondant au Module 3 a été ajoutée."
+    },
+    {
+      "type": "explication",
+      "content": "La commande `git commit` crée le point de sauvegarde avec les fichiers préparés. Le commit reste d’abord enregistré sur ton ordinateur."
+    },
+    {
+      "type": "demo",
+      "content": "Après le commit, tu peux continuer à travailler. Si une modification suivante casse le projet, l’historique permet de retrouver la version stable."
+    },
+    {
+      "type": "explication",
+      "content": "GitHub est un service en ligne qui héberge des dépôts Git. Il permet de conserver une copie distante du projet et de collaborer."
+    },
+    {
+      "type": "demo",
+      "content": "Le dépôt Git local ressemble au dossier de travail chez toi. GitHub ressemble à une copie sécurisée stockée dans un espace en ligne."
+    },
+    {
+      "type": "explication",
+      "content": "La commande `git push` envoie les commits locaux vers le dépôt GitHub configuré. Enregistrer un fichier ou créer un commit ne déclenche pas forcément cet envoi."
+    },
+    {
+      "type": "demo",
+      "content": "Tu peux avoir trois états différents : un fichier simplement enregistré, un commit créé localement, puis ce commit envoyé sur GitHub."
+    },
+    {
+      "type": "explication",
+      "content": "Dans AI Academy, l’envoi sur GitHub peut déclencher automatiquement un déploiement Vercel. Une modification poussée peut donc devenir visible en ligne."
+    },
+    {
+      "type": "demo",
+      "content": "C’est pourquoi il faut lancer le lint, les tests et le build avant le push. Le dépôt distant doit recevoir une version suffisamment stable."
+    },
+    {
+      "type": "explication",
+      "content": "Erreur fréquente : créer un seul énorme commit après plusieurs jours de changements. Des commits petits et cohérents rendent l’historique plus facile à comprendre."
+    },
+    {
+      "type": "demo",
+      "content": "Il vaut mieux un commit pour le contenu du Module 3 et un autre pour une correction visuelle indépendante qu’un seul commit mélangeant toutes les modifications."
+    },
+    {
+      "type": "exercice",
+      "question": "Explique la différence entre enregistrer un fichier, créer un commit et effectuer un push. Décris ensuite l’ordre des vérifications avant l’envoi sur GitHub.",
+      "hints": [
+        "L’enregistrement concerne d’abord le fichier présent sur l’ordinateur.",
+        "Le commit ajoute une version à l’historique local.",
+        "Le push concerne le dépôt distant."
+      ],
+      "solution": "Enregistrer un fichier conserve sa dernière version sur l’ordinateur. Créer un commit ajoute un point de sauvegarde à l’historique Git local. Effectuer un push envoie les commits vers GitHub. Avant le push, il faut examiner `git status`, vérifier les fichiers modifiés, lancer le lint, les tests et le build, puis créer un commit clair."
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "À quoi sert principalement Git ?",
+          "options": [
+            "À conserver l’historique des versions du projet",
+            "À dessiner automatiquement l’interface",
+            "À remplacer Node.js"
+          ],
+          "answer": 0,
+          "explanation": "Git suit les changements et crée un historique de versions. Il n’est ni un outil de design ni un environnement d’exécution comme Node.js."
+        },
+        {
+          "question": "Que montre `git status` ?",
+          "options": [
+            "L’état des fichiers et modifications du dépôt",
+            "Uniquement l’adresse Vercel",
+            "Le contenu complet de la base de données"
+          ],
+          "answer": 0,
+          "explanation": "`git status` indique notamment les fichiers modifiés, ajoutés ou préparés. Il ne fournit pas uniquement l’adresse de déploiement et ne lit pas une base distante."
+        },
+        {
+          "question": "Qu’est-ce qu’un commit ?",
+          "options": [
+            "Une version enregistrée dans l’historique Git local",
+            "Toujours une publication immédiate sur Internet",
+            "Une dépendance npm"
+          ],
+          "answer": 0,
+          "explanation": "Le commit crée un point dans l’historique local. Il n’est envoyé sur GitHub qu’avec une opération comme `git push` et n’a aucun rapport avec les paquets npm."
+        },
+        {
+          "question": "Que fait `git push` ?",
+          "options": [
+            "Il envoie les commits locaux vers le dépôt distant",
+            "Il arrête le serveur local",
+            "Il installe les dépendances"
+          ],
+          "answer": 0,
+          "explanation": "`git push` transmet les commits à GitHub ou à un autre dépôt distant. `Ctrl + C` arrête le serveur et `npm install` installe les dépendances."
+        },
+        {
+          "question": "Pourquoi tester avant un push sur AI Academy ?",
+          "options": [
+            "Parce que le push peut déclencher le déploiement de la nouvelle version",
+            "Parce que GitHub supprime toujours les anciens commits",
+            "Parce qu’un push ne peut jamais être corrigé"
+          ],
+          "answer": 0,
+          "explanation": "Le dépôt est lié au déploiement, donc un push peut rendre les modifications visibles en ligne. GitHub conserve normalement l’historique, et une erreur peut être corrigée, mais il vaut mieux la détecter avant publication."
+        }
+      ]
+    },
+    {
+      "type": "validation"
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "id": "lesson-3-1",
+  "title": "Comprendre les fichiers, les dossiers et les chemins",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Une application est composée de fichiers rangés dans des dossiers. Imagine un classeur : les dossiers sont les intercalaires et les fichiers sont les feuilles contenant les informations utiles."
+    },
+    {
+      "type": "demo",
+      "content": "Dans AI Academy, un fichier peut contenir une leçon, un composant visuel ou une règle de progression. Chaque fichier remplit un rôle précis dans le projet."
+    },
+    {
+      "type": "explication",
+      "content": "Un fichier est un document enregistré sur l’ordinateur. Son nom se termine souvent par une extension qui indique son type, comme `.json`, `.tsx`, `.css` ou `.md`."
+    },
+    {
+      "type": "demo",
+      "content": "Le fichier `lesson-3-1.json` contient des données pédagogiques. Un fichier comme `page.tsx` peut contenir le code d’une page, tandis qu’un fichier `.css` décrit son apparence."
+    },
+    {
+      "type": "explication",
+      "content": "Un dossier sert à regrouper plusieurs fichiers ou d’autres dossiers. Il ressemble à une boîte étiquetée dans laquelle tu ranges les éléments qui appartiennent à la même catégorie."
+    },
+    {
+      "type": "demo",
+      "content": "Le dossier `content` peut contenir les leçons. Le dossier `components` peut contenir les éléments réutilisables de l’interface, comme un bouton ou une carte."
+    },
+    {
+      "type": "schema",
+      "diagram": {
+        "kind": "trio",
+        "nodes": [
+          {
+            "id": "projet",
+            "label": "Projet",
+            "color": "#6366F1",
+            "definition": "Le dossier principal qui contient toute l’application."
+          },
+          {
+            "id": "dossiers",
+            "label": "Dossiers",
+            "color": "#F59E0B",
+            "definition": "Ils regroupent les fichiers selon leur rôle."
+          },
+          {
+            "id": "fichiers",
+            "label": "Fichiers",
+            "color": "#14B8A6",
+            "definition": "Ils contiennent le code, les données ou la documentation."
+          }
+        ],
+        "links": [
+          {
+            "from": "projet",
+            "to": "dossiers"
+          },
+          {
+            "from": "dossiers",
+            "to": "fichiers"
+          }
+        ]
+      },
+      "caption": "Le dossier principal contient des dossiers, qui contiennent eux-mêmes les fichiers de l’application."
+    },
+    {
+      "type": "explication",
+      "content": "Le dossier principal, aussi appelé racine du projet, est le point de départ de l’application. Tu peux l’imaginer comme l’entrée principale d’un bâtiment."
+    },
+    {
+      "type": "demo",
+      "content": "Dans le dossier principal d’AI Academy, tu peux généralement trouver `package.json`, les dossiers du code et les fichiers de configuration. Leur présence permet de reconnaître le bon projet."
+    },
+    {
+      "type": "explication",
+      "content": "Un chemin indique l’emplacement précis d’un fichier ou d’un dossier. Il joue le même rôle qu’une adresse postale : il explique comment atteindre le bon endroit."
+    },
+    {
+      "type": "demo",
+      "content": "Le chemin `content/modules/module-3/lesson-3-1.json` signifie : ouvre le dossier `content`, puis `modules`, puis `module-3`, puis le fichier de la leçon."
+    },
+    {
+      "type": "explication",
+      "content": "Deux fichiers peuvent avoir le même nom s’ils se trouvent dans des dossiers différents. Leur chemin complet permet alors de les distinguer."
+    },
+    {
+      "type": "demo",
+      "content": "Il peut exister un fichier `page.tsx` pour l’accueil et un autre pour le tableau de bord. Leur nom est identique, mais leur chemin indique qu’ils appartiennent à deux pages différentes."
+    },
+    {
+      "type": "explication",
+      "content": "Déplacer, renommer ou supprimer un fichier peut casser une application si d’autres fichiers utilisent encore son ancien chemin. C’est comme déplacer une boutique sans mettre à jour son adresse."
+    },
+    {
+      "type": "demo",
+      "content": "Si un composant cherche `lesson-3-1.json` dans le dossier `content` et que le fichier est déplacé ailleurs, l’application peut ne plus réussir à charger la leçon."
+    },
+    {
+      "type": "explication",
+      "content": "Erreur fréquente : ouvrir Claude Code dans un dossier trop large, comme tout le dossier Documents. Il risque alors de voir plusieurs projets au lieu de travailler uniquement sur AI Academy."
+    },
+    {
+      "type": "demo",
+      "content": "Il vaut mieux ouvrir précisément le dossier principal d’AI Academy. Claude Code pourra ainsi analyser les bons fichiers et éviter de modifier un autre projet."
+    },
+    {
+      "type": "exercice",
+      "question": "Explique le trajet permettant d’atteindre le fichier situé à l’adresse `content/modules/module-3/lesson-3-1.json`. Identifie le dossier principal, les sous-dossiers, le fichier et son extension.",
+      "hints": [
+        "Chaque élément séparé par une barre correspond à une étape du chemin.",
+        "Le dernier élément est le fichier.",
+        "L’extension se trouve après le dernier point du nom."
+      ],
+      "solution": "Depuis le dossier principal du projet, il faut ouvrir `content`, puis `modules`, puis `module-3`. Le fichier final est `lesson-3-1.json`. Son extension est `.json`, ce qui indique qu’il contient des données structurées."
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "Qu’est-ce qu’un fichier dans un projet ?",
+          "options": [
+            "Un document qui contient du code, des données ou du texte",
+            "Toujours le dossier principal de l’application",
+            "Une commande exécutée dans le terminal"
+          ],
+          "answer": 0,
+          "explanation": "Un fichier contient des informations comme du code, des données ou de la documentation. Le dossier principal contient plusieurs fichiers, tandis qu’une commande est une instruction envoyée à l’ordinateur."
+        },
+        {
+          "question": "À quoi sert un dossier ?",
+          "options": [
+            "À organiser et regrouper des fichiers",
+            "À lancer automatiquement tous les programmes",
+            "À remplacer le nom des fichiers"
+          ],
+          "answer": 0,
+          "explanation": "Un dossier organise les fichiers selon leur rôle. Il ne lance pas automatiquement tous les programmes et ne remplace pas les noms des fichiers."
+        },
+        {
+          "question": "Qu’est-ce que la racine d’un projet ?",
+          "options": [
+            "Son dossier principal",
+            "Le dernier fichier modifié",
+            "Une copie située sur GitHub"
+          ],
+          "answer": 0,
+          "explanation": "La racine est le dossier principal à partir duquel l’ensemble du projet est organisé. Elle n’est ni un fichier particulier ni obligatoirement une copie distante."
+        },
+        {
+          "question": "À quoi sert le chemin d’un fichier ?",
+          "options": [
+            "À indiquer son emplacement précis",
+            "À choisir sa couleur",
+            "À mesurer sa qualité"
+          ],
+          "answer": 0,
+          "explanation": "Le chemin fonctionne comme une adresse et permet de retrouver le fichier. Il ne détermine ni son apparence ni sa qualité."
+        },
+        {
+          "question": "Pourquoi déplacer un fichier peut-il casser l’application ?",
+          "options": [
+            "Parce que d’autres fichiers peuvent encore utiliser son ancien chemin",
+            "Parce qu’un fichier ne peut jamais être déplacé",
+            "Parce que son extension change automatiquement"
+          ],
+          "answer": 0,
+          "explanation": "Les autres parties du projet peuvent chercher le fichier à son ancien emplacement. Un fichier peut être déplacé, mais les références doivent être mises à jour. Son extension ne change pas automatiquement."
+        }
+      ]
+    },
+    {
+      "type": "validation"
+    }
+  ]
+}

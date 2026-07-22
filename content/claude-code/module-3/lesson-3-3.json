@@ -1,0 +1,191 @@
+{
+  "id": "lesson-3-3",
+  "title": "Comprendre Node.js, npm et les dépendances",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Une application moderne utilise souvent plusieurs outils déjà créés par d’autres développeurs. Elle ressemble à une cuisine équipée : tu construis ton plat, mais tu utilises aussi un four, des ustensiles et des ingrédients préparés."
+    },
+    {
+      "type": "demo",
+      "content": "AI Academy n’a pas besoin de recréer elle-même tous les boutons, le système de pages ou les outils de compilation. Elle s’appuie sur des technologies comme Next.js et React."
+    },
+    {
+      "type": "explication",
+      "content": "Node.js est un environnement qui permet d’exécuter du JavaScript en dehors du navigateur. Dans notre projet, il permet notamment de lancer les outils nécessaires au développement."
+    },
+    {
+      "type": "demo",
+      "content": "Lorsque tu exécutes `npm run dev`, Node.js aide à démarrer le serveur local qui prépare et affiche AI Academy sur ton ordinateur."
+    },
+    {
+      "type": "explication",
+      "content": "Node.js ne représente pas l’application entière. Il ressemble plutôt au moteur qui permet à plusieurs outils du projet de fonctionner."
+    },
+    {
+      "type": "demo",
+      "content": "Une voiture comprend un moteur, mais aussi des sièges, des roues et un tableau de bord. De la même manière, AI Academy utilise Node.js sans se limiter à Node.js."
+    },
+    {
+      "type": "schema",
+      "diagram": {
+        "kind": "trio",
+        "nodes": [
+          {
+            "id": "node",
+            "label": "Node.js",
+            "color": "#6366F1",
+            "definition": "L’environnement qui exécute les outils JavaScript du projet."
+          },
+          {
+            "id": "npm",
+            "label": "npm",
+            "color": "#F59E0B",
+            "definition": "L’outil qui installe les dépendances et lance les scripts."
+          },
+          {
+            "id": "projet",
+            "label": "Application",
+            "color": "#14B8A6",
+            "definition": "Le projet utilise ces outils pour être développé, testé et lancé."
+          }
+        ],
+        "links": [
+          {
+            "from": "node",
+            "to": "npm"
+          },
+          {
+            "from": "npm",
+            "to": "projet"
+          }
+        ]
+      },
+      "caption": "Node.js fournit l’environnement, npm gère les outils du projet et l’application les utilise."
+    },
+    {
+      "type": "explication",
+      "content": "npm est un gestionnaire de paquets. Un paquet est un ensemble de code réutilisable que le projet peut installer et utiliser."
+    },
+    {
+      "type": "demo",
+      "content": "Au lieu de fabriquer chaque pièce d’un meuble, tu peux acheter certaines pièces standard. npm joue le rôle du magasin qui fournit ces pièces au projet."
+    },
+    {
+      "type": "explication",
+      "content": "Une dépendance est un paquet dont l’application dépend pour fonctionner. Si elle manque, certaines parties du projet peuvent ne plus démarrer."
+    },
+    {
+      "type": "demo",
+      "content": "Si AI Academy utilise Next.js mais que Next.js n’est pas installé, la commande de démarrage ne trouvera pas l’outil nécessaire pour construire l’application."
+    },
+    {
+      "type": "explication",
+      "content": "Le fichier `package.json` décrit le projet et ses principaux outils. Il ressemble à la fiche de recette qui indique les ingrédients nécessaires et les actions disponibles."
+    },
+    {
+      "type": "demo",
+      "content": "`package.json` peut indiquer que le projet utilise React et Next.js. Il contient aussi des scripts comme `dev`, `build` ou `lint`."
+    },
+    {
+      "type": "explication",
+      "content": "Un script npm est un raccourci vers une commande plus longue. Il permet d’exécuter une tâche connue sans retenir tous ses détails techniques."
+    },
+    {
+      "type": "demo",
+      "content": "La commande `npm run dev` lance le script nommé `dev`. Ce script démarre généralement l’environnement de développement du projet."
+    },
+    {
+      "type": "explication",
+      "content": "La commande `npm install` lit `package.json` et installe les dépendances nécessaires. Elle prépare l’atelier avant que le projet puisse fonctionner."
+    },
+    {
+      "type": "demo",
+      "content": "C’est comme consulter la liste du matériel d’un meuble puis rassembler toutes les vis et planches avant de commencer le montage."
+    },
+    {
+      "type": "explication",
+      "content": "Les dépendances installées se trouvent généralement dans le dossier `node_modules`. Ce dossier peut être très volumineux, car il contient les outils utilisés par le projet."
+    },
+    {
+      "type": "demo",
+      "content": "Tu ne dois généralement pas modifier manuellement les fichiers de `node_modules`. Ils sont gérés par npm et peuvent être réinstallés à partir de la configuration du projet."
+    },
+    {
+      "type": "explication",
+      "content": "Installer un nouveau paquet modifie le projet. Il faut donc vérifier pourquoi il est nécessaire au lieu d’accepter automatiquement toutes les installations proposées."
+    },
+    {
+      "type": "demo",
+      "content": "Ajouter une petite bibliothèque uniquement pour changer la couleur d’un bouton serait probablement inutile. Le CSS existant peut suffire sans créer une nouvelle dépendance."
+    },
+    {
+      "type": "exercice",
+      "question": "Associe chaque élément à son rôle : Node.js, npm, package.json, une dépendance et node_modules.",
+      "hints": [
+        "Node.js fournit l’environnement d’exécution.",
+        "package.json décrit les besoins et scripts du projet.",
+        "node_modules contient les paquets installés."
+      ],
+      "solution": "Node.js exécute les outils JavaScript du projet. npm installe les paquets et lance les scripts. package.json décrit le projet, ses dépendances et ses scripts. Une dépendance est un paquet utilisé par l’application. node_modules est le dossier qui contient les dépendances installées."
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "Quel est le rôle principal de Node.js dans le projet ?",
+          "options": [
+            "Fournir un environnement pour exécuter les outils JavaScript",
+            "Choisir le design de l’application",
+            "Stocker automatiquement les données des utilisateurs"
+          ],
+          "answer": 0,
+          "explanation": "Node.js permet d’exécuter les outils JavaScript nécessaires au développement. Il ne choisit pas le design et ne constitue pas automatiquement une base de données."
+        },
+        {
+          "question": "Qu’est-ce que npm ?",
+          "options": [
+            "Un outil qui gère les paquets et les scripts du projet",
+            "Une page de l’application",
+            "Un service obligatoire d’hébergement"
+          ],
+          "answer": 0,
+          "explanation": "npm installe les dépendances et lance les scripts définis dans le projet. Ce n’est ni une page ni un hébergeur."
+        },
+        {
+          "question": "Qu’est-ce qu’une dépendance ?",
+          "options": [
+            "Un paquet utilisé par l’application pour fonctionner",
+            "Toujours une erreur dans le code",
+            "Un dossier personnel de l’utilisateur"
+          ],
+          "answer": 0,
+          "explanation": "Une dépendance est un outil ou un paquet externe utilisé par le projet. Elle n’est pas forcément une erreur et ne correspond pas à un dossier personnel."
+        },
+        {
+          "question": "À quoi sert `package.json` ?",
+          "options": [
+            "À décrire le projet, ses dépendances et ses scripts",
+            "À conserver les mots de passe des utilisateurs",
+            "À afficher directement la page d’accueil"
+          ],
+          "answer": 0,
+          "explanation": "`package.json` contient notamment la configuration, les dépendances et les scripts du projet. Les secrets ne doivent pas y être stockés et il ne représente pas directement une page."
+        },
+        {
+          "question": "Faut-il modifier manuellement le contenu de `node_modules` ?",
+          "options": [
+            "Généralement non, car npm gère ce dossier",
+            "Oui, pour chaque changement d’interface",
+            "Oui, avant chaque démarrage"
+          ],
+          "answer": 0,
+          "explanation": "`node_modules` est généré et géré par le gestionnaire de paquets. Les modifications manuelles peuvent être perdues et ne sont normalement pas la bonne méthode."
+        }
+      ]
+    },
+    {
+      "type": "validation"
+    }
+  ]
+}

@@ -102,15 +102,37 @@
     {
       "number": 3,
       "slug": "module-3",
-      "title": "Préparer son environnement de travail",
+      "title": "Préparer ton environnement de travail",
       "level": "niveau-1",
-      "objective": "Installer et comprendre les outils nécessaires pour développer.",
-      "usefulness": "Un environnement bien configuré évite des heures perdues à déboguer des problèmes d'installation plutôt que de code.",
+      "objective": "Apprendre à comprendre et utiliser l'environnement nécessaire pour travailler sur une application avec Claude Code : fichiers et dossiers, chemins, terminal, Node.js, npm, dépendances, package.json, serveur local, localhost, Claude Code dans le bon dossier, Git, GitHub, commit et push.",
+      "usefulness": "À la fin de ce module, tu sais ouvrir le projet AI Academy, te déplacer dans son dossier, lancer l'application localement, comprendre les principales commandes exécutées par Claude Code et sauvegarder une version sur GitHub.",
       "prerequisites": ["module-2"],
-      "skills": ["Installer Node.js et un éditeur de code", "Utiliser un terminal", "Configurer Claude Code"],
-      "deliverable": "Un environnement de travail fonctionnel, prêt à démarrer le tracker.",
-      "estimatedMinutes": 60,
-      "lessons": []
+      "skills": [
+        "Reconnaître le dossier principal d'un projet",
+        "Expliquer la différence entre un fichier, un dossier et un chemin",
+        "Connaître sa position dans le terminal",
+        "Changer de dossier",
+        "Expliquer le rôle de Node.js et npm",
+        "Reconnaître package.json et node_modules",
+        "Lancer le serveur local",
+        "Ouvrir localhost",
+        "Arrêter un serveur avec Ctrl + C",
+        "Lancer Claude Code dans le bon projet",
+        "Évaluer une demande d'autorisation simple",
+        "Distinguer enregistrement local, commit et push",
+        "Vérifier l'état Git",
+        "Sauvegarder une version stable"
+      ],
+      "deliverable": "Le projet AI Academy lancé en local et une modification sauvegardée avec un commit poussé sur GitHub.",
+      "estimatedMinutes": 100,
+      "lessons": [
+        "lesson-3-1",
+        "lesson-3-2",
+        "lesson-3-3",
+        "lesson-3-4",
+        "lesson-3-5",
+        "lesson-3-6"
+      ]
     },
     {
       "number": 4,

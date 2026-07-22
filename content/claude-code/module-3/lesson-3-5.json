@@ -1,0 +1,187 @@
+{
+  "id": "lesson-3-5",
+  "title": "Ouvrir le projet avec Claude Code en sécurité",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Claude Code travaille à partir du dossier dans lequel il est lancé. Il faut donc commencer dans la racine du bon projet."
+    },
+    {
+      "type": "demo",
+      "content": "C’est comme inviter un artisan dans le bon appartement. S’il entre dans le mauvais logement, même un travail bien réalisé concernera le mauvais endroit."
+    },
+    {
+      "type": "explication",
+      "content": "Avant de lancer Claude Code, utilise `pwd` et `ls`. Tu dois reconnaître le chemin d’AI Academy et des fichiers comme `package.json`."
+    },
+    {
+      "type": "demo",
+      "content": "Lorsque la position est correcte, la commande `claude` ouvre la session de travail dans le projet actuel."
+    },
+    {
+      "type": "schema",
+      "diagram": {
+        "kind": "trio",
+        "nodes": [
+          {
+            "id": "verifier",
+            "label": "Vérifier le dossier",
+            "color": "#6366F1",
+            "definition": "Confirmer que le terminal se trouve dans le bon projet."
+          },
+          {
+            "id": "autoriser",
+            "label": "Contrôler les actions",
+            "color": "#F59E0B",
+            "definition": "Comprendre les lectures, modifications et commandes proposées."
+          },
+          {
+            "id": "valider",
+            "label": "Vérifier le résultat",
+            "color": "#14B8A6",
+            "definition": "Tester les changements avant de les conserver."
+          }
+        ],
+        "links": [
+          {
+            "from": "verifier",
+            "to": "autoriser"
+          },
+          {
+            "from": "autoriser",
+            "to": "valider"
+          }
+        ]
+      },
+      "caption": "Travailler avec Claude Code demande de vérifier le projet, contrôler les actions puis tester le résultat."
+    },
+    {
+      "type": "explication",
+      "content": "Claude Code peut demander l’autorisation de lire un fichier, modifier du code ou exécuter une commande. Ces actions n’ont pas toutes le même niveau de risque."
+    },
+    {
+      "type": "demo",
+      "content": "Lire `package.json` permet de comprendre le projet et présente peu de risque. Supprimer un dossier ou envoyer du code sur GitHub produit un changement plus important."
+    },
+    {
+      "type": "explication",
+      "content": "Une autorisation temporaire concerne généralement une seule action. Une autorisation permanente peut permettre de répéter le même type d’action sans demander à nouveau."
+    },
+    {
+      "type": "demo",
+      "content": "Autoriser toujours une commande de lecture peut être pratique. Autoriser sans confirmation toutes les suppressions ou tous les envois distants serait beaucoup plus risqué."
+    },
+    {
+      "type": "explication",
+      "content": "Avant d’accepter une commande, cherche à comprendre son objectif. Tu n’as pas besoin d’en connaître chaque détail, mais tu dois savoir si elle lit, teste, modifie, installe, supprime ou publie."
+    },
+    {
+      "type": "demo",
+      "content": "`npm run build` vérifie que l’application peut être construite. `npm install` peut modifier les dépendances. `git push` envoie les commits vers GitHub."
+    },
+    {
+      "type": "explication",
+      "content": "Claude Code doit commencer par inspecter le projet avant une modification importante. Il peut ainsi identifier les bons fichiers et éviter une solution qui contredit l’architecture existante."
+    },
+    {
+      "type": "demo",
+      "content": "Avant d’ajouter un nouveau type de quiz, demande-lui de trouver le composant du quiz, les types TypeScript et les fichiers de contenu concernés."
+    },
+    {
+      "type": "explication",
+      "content": "Une bonne méthode consiste à demander un plan avant l’exécution. Tu vérifies alors le périmètre avant que les fichiers soient modifiés."
+    },
+    {
+      "type": "demo",
+      "content": "Tu peux écrire : « Inspecte le système actuel, indique les fichiers concernés et attends mon accord avant de modifier le code. »"
+    },
+    {
+      "type": "explication",
+      "content": "Après une modification, demande un résumé précis. Le résumé doit indiquer ce qui a changé, les fichiers concernés et les tests exécutés."
+    },
+    {
+      "type": "demo",
+      "content": "Si Claude Code annonce seulement « tout fonctionne », demande les commandes réellement lancées et leurs résultats."
+    },
+    {
+      "type": "explication",
+      "content": "Ne confonds pas une commande encore active avec un blocage définitif. Un serveur local ou un test navigateur peut rester en fonctionnement pendant un certain temps."
+    },
+    {
+      "type": "demo",
+      "content": "Si un test reste sans résultat pendant plusieurs minutes, tu peux l’interrompre avec `Ctrl + C`, puis demander à Claude Code d’identifier précisément l’étape bloquée."
+    },
+    {
+      "type": "explication",
+      "content": "Erreur fréquente : sélectionner « toujours autoriser » uniquement pour éviter les questions. Le confort ne doit pas supprimer la vérification des actions sensibles."
+    },
+    {
+      "type": "exercice",
+      "question": "Classe ces actions de la moins sensible à la plus sensible : lire un fichier, lancer le lint, installer une nouvelle dépendance, envoyer un commit sur GitHub et supprimer un dossier.",
+      "hints": [
+        "Une action de lecture ne modifie normalement pas le projet.",
+        "Installer ou publier produit un changement durable.",
+        "Une suppression peut provoquer une perte de fichiers."
+      ],
+      "solution": "Un classement raisonnable est : lire un fichier, lancer le lint, installer une dépendance, envoyer un commit sur GitHub, supprimer un dossier. Le contexte peut modifier le niveau de risque, mais les actions qui publient ou détruisent demandent généralement le plus de contrôle."
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "Pourquoi faut-il lancer Claude Code dans le dossier principal du projet ?",
+          "options": [
+            "Pour qu’il travaille sur les bons fichiers avec le bon contexte",
+            "Pour qu’il puisse modifier tous les dossiers de l’ordinateur",
+            "Uniquement pour changer la couleur du terminal"
+          ],
+          "answer": 0,
+          "explanation": "Le dossier de lancement définit le projet et le contexte accessibles. Le but n’est pas de lui ouvrir tout l’ordinateur et l’apparence du terminal n’a aucun rapport."
+        },
+        {
+          "question": "Quelle action présente généralement le moins de risque ?",
+          "options": [
+            "Lire un fichier",
+            "Supprimer un dossier",
+            "Envoyer immédiatement les modifications sur GitHub"
+          ],
+          "answer": 0,
+          "explanation": "La lecture permet d’analyser sans modifier le contenu. Une suppression ou une publication entraîne des conséquences plus importantes."
+        },
+        {
+          "question": "Pourquoi demander un plan avant une modification importante ?",
+          "options": [
+            "Pour vérifier la compréhension et le périmètre avant l’action",
+            "Pour empêcher définitivement Claude Code de travailler",
+            "Pour éviter de décrire l’objectif"
+          ],
+          "answer": 0,
+          "explanation": "Le plan permet de contrôler la direction proposée. Il ne bloque pas le travail et ne remplace pas la définition de l’objectif."
+        },
+        {
+          "question": "Que faut-il demander après une modification ?",
+          "options": [
+            "Un résumé des fichiers modifiés et des tests exécutés",
+            "Uniquement une phrase disant que tout va bien",
+            "La suppression de l’historique Git"
+          ],
+          "answer": 0,
+          "explanation": "Un compte rendu précis permet de contrôler le travail. Une affirmation générale ne suffit pas, et supprimer l’historique ferait perdre une protection utile."
+        },
+        {
+          "question": "Quand faut-il être prudent avec « toujours autoriser » ?",
+          "options": [
+            "Lorsque l’action peut modifier, supprimer ou publier des éléments",
+            "Uniquement lorsque le texte est long",
+            "Jamais, toutes les permissions sont sans risque"
+          ],
+          "answer": 0,
+          "explanation": "Les autorisations permanentes sont sensibles pour les actions ayant des effets durables. La longueur du texte n’indique pas le risque, et toutes les permissions ne sont pas équivalentes."
+        }
+      ]
+    },
+    {
+      "type": "validation"
+    }
+  ]
+}

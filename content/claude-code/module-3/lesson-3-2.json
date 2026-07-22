@@ -1,0 +1,183 @@
+{
+  "id": "lesson-3-2",
+  "title": "Utiliser le terminal sans en avoir peur",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Le terminal est une fenêtre dans laquelle tu écris des instructions pour l’ordinateur. Au lieu de cliquer dans des menus, tu lui indiques directement l’action à réaliser."
+    },
+    {
+      "type": "demo",
+      "content": "Quand tu ouvres un dossier avec la souris, tu utilises une interface visuelle. Dans le terminal, tu peux atteindre le même dossier en écrivant une commande."
+    },
+    {
+      "type": "explication",
+      "content": "Une commande est une instruction courte. Elle ressemble à une consigne donnée à quelqu’un : « montre-moi où je suis », « affiche le contenu de cette boîte » ou « entre dans cette pièce »."
+    },
+    {
+      "type": "demo",
+      "content": "Les commandes `pwd`, `ls` et `cd` permettent respectivement de connaître ta position, voir le contenu du dossier et changer de dossier."
+    },
+    {
+      "type": "schema",
+      "diagram": {
+        "kind": "trio",
+        "nodes": [
+          {
+            "id": "position",
+            "label": "Se repérer",
+            "color": "#6366F1",
+            "definition": "Vérifier dans quel dossier le terminal se trouve."
+          },
+          {
+            "id": "observer",
+            "label": "Observer",
+            "color": "#F59E0B",
+            "definition": "Afficher les fichiers et dossiers présents."
+          },
+          {
+            "id": "deplacer",
+            "label": "Se déplacer",
+            "color": "#14B8A6",
+            "definition": "Entrer dans le dossier du projet avant d’agir."
+          }
+        ],
+        "links": [
+          {
+            "from": "position",
+            "to": "observer"
+          },
+          {
+            "from": "observer",
+            "to": "deplacer"
+          }
+        ]
+      },
+      "caption": "Avant d’exécuter une commande importante, il faut se repérer, observer puis se déplacer dans le bon dossier."
+    },
+    {
+      "type": "explication",
+      "content": "La commande `pwd` signifie « afficher le dossier de travail actuel ». Elle répond à la question : où suis-je actuellement dans l’ordinateur ?"
+    },
+    {
+      "type": "demo",
+      "content": "Si `pwd` affiche un chemin se terminant par `AI-Academy`, tu es probablement dans le projet. S’il affiche seulement ton dossier personnel, tu dois encore te déplacer."
+    },
+    {
+      "type": "explication",
+      "content": "La commande `ls` affiche les fichiers et dossiers présents à l’endroit actuel. Elle ressemble au fait d’ouvrir une armoire pour regarder ce qu’elle contient."
+    },
+    {
+      "type": "demo",
+      "content": "Dans la racine d’AI Academy, `ls` peut afficher `package.json`, `src`, `public` et d’autres éléments du projet."
+    },
+    {
+      "type": "explication",
+      "content": "La commande `cd` signifie « changer de dossier ». Elle doit être suivie du nom ou du chemin du dossier que tu souhaites ouvrir."
+    },
+    {
+      "type": "demo",
+      "content": "La commande `cd AI-Academy` demande au terminal d’entrer dans le dossier AI Academy. Après cela, `pwd` permet de vérifier que le déplacement a réussi."
+    },
+    {
+      "type": "explication",
+      "content": "La commande `cd ..` permet de remonter d’un niveau. C’est comme sortir d’une pièce pour revenir dans le couloir qui la contient."
+    },
+    {
+      "type": "demo",
+      "content": "Si tu te trouves dans `AI-Academy/content`, la commande `cd ..` te ramène dans le dossier principal `AI-Academy`."
+    },
+    {
+      "type": "explication",
+      "content": "Le terminal exécute les commandes depuis le dossier actuel. La même commande peut donc produire un résultat différent selon l’endroit où tu te trouves."
+    },
+    {
+      "type": "demo",
+      "content": "Lancer `npm run dev` dans AI Academy peut démarrer l’application. Lancer la même commande dans un dossier sans `package.json` provoquera probablement une erreur."
+    },
+    {
+      "type": "explication",
+      "content": "Un message d’erreur n’indique pas forcément une catastrophe. Il explique souvent qu’une commande est mal écrite, qu’un fichier manque ou que tu te trouves dans le mauvais dossier."
+    },
+    {
+      "type": "demo",
+      "content": "Si le terminal indique qu’il ne trouve pas `package.json`, la première vérification consiste à exécuter `pwd` puis `ls` pour confirmer ta position."
+    },
+    {
+      "type": "explication",
+      "content": "Certaines commandes peuvent modifier ou supprimer des fichiers. Il faut donc éviter de copier une commande inconnue sans comprendre son rôle."
+    },
+    {
+      "type": "demo",
+      "content": "Une commande qui affiche une liste est peu risquée. Une commande contenant des mots comme `remove`, `delete`, `reset` ou `force` mérite une vérification attentive."
+    },
+    {
+      "type": "exercice",
+      "question": "Tu ouvres le terminal dans ton dossier personnel. Décris la suite de commandes permettant de repérer le dossier AI Academy, d’y entrer et de vérifier que tu es au bon endroit.",
+      "hints": [
+        "Commence par vérifier ta position.",
+        "Affiche ensuite le contenu du dossier.",
+        "Après avoir utilisé `cd`, vérifie de nouveau la position et le contenu."
+      ],
+      "solution": "Tu peux commencer par `pwd`, puis utiliser `ls` pour repérer le dossier AI Academy. Ensuite, exécute `cd AI-Academy`. Termine par `pwd` et `ls` pour vérifier que le chemin se termine par AI Academy et que le dossier contient notamment `package.json`."
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "Quel est le rôle du terminal ?",
+          "options": [
+            "Permettre d’envoyer directement des commandes à l’ordinateur",
+            "Remplacer obligatoirement toutes les interfaces visuelles",
+            "Stocker automatiquement les fichiers sur GitHub"
+          ],
+          "answer": 0,
+          "explanation": "Le terminal permet d’exécuter des instructions écrites. Il complète les interfaces visuelles sans forcément les remplacer et n’envoie pas automatiquement les fichiers sur GitHub."
+        },
+        {
+          "question": "Que permet de vérifier la commande `pwd` ?",
+          "options": [
+            "Le dossier dans lequel le terminal se trouve",
+            "La liste des erreurs de l’application",
+            "Le mot de passe du projet"
+          ],
+          "answer": 0,
+          "explanation": "`pwd` affiche le chemin du dossier de travail actuel. Elle ne recherche pas les erreurs et n’affiche aucun mot de passe."
+        },
+        {
+          "question": "Que fait généralement la commande `ls` ?",
+          "options": [
+            "Elle affiche le contenu du dossier actuel",
+            "Elle supprime le dossier actuel",
+            "Elle démarre toujours l’application"
+          ],
+          "answer": 0,
+          "explanation": "`ls` affiche les fichiers et dossiers présents. Elle ne les supprime pas et ne démarre pas l’application."
+        },
+        {
+          "question": "À quoi sert `cd ..` ?",
+          "options": [
+            "À remonter dans le dossier parent",
+            "À supprimer le dossier parent",
+            "À envoyer le projet sur GitHub"
+          ],
+          "answer": 0,
+          "explanation": "`cd ..` permet de remonter d’un niveau dans l’organisation des dossiers. Elle ne supprime rien et n’utilise pas GitHub."
+        },
+        {
+          "question": "Que faut-il vérifier en premier si une commande ne trouve pas `package.json` ?",
+          "options": [
+            "Que le terminal se trouve dans le bon dossier",
+            "Que l’écran est assez grand",
+            "Que le projet possède une couleur principale"
+          ],
+          "answer": 0,
+          "explanation": "L’erreur vient souvent du dossier actuel. `pwd` et `ls` permettent de le vérifier. La taille de l’écran et les couleurs n’ont aucun lien avec ce fichier."
+        }
+      ]
+    },
+    {
+      "type": "validation"
+    }
+  ]
+}

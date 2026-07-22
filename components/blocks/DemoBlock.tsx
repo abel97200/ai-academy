@@ -1,6 +1,8 @@
 // Affiche un exemple concret, avec une étiquette "Démonstration" pour
 // le distinguer visuellement d'un bloc d'explication classique.
 
+import InlineText from "@/components/blocks/InlineText";
+
 type DemoBlockProps = {
   content: string;
 };
@@ -12,7 +14,7 @@ export default function DemoBlock({ content }: DemoBlockProps) {
         Démonstration
       </span>
       <p className="mt-3 text-base leading-relaxed text-foreground/80">
-        {content}
+        <InlineText text={content} />
       </p>
     </div>
   );

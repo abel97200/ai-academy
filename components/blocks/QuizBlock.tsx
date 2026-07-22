@@ -11,6 +11,7 @@ import { useLessonContext } from "@/components/lesson/LessonContext";
 import type { QuizQuestion } from "@/lib/content";
 import { QUIZ_PASS_THRESHOLD } from "@/lib/courseProgress";
 import { recordQuizScore } from "@/lib/progress";
+import InlineText from "@/components/blocks/InlineText";
 
 type QuizBlockProps = {
   id: string; // identifiant unique du bloc dans la leçon
@@ -112,7 +113,7 @@ export default function QuizBlock({ id, questions }: QuizBlockProps) {
       {!finished ? (
         <>
           <p className="mt-4 text-base leading-relaxed text-foreground">
-            {currentQuestion.question}
+            <InlineText text={currentQuestion.question} />
           </p>
 
           <div className="mt-4 flex flex-col gap-2">
@@ -132,7 +133,9 @@ export default function QuizBlock({ id, questions }: QuizBlockProps) {
                   disabled={answered}
                   onChange={() => setSelection(index)}
                 />
-                <span className="text-foreground/85">{option}</span>
+                <span className="text-foreground/85">
+                  <InlineText text={option} />
+                </span>
               </label>
             ))}
           </div>
@@ -161,7 +164,7 @@ export default function QuizBlock({ id, questions }: QuizBlockProps) {
               {/* L'explication s'affiche toujours, juste ou faux, pour que
                   le raisonnement soit compris et pas seulement le résultat. */}
               <div className="rounded-xl border border-white/10 bg-white/[0.02] px-4 py-3 text-sm leading-relaxed text-foreground/70">
-                {currentQuestion.explanation}
+                <InlineText text={currentQuestion.explanation} />
               </div>
 
               <button
