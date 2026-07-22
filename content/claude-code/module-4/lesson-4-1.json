@@ -1,0 +1,171 @@
+{
+  "id": "lesson-4-1",
+  "title": "HTML : le squelette d’une page web",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "HTML est le langage qui décrit le contenu et la structure d’une page web. Imagine une maison : HTML indique où se trouvent l’entrée, les pièces et les escaliers, avant même de choisir les couleurs ou les meubles."
+    },
+    {
+      "type": "demo",
+      "content": "Dans AI Academy, HTML permet de dire qu’un texte est un titre, qu’un autre est un paragraphe et qu’un élément est un bouton. Le navigateur utilise ces indications pour organiser la page."
+    },
+    {
+      "type": "explication",
+      "content": "HTML signifie « HyperText Markup Language », ou langage de balisage hypertexte. Un langage de balisage ajoute des repères autour du contenu pour expliquer son rôle."
+    },
+    {
+      "type": "demo",
+      "content": "Sur une feuille, tu pourrais entourer un texte et écrire « titre » dans la marge. En HTML, tu écris plutôt `<h1>Mon parcours</h1>` pour signaler que « Mon parcours » est le titre principal."
+    },
+    {
+      "type": "explication",
+      "content": "Une balise est un repère écrit entre les signes `<` et `>`. La plupart des contenus sont entourés par une balise ouvrante et une balise fermante."
+    },
+    {
+      "type": "demo",
+      "content": "Dans `<p>Bienvenue dans AI Academy</p>`, `<p>` ouvre le paragraphe et `</p>` le ferme. Le `/` indique que l’élément se termine."
+    },
+    {
+      "type": "schema",
+      "diagram": {
+        "kind": "trio",
+        "nodes": [
+          {
+            "id": "contenu",
+            "label": "Contenu",
+            "color": "#6366F1",
+            "definition": "Le texte ou l’information que la page doit présenter."
+          },
+          {
+            "id": "balises",
+            "label": "Balises HTML",
+            "color": "#F59E0B",
+            "definition": "Elles indiquent le rôle et les limites du contenu."
+          },
+          {
+            "id": "navigateur",
+            "label": "Navigateur",
+            "color": "#14B8A6",
+            "definition": "Il interprète les balises et affiche une page structurée."
+          }
+        ],
+        "links": [
+          {
+            "from": "contenu",
+            "to": "balises"
+          },
+          {
+            "from": "balises",
+            "to": "navigateur"
+          }
+        ]
+      },
+      "caption": "Le contenu est entouré de balises que le navigateur interprète."
+    },
+    {
+      "type": "explication",
+      "content": "L’ensemble formé par la balise ouvrante, le contenu et la balise fermante s’appelle un élément HTML. L’élément est donc la partie complète, pas seulement le mot placé entre chevrons."
+    },
+    {
+      "type": "demo",
+      "content": "Dans `<h2>Module 4</h2>`, l’élément complet contient les deux balises et le texte « Module 4 ». La balise seule est seulement `<h2>` ou `</h2>`."
+    },
+    {
+      "type": "explication",
+      "content": "Les titres utilisent les balises `<h1>` à `<h6>`. `<h1>` représente le titre principal de la page, tandis que les niveaux suivants organisent les sous-parties."
+    },
+    {
+      "type": "demo",
+      "content": "Une page de module peut utiliser `<h1>Construire une interface avec HTML</h1>`, puis `<h2>Les leçons</h2>`. C’est comparable au titre d’un livre puis aux titres de ses chapitres."
+    },
+    {
+      "type": "explication",
+      "content": "Les paragraphes utilisent la balise `<p>`. Elle indique qu’un groupe de phrases forme un bloc de texte cohérent."
+    },
+    {
+      "type": "demo",
+      "content": "Le texte `<p>Tu vas apprendre à structurer une page.</p>` devient un paragraphe. Sans balise adaptée, le navigateur connaît moins bien le rôle du texte."
+    },
+    {
+      "type": "explication",
+      "content": "HTML décrit surtout la structure et le sens du contenu. Son apparence sera principalement gérée plus tard avec CSS."
+    },
+    {
+      "type": "demo",
+      "content": "Écrire `<h1>AI Academy</h1>` indique que le texte est important, mais ne choisit pas précisément sa couleur, sa police ou sa position. Ces choix appartiennent surtout au CSS."
+    },
+    {
+      "type": "explication",
+      "content": "Erreur fréquente : croire qu’une balise sert seulement à grossir ou réduire un texte. Son rôle principal est d’expliquer la fonction du contenu, ce qui aide aussi les navigateurs et les outils d’accessibilité."
+    },
+    {
+      "type": "exercice",
+      "question": "Transforme les contenus suivants en éléments HTML adaptés : le titre principal « Mon apprentissage », le sous-titre « Module 4 » et le texte « Je découvre HTML ».",
+      "hints": [
+        "Le titre principal utilise généralement le niveau de titre le plus élevé.",
+        "Le sous-titre doit être placé au niveau inférieur.",
+        "Une phrase normale appartient généralement à un paragraphe."
+      ],
+      "solution": "Une réponse simple est : `<h1>Mon apprentissage</h1>`, puis `<h2>Module 4</h2>`, puis `<p>Je découvre HTML</p>`. Chaque balise indique le rôle du contenu, sans encore décider précisément de son apparence."
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "Quel est le rôle principal de HTML ?",
+          "options": [
+            "Décrire le contenu et la structure d’une page",
+            "Choisir uniquement les couleurs",
+            "Enregistrer automatiquement les utilisateurs"
+          ],
+          "answer": 0,
+          "explanation": "HTML organise le contenu de la page. Les couleurs relèvent surtout de CSS et l’enregistrement des utilisateurs demande d’autres mécanismes."
+        },
+        {
+          "question": "Qu’est-ce qu’une balise HTML ?",
+          "options": [
+            "Un repère qui indique le rôle ou les limites d’un contenu",
+            "Un mot de passe pour ouvrir le site",
+            "Une erreur du navigateur"
+          ],
+          "answer": 0,
+          "explanation": "Une balise encadre ou décrit un contenu. Elle n’est ni un mot de passe ni une erreur."
+        },
+        {
+          "question": "Quelle écriture représente un paragraphe complet ?",
+          "options": [
+            "`<p>Bienvenue</p>`",
+            "`<p>Bienvenue`",
+            "`<h1>Bienvenue</h1>`"
+          ],
+          "answer": 0,
+          "explanation": "La première proposition possède une balise ouvrante et une balise fermante de paragraphe. La deuxième n’est pas fermée et la troisième représente un titre."
+        },
+        {
+          "question": "Quelle balise convient généralement au titre principal d’une page ?",
+          "options": [
+            "`<h1>`",
+            "`<p>`",
+            "`<button>`"
+          ],
+          "answer": 0,
+          "explanation": "`<h1>` représente le titre principal. `<p>` crée un paragraphe et `<button>` un bouton."
+        },
+        {
+          "question": "Écrire un élément `<h1>` choisit-il précisément sa couleur ?",
+          "options": [
+            "Non, la couleur est surtout définie avec CSS",
+            "Oui, un h1 est toujours violet",
+            "Oui, HTML choisit toute l’apparence"
+          ],
+          "answer": 0,
+          "explanation": "HTML indique surtout le rôle du titre. CSS permet ensuite de choisir précisément sa couleur et son style."
+        }
+      ]
+    },
+    {
+      "type": "validation"
+    }
+  ]
+}
