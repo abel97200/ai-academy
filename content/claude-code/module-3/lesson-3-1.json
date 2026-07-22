@@ -77,7 +77,7 @@
     },
     {
       "type": "demo",
-      "content": "Le chemin `content/modules/module-3/lesson-3-1.json` signifie : ouvre le dossier `content`, puis `modules`, puis `module-3`, puis le fichier de la leçon."
+      "content": "Le chemin `content/claude-code/module-3/lesson-3-1.json` signifie : ouvre le dossier `content`, puis `claude-code`, puis `module-3`, puis le fichier de la leçon."
     },
     {
       "type": "explication",
@@ -105,13 +105,13 @@
     },
     {
       "type": "exercice",
-      "question": "Explique le trajet permettant d’atteindre le fichier situé à l’adresse `content/modules/module-3/lesson-3-1.json`. Identifie le dossier principal, les sous-dossiers, le fichier et son extension.",
+      "question": "Explique le trajet permettant d’atteindre le fichier situé à l’adresse `content/claude-code/module-3/lesson-3-1.json`. Identifie le dossier principal, les sous-dossiers, le fichier et son extension.",
       "hints": [
         "Chaque élément séparé par une barre correspond à une étape du chemin.",
         "Le dernier élément est le fichier.",
         "L’extension se trouve après le dernier point du nom."
       ],
-      "solution": "Depuis le dossier principal du projet, il faut ouvrir `content`, puis `modules`, puis `module-3`. Le fichier final est `lesson-3-1.json`. Son extension est `.json`, ce qui indique qu’il contient des données structurées."
+      "solution": "Depuis le dossier principal du projet, il faut ouvrir `content`, puis `claude-code`, puis `module-3`. Le fichier final est `lesson-3-1.json`. Son extension est `.json`, ce qui indique qu’il contient des données structurées."
     },
     {
       "type": "quiz",
