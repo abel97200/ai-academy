@@ -56,9 +56,10 @@ export function getNextLessonRef(
 }
 
 // Calcule ce qu'un module EXIGE pour être validé, en lisant le contenu réel
-// de ses leçons : quels blocs quiz/action/assessment elles contiennent (via
-// leur identifiant, voir getBlockId). Un module sans leçon (pas encore de
-// contenu) renvoie des listes vides.
+// de ses leçons : quels blocs quiz/action/assessment elles contiennent.
+// Les quiz et évaluations utilisent un identifiant dérivé de leur position.
+// Les actions utilisent leur id déclaré, comme le composant ActionBlock.
+// Un module sans leçon renvoie des listes vides.
 export function getModuleRequirements(
   courseSlug: string,
   courseModule: CourseModule
@@ -70,10 +71,10 @@ export function getModuleRequirements(
   for (const lessonId of courseModule.lessons) {
     const lesson = getLesson(courseSlug, courseModule.slug, lessonId);
     lesson.blocks.forEach((block, index) => {
-      const blockId = getBlockId(lesson.id, index);
-      if (block.type === "quiz") quizBlockIds.push(blockId);
-      if (block.type === "action") actionBlockIds.push(blockId);
-      if (block.type === "assessment") assessmentBlockIds.push(blockId);
+      const generatedBlockId = getBlockId(lesson.id, index);
+      if (block.type === "quiz") quizBlockIds.push(generatedBlockId);
+      if (block.type === "action") actionBlockIds.push(block.id);
+      if (block.type === "assessment") assessmentBlockIds.push(generatedBlockId);
     });
   }
 

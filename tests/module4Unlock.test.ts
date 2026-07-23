@@ -19,8 +19,8 @@ describe("Déverrouillage du Module 4 après le Module 3", () => {
   const requirements = getAllModuleRequirements("claude-code", course);
 
   function completeModule(snapshot: ProgressSnapshot, moduleSlug: string) {
-    const module = course.modules.find((item) => item.slug === moduleSlug)!;
-    module.lessons.forEach((id) => snapshot.completedLessonIds.add(id));
+    const courseModule = course.modules.find((item) => item.slug === moduleSlug)!;
+    courseModule.lessons.forEach((id) => snapshot.completedLessonIds.add(id));
     requirements[moduleSlug].quizBlockIds.forEach((blockId) => {
       snapshot.quizScores[blockId] = 100;
     });
