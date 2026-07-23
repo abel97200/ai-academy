@@ -1,1 +1,113 @@
-{"id":"agents-ia-lesson-2-6","schemaVersion":2,"title":"Rédiger le cahier de mission de l’agent","blocks":[{"type":"explication","content":"Brief — Assembler problème, mission, données, règles et critères dans un document prêt à construire. Résultat attendu : une preuve courte appliquée au futur agent Sentinelle."},{"type":"explication","content":"Le cahier de mission est le contrat de conception de l’agent. Il permet à une personne de comprendre le besoin et à une équipe de construire sans inventer les décisions importantes."},{"type":"explication","content":"Analogie — Un plan d’architecte relie le besoin, les contraintes et les contrôles avant que le chantier commence."},{"type":"schema","diagram":{"kind":"flow","direction":"horizontal","nodes":[{"id":"n1","label":"Mission","color":"#6366F1","definition":"Mission est l’étape 1 du raisonnement."},{"id":"n2","label":"Contrat et règles","color":"#F59E0B","definition":"Contrat et règles est l’étape 2 du raisonnement."},{"id":"n3","label":"Acceptation","color":"#14B8A6","definition":"Acceptation est l’étape 3 du raisonnement."}],"links":[{"from":"n1","to":"n2"},{"from":"n2","to":"n3"}]},"caption":"Mission → Contrat et règles → Acceptation : le trajet à observer."},{"type":"demo","content":"Le cahier de Sentinelle contient public, sujet, trois fiches attendues, cinq recherches maximum, sources citées, publication interdite et validation humaine."},{"type":"code","filename":"sentinelle-mission.md","language":"markdown","code":"# Mission\nPréparer 3 ressources fiables pour un débutant.\n# Entrées\nSujet, public, date.\n# Sortie\nFiches titre, URL, résumé, justification.\n# Limites\n5 recherches, aucune publication.\n# Validation\nChecklist puis décision humaine.","explanation":"Le document sépare les décisions pour faciliter la revue. Tu dois pouvoir défendre chaque limite. Claude Code peut signaler les trous et préparer l’implémentation sans modifier le contrat seul.","focusLines":[1]},{"type":"explication","content":"Erreur fréquente — attribuer à l’agent des capacités ou une autonomie qui ne sont ni définies ni vérifiées. Décris toujours le comportement réel, les limites et la preuve attendue."},{"type":"action","id":"agents-ia-m2-l6-action","title":"Finaliser le cahier de mission","instructions":"Rédige le cahier complet puis fais-le relire selon une checklist d’ambiguïtés.","successCriteria":"Le document couvre mission, entrées, sorties, règles, outils envisagés, limites, arrêts et critères.","evidence":"Note ta décision, sa justification et la preuve utilisée."},{"type":"project","id":"agents-ia-m2-project","title":"Cahier de mission de Sentinelle","brief":"Produire le contrat complet qui guidera la construction de l’agent.","deliverables":["Problème","Mission","Entrées/sortie","Règles","Budget","Critères et validation"],"successCriteria":["Le document est compréhensible par une autre personne","Les limites sont explicites","Le résultat est testable"],"hints":["Utilise les preuves produites dans les leçons.","Supprime les formulations vagues."]},{"type":"exercice","question":"Relis le cahier et ajoute les informations manquantes pour gérer une entrée absente et un objectif impossible.","hints":["Prévois une demande de clarification.","Prévois l’arrêt au budget.","La sortie peut être un rapport d’échec."],"solution":"Si le sujet manque, demander une clarification sans lancer d’outil. Si trois ressources ne sont pas trouvées en cinq recherches, arrêter et rendre les résultats partiels avec les raisons."},{"type":"quiz","questions":[{"question":"À quoi sert le cahier de mission ?","options":["À rendre les décisions de conception explicites","À cacher les limites","À déployer automatiquement"],"answer":0,"explanation":"Le cahier guide construction, test et revue."},{"question":"Que faire si l’entrée obligatoire manque ?","options":["Demander une clarification ou refuser selon la règle","Inventer silencieusement","Publier"],"answer":0,"explanation":"Le comportement d’erreur appartient au contrat."},{"question":"Que faire si le budget est atteint ?","options":["Arrêter et rendre un rapport honnête","Continuer sans limite","Modifier la mission"],"answer":0,"explanation":"Une limite doit réellement interrompre la boucle."},{"question":"Qui peut modifier le contrat ?","options":["Une personne responsable après revue","L’agent de sa propre initiative","N’importe quel outil"],"answer":0,"explanation":"Les règles viennent d’une autorité extérieure au système."},{"question":"Quel est le livrable du Module 2 ?","options":["Un cahier de mission testable","Un agent autonome illimité","Une simple idée"],"answer":0,"explanation":"Le cadrage complet précède l’implémentation."}]},{"type":"assessment","title":"Validation pratique du Module 2","requirements":["Je choisis un problème adapté à un agent.","J’écris une mission unique.","Je définis entrées et sortie structurée.","Je rédige des règles sans contradiction.","Je fixe des critères mesurables et une validation humaine."]},{"type":"validation"}]}
+{
+  "id": "agents-ia-lesson-2-6",
+  "schemaVersion": 2,
+  "title": "Rédiger le cahier de mission de l’agent",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Notion — Le cahier de mission assemble problème, mission, contrats de données, règles, arrêts, refus, critères et évaluation v0. Une autre personne doit pouvoir construire et tester sans inventer une décision importante."
+    },
+    {
+      "type": "explication",
+      "content": "Exemple — Si le budget est épuisé avec deux fiches, le cahier impose l’arrêt, un statut partiel, les motifs et la validation humaine. Il n’autorise ni prolongation silencieuse ni invention de résultat."
+    },
+    {
+      "type": "demo",
+      "content": "Revue finale — On suit le scénario « sujet absent » du contrat jusqu’à l’évaluation v0 : aucune recherche, statut needs_clarification, champ topic signalé, preuve conservée. Si une étape n’est pas déductible, le cahier est incomplet."
+    },
+    {
+      "type": "code",
+      "filename": "sentinelle-mission.md",
+      "language": "markdown",
+      "code": "# Problème et valeur\n# Mission unique\n# Entrées et sorties\n# Actions, outils et état\n# Obligations, limites et refus\n# Arrêts et résultats partiels\n# Validation humaine\n# Évaluation v0 : nominal, limite, refus",
+      "explanation": "À comprendre — Le cahier et l’évaluation sont des contrats conceptuels avant implémentation. À modifier — Relie chaque règle à au moins un scénario. Claude Code peut — Repérer les rubriques absentes et préparer l’ossature technique ; il n’est ni le modèle ni un composant automatique de l’agent. À vérifier — Une tierce personne peut prédire nominal, bord, refus et arrêt au budget.",
+      "focusLines": [1, 6, 8]
+    },
+    {
+      "type": "action",
+      "id": "agents-ia-m2-l6-action",
+      "title": "Effectuer la revue de traçabilité",
+      "instructions": "Relie chaque exigence du cahier à un scénario du jeu v0 ou ajoute le scénario manquant. Fais relire le tout par une autre personne.",
+      "successCriteria": "Mission, entrées, sorties, règles, limites, refus, arrêts, humain et trois familles de scénarios sont traçables.",
+      "evidence": "Conserve le cahier versionné, la matrice exigence → scénario et les remarques de revue."
+    },
+    {
+      "type": "project",
+      "id": "agents-ia-m2-project",
+      "title": "Cahier de mission et évaluation v0 de Sentinelle",
+      "brief": "Produire un contrat prêt à construire au Module 3, sans implémenter l’agent.",
+      "deliverables": [
+        "Problème, mesure de valeur et mission unique",
+        "Contrats d’entrée, de sortie et de résultat partiel",
+        "Règles, permissions, interdictions, refus et budget",
+        "Conditions d’arrêt et validation humaine",
+        "sentinelle-evals-v0.json avec cas nominal, limite et refus",
+        "Matrice de traçabilité exigence → scénario → preuve"
+      ],
+      "successCriteria": [
+        "Niveau maîtrisé — toutes les exigences ont un scénario observable et une preuve",
+        "Niveau acceptable — les livrables sont complets avec au plus une ambiguïté non bloquante",
+        "Niveau insuffisant — critères vagues, scénario sans sortie attendue ou preuve absente",
+        "Bloquant — entrée inventée, budget sans arrêt, publication possible ou refus non testé"
+      ],
+      "hints": ["Teste d’abord sujet absent et budget épuisé.", "Ne construis pas encore l’agent : stabilise le contrat."]
+    },
+    {
+      "type": "exercice",
+      "question": "Consigne — Audite le cahier face au cas « budget épuisé, deux fiches valides ». Données d’entrée — Cinq recherches consommées, publication interdite. Résultat attendu — Sortie, arrêt, responsable et scénario v0 associés.",
+      "hints": [
+        "Critères de réussite — Statut partiel, deux fiches, motifs, budget, absence de publication et validation humaine sont visibles.",
+        "Critère bloquant — Continuer au-delà du budget, inventer une fiche ou déclarer une réussite complète.",
+        "Preuve Sentinelle — Conserve la trace attendue dans le fichier d’évaluation v0."
+      ],
+      "solution": "Grille — 1 point pour arrêt, partial, compte 2, motifs, publication false et humain ; 5/6 minimum sans bloquant. Exemple acceptable — « partial, 2 fiches, budget_exhausted, soumis au responsable ». Exemple insuffisant — « complete avec trois fiches probables ». "
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "Le budget est épuisé avec deux fiches. Quelle décision respecte le cahier ?",
+          "options": ["Continuer jusqu’à trois", "Inventer une fiche", "Arrêter et rendre un résultat partiel"],
+          "answer": 2,
+          "explanation": "Correct : la sortie honnête respecte budget et état. Les autres choix sont insuffisants car ils violent une limite ou falsifient le résultat."
+        },
+        {
+          "question": "À quoi sert la matrice de traçabilité ?",
+          "options": ["À relier exigences, scénarios et preuves", "À choisir un logo", "À remplacer le responsable"],
+          "answer": 0,
+          "explanation": "Correct : elle montre comment chaque règle sera vérifiée. Les autres choix sont insuffisants car ils ne soutiennent pas l’évaluation."
+        },
+        {
+          "question": "Quel livrable sera directement réutilisé au Module 3 ?",
+          "options": ["Une promesse marketing", "Le jeu d’évaluation v0", "Une publication automatique"],
+          "answer": 1,
+          "explanation": "Correct : les scénarios guideront les futurs tests. Les autres choix sont insuffisants car ils ne constituent pas un contrat contrôlable."
+        },
+        {
+          "question": "Une autre personne doit inventer le comportement si le sujet manque. Quel diagnostic ?",
+          "options": ["Le cahier est maîtrisé", "Le cas est inutile", "Le cahier est incomplet"],
+          "answer": 2,
+          "explanation": "Correct : une entrée manquante doit avoir une règle et une sortie. Les autres choix sont insuffisants car ils laissent une décision critique implicite."
+        },
+        {
+          "question": "Que valide-t-on à la fin du Module 2 ?",
+          "options": ["Un cahier évaluable, pas encore un agent exécuté", "Un agent autonome en production", "Une idée sans scénario"],
+          "answer": 0,
+          "explanation": "Correct : le contrat précède la construction. Les autres choix sont insuffisants car ils dépassent le parcours ou manquent de preuve."
+        }
+      ]
+    },
+    {
+      "type": "assessment",
+      "title": "Validation pratique du Module 2",
+      "requirements": [
+        "Critère de réussite — Le cahier couvre mission, données, règles, limites, refus, arrêts, validation humaine et évaluation v0.",
+        "Bloquant — Une entrée est inventée, le budget n’arrête pas la boucle, une publication est possible ou un scénario n’a pas de sortie attendue.",
+        "Niveau insuffisant — Les critères reposent sur des appréciations vagues ou les preuves ne sont pas conservées.",
+        "Niveau acceptable — Cas nominal, limite et refus sont complets, mesurables et reliés au cahier.",
+        "Niveau maîtrisé — Une tierce personne peut prédire chaque décision et réutiliser le jeu v0 au Module 3 sans arbitrage caché."
+      ]
+    },
+    {"type": "validation"}
+  ]
+}

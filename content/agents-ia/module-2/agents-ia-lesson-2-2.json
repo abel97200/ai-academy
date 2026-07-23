@@ -1,1 +1,81 @@
-{"id":"agents-ia-lesson-2-2","schemaVersion":2,"title":"Définir une mission unique","blocks":[{"type":"explication","content":"Brief — Écrire une phrase de mission qui interdit les objectifs cachés. Résultat attendu : une preuve courte appliquée au futur agent Sentinelle."},{"type":"explication","content":"Une mission décrit ce que l’agent doit produire, pour qui et dans quel périmètre. Une mission unique évite de mélanger recherche, publication et décision finale."},{"type":"explication","content":"Analogie — Une commande claire indique un plat, une table et des contraintes ; elle ne demande pas simultanément de refaire le restaurant."},{"type":"schema","diagram":{"kind":"flow","direction":"horizontal","nodes":[{"id":"n1","label":"Verbe d’action","color":"#6366F1","definition":"Verbe d’action est l’étape 1 du raisonnement."},{"id":"n2","label":"Destinataire et résultat","color":"#F59E0B","definition":"Destinataire et résultat est l’étape 2 du raisonnement."},{"id":"n3","label":"Périmètre","color":"#14B8A6","definition":"Périmètre est l’étape 3 du raisonnement."}],"links":[{"from":"n1","to":"n2"},{"from":"n2","to":"n3"}]},"caption":"Verbe d’action → Destinataire et résultat → Périmètre : le trajet à observer."},{"type":"demo","content":"Mission : « Pour le responsable pédagogique, préparer chaque lundi trois ressources récentes sur un sujet donné, sans les publier. »"},{"type":"code","filename":"mission.md","language":"markdown","code":"Pour [destinataire],\npréparer [résultat vérifiable]\nà partir de [entrée]\ndans [limites]\nsans [actions exclues].","explanation":"Le canevas force une sortie et des limites. Tu dois choisir les décisions qui restent humaines. Claude Code peut critiquer les ambiguïtés sans élargir la mission.","focusLines":[1]},{"type":"explication","content":"Erreur fréquente — attribuer à l’agent des capacités ou une autonomie qui ne sont ni définies ni vérifiées. Décris toujours le comportement réel, les limites et la preuve attendue."},{"type":"action","id":"agents-ia-m2-l2-action","title":"Écrire la phrase de mission","instructions":"Rédige trois versions puis conserve celle qui contient le moins d’ambiguïtés.","successCriteria":"La mission indique destinataire, résultat, entrée, fréquence et exclusion.","evidence":"Note ta décision, sa justification et la preuve utilisée."},{"type":"exercice","question":"Réécris « fais ma veille » sous forme de mission unique.","hints":["Nomme le destinataire.","Quantifie la sortie.","Exclus la publication."],"solution":"Pour le responsable pédagogique, préparer chaque lundi trois fiches de ressources récentes sur le sujet fourni, avec URL et justification, sans publication ni contact externe."},{"type":"quiz","questions":[{"question":"Que décrit une mission ?","options":["Le résultat, le destinataire et le périmètre","Tous les détails techniques","Une marque"],"answer":0,"explanation":"La mission donne la responsabilité principale."},{"question":"Pourquoi une mission unique ?","options":["Pour évaluer clairement réussite et échec","Pour empêcher tout outil","Pour cacher les limites"],"answer":0,"explanation":"Plusieurs missions mélangées rendent l’agent imprévisible."},{"question":"Quel verbe est plus vérifiable ?","options":["Préparer trois fiches","Aider au mieux","Être intelligent"],"answer":0,"explanation":"Une sortie quantifiée peut être contrôlée."},{"question":"Pourquoi écrire « sans publier » ?","options":["Pour conserver la validation humaine","Pour empêcher le brouillon","Pour supprimer la veille"],"answer":0,"explanation":"L’exclusion limite une action externe."},{"question":"Une mission doit-elle nommer le public ?","options":["Oui, si cela influence le résultat","Jamais","Seulement après production"],"answer":0,"explanation":"Le destinataire aide à juger la pertinence."}]},{"type":"validation"}]}
+{
+  "id": "agents-ia-lesson-2-2",
+  "schemaVersion": 2,
+  "title": "Définir une mission unique",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Notion — Une mission unique nomme un destinataire, une sortie observable, une entrée et un périmètre. Elle sépare ce que l’agent prépare de ce que l’humain décide. Mélanger recherche, décision éditoriale et publication empêche d’attribuer un échec."
+    },
+    {
+      "type": "explication",
+      "content": "Exemple — « Pour le responsable pédagogique, préparer chaque lundi trois fiches à partir du sujet fourni, sans publier » est testable. « Chercher, choisir la stratégie et publier le meilleur contenu » cache trois missions."
+    },
+    {
+      "type": "demo",
+      "content": "Découpage — rechercher et filtrer peuvent appartenir à Sentinelle ; accepter la sélection appartient au responsable ; publier est une mission future séparée. La sortie actuelle est un brouillon, pas une décision externe."
+    },
+    {
+      "type": "code",
+      "filename": "mission.md",
+      "language": "markdown",
+      "code": "Pour [destinataire], préparer [sortie quantifiée]\nà partir de [entrée obligatoire], avant [délai],\ndans [périmètre], sans [action exclue].",
+      "explanation": "À comprendre — La phrase rend la responsabilité principale observable. À modifier — Remplace chaque crochet sans ajouter une seconde mission. Claude Code peut — Repérer les verbes multiples et ambiguïtés du document, pas choisir l’objectif métier. À vérifier — Recherche, décision finale et publication ne sont pas confondues.",
+      "focusLines": [1]
+    },
+    {
+      "type": "action",
+      "id": "agents-ia-m2-l2-action",
+      "title": "Réduire la mission à un résultat",
+      "instructions": "Rédige trois versions de la mission, barre les objectifs cachés et conserve la version la plus testable.",
+      "successCriteria": "La phrase nomme destinataire, entrée, sortie quantifiée, délai, périmètre et exclusion.",
+      "evidence": "Conserve les trois versions annotées et la justification du choix."
+    },
+    {
+      "type": "exercice",
+      "question": "Consigne — Réécris « fais ma veille, décide quoi publier et publie ». Données d’entrée — Sujet fourni chaque lundi, responsable pédagogique. Résultat attendu — Une mission unique et les missions exclues.",
+      "hints": [
+        "Critères de réussite — Un seul résultat appartient à Sentinelle ; décision finale et publication sont attribuées ou exclues.",
+        "Critère bloquant — Garder à la fois préparation et publication dans la mission.",
+        "Preuve Sentinelle — Conserve la phrase de mission dans le cahier versionné."
+      ],
+      "solution": "Grille — 1 point pour destinataire, entrée, trois fiches, délai, exclusion ; 4/5 minimum. Exemple acceptable — « Préparer lundi trois fiches sur le sujet fourni, pour validation du responsable, sans publier. » Exemple insuffisant — « Faire toute la veille et publier le meilleur contenu. »"
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "Quel énoncé contient plusieurs missions ?",
+          "options": ["Préparer trois fiches", "Résumer trois sources", "Rechercher, décider de la stratégie et publier"],
+          "answer": 2,
+          "explanation": "Correct : recherche, décision et publication sont des responsabilités distinctes. Les autres choix sont insuffisants car ils décrivent une sortie limitée."
+        },
+        {
+          "question": "Quel verbe produit la sortie la plus vérifiable ?",
+          "options": ["Préparer trois fiches", "Aider intelligemment", "Optimiser au mieux"],
+          "answer": 0,
+          "explanation": "Correct : nombre et objet sont observables. Les autres choix sont insuffisants car ils n’offrent aucun seuil d’acceptation."
+        },
+        {
+          "question": "Pourquoi nommer le destinataire ?",
+          "options": ["Pour choisir un logo", "Pour juger la pertinence de la sortie", "Pour supprimer le délai"],
+          "answer": 1,
+          "explanation": "Correct : le résultat doit convenir à quelqu’un d’identifié. Les autres choix sont insuffisants car identité visuelle et délai ne répondent pas à ce besoin."
+        },
+        {
+          "question": "Que doit produire Sentinelle avant toute publication ?",
+          "options": ["Une décision irréversible", "Un paiement", "Un brouillon soumis à validation"],
+          "answer": 2,
+          "explanation": "Correct : le brouillon conserve le contrôle humain. Les autres choix sont insuffisants car ils dépassent la mission et le niveau d’autonomie."
+        },
+        {
+          "question": "Quel ajout limite clairement la mission ?",
+          "options": ["Sans publier ni contacter de tiers", "Faire tout ce qui semble utile", "Changer d’objectif si nécessaire"],
+          "answer": 0,
+          "explanation": "Correct : les exclusions sont observables. Les autres choix sont insuffisants car ils étendent la mission sans autorité."
+        }
+      ]
+    },
+    {"type": "validation"}
+  ]
+}

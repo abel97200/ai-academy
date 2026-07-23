@@ -1,1 +1,81 @@
-{"id":"agents-ia-lesson-2-1","schemaVersion":2,"title":"Partir d’un problème utile","blocks":[{"type":"explication","content":"Brief — Choisir un problème adapté à un premier agent plutôt qu’une idée spectaculaire. Résultat attendu : une preuve courte appliquée au futur agent Sentinelle."},{"type":"explication","content":"Un bon problème d’agent comporte un objectif répétable, plusieurs étapes, des informations observables et des actions limitées dont le résultat peut être évalué."},{"type":"explication","content":"Analogie — On apprend à conduire sur un trajet connu et balisé, pas en commençant par une course sans carte."},{"type":"schema","diagram":{"kind":"flow","direction":"horizontal","nodes":[{"id":"n1","label":"Problème réel","color":"#6366F1","definition":"Problème réel est l’étape 1 du raisonnement."},{"id":"n2","label":"Périmètre limité","color":"#F59E0B","definition":"Périmètre limité est l’étape 2 du raisonnement."},{"id":"n3","label":"Résultat mesurable","color":"#14B8A6","definition":"Résultat mesurable est l’étape 3 du raisonnement."}],"links":[{"from":"n1","to":"n2"},{"from":"n2","to":"n3"}]},"caption":"Problème réel → Périmètre limité → Résultat mesurable : le trajet à observer."},{"type":"demo","content":"Chercher chaque semaine des ressources et préparer une sélection est répétable et mesurable. « Gérer toute mon entreprise » est trop vaste."},{"type":"code","filename":"problem-scorecard.md","language":"markdown","code":"- Fréquence : hebdomadaire\n- Étapes : rechercher, filtrer, résumer\n- Risque : faible avant publication\n- Résultat : 3 fiches validables\n- Limite : aucune publication automatique","explanation":"La grille teste si le problème convient à un premier agent. Tu dois évaluer valeur et risque. Claude Code peut proposer un découpage, mais ne décide pas de l’utilité métier.","focusLines":[1]},{"type":"explication","content":"Erreur fréquente — attribuer à l’agent des capacités ou une autonomie qui ne sont ni définies ni vérifiées. Décris toujours le comportement réel, les limites et la preuve attendue."},{"type":"action","id":"agents-ia-m2-l1-action","title":"Évaluer trois problèmes","instructions":"Note fréquence, étapes, valeur, risque et mesurabilité pour trois idées.","successCriteria":"Le problème retenu est utile, limité et testable.","evidence":"Note ta décision, sa justification et la preuve utilisée."},{"type":"exercice","question":"Compare « préparer trois ressources » et « remplacer toute une équipe ».","hints":["Cherche un résultat mesurable.","Compare les risques.","Vérifie si le périmètre tient en quelques étapes."],"solution":"La sélection de ressources est limitée, répétable et vérifiable. Remplacer une équipe mélange trop de missions, de droits et de risques."},{"type":"quiz","questions":[{"question":"Quel problème convient le mieux ?","options":["Une veille limitée avec résultat mesurable","Gérer toute l’organisation","Décider sans critères"],"answer":0,"explanation":"Un premier agent doit rester observable et contrôlable."},{"question":"Pourquoi la répétition est utile ?","options":["Elle permet de mesurer le gain et d’améliorer le processus","Elle garantit la vérité","Elle supprime le risque"],"answer":0,"explanation":"Un processus répété fournit des comparaisons."},{"question":"Quel signe révèle un périmètre trop vaste ?","options":["Plusieurs missions et responsabilités mélangées","Trois étapes claires","Une sortie définie"],"answer":0,"explanation":"Un périmètre large empêche de tester et d’attribuer les erreurs."},{"question":"Pourquoi mesurer le risque ?","options":["Pour choisir autonomie et validation","Pour décorer la fiche","Pour éviter les objectifs"],"answer":0,"explanation":"Le risque détermine les contrôles nécessaires."},{"question":"Qui valide l’utilité ?","options":["La personne responsable du besoin","Le modèle seul","Le nom de l’agent"],"answer":0,"explanation":"La valeur vient du contexte humain."}]},{"type":"validation"}]}
+{
+  "id": "agents-ia-lesson-2-1",
+  "schemaVersion": 2,
+  "title": "Partir d’un problème utile",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Notion — Un problème adapté à un premier agent est fréquent, limité, observable et assez variable pour demander un choix. Il produit une valeur mesurable sous un risque maîtrisable. « Gérer toute mon entreprise » n’est ni une mission ni un test."
+    },
+    {
+      "type": "explication",
+      "content": "Exemple — Préparer chaque semaine trois ressources sourcées est répétable et vérifiable. Copier chaque nouvelle ligne vers un tableur relève plutôt d’une automatisation. Remplacer une équipe mélange trop de responsabilités et doit être refusé."
+    },
+    {
+      "type": "demo",
+      "content": "Score rapide — fréquence hebdomadaire : oui ; résultat observable : trois fiches ; décisions limitées : filtrer et résumer ; risque externe : faible avant publication ; solution plus simple suffisante : non, car la recherche varie. Le cas Sentinelle mérite d’être cadré."
+    },
+    {
+      "type": "code",
+      "filename": "problem-scorecard.md",
+      "language": "markdown",
+      "code": "| Dimension | Question | Preuve |\n|---|---|---|\n| Valeur | quel gain mesurable ? | 60 min économisées/semaine |\n| Périmètre | une mission ? | préparer 3 fiches |\n| Variabilité | un choix est-il nécessaire ? | sources variables |\n| Risque | action externe ? | aucune publication |",
+      "explanation": "À comprendre — La grille teste l’adéquation du problème, pas la puissance d’un modèle. À modifier — Évalue ton propre cas et compare-le à une automatisation. Claude Code peut — Structurer la grille ou rechercher les points d’intégration en tant qu’assistant de développement. À vérifier — Le gain et le risque reposent sur des preuves, pas sur une promesse.",
+      "focusLines": [1]
+    },
+    {
+      "type": "action",
+      "id": "agents-ia-m2-l1-action",
+      "title": "Comparer trois problèmes",
+      "instructions": "Évalue trois idées selon fréquence, valeur, variabilité, périmètre, vérifiabilité et risque. Retire celles qu’une règle fixe traite mieux.",
+      "successCriteria": "Le problème retenu a une mesure de valeur, une mission limitée et une raison explicite de ne pas choisir plus simple.",
+      "evidence": "Conserve les trois grilles et la décision signée."
+    },
+    {
+      "type": "exercice",
+      "question": "Consigne — Compare « préparer trois ressources », « copier un formulaire » et « remplacer une équipe ». Données d’entrée — Les trois formulations. Résultat attendu — Choix, rejet des deux autres et mesure de valeur.",
+      "hints": [
+        "Critères de réussite — Le choix est limité, variable et mesurable ; chaque rejet cite une cause différente.",
+        "Critère bloquant — Retenir « remplacer une équipe » sans découpage, responsable ni risque.",
+        "Preuve Sentinelle — Conserve le scorecard du problème retenu."
+      ],
+      "solution": "Grille — 1 point pour valeur, périmètre, variabilité, risque et alternatives ; 4/5 minimum. Exemple acceptable — « Sentinelle : trois fiches, 60 minutes gagnées ; le formulaire est une automatisation ; l’équipe est hors périmètre. » Exemple insuffisant — « Choisir l’idée la plus ambitieuse. »"
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "Quel problème convient le mieux à ce premier agent ?",
+          "options": ["Préparer trois fiches sourcées chaque semaine", "Gérer toutes les décisions pédagogiques", "Publier librement sur tous les canaux"],
+          "answer": 0,
+          "explanation": "Correct : le résultat est limité, répétable et vérifiable. Les autres choix sont insuffisants car ils cumulent responsabilités et risques non bornés."
+        },
+        {
+          "question": "Un formulaire doit toujours être copié sans variation. Que faut-il envisager d’abord ?",
+          "options": ["Un agent autonome", "Une automatisation déterministe", "Un modèle plus grand"],
+          "answer": 1,
+          "explanation": "Correct : une règle stable suffit. Les autres choix sont insuffisants car ils ajoutent décision et coût sans besoin."
+        },
+        {
+          "question": "Quel signal rend « remplacer une équipe » impropre au cadrage ?",
+          "options": ["Le besoin est fréquent", "Un humain existe", "Plusieurs missions et responsabilités sont confondues"],
+          "answer": 2,
+          "explanation": "Correct : le périmètre empêche une évaluation attribuable. Les autres choix sont insuffisants car fréquence et présence humaine ne corrigent pas ce flou."
+        },
+        {
+          "question": "Quelle mesure prouve le mieux la valeur de Sentinelle ?",
+          "options": ["Temps économisé par sélection validée", "Nombre de mots générés", "Nom du modèle"],
+          "answer": 0,
+          "explanation": "Correct : elle relie la mission à un gain métier. Les autres choix sont insuffisants car volume et marque ne mesurent pas l’utilité."
+        },
+        {
+          "question": "Pourquoi évaluer le risque avant de construire ?",
+          "options": ["Pour supprimer toute initiative", "Pour fixer autonomie et validations proportionnées", "Pour éviter de définir une sortie"],
+          "answer": 1,
+          "explanation": "Correct : le risque détermine les contrôles. Les autres choix sont insuffisants car cadrer ne signifie ni immobiliser ni abandonner le contrat."
+        }
+      ]
+    },
+    {"type": "validation"}
+  ]
+}

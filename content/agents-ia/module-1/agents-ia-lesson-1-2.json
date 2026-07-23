@@ -1,1 +1,96 @@
-{"id":"agents-ia-lesson-1-2","schemaVersion":2,"title":"Reconnaître un agent dans une situation réelle","blocks":[{"type":"explication","content":"Brief — Repérer les signes d’un agent à partir d’un scénario concret. Résultat attendu : une preuve courte appliquée au futur agent Sentinelle."},{"type":"explication","content":"Un agent possède au minimum un objectif, un état courant, une capacité de décision, des actions possibles et une condition d’arrêt."},{"type":"explication","content":"Analogie — Un robot aspirateur connaît sa mission, observe les obstacles, choisit une direction, agit puis s’arrête lorsque la zone est couverte ou la batterie faible."},{"type":"schema","diagram":{"kind":"flow","direction":"horizontal","nodes":[{"id":"n1","label":"Objectif","color":"#6366F1","definition":"Objectif est l’étape 1 du raisonnement."},{"id":"n2","label":"Décision et action","color":"#F59E0B","definition":"Décision et action est l’étape 2 du raisonnement."},{"id":"n3","label":"Condition d’arrêt","color":"#14B8A6","definition":"Condition d’arrêt est l’étape 3 du raisonnement."}],"links":[{"from":"n1","to":"n2"},{"from":"n2","to":"n3"}]},"caption":"Objectif → Décision et action → Condition d’arrêt : le trajet à observer."},{"type":"demo","content":"L’agent de veille conserve les sujets déjà explorés, choisit une recherche, appelle un outil, évalue le résultat et s’arrête lorsque trois ressources satisfont les critères."},{"type":"code","filename":"agent-checklist.md","language":"markdown","code":"- Objectif explicite\n- État courant observable\n- Plusieurs actions possibles\n- Règle de décision\n- Limite ou condition d’arrêt\n- Résultat vérifiable","explanation":"La checklist permet de reconnaître une boucle réelle. Tu dois demander des preuves pour chaque point. Claude Code peut cartographier un système existant sans inventer les capacités absentes.","focusLines":[1]},{"type":"explication","content":"Erreur fréquente — attribuer à l’agent des capacités ou une autonomie qui ne sont ni définies ni vérifiées. Décris toujours le comportement réel, les limites et la preuve attendue."},{"type":"action","id":"agents-ia-m1-l2-action","title":"Auditer un scénario","instructions":"Applique la checklist à un système réel ou imaginaire et note les preuves manquantes.","successCriteria":"La conclusion agent ou non-agent s’appuie sur les six critères.","evidence":"Note ta décision, sa justification et la preuve utilisée."},{"type":"exercice","question":"Un système reçoit une question et renvoie une seule réponse. Quels éléments manquent pour le considérer comme agent ?","hints":["Cherche plusieurs étapes.","Cherche une action sur un outil.","Cherche une condition d’arrêt."],"solution":"Il manque une boucle avec état, choix entre plusieurs actions, utilisation éventuelle d’outils et condition d’arrêt. Une réponse unique ressemble davantage à un chatbot."},{"type":"quiz","questions":[{"question":"Quel élément donne une direction ?","options":["L’objectif","La couleur","Le nom du fichier"],"answer":0,"explanation":"L’objectif permet d’évaluer si les actions progressent."},{"question":"À quoi sert l’état courant ?","options":["À savoir où l’agent se trouve dans sa tâche","À remplacer les outils","À publier automatiquement"],"answer":0,"explanation":"L’état résume les informations nécessaires à la prochaine décision."},{"question":"Pourquoi une condition d’arrêt ?","options":["Pour éviter une boucle sans fin","Pour empêcher toute action","Pour créer un chatbot"],"answer":0,"explanation":"Une limite explicite protège coût et contrôle."},{"question":"Une seule réponse suffit-elle ?","options":["Non, pas pour démontrer une boucle d’agent","Oui, toujours","Seulement si elle est longue"],"answer":0,"explanation":"Un agent se reconnaît à son processus, pas à la longueur du texte."},{"question":"Que doit produire l’audit ?","options":["Des preuves pour chaque capacité","Une impression générale","Un mot de passe"],"answer":0,"explanation":"Les preuves rendent la classification vérifiable."}]},{"type":"validation"}]}
+{
+  "id": "agents-ia-lesson-1-2",
+  "schemaVersion": 2,
+  "title": "Reconnaître un agent dans une situation réelle",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Notion — Pour reconnaître un agent, cherche cinq faits : un objectif persistant, un état de travail, plusieurs actions possibles, au moins un outil et une vérification avant arrêt. Une réponse isolée, même brillante, n’est pas une boucle d’agent."
+    },
+    {
+      "type": "explication",
+      "content": "Exemple — Un comparateur qui reçoit trois offres et applique une formule fixe est une automatisation. S’il recherche les informations manquantes, met à jour son état, change de stratégie après un échec et soumet sa recommandation à un humain, le comportement devient agentique."
+    },
+    {
+      "type": "schema",
+      "diagram": {
+        "kind": "flow",
+        "direction": "horizontal",
+        "nodes": [
+          {"id": "goal", "label": "Objectif", "color": "#6366F1", "definition": "Résultat poursuivi"},
+          {"id": "state", "label": "État", "color": "#F59E0B", "definition": "Ce qui est déjà connu ou tenté"},
+          {"id": "action", "label": "Action + outil", "color": "#14B8A6", "definition": "Choix exécuté"},
+          {"id": "check", "label": "Vérification", "color": "#EC4899", "definition": "Continuer, arrêter ou escalader"}
+        ],
+        "links": [{"from": "goal", "to": "state"}, {"from": "state", "to": "action"}, {"from": "action", "to": "check"}, {"from": "check", "to": "state", "label": "si incomplet"}]
+      },
+      "caption": "La boucle observée permet de distinguer un agent d’une réponse unique."
+    },
+    {
+      "type": "demo",
+      "content": "Cas — Sentinelle a trouvé deux ressources sur trois. Il conserve les deux URLs, note une tentative restante, modifie la requête puis vérifie de nouveau. Les cinq faits sont visibles : objectif, état, choix, outil et contrôle."
+    },
+    {
+      "type": "code",
+      "filename": "agent-diagnostic.md",
+      "language": "markdown",
+      "code": "- [ ] objectif persistant\n- [ ] état mis à jour\n- [ ] choix entre plusieurs actions\n- [ ] outil effectivement appelé\n- [ ] condition de vérification et d’arrêt",
+      "explanation": "À comprendre — Cette checklist décrit un comportement observable, pas une architecture imposée. À modifier — Ajoute les preuves d’un système réel. Claude Code peut — Rechercher dans un projet où l’état, les outils et les arrêts sont déclarés. À vérifier — Ne déduis jamais une capacité absente du code ou du scénario.",
+      "focusLines": [1]
+    },
+    {
+      "type": "action",
+      "id": "agents-ia-m1-l2-action",
+      "title": "Auditer un produit présenté comme agent",
+      "instructions": "Choisis un produit ou scénario et renseigne les cinq faits avec « prouvé », « absent » ou « inconnu ».",
+      "successCriteria": "La conclusion cite au moins trois preuves et marque explicitement les informations inconnues.",
+      "evidence": "Conserve la checklist sourcée et la conclusion en deux phrases."
+    },
+    {
+      "type": "exercice",
+      "question": "Consigne — Compare un chatbot qui répond une fois et Sentinelle qui recherche jusqu’à trois sources sous budget. Données d’entrée — Les deux scénarios décrits. Résultat attendu — Un tableau des cinq faits et une conclusion.",
+      "hints": [
+        "Critères de réussite — Les cinq faits sont examinés pour les deux systèmes et la conclusion suit les preuves.",
+        "Critère bloquant — Confondre une longue réponse avec une boucle d’actions.",
+        "Preuve Sentinelle — Conserve le tableau comme test de qualification avant construction."
+      ],
+      "solution": "Grille — 1 point par fait correctement comparé, 1 pour la conclusion ; 5/6 minimum. Exemple acceptable — « Le chatbot n’a ni état de tâche ni outil ; Sentinelle met à jour ses tentatives et vérifie son résultat. » Exemple insuffisant — « Sentinelle est un agent parce qu’il porte un nom. »"
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "Quel indice prouve le mieux une boucle d’agent ?",
+          "options": ["Une réponse très longue", "Un avatar", "L’état est mis à jour après chaque action"],
+          "answer": 2,
+          "explanation": "Correct : la mise à jour d’état relie les itérations. Les autres choix sont insuffisants car longueur et apparence ne montrent aucune boucle."
+        },
+        {
+          "question": "Un système choisit entre rechercher et demander une clarification. Que montre ce comportement ?",
+          "options": ["Un choix d’action selon l’état", "Une simple mise en page", "Une validation humaine déjà obtenue"],
+          "answer": 0,
+          "explanation": "Correct : le système adapte l’action à ce qu’il sait. Les autres choix sont insuffisants car ni la forme ni une validation finale ne sont décrites."
+        },
+        {
+          "question": "Quelle information appartient à l’état de Sentinelle ?",
+          "options": ["La couleur du logo", "Les sources déjà examinées", "Le nom du cours"],
+          "answer": 1,
+          "explanation": "Correct : les sources examinées influencent l’action suivante. Les autres choix sont insuffisants car ils ne décrivent pas la progression de la mission."
+        },
+        {
+          "question": "Un système applique toujours une formule fixe aux mêmes champs. Que faut-il conclure d’abord ?",
+          "options": ["C’est forcément un agent", "Il possède une autonomie générale", "Une automatisation suffit probablement"],
+          "answer": 2,
+          "explanation": "Correct : une règle fixe n’exige pas de boucle adaptative. Les autres choix sont insuffisants car aucune autonomie n’est prouvée."
+        },
+        {
+          "question": "Si la documentation ne dit pas si un outil est réellement appelé, quelle conclusion est rigoureuse ?",
+          "options": ["La capacité reste inconnue", "L’outil existe sûrement", "Le système est automatiquement un agent"],
+          "answer": 0,
+          "explanation": "Correct : une capacité non prouvée reste inconnue. Les autres choix sont insuffisants car ils transforment une hypothèse en fait."
+        }
+      ]
+    },
+    {"type": "validation"}
+  ]
+}

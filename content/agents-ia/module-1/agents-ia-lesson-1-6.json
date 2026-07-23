@@ -1,1 +1,112 @@
-{"id":"agents-ia-lesson-1-6","schemaVersion":2,"title":"Concevoir la carte d’identité d’un agent","blocks":[{"type":"explication","content":"Brief — Assembler les notions du module dans une fiche compréhensible et vérifiable. Résultat attendu : une preuve courte appliquée au futur agent Sentinelle."},{"type":"explication","content":"La carte d’identité d’un agent décrit sa mission, son état, ses actions, ses outils, ses limites, sa condition d’arrêt et son responsable humain."},{"type":"explication","content":"Analogie — Comme une fiche de poste, elle précise le rôle, les moyens, les responsabilités et ce qui doit être remonté au responsable."},{"type":"schema","diagram":{"kind":"flow","direction":"horizontal","nodes":[{"id":"n1","label":"Mission et état","color":"#6366F1","definition":"Mission et état est l’étape 1 du raisonnement."},{"id":"n2","label":"Actions et outils","color":"#F59E0B","definition":"Actions et outils est l’étape 2 du raisonnement."},{"id":"n3","label":"Limites et responsable","color":"#14B8A6","definition":"Limites et responsable est l’étape 3 du raisonnement."}],"links":[{"from":"n1","to":"n2"},{"from":"n2","to":"n3"}]},"caption":"Mission et état → Actions et outils → Limites et responsable : le trajet à observer."},{"type":"demo","content":"Sentinelle recherche trois ressources, utilise un outil de recherche, garde les URLs évaluées, s’arrête après cinq essais et demande une validation avant publication."},{"type":"code","filename":"agent-card.md","language":"markdown","code":"Nom : Sentinelle\nMission : préparer 3 ressources fiables\nÉtat : requêtes, URLs, évaluations, budget\nOutils : recherche, brouillon\nArrêt : 3 ressources ou 5 recherches\nValidation humaine : toute publication","explanation":"La fiche révèle les capacités et les frontières. Tu dois pouvoir expliquer chaque ligne. Claude Code peut transformer la fiche en types ou configuration, mais la politique reste humaine.","focusLines":[1]},{"type":"explication","content":"Erreur fréquente — attribuer à l’agent des capacités ou une autonomie qui ne sont ni définies ni vérifiées. Décris toujours le comportement réel, les limites et la preuve attendue."},{"type":"action","id":"agents-ia-m1-l6-action","title":"Produire la carte d’identité","instructions":"Rédige et relis la carte complète de ton premier agent.","successCriteria":"Une personne extérieure comprend ce que l’agent fait, ne fait pas et quand il s’arrête.","evidence":"Note ta décision, sa justification et la preuve utilisée."},{"type":"project","id":"agents-ia-m1-project","title":"Carte d’identité de Sentinelle","brief":"Décrire précisément le premier agent avant toute construction.","deliverables":["Mission","État","Actions et outils","Limites","Condition d’arrêt","Responsable humain"],"successCriteria":["Le document est compréhensible par une autre personne","Les limites sont explicites","Le résultat est testable"],"hints":["Utilise les preuves produites dans les leçons.","Supprime les formulations vagues."]},{"type":"exercice","question":"Complète la carte avec les entrées, la sortie attendue et une action interdite.","hints":["L’entrée peut être un sujet.","La sortie doit être vérifiable.","Choisis une interdiction liée au risque."],"solution":"Entrée : sujet et public. Sortie : trois fiches avec URL, résumé et justification. Interdit : publier ou contacter une personne sans validation."},{"type":"quiz","questions":[{"question":"Que doit montrer la carte ?","options":["Capacités, état, limites et responsabilité","Uniquement le nom","Une promesse vague"],"answer":0,"explanation":"La fiche rend le comportement vérifiable."},{"question":"Pourquoi nommer le responsable humain ?","options":["Pour savoir qui valide et intervient","Pour donner tous les droits","Pour éviter les limites"],"answer":0,"explanation":"La supervision doit avoir un propriétaire explicite."},{"question":"Que signifie la condition d’arrêt ?","options":["Le moment où la boucle doit finir","Le début du chat","La couleur du rapport"],"answer":0,"explanation":"Elle empêche une exécution indéfinie."},{"question":"La carte est-elle du code ?","options":["Non, c’est d’abord un contrat de conception","Oui, toujours exécutable","C’est une base distante"],"answer":0,"explanation":"Elle précède et guide l’implémentation."},{"question":"Quel est le livrable du Module 1 ?","options":["Une carte d’identité d’agent explicable","Un agent publié sans contrôle","Un paiement automatique"],"answer":0,"explanation":"Le premier module valide la compréhension avant la construction."}]},{"type":"assessment","title":"Validation pratique du Module 1","requirements":["Je distingue chatbot, assistant et agent.","J’explique objectif, état, action et boucle.","Je définis une condition d’arrêt.","Je classe les actions par niveau d’autonomie.","Je présente une carte d’identité complète."]},{"type":"validation"}]}
+{
+  "id": "agents-ia-lesson-1-6",
+  "schemaVersion": 2,
+  "title": "Concevoir la carte d’identité d’un agent",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Notion — La carte d’identité rend un agent critiquable avant tout code. Elle réunit mission, entrées, sorties, actions, outils, état, limites, conditions d’arrêt et validation humaine. Une rubrique absente devient une décision implicite."
+    },
+    {
+      "type": "explication",
+      "content": "Exemple — Sentinelle prépare trois fiches à partir d’un sujet ; il recherche et résume, conserve URLs et tentatives, ne publie rien, s’arrête à trois fiches ou cinq recherches et remet le résultat au responsable pédagogique."
+    },
+    {
+      "type": "demo",
+      "content": "Revue croisée — Une carte indique « arrêt après cinq recherches » mais aucun propriétaire. Le système sait s’arrêter, pas à qui remettre l’échec. Ajouter « responsable pédagogique » et la décision attendue ferme ce trou."
+    },
+    {
+      "type": "code",
+      "filename": "sentinelle-card.md",
+      "language": "markdown",
+      "code": "# Mission\n# Entrées\n# Sorties\n# Actions et outils\n# État mémorisé\n# Limites et interdictions\n# Conditions d’arrêt\n# Validation humaine et responsable",
+      "explanation": "À comprendre — La carte est un contrat conceptuel, pas encore un agent exécutable. À modifier — Complète chaque rubrique avec une phrase testable. Claude Code peut — Vérifier la cohérence du document ou préparer des fichiers de projet ; il ne devient pas Sentinelle et ne choisit pas sa mission. À vérifier — Aucun arrêt, refus ou propriétaire ne reste implicite.",
+      "focusLines": [1, 7, 8]
+    },
+    {
+      "type": "action",
+      "id": "agents-ia-m1-l6-action",
+      "title": "Faire relire la carte",
+      "instructions": "Complète la carte de Sentinelle puis demande à une autre personne d’identifier trois ambiguïtés ou décisions manquantes.",
+      "successCriteria": "Les neuf rubriques sont remplies, les retours sont tracés et les points bloquants corrigés.",
+      "evidence": "Conserve la version avant revue, les trois remarques et la version corrigée."
+    },
+    {
+      "type": "project",
+      "id": "agents-ia-m1-project",
+      "title": "Carte d’identité de Sentinelle",
+      "brief": "Produire le premier contrat conceptuel de l’agent pédagogique sans écrire ni exécuter l’agent.",
+      "deliverables": [
+        "Mission unique et destinataire",
+        "Entrées requises et sortie attendue",
+        "Actions, outils et état utile",
+        "Limites, interdictions et conditions d’arrêt",
+        "Validation humaine, responsable et preuve conservée"
+      ],
+      "successCriteria": [
+        "Niveau maîtrisé — chaque rubrique est testable et cohérente avec les autres",
+        "Niveau acceptable — les neuf rubriques sont présentes avec au plus une ambiguïté non bloquante",
+        "Niveau insuffisant — une rubrique est vague, invérifiable ou sans responsable",
+        "Bloquant — publication, paiement ou changement de mission sans validation humaine"
+      ],
+      "hints": ["Utilise les preuves des cinq leçons.", "Choisis une automatisation plus simple si aucune décision adaptative n’est nécessaire."]
+    },
+    {
+      "type": "exercice",
+      "question": "Consigne — Complète puis audite la carte de Sentinelle. Données d’entrée — Sujet, public débutant, trois fiches, cinq recherches, aucune publication. Résultat attendu — Neuf rubriques et une décision « agent ou solution plus simple ».",
+      "hints": [
+        "Critères de réussite — Mission, entrées, sorties, actions, outils, état, limites, arrêts et humain sont explicites.",
+        "Critère bloquant — Absence de condition d’arrêt ou de responsable de validation.",
+        "Preuve Sentinelle — Conserve la carte versionnée et la décision argumentée."
+      ],
+      "solution": "Grille — 1 point par rubrique et 1 pour le choix d’architecture ; 8/10 minimum sans critère bloquant. Exemple acceptable — Carte complète, arrêt à 3 fiches ou 5 recherches, responsable nommé. Exemple insuffisant — « Sentinelle cherche de bonnes ressources de façon autonome », sans entrée, mesure ni arrêt."
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "Une carte contient mission, entrées et sortie, mais aucun arrêt. Quel diagnostic est juste ?",
+          "options": ["Elle est complète", "Le manque est décoratif", "Elle est bloquée avant validation"],
+          "answer": 2,
+          "explanation": "Correct : sans arrêt, la boucle n’est pas bornée. Les autres choix sont insuffisants car une rubrique critique ne peut pas rester implicite."
+        },
+        {
+          "question": "Quelle rubrique nomme ce que l’agent doit mémoriser entre deux actions ?",
+          "options": ["L’état", "Le titre", "Le destinataire seul"],
+          "answer": 0,
+          "explanation": "Correct : l’état porte progression et faits utiles. Les autres choix sont insuffisants car ils ne décrivent pas la mémoire de travail."
+        },
+        {
+          "question": "Pourquoi nommer le responsable humain ?",
+          "options": ["Pour embellir la carte", "Pour attribuer validation et escalade", "Pour remplacer les critères"],
+          "answer": 1,
+          "explanation": "Correct : une décision finale doit avoir un propriétaire. Les autres choix sont insuffisants car le nom n’est ni décoratif ni substitut à l’évaluation."
+        },
+        {
+          "question": "Après cinq recherches, seules deux fiches sont valides. Que prévoit une bonne carte ?",
+          "options": ["Continuer sans limite", "Inventer une fiche", "Arrêter, expliquer et soumettre le partiel"],
+          "answer": 2,
+          "explanation": "Correct : ce comportement respecte budget et transparence. Les autres choix sont insuffisants car ils violent une limite ou falsifient le résultat."
+        },
+        {
+          "question": "La carte montre qu’aucun choix adaptatif n’est utile. Quelle décision est la plus responsable ?",
+          "options": ["Choisir une automatisation simple", "Ajouter artificiellement un modèle", "Autoriser toutes les actions"],
+          "answer": 0,
+          "explanation": "Correct : la solution la plus simple réduit coût et risque. Les autres choix sont insuffisants car ils ajoutent une complexité sans besoin."
+        }
+      ]
+    },
+    {
+      "type": "assessment",
+      "title": "Validation pratique du Module 1",
+      "requirements": [
+        "Critère de réussite — La carte couvre mission, entrées, sorties, actions, outils, état, limites, arrêts et validation humaine.",
+        "Bloquant — Une action externe risquée est autorisée sans validation, ou aucun arrêt n’est défini.",
+        "Niveau insuffisant — Les rubriques existent mais reposent sur des mots vagues comme « bien » ou « autonome ».",
+        "Niveau acceptable — Toutes les rubriques sont testables et le propriétaire humain est nommé.",
+        "Niveau maîtrisé — La carte justifie aussi pourquoi un agent est préférable à un chatbot ou une automatisation simple."
+      ]
+    },
+    {"type": "validation"}
+  ]
+}

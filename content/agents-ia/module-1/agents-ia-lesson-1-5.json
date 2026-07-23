@@ -1,1 +1,81 @@
-{"id":"agents-ia-lesson-1-5","schemaVersion":2,"title":"Identifier autonomie et limites","blocks":[{"type":"explication","content":"Brief — Choisir ce que l’agent peut décider seul et ce qui exige un humain. Résultat attendu : une preuve courte appliquée au futur agent Sentinelle."},{"type":"explication","content":"L’autonomie est la capacité à choisir et exécuter des actions sans instruction humaine à chaque étape. Une limite définit ce qui est interdit, plafonné ou soumis à validation."},{"type":"explication","content":"Analogie — Un stagiaire peut classer des documents seul, mais un paiement ou une publication externe demande l’accord d’un responsable."},{"type":"schema","diagram":{"kind":"flow","direction":"horizontal","nodes":[{"id":"n1","label":"Actions automatiques","color":"#6366F1","definition":"Actions automatiques est l’étape 1 du raisonnement."},{"id":"n2","label":"Seuil de validation","color":"#F59E0B","definition":"Seuil de validation est l’étape 2 du raisonnement."},{"id":"n3","label":"Actions interdites","color":"#14B8A6","definition":"Actions interdites est l’étape 3 du raisonnement."}],"links":[{"from":"n1","to":"n2"},{"from":"n2","to":"n3"}]},"caption":"Actions automatiques → Seuil de validation → Actions interdites : le trajet à observer."},{"type":"demo","content":"L’agent peut rechercher et résumer automatiquement. Il doit demander une validation avant de publier, contacter une personne ou dépasser son budget."},{"type":"code","filename":"autonomy-policy.md","language":"markdown","code":"Autorisé : rechercher, comparer, préparer un brouillon.\nValidation humaine : publier, envoyer, remplacer une ressource.\nInterdit : révéler un secret, contourner un accès, dépasser 5 recherches.","explanation":"La politique transforme l’autonomie en règles observables. Tu dois décider selon l’impact. Claude Code peut appliquer ces contrôles, mais ne doit pas élargir ses propres droits.","focusLines":[1]},{"type":"explication","content":"Erreur fréquente — attribuer à l’agent des capacités ou une autonomie qui ne sont ni définies ni vérifiées. Décris toujours le comportement réel, les limites et la preuve attendue."},{"type":"action","id":"agents-ia-m1-l5-action","title":"Écrire une politique d’autonomie","instructions":"Crée trois listes : automatique, validation humaine, interdit.","successCriteria":"Chaque action est classée selon son impact, sa réversibilité et son coût.","evidence":"Note ta décision, sa justification et la preuve utilisée."},{"type":"exercice","question":"Classe rechercher, résumer, envoyer un email, payer et publier dans trois niveaux d’autonomie.","hints":["Mesure l’impact externe.","Une action irréversible demande plus de contrôle.","Les secrets restent interdits."],"solution":"Recherche et résumé peuvent être automatiques dans un budget. Email et publication exigent validation. Paiement reste interdit dans ce premier agent."},{"type":"quiz","questions":[{"question":"Qu’est-ce que l’autonomie ?","options":["La capacité à choisir et agir sans instruction à chaque étape","L’absence de toute limite","Une mémoire infinie"],"answer":0,"explanation":"L’autonomie reste encadrée par une mission et des règles."},{"question":"Pourquoi une validation humaine ?","options":["Pour contrôler les décisions importantes ou externes","Pour ralentir tout","Pour cacher les résultats"],"answer":0,"explanation":"L’humain intervient lorsque l’impact dépasse le risque accepté."},{"question":"Quelle action peut être automatique ici ?","options":["Préparer un brouillon","Effectuer un paiement","Révéler une clé"],"answer":0,"explanation":"Le brouillon est réversible et reste interne."},{"question":"Une limite de cinq recherches sert à quoi ?","options":["À contrôler coût et boucles","À garantir la vérité","À supprimer les outils"],"answer":0,"explanation":"Le budget limite l’exposition sans remplacer l’évaluation."},{"question":"L’agent peut-il élargir ses droits ?","options":["Non","Oui s’il le souhaite","Seulement la nuit"],"answer":0,"explanation":"Les permissions viennent d’une autorité externe à l’agent."}]},{"type":"validation"}]}
+{
+  "id": "agents-ia-lesson-1-5",
+  "schemaVersion": 2,
+  "title": "Identifier autonomie et limites",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Notion — L’autonomie n’est pas « tout faire seul » : c’est un ensemble précis d’actions autorisées dans un périmètre, sous budget, avec des arrêts et des validations humaines. Plus l’action est irréversible ou risquée, plus le contrôle humain doit intervenir tôt."
+    },
+    {
+      "type": "explication",
+      "content": "Exemple — Sentinelle peut rechercher, lire et préparer un brouillon. Il ne peut ni publier, ni payer, ni contacter une personne. Il s’arrête si l’entrée manque, si le budget est épuisé ou si une règle se contredit, puis demande une décision humaine."
+    },
+    {
+      "type": "demo",
+      "content": "Comparaison — « Préparer un e-mail » est réversible avant envoi ; « envoyer à 5 000 contacts » crée un impact externe. La même génération de texte exige donc deux niveaux d’autonomie différents."
+    },
+    {
+      "type": "code",
+      "filename": "autonomy-policy.md",
+      "language": "markdown",
+      "code": "AUTORISÉ : rechercher, lire, résumer, préparer.\nINTERDIT : publier, payer, supprimer, contacter.\nARRÊT : entrée manquante, règle contradictoire, 5 recherches.\nVALIDATION HUMAINE : accepter les fiches et autoriser toute action externe.",
+      "explanation": "À comprendre — Une politique d’autonomie associe permissions, interdictions, arrêts et propriétaire humain. À modifier — Adapte les actions au risque de ton contexte. Claude Code peut — Implémenter des garde-fous et tests à partir de cette politique ; il ne donne pas seul les permissions à l’agent. À vérifier — Aucune action externe n’est implicitement autorisée.",
+      "focusLines": [2, 3, 4]
+    },
+    {
+      "type": "action",
+      "id": "agents-ia-m1-l5-action",
+      "title": "Tracer la frontière d’autonomie",
+      "instructions": "Répartis douze actions entre autorisé, validation préalable et interdit, puis ajoute trois conditions d’arrêt.",
+      "successCriteria": "Chaque action risquée a une justification, un responsable et un comportement de repli.",
+      "evidence": "Conserve la matrice action → niveau → raison → responsable."
+    },
+    {
+      "type": "exercice",
+      "question": "Consigne — Corrige la règle « Sentinelle peut rechercher, publier et acheter les ressources utiles ». Données d’entrée — Premier agent pédagogique, budget d’essai nul, humain responsable. Résultat attendu — Permissions, interdictions, arrêts et validation.",
+      "hints": [
+        "Critères de réussite — Recherche et brouillon sont séparés de publication et paiement ; trois arrêts sont nommés.",
+        "Critère bloquant — Autoriser une publication ou un paiement sans validation humaine explicite.",
+        "Preuve Sentinelle — Conserve la politique signée par le responsable du besoin."
+      ],
+      "solution": "Grille — 1 point pour permissions, interdictions, budget, arrêts et propriétaire ; 4/5 minimum. Exemple acceptable — « Préparer seulement ; publication et paiement interdits ; arrêter à cinq recherches ; le responsable valide. » Exemple insuffisant — « Agir prudemment », sans frontière testable."
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "Quelle action exige le contrôle le plus fort dans ce premier parcours ?",
+          "options": ["Lire une page publique", "Préparer un brouillon", "Publier au nom de l’organisation"],
+          "answer": 2,
+          "explanation": "Correct : publier crée un impact externe difficile à reprendre. Les autres choix sont insuffisants car lecture et brouillon restent plus réversibles."
+        },
+        {
+          "question": "Que signifie une autonomie bien cadrée ?",
+          "options": ["L’absence de toute supervision", "Des actions autorisées et limitées par des règles", "La capacité de changer sa mission"],
+          "answer": 1,
+          "explanation": "Correct : l’autonomie existe à l’intérieur d’une frontière. Les autres choix sont insuffisants car ils retirent la responsabilité ou le contrat."
+        },
+        {
+          "question": "Qui doit autoriser une action externe risquée ?",
+          "options": ["Le nom de l’agent", "Un humain responsable identifié", "Le premier outil disponible"],
+          "answer": 1,
+          "explanation": "Correct : la responsabilité doit être attribuée. Les autres choix sont insuffisants car ni une étiquette ni un outil ne portent l’autorité métier."
+        },
+        {
+          "question": "Que doit faire Sentinelle si deux règles se contredisent ?",
+          "options": ["Choisir au hasard", "Masquer le conflit", "S’arrêter et demander une décision"],
+          "answer": 2,
+          "explanation": "Correct : l’escalade évite une action non autorisée. Les autres choix sont insuffisants car ils rendent le comportement imprévisible."
+        },
+        {
+          "question": "Pourquoi fixer un budget d’actions ?",
+          "options": ["Pour garantir la vérité", "Pour borner coût et boucles", "Pour supprimer les critères de qualité"],
+          "answer": 1,
+          "explanation": "Correct : le budget limite l’exposition et donne un arrêt. Les autres choix sont insuffisants car il ne prouve ni vérité ni qualité."
+        }
+      ]
+    },
+    {"type": "validation"}
+  ]
+}

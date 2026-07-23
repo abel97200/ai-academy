@@ -1,1 +1,81 @@
-{"id":"agents-ia-lesson-2-3","schemaVersion":2,"title":"Décrire les entrées et les sorties","blocks":[{"type":"explication","content":"Brief — Définir ce que l’agent reçoit et ce qu’il doit rendre. Résultat attendu : une preuve courte appliquée au futur agent Sentinelle."},{"type":"explication","content":"Une entrée est une information fournie au système. Une sortie est le résultat produit. Leur forme explicite crée un contrat testable."},{"type":"explication","content":"Analogie — Une machine à café reçoit eau, grains et choix ; elle rend une boisson définie, pas un résultat mystérieux."},{"type":"schema","diagram":{"kind":"flow","direction":"horizontal","nodes":[{"id":"n1","label":"Entrées validées","color":"#6366F1","definition":"Entrées validées est l’étape 1 du raisonnement."},{"id":"n2","label":"Traitement","color":"#F59E0B","definition":"Traitement est l’étape 2 du raisonnement."},{"id":"n3","label":"Sortie structurée","color":"#14B8A6","definition":"Sortie structurée est l’étape 3 du raisonnement."}],"links":[{"from":"n1","to":"n2"},{"from":"n2","to":"n3"}]},"caption":"Entrées validées → Traitement → Sortie structurée : le trajet à observer."},{"type":"demo","content":"Entrées : sujet, public, date limite. Sortie : trois objets contenant titre, URL, résumé, date et justification."},{"type":"code","filename":"resource-output.json","language":"json","code":"{\"topic\":\"agents IA\",\"audience\":\"débutant\",\"resources\":[{\"title\":\"…\",\"url\":\"https://…\",\"summary\":\"…\",\"reason\":\"…\"}]}","explanation":"Le JSON rend la sortie inspectable. Tu dois définir les champs indispensables. Claude Code peut créer le type et la validation, mais ne doit pas inventer une entrée absente.","focusLines":[1]},{"type":"explication","content":"Erreur fréquente — attribuer à l’agent des capacités ou une autonomie qui ne sont ni définies ni vérifiées. Décris toujours le comportement réel, les limites et la preuve attendue."},{"type":"action","id":"agents-ia-m2-l3-action","title":"Écrire le contrat de données","instructions":"Crée un exemple valide et deux exemples invalides d’entrée ou sortie.","successCriteria":"Les cas invalides échouent pour des règles expliquées.","evidence":"Note ta décision, sa justification et la preuve utilisée."},{"type":"exercice","question":"Liste les champs obligatoires et optionnels de la sortie.","hints":["Une URL doit être vérifiable.","La justification aide la validation.","Évite les données non utilisées."],"solution":"Obligatoires : titre, URL, résumé, date ou fraîcheur, justification. Optionnels : auteur ou durée si utile au public."},{"type":"quiz","questions":[{"question":"Qu’est-ce qu’une entrée ?","options":["Une information reçue par le système","Le résultat final","Une permission"],"answer":0,"explanation":"L’entrée alimente la mission."},{"question":"Pourquoi structurer la sortie ?","options":["Pour la valider et l’utiliser sans deviner","Pour la rendre plus vague","Pour supprimer les tests"],"answer":0,"explanation":"Une forme stable facilite contrôle et automatisation."},{"question":"L’agent peut-il inventer un sujet absent ?","options":["Non, il doit demander ou refuser selon la règle","Oui, toujours","Seulement sans outil"],"answer":0,"explanation":"Une entrée obligatoire manquante doit être gérée explicitement."},{"question":"Quel champ prouve la source ?","options":["L’URL","La couleur","Le nom de l’agent"],"answer":0,"explanation":"La source doit pouvoir être consultée."},{"question":"Qui choisit les champs obligatoires ?","options":["Le concepteur à partir du besoin","Le JSON seul","Le modèle sans contexte"],"answer":0,"explanation":"Le contrat traduit les critères métier."}]},{"type":"validation"}]}
+{
+  "id": "agents-ia-lesson-2-3",
+  "schemaVersion": 2,
+  "title": "Décrire les entrées et les sorties",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Notion — Le contrat d’entrée/sortie définit ce que le système peut recevoir, ce qu’il doit refuser et la forme exacte du résultat. Une entrée obligatoire manquante ne doit jamais être inventée silencieusement."
+    },
+    {
+      "type": "explication",
+      "content": "Exemple — Entrées : sujet non vide, public, date limite. Sortie : trois fiches avec titre, URL, date, résumé et justification, plus statut et motifs d’échec. Si le sujet manque, la sortie attendue est une demande de clarification sans appel d’outil."
+    },
+    {
+      "type": "demo",
+      "content": "Test de bord — Entrée {public: « débutant »} sans sujet. Mauvais comportement : choisir « IA » par défaut. Bon comportement : status « needs_clarification », champ missing « topic », zéro recherche consommée."
+    },
+    {
+      "type": "code",
+      "filename": "resource-contract.json",
+      "language": "json",
+      "code": "{\"input\":{\"topic\":\"string non vide\",\"audience\":\"string\"},\"output\":{\"status\":\"complete|partial|needs_clarification|refused\",\"resources\":[{\"title\":\"string\",\"url\":\"https://…\",\"publishedAt\":\"date\",\"summary\":\"string\",\"reason\":\"string\"}],\"issues\":[\"string\"]}}",
+      "explanation": "À comprendre — Le contrat inclut les sorties d’échec, pas seulement le cas idéal. À modifier — Précise formats, champs obligatoires et tailles maximales. Claude Code peut — Générer types et validation de schéma ; il ne doit pas inventer une entrée absente. À vérifier — Chaque statut correspond à un comportement et à une preuve.",
+      "focusLines": [1]
+    },
+    {
+      "type": "action",
+      "id": "agents-ia-m2-l3-action",
+      "title": "Tester le contrat de données",
+      "instructions": "Crée un exemple valide, un sujet absent, une URL invalide et un résultat partiel. Décide l’acceptation attendue.",
+      "successCriteria": "Les quatre cas ont un statut, une raison et une règle reproductible.",
+      "evidence": "Conserve les quatre objets et le résultat de leur revue."
+    },
+    {
+      "type": "exercice",
+      "question": "Consigne — Complète le contrat de Sentinelle et traite le sujet manquant. Données d’entrée — Public « débutant », aucun sujet. Résultat attendu — Schéma des champs et sortie de clarification.",
+      "hints": [
+        "Critères de réussite — Champs obligatoires/optionnels distingués, statut et erreur structurés, aucun outil appelé.",
+        "Critère bloquant — Inventer un sujet ou produire des ressources malgré l’entrée manquante.",
+        "Preuve Sentinelle — Conserve l’entrée et la sortie attendue comme futur scénario de test."
+      ],
+      "solution": "Grille — 1 point pour contrat d’entrée, contrat de sortie, statut, message et zéro outil ; 4/5 minimum. Exemple acceptable — « needs_clarification, missing:[topic], resources:[] ». Exemple insuffisant — « Le sujet sera IA par défaut. »"
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "Le sujet obligatoire est absent. Quel comportement respecte le contrat ?",
+          "options": ["Choisir un sujet populaire", "Lancer une recherche générale", "Demander une clarification sans outil"],
+          "answer": 2,
+          "explanation": "Correct : l’entrée manquante est signalée sans coût. Les autres choix sont insuffisants car ils inventent une intention."
+        },
+        {
+          "question": "Pourquoi structurer aussi les résultats partiels ?",
+          "options": ["Pour rendre limites et échecs inspectables", "Pour masquer les erreurs", "Pour supprimer les statuts"],
+          "answer": 0,
+          "explanation": "Correct : une sortie partielle honnête reste exploitable. Les autres choix sont insuffisants car ils réduisent la transparence."
+        },
+        {
+          "question": "Quel champ fournit une preuve consultable de source ?",
+          "options": ["La couleur", "L’URL", "Le nom de l’agent"],
+          "answer": 1,
+          "explanation": "Correct : l’URL permet une vérification externe. Les autres choix sont insuffisants car ils n’établissent pas la provenance."
+        },
+        {
+          "question": "Une sortie contient trois titres sans URL ni justification. Quel statut est approprié ?",
+          "options": ["Acceptée", "Publiée", "Invalide selon le contrat"],
+          "answer": 2,
+          "explanation": "Correct : deux champs obligatoires manquent. Les autres choix sont insuffisants car le nombre seul ne satisfait pas la qualité."
+        },
+        {
+          "question": "Qui définit les champs obligatoires ?",
+          "options": ["Le concepteur à partir du besoin et des critères", "Le format JSON tout seul", "Le modèle sans contexte"],
+          "answer": 0,
+          "explanation": "Correct : le contrat traduit une décision métier. Les autres choix sont insuffisants car format et modèle ne portent pas l’autorité."
+        }
+      ]
+    },
+    {"type": "validation"}
+  ]
+}
