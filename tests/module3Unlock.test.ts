@@ -43,8 +43,8 @@ describe("Déverrouillage du Module 3 après le Module 2", () => {
   // Valide entièrement un module (leçons + quiz + actions + évaluations)
   // dans un instantané de progression, pour construire des scénarios.
   function completeModule(snapshot: ProgressSnapshot, moduleSlug: string) {
-    const module = course.modules.find((m) => m.slug === moduleSlug)!;
-    module.lessons.forEach((id) => snapshot.completedLessonIds.add(id));
+    const courseModule = course.modules.find((m) => m.slug === moduleSlug)!;
+    courseModule.lessons.forEach((id) => snapshot.completedLessonIds.add(id));
     requirements[moduleSlug].quizBlockIds.forEach((blockId) => {
       snapshot.quizScores[blockId] = 100;
     });
