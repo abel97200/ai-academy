@@ -35,6 +35,7 @@ export type Specialization = {
   slug: string;
   title: string;
   description: string;
+  available?: boolean;
 };
 
 export type FinalProject = {
