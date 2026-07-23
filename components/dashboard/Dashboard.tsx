@@ -130,24 +130,46 @@ export default function Dashboard({ course, moduleRequirements, lessonTitles }: 
         </div>
       </div>
 
-      {/* Spécialisations à venir */}
+      {/* Autres parcours disponibles ou annoncés */}
       <div className="flex flex-col gap-3">
-        <h2 className="text-lg font-semibold text-foreground">Spécialisations à venir</h2>
+        <h2 className="text-lg font-semibold text-foreground">Autres parcours</h2>
         <div className="grid gap-3 sm:grid-cols-2">
-          {course.specializations.map((specialization) => (
-            <div
-              key={specialization.slug}
-              className="rounded-2xl border border-dashed border-white/15 bg-white/[0.02] p-4"
-            >
+          {course.specializations.map((specialization) => {
+            const content = (
+              <>
               <div className="flex items-center justify-between gap-2">
                 <p className="font-medium text-foreground">{specialization.title}</p>
-                <span className="shrink-0 rounded-full bg-white/5 px-2.5 py-1 text-xs text-foreground/40">
-                  À venir
+                <span
+                  className={`shrink-0 rounded-full px-2.5 py-1 text-xs ${
+                    specialization.available
+                      ? "bg-accent/15 text-accent"
+                      : "bg-white/5 text-foreground/40"
+                  }`}
+                >
+                  {specialization.available ? "Disponible" : "À venir"}
                 </span>
               </div>
               <p className="mt-1 text-sm text-foreground/50">{specialization.description}</p>
-            </div>
-          ))}
+              </>
+            );
+
+            return specialization.available ? (
+              <Link
+                key={specialization.slug}
+                href={`/parcours/${specialization.slug}`}
+                className="rounded-2xl border border-accent/30 bg-accent/[0.04] p-4 transition-colors hover:bg-accent/[0.08]"
+              >
+                {content}
+              </Link>
+            ) : (
+              <div
+                key={specialization.slug}
+                className="rounded-2xl border border-dashed border-white/15 bg-white/[0.02] p-4"
+              >
+                {content}
+              </div>
+            );
+          })}
         </div>
       </div>
 
