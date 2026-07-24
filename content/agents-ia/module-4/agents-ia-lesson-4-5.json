@@ -1,0 +1,103 @@
+{
+  "id": "agents-ia-lesson-4-5",
+  "schemaVersion": 2,
+  "title": "Ajouter limites, erreurs et traces",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Mission — Encadrer la boucle avec des arrêts explicites et une trace exploitable. Notion — La borne limite le coût, le statut décrit l’issue et la trace permet de reconstruire les décisions."
+    },
+    {
+      "type": "explication",
+      "content": "Explication courte — Capturer une erreur ne signifie pas déclarer un succès. Sentinelle arrête la boucle, retourne error et conserve un message utile sans enregistrer de secret."
+    },
+    {
+      "type": "schema",
+      "diagram": {
+        "kind": "flow",
+        "direction": "vertical",
+        "nodes": [
+          { "id": "call", "label": "Appeler le modèle" },
+          { "id": "decide", "label": "Évaluer la sortie" },
+          { "id": "stop", "label": "Statut final" },
+          { "id": "trace", "label": "Tracer la raison" }
+        ],
+        "links": [
+          { "from": "call", "to": "decide" },
+          { "from": "decide", "to": "stop" },
+          { "from": "stop", "to": "trace" }
+        ]
+      },
+      "caption": "Chaque chemin d’arrêt produit un statut et une trace cohérente."
+    },
+    {
+      "type": "demo",
+      "content": "Démonstration — Avec maxIterations=3, suis start, model_call, decision_retry, model_call, decision_accept et stop_success. Vérifie que chaque décision possède une raison."
+    },
+    {
+      "type": "code",
+      "filename": "src/runner/runSentinelle.ts",
+      "language": "ts",
+      "code": "for (let iteration = 1; iteration <= maxIterations; iteration += 1) {\n  trace.push({ iteration, event: \"model_call\" });\n  try {\n    const resource = await generateResource(topic, model);\n    if (resource.needsHumanReview) return stop(\"human_review\", trace);\n    if (resource.relevanceScore >= 70) return stop(\"success\", trace);\n  } catch (error) {\n    return stop(\"error\", trace, safeMessage(error));\n  }\n}\nreturn stop(\"limit_reached\", trace);",
+      "explanation": "À comprendre — Chaque chemin retourne un état final explicite. À modifier — Adapte les événements au vocabulaire Sentinelle. Claude Code peut — Générer les tests des chemins sans réseau. À vérifier — maxIterations est validé, l’erreur attendue ne s’échappe pas et aucun secret n’entre dans la trace."
+    },
+    {
+      "type": "explication",
+      "content": "Échec provoqué — Le modèle simulé lève une exception au deuxième appel. Résultat attendu — Sentinelle termine avec error, ne relance pas et trace stop_error avec un message contrôlé."
+    },
+    {
+      "type": "action",
+      "id": "agents-ia-m4-l5-action",
+      "title": "Tester les chemins d’arrêt",
+      "instructions": "Prépare les scénarios succès, limite, exception contrôlée et demande de revue humaine avec des mocks.",
+      "successCriteria": "Chaque statut est déterministe et le dernier événement de trace lui correspond.",
+      "evidence": "Conserve la matrice scénario, réponses, statut, itérations et événement final."
+    },
+    {
+      "type": "exercice",
+      "question": "Consigne — Écris la matrice des tests de la boucle. Données d’entrée — maxIterations=3, seuil=70 et mocks déterministes. Résultat attendu — Les chemins success, limit_reached, error et human_review avec leurs traces.",
+      "hints": [
+        "Critères de réussite — Chaque statut a au moins un scénario déterministe.",
+        "Critère bloquant — Un test dépend d’une vraie clé ou du réseau.",
+        "Preuve Sentinelle — Le dernier événement de chaque trace correspond au statut."
+      ],
+      "solution": "Grille — 1 point par chemin et 1 pour les traces ; 4/5 minimum. Exemple acceptable — Trois scores 20 produisent limit_reached après trois appels. Exemple insuffisant — Vérifier seulement que la fonction retourne un objet."
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "Quel élément explique pourquoi l’agent relance ?",
+          "options": ["Le nom du fichier", "La version de Node", "Un événement de trace et sa raison"],
+          "answer": 2,
+          "explanation": "La trace relie l’état observé à la décision."
+        },
+        {
+          "question": "Que faire lorsqu’un appel lève une erreur contrôlée ?",
+          "options": ["Retourner error et arrêter", "Boucler silencieusement", "Déclarer success"],
+          "answer": 0,
+          "explanation": "L’échec reste visible et borné."
+        },
+        {
+          "question": "Pourquoi valider maxIterations avant la boucle ?",
+          "options": ["Enrichir le prompt", "Refuser une borne nulle ou excessive", "Activer la clé"],
+          "answer": 1,
+          "explanation": "Une configuration invalide compromet le garde-fou."
+        },
+        {
+          "question": "Quelle donnée ne doit jamais être tracée ?",
+          "options": ["Une clé API", "Le numéro d’itération", "Le statut final"],
+          "answer": 0,
+          "explanation": "Les secrets ne sont pas des données d’observabilité."
+        },
+        {
+          "question": "Quel test prouve que la limite fonctionne ?",
+          "options": ["Un succès immédiat", "Une compilation sans assertion", "Des sorties insuffisantes arrêtées au maximum exact"],
+          "answer": 2,
+          "explanation": "Le scénario doit atteindre réellement la borne."
+        }
+      ]
+    },
+    { "type": "validation" }
+  ]
+}

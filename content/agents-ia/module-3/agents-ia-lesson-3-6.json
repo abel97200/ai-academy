@@ -1,0 +1,92 @@
+{
+  "id": "agents-ia-lesson-3-6",
+  "schemaVersion": 2,
+  "title": "Intégrer la génération structurée dans Sentinelle",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Mission — Assembler sujet, adaptateur et schéma dans un livrable exécutable. Notion — `generateResource` est une frontière simple : il valide le sujet, appelle un `ResourceModel`, valide la sortie et renvoie soit un `ResourceProposal`, soit une erreur structurée."
+    },
+    {
+      "type": "explication",
+      "content": "Exemple — Avec le mock, un sujet produit une proposition contenant `title`, `summary`, `relevanceScore`, `sourceType` et `needsHumanReview`. Sentinelle ne possède encore ni outil de recherche ni boucle agentique : elle génère une proposition, pas une ressource vérifiée."
+    },
+    {
+      "type": "demo",
+      "content": "Observer — `npm run sentinelle:test` exécute dix tests hors réseau ; `npm run sentinelle:demo -- \"sujet\"` affiche une proposition et une trace. Le mode réel reste optionnel et explicitement coûteux."
+    },
+    {
+      "type": "code",
+      "filename": "examples/agents/sentinelle/src/model/generateResource.ts",
+      "language": "typescript",
+      "code": "export async function generateResource(topic: string, model: ResourceModel) {\n  const validTopic = TopicSchema.parse(topic);\n  const rawOutput = await model.generate({\n    systemInstruction: SENTINELLE_SYSTEM_INSTRUCTION,\n    userInput: `Sujet de veille : ${validTopic}`,\n  });\n  return parseResourceProposal(rawOutput);\n}",
+      "explanation": "À comprendre — La fonction orchestre un appel unique et deux validations sans connaître le fournisseur. À modifier — Change le sujet, l’adaptateur ou l’instruction par injection explicite. Claude Code peut — Assembler la fonction et écrire les tests. À vérifier — Sujet vide, quatre sorties invalides, absence de réseau en test et cinq champs du livrable.",
+      "focusLines": [1, 2, 3, 7]
+    },
+    {
+      "type": "explication",
+      "content": "Échec provoqué — Le rapport cache les sorties invalides et ne montre que la démonstration réussie. Correction : conserver les cas rouges, leurs codes d’erreur et le rapport Vitest ; un jalon fiable documente aussi ce qu’il refuse."
+    },
+    {
+      "type": "action",
+      "id": "agents-ia-m3-l6-action",
+      "title": "Produire la preuve du Module 3",
+      "instructions": "Lance la démo simulée et les tests, puis explique la séparation domaine, adaptateur et validation.",
+      "successCriteria": "Les commandes réussissent, les cinq champs sont visibles et les quatre échecs obligatoires sont couverts.",
+      "evidence": "Conserve les commandes, sorties anonymisées, rapport 10/10 et explication personnelle."
+    },
+    {
+      "type": "project",
+      "id": "agents-ia-m3-project",
+      "title": "Générateur structuré de Sentinelle",
+      "brief": "Livrer un script TypeScript exécutable qui reçoit un sujet et produit une proposition validée, sans outil ni boucle agentique.",
+      "deliverables": [
+        "ResourceProposalSchema avec cinq champs obligatoires",
+        "Interface ResourceModel et mock déterministe",
+        "Adaptateur OpenAI optionnel sans secret commité",
+        "generateResource et commande de démonstration",
+        "Tests valide, JSON cassé, champ absent, score hors plage et type incorrect",
+        "Preuve de coût accepté et de revue humaine"
+      ],
+      "successCriteria": [
+        "Niveau maîtrisé — domaine portable, erreurs nommées et tests expliqués",
+        "Niveau acceptable — script et 5 cas passent sans réseau",
+        "Niveau insuffisant — sortie affichée sans validation ou test dépendant du réseau",
+        "Bloquant — secret commité, sortie invalide acceptée ou capacité d’outil inventée"
+      ],
+      "hints": ["Commence toujours par le mode simulé.", "Une proposition structurée n’est pas encore une source vérifiée."]
+    },
+    {
+      "type": "exercice",
+      "question": "Consigne — Réalise la revue finale du générateur. Données d’entrée — Sujet valide, JSON cassé, champ absent, score 120 et type incorrect. Résultat attendu — Un succès et quatre erreurs contrôlées.",
+      "hints": [
+        "Critères de réussite — Les tests sont déterministes, hors réseau et les cinq champs du succès sont typés.",
+        "Critère bloquant — Clé présente dans Git ou sortie invalide utilisée par la suite.",
+        "Preuve Sentinelle — Conserve le rapport Vitest, la sortie simulée et le scan de secrets."
+      ],
+      "solution": "Grille — 2 points pour succès, 1 par refus, 1 pour mock, 1 pour secret ; 7/8 minimum sans bloquant. Exemple acceptable — 5 tests du contrat verts et commande simulée reproductible. Exemple insuffisant — Une capture d’appel réel sans test ni schéma."
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {"question": "Que sait faire Sentinelle après le Module 3 ?", "options": ["Rechercher sur le web", "Publier une fiche", "Produire une proposition structurée validée"], "answer": 2, "explanation": "Correct : le jalon couvre un appel unique validé. Les autres choix sont insuffisants car aucun outil ni permission externe n’existe."},
+        {"question": "Quel fichier porte le contrat métier ?", "options": [".env.example", "src/domain/resource.ts", "package-lock.json"], "answer": 1, "explanation": "Correct : le domaine définit le schéma. Les autres choix sont insuffisants car ils décrivent configuration et dépendances."},
+        {"question": "Quel élément rend le test indépendant du fournisseur ?", "options": ["Une vraie clé", "L’interface et le mock ResourceModel", "Un retry infini"], "answer": 1, "explanation": "Correct : l’injection remplace l’adaptateur réel. Les autres choix sont insuffisants car ils ajoutent risque ou instabilité."},
+        {"question": "Une proposition passe Zod. Que peut-on conclure ?", "options": ["Elle est vraie et publiable", "Elle vient forcément du réseau", "Sa structure respecte le contrat, son contenu reste à revoir"], "answer": 2, "explanation": "Correct : Zod valide forme et limites, pas la vérité. Les autres choix sont insuffisants car provenance et autorisation restent inconnues."},
+        {"question": "Quelle validation humaine clôt ce module ?", "options": ["Autoriser une publication autonome", "Supprimer les cas d’échec", "Approuver schéma, instructions, preuves et absence de secret"], "answer": 2, "explanation": "Correct : l’humain accepte le contrat et les preuves. Les autres choix sont insuffisants car ils contournent sécurité et apprentissage."}
+      ]
+    },
+    {
+      "type": "assessment",
+      "title": "Validation pratique du Module 3",
+      "requirements": [
+        "Critère de réussite — Le script reçoit un sujet et produit les cinq champs validés par Zod.",
+        "Bloquant — Une clé est committée, un test appelle le réseau ou une sortie invalide est acceptée.",
+        "Niveau insuffisant — La démo fonctionne mais les rôles, le schéma ou les erreurs ne sont pas expliqués.",
+        "Niveau acceptable — Les dix tests Sentinelle passent et les quatre échecs obligatoires sont diagnostiqués.",
+        "Niveau maîtrisé — L’adaptateur est remplaçable et l’apprenant justifie chaque contrôle et limite."
+      ]
+    },
+    {"type": "validation"}
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "id": "agents-ia-lesson-3-5",
+  "schemaVersion": 2,
+  "title": "Provoquer et corriger une sortie invalide",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Mission — Faire échouer volontairement la validation avant de corriger. Notion — Les échecs appartiennent à deux familles : syntaxe JSON invalide ou structure métier invalide. Le diagnostic précède toute modification du prompt, du schéma ou du code."
+    },
+    {
+      "type": "explication",
+      "content": "Exemple — `{\"title\":` déclenche `INVALID_JSON`. Un objet sans `summary`, avec score 130 ou booléen texte déclenche `INVALID_STRUCTURE` et fournit le chemin Zod concerné."
+    },
+    {
+      "type": "demo",
+      "content": "Observer — Les cinq tests de `generateResource.test.ts` acceptent un cas valide et refusent JSON cassé, champ absent, score hors plage et type incorrect. Aucun test ne contacte le réseau."
+    },
+    {
+      "type": "code",
+      "filename": "examples/agents/sentinelle/src/domain/resource.ts",
+      "language": "typescript",
+      "code": "if (typeof rawOutput === \"string\") {\n  try {\n    candidate = JSON.parse(rawOutput);\n  } catch {\n    throw new ModelOutputError(\"INVALID_JSON\", \"JSON invalide\");\n  }\n}\nconst result = ResourceProposalSchema.safeParse(candidate);",
+      "explanation": "À comprendre — Le parseur distingue syntaxe et contrat pour rendre la correction ciblée. À modifier — Améliore le message ou ajoute un cas, sans assouplir la règle. Claude Code peut — Générer des fixtures invalides et les tests. À vérifier — Chaque échec garde un code stable et n’expose aucun objet partiel.",
+      "focusLines": [3, 5, 8]
+    },
+    {
+      "type": "explication",
+      "content": "Échec provoqué — Après un score à 130, le développeur change la limite Zod à 200 pour faire passer le test. C’est une correction trompeuse : le contrat métier dit 0–100. Il faut corriger la sortie simulée ou l’instruction, puis conserver le test de régression."
+    },
+    {
+      "type": "action",
+      "id": "agents-ia-m3-l5-action",
+      "title": "Tenir un journal de diagnostic",
+      "instructions": "Exécute les tests invalides, note symptôme, code d’erreur, cause, couche à corriger et test de non-régression.",
+      "successCriteria": "Les quatre échecs obligatoires sont distingués et aucune règle métier n’est affaiblie.",
+      "evidence": "Conserve le tableau de diagnostic et le rapport des 5 tests."
+    },
+    {
+      "type": "exercice",
+      "question": "Consigne — Choisis la bonne correction pour JSON cassé, `title` absent, score 130 et booléen texte. Données d’entrée — Les erreurs Zod et le contrat 0–100. Résultat attendu — Une correction par cause et quatre tests conservés.",
+      "hints": [
+        "Critères de réussite — Syntaxe, présence, plage et type sont traités dans la bonne couche.",
+        "Critère bloquant — Assouplir le schéma uniquement pour obtenir des tests verts.",
+        "Preuve Sentinelle — Conserve le test rouge, la correction et le test vert."
+      ],
+      "solution": "Grille — 1 point par diagnostic et 1 pour la non-régression ; 5/5. Exemple acceptable — Corriger la fixture ou l’instruction tout en gardant Zod strict. Exemple insuffisant — Transformer toutes les valeurs avec `as ResourceProposal`."
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {"question": "Quel code décrit `{\"title\":` ?", "options": ["INVALID_STRUCTURE", "MODEL_REFUSAL", "INVALID_JSON"], "answer": 2, "explanation": "Correct : la syntaxe ne peut pas être analysée. Les autres choix sont insuffisants car aucun objet ni refus exploitable n’existe encore."},
+        {"question": "Le score 130 échoue. Quelle première question poser ?", "options": ["Quelle règle du contrat est violée ?", "Comment supprimer le test ?", "Quelle clé API publier ?"], "answer": 0, "explanation": "Correct : le diagnostic part de la règle 0–100. Les autres choix sont insuffisants car ils masquent l’erreur ou exposent un secret."},
+        {"question": "Pourquoi conserver un test après correction ?", "options": ["Pour appeler l’API plus souvent", "Pour empêcher le retour de l’erreur", "Pour remplacer la revue humaine"], "answer": 1, "explanation": "Correct : le test devient une preuve de non-régression. Les autres choix sont insuffisants car réseau et jugement humain restent séparés."},
+        {"question": "Un champ obligatoire manque. Quelle correction est dangereuse ?", "options": ["Clarifier la sortie attendue", "Ajouter une fixture correcte", "Rendre le champ optionnel sans décision métier"], "answer": 2, "explanation": "Correct : cela affaiblit silencieusement le contrat. Les autres choix sont insuffisants pour masquer l’erreur et peuvent être évalués."},
+        {"question": "Quel avantage apporte une erreur avec chemin Zod ?", "options": ["Identifier précisément le champ fautif", "Garantir la vérité du contenu", "Réduire automatiquement le coût"], "answer": 0, "explanation": "Correct : le chemin cible le diagnostic. Les autres choix sont insuffisants car validation structurelle ne prouve ni vérité ni coût."}
+      ]
+    },
+    {"type": "validation"}
+  ]
+}

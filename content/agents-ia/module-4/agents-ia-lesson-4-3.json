@@ -1,0 +1,60 @@
+{
+  "id": "agents-ia-lesson-4-3",
+  "schemaVersion": 2,
+  "title": "Construire une boucle simple",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Mission — Construire une boucle qui progresse à chaque tour. Notion — Une boucle simple vérifie l’état, contrôle la limite, exécute une étape, décide du résultat puis met à jour compteur et trace ensemble."
+    },
+    {
+      "type": "explication",
+      "content": "Exemple — Première proposition score 30 : rejet, itération 1. Deuxième score 88 : acceptation, itération 2, statut `completed`. Aucun troisième appel n’est effectué."
+    },
+    {
+      "type": "demo",
+      "content": "Observer — Le test injecte deux sorties dans le mock. La trace attendue est `[rejected, accepted]` et les itérations `[1,2]`. La séquence prouve la progression et l’arrêt."
+    },
+    {
+      "type": "code",
+      "filename": "examples/agents/sentinelle/src/runner/runSentinelle.ts",
+      "language": "typescript",
+      "code": "const iteration = state.iteration + 1;\nconst proposal = await generateResource(state.topic, model);\nif (proposal.relevanceScore < minimumScore) {\n  state = withTrace(state, rejectedEntry(iteration));\n  continue;\n}\nreturn completeWithTrace(state, proposal, iteration);",
+      "explanation": "À comprendre — Le compteur est calculé avant l’étape et la transition ajoute la trace correspondante. À modifier — Change le seuil via les options et adapte les tests. Claude Code peut — Compléter les branches et les fixtures. À vérifier — Un rejet continue, une réussite retourne, et aucun chemin ne répète sans progression.",
+      "focusLines": [1, 3, 4, 5, 7]
+    },
+    {
+      "type": "explication",
+      "content": "Échec provoqué — La branche de rejet utilise `continue` sans appeler `withTrace`. L’état reste à l’itération 0 et la même sortie peut être demandée indéfiniment. Correction : enregistrer la transition avant toute continuation."
+    },
+    {
+      "type": "action",
+      "id": "agents-ia-m4-l3-action",
+      "title": "Rejouer deux tours",
+      "instructions": "Injecte une proposition sous le seuil puis une au-dessus. Prédis l’état et la trace avant d’exécuter le test.",
+      "successCriteria": "La prédiction correspond à deux appels, deux traces et un arrêt `success`.",
+      "evidence": "Conserve la prédiction, la sortie Vitest et l’écart éventuel expliqué."
+    },
+    {
+      "type": "exercice",
+      "question": "Consigne — Complète la branche de rejet d’une boucle. Données d’entrée — Scores 30 puis 88, seuil 70, maximum 3. Résultat attendu — Deux transitions et arrêt de réussite.",
+      "hints": [
+        "Critères de réussite — Compteur et trace augmentent une fois par appel ; la réussite interdit le troisième.",
+        "Critère bloquant — `continue` sans mise à jour d’état.",
+        "Preuve Sentinelle — Conserve la trace `[rejected, accepted]` et le nombre d’appels."
+      ],
+      "solution": "Grille — 1 point pour compteur, rejet, trace, réussite et absence de troisième appel ; 5/5. Exemple acceptable — Transition immuable avant `continue`. Exemple insuffisant — Mutation du compteur sans trace."
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {"question": "Deux scores 30 puis 88 sont fournis, seuil 70. Quel arrêt ?", "options": ["Après trois tours", "Après deux tours sur réussite", "Jamais"], "answer": 1, "explanation": "Correct : le second score satisfait la condition. Les autres choix sont insuffisants car ils ignorent la réussite ou la limite."},
+        {"question": "Quel risque crée `continue` avant la mise à jour ?", "options": ["Une meilleure trace", "Une validation automatique", "Une répétition sans progression"], "answer": 2, "explanation": "Correct : l’état reste identique et la boucle peut recommencer. Les autres choix sont insuffisants car aucune preuve ni validation n’est ajoutée."},
+        {"question": "Que doit contenir la trace après deux appels ?", "options": ["Deux entrées ordonnées", "Une entrée finale seulement", "La clé API"], "answer": 0, "explanation": "Correct : chaque étape exécutée possède sa preuve. Les autres choix sont insuffisants car ils perdent une transition ou exposent un secret."},
+        {"question": "Où modifier le seuil de pertinence ?", "options": ["Dans chaque fixture", "Dans les options avec tests associés", "Dans le package-lock"], "answer": 1, "explanation": "Correct : la configuration explicite garde la règle visible. Les autres choix sont insuffisants car fixture et verrou de dépendances ne portent pas la décision."},
+        {"question": "La condition de réussite est atteinte. Quelle instruction évite un tour supplémentaire ?", "options": ["continue", "while(true)", "return"], "answer": 2, "explanation": "Correct : `return` termine la fonction avec l’état final. Les autres choix sont insuffisants car ils poursuivent la boucle."}
+      ]
+    },
+    {"type": "validation"}
+  ]
+}
