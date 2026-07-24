@@ -4,7 +4,23 @@
   "blocks": [
     {
       "type": "explication",
-      "content": "Une application peut être comprise à travers trois grandes parties : l’interface, la logique et les données. Imagine un distributeur automatique : l’écran et les boutons sont l’interface, les règles qui vérifient ton paiement sont la logique, et la liste des produits disponibles représente les données."
+      "content": "Pourquoi apprendre cela ? Quand tu demanderas une modification à Claude Code, tu devras pouvoir montrer l’endroit concerné : ce que l’on voit, la règle qui travaille ou l’information conservée."
+    },
+    {
+      "type": "demo",
+      "content": "Imagine une machine à boissons. Tu appuies sur un bouton. La machine vérifie ton paiement. Elle sait quelles boissons restent disponibles."
+    },
+    {
+      "type": "explication",
+      "content": "Le bouton est la partie que tu touches. La vérification du paiement est la règle. La liste des boissons restantes est l’information utilisée par la machine."
+    },
+    {
+      "type": "demo",
+      "content": "Dans AI Academy, tu coches une case. Une règle compte les leçons terminées. L’application conserve la liste des leçons cochées."
+    },
+    {
+      "type": "explication",
+      "content": "Les vrais mots — L’interface est ce que tu vois et manipules. La logique rassemble les règles et les calculs. Les données sont les informations lues ou conservées."
     },
     {
       "type": "schema",
@@ -14,154 +30,92 @@
           {
             "id": "interface",
             "label": "Interface",
-            "color": "#6366F1",
-            "definition": "Ce que l’utilisateur voit et manipule."
+            "definition": "La case, le texte et la barre que tu vois."
           },
           {
             "id": "logique",
             "label": "Logique",
-            "color": "#F59E0B",
-            "definition": "Les règles qui déterminent ce que l’application doit faire."
+            "definition": "Les règles qui décident et calculent."
           },
           {
             "id": "donnees",
             "label": "Données",
-            "color": "#14B8A6",
-            "definition": "Les informations utilisées ou conservées par l’application."
+            "definition": "Les titres, scores et états utilisés par l’application."
           }
         ],
         "links": [
-          {
-            "from": "interface",
-            "to": "logique"
-          },
-          {
-            "from": "logique",
-            "to": "donnees"
-          },
-          {
-            "from": "donnees",
-            "to": "interface"
-          }
+          { "from": "interface", "to": "logique" },
+          { "from": "logique", "to": "donnees" },
+          { "from": "donnees", "to": "interface" }
         ]
       },
-      "caption": "Les trois parties fondamentales d’une application."
-    },
-    {
-      "type": "explication",
-      "content": "L’interface est tout ce que l’utilisateur voit ou utilise : textes, menus, formulaires, boutons et cases à cocher. Elle ressemble au tableau de bord d’une voiture : tu peux conduire grâce au volant et aux pédales sans voir directement le moteur."
+      "caption": "L’action part de l’interface, traverse une règle et produit un nouvel affichage."
     },
     {
       "type": "demo",
-      "content": "Dans le tracker, le nom des leçons, les cases à cocher et la barre de progression appartiennent à l’interface. Ce sont les éléments que tu regardes et manipules directement."
+      "content": "Mini-activité — Associe mentalement ces éléments : la barre de progression, le calcul 3 leçons sur 6 et l’information « lesson-1-1 terminée »."
     },
     {
       "type": "explication",
-      "content": "La logique correspond aux règles de fonctionnement. Dans un distributeur, la machine ne délivre le produit que si le paiement est suffisant et si le produit est disponible."
-    },
-    {
-      "type": "demo",
-      "content": "Dans le tracker, la logique décide qu’une leçon cochée doit être comptée comme terminée. Elle peut aussi empêcher la validation d’un module lorsque le score au quiz est inférieur à 75 %."
+      "content": "La barre appartient à l’interface. Le calcul appartient à la logique. L’état de la leçon appartient aux données."
     },
     {
       "type": "explication",
-      "content": "La logique réalise également les calculs. Elle prend des informations de départ, applique une règle, puis produit un résultat."
+      "content": "Tu as peut-être pensé qu’une case visible reste forcément cochée. C’est logique : tu vois le changement. Mais l’affichage peut disparaître au rechargement si l’information n’a pas été conservée."
     },
     {
       "type": "demo",
-      "content": "Si quatre leçons sur huit sont terminées, la logique calcule 4 divisé par 8, puis transforme le résultat en 50 %. L’interface affiche ensuite ce pourcentage dans la barre de progression."
-    },
-    {
-      "type": "explication",
-      "content": "Les données sont les informations utilisées par l’application. Dans un carnet d’adresses, les noms, les numéros de téléphone et les adresses sont des données."
-    },
-    {
-      "type": "demo",
-      "content": "Dans le tracker, le titre d’une leçon, son identifiant et son état terminé ou non terminé sont des données. L’application utilise ces informations pour construire l’écran et calculer la progression."
-    },
-    {
-      "type": "explication",
-      "content": "Les trois parties sont liées. L’interface reçoit ton action, la logique décide du traitement, puis les données sont consultées ou modifiées avant que l’interface affiche le résultat."
-    },
-    {
-      "type": "demo",
-      "content": "Quand tu coches une leçon, la case appartient à l’interface. La règle qui change son état appartient à la logique. L’information « cette leçon est terminée » appartient aux données."
-    },
-    {
-      "type": "explication",
-      "content": "Erreur fréquente : confondre l’affichage d’une information avec son enregistrement. Écrire une note sur une ardoise permet de la voir, mais elle disparaît si l’ardoise est effacée ; il faut la recopier dans un carnet pour la conserver."
-    },
-    {
-      "type": "demo",
-      "content": "De la même manière, voir une case cochée à l’écran ne garantit pas qu’elle le restera après la fermeture du navigateur. L’application doit aussi enregistrer cette donnée."
+      "content": "C’est comme écrire sur une ardoise. Le message est visible. Il n’est pas durable tant que tu ne le recopies pas dans un carnet."
     },
     {
       "type": "exercice",
-      "question": "Classe chaque élément du tracker dans la bonne catégorie : le bouton « Terminer », le calcul du pourcentage, le titre de la leçon et la règle « score minimum de 75 % ».",
+      "question": "Classe ces éléments d’AI Academy : le bouton « Terminer », le calcul du pourcentage, le titre d’une leçon et la règle « score minimum de 75 % ».",
       "hints": [
-        "Ce que tu vois appartient généralement à l’interface.",
-        "Une règle ou un calcul appartient généralement à la logique.",
-        "Une information comme un titre appartient généralement aux données."
+        "Ce que tu vois appartient souvent à l’interface.",
+        "Un calcul ou une condition appartient à la logique.",
+        "Un titre est une information utilisée par l’application."
       ],
-      "solution": "Le bouton « Terminer » appartient à l’interface. Le calcul du pourcentage et la règle des 75 % appartiennent à la logique. Le titre de la leçon appartient aux données, même s’il est ensuite affiché dans l’interface."
+      "solution": "Le bouton appartient à l’interface. Le calcul et la règle des 75 % appartiennent à la logique. Le titre est une donnée, même lorsqu’il est montré dans l’interface."
     },
     {
       "type": "quiz",
       "questions": [
         {
-          "question": "Qu’est-ce que l’interface d’une application ?",
-          "options": [
-            "Ce que l’utilisateur voit et manipule",
-            "Uniquement les informations enregistrées",
-            "Les règles invisibles de sécurité"
-          ],
-          "answer": 0,
-          "explanation": "L’interface comprend ce que l’utilisateur voit et utilise. Les informations enregistrées sont des données, tandis que les règles invisibles appartiennent plutôt à la logique."
-        },
-        {
-          "question": "Quelle partie calcule le pourcentage de progression ?",
-          "options": [
-            "La logique",
-            "La couleur du bouton",
-            "Le titre de la page"
-          ],
-          "answer": 0,
-          "explanation": "Le calcul appartient à la logique. La couleur et le titre sont des éléments d’interface, mais ils ne réalisent pas le calcul."
-        },
-        {
-          "question": "Dans le tracker, laquelle de ces informations est une donnée ?",
-          "options": [
-            "Le titre « Comprendre une application »",
-            "La règle qui calcule la progression",
-            "Le clic de l’utilisateur"
-          ],
-          "answer": 0,
-          "explanation": "Le titre est une information utilisée par l’application, donc une donnée. La règle appartient à la logique et le clic est une action de l’utilisateur."
-        },
-        {
-          "question": "Une case cochée reste-t-elle forcément cochée après la fermeture de l’application ?",
-          "options": [
-            "Oui, car elle était visible",
-            "Non, son état doit aussi être enregistré",
-            "Oui, si elle est verte"
-          ],
+          "question": "Quelle partie vois-tu et manipules-tu ?",
+          "options": ["La logique", "L’interface", "Les données seules"],
           "answer": 1,
-          "explanation": "L’état doit être enregistré pour être retrouvé plus tard. Le fait qu’il soit visible ou coloré ne garantit pas sa conservation."
+          "explanation": "L’interface contient notamment les textes, boutons et cases."
         },
         {
-          "question": "Quel enchaînement est le plus logique lorsque tu coches une leçon ?",
-          "options": [
-            "L’interface reçoit le clic, la logique modifie l’état, puis l’interface affiche le résultat",
-            "Les données changent avant toute action",
-            "La couleur du bouton crée automatiquement une nouvelle règle"
-          ],
+          "question": "Quelle partie calcule la progression ?",
+          "options": ["La couleur", "Le titre", "La logique"],
+          "answer": 2,
+          "explanation": "La logique contient les règles et les calculs."
+        },
+        {
+          "question": "Quel élément est une donnée ?",
+          "options": ["Le titre d’une leçon", "La règle des 75 %", "Le clic"],
           "answer": 0,
-          "explanation": "L’utilisateur agit d’abord sur l’interface. La logique traite cette action et modifie l’état ou les données. L’interface affiche ensuite le résultat. Les autres propositions inversent les étapes ou attribuent un rôle impossible à la couleur."
+          "explanation": "Le titre est une information utilisée et affichée par l’application."
+        },
+        {
+          "question": "Voir une case cochée prouve-t-il que son état est conservé ?",
+          "options": ["Oui, toujours", "Non", "Oui, si elle est verte"],
+          "answer": 1,
+          "explanation": "L’affichage peut changer sans que l’information soit enregistrée."
+        },
+        {
+          "question": "Quel ordre décrit le mieux un clic sur une leçon ?",
+          "options": ["Les données agissent avant toi", "La couleur crée une règle", "L’interface reçoit le clic, la logique traite, l’affichage change"],
+          "answer": 2,
+          "explanation": "Ton action entre par l’interface. La logique la traite, puis l’interface montre le résultat."
         }
       ]
     },
     {
-      "type": "validation"
-    }
+      "type": "explication",
+      "content": "En langage courant — Tu agis sur ce que tu vois. Des règles travaillent. Des informations sont lues ou gardées."
+    },
+    { "type": "validation" }
   ]
 }

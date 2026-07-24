@@ -4,180 +4,118 @@
   "blocks": [
     {
       "type": "explication",
-      "content": "Une API est une manière organisée pour deux programmes de communiquer. Imagine un guichet : tu présentes une demande selon certaines règles, puis le guichet te remet une réponse."
+      "content": "Pourquoi apprendre cela ? La partie visible d’AI Academy devra parfois demander une information à une autre partie. Tu dois comprendre ce voyage pour savoir où une erreur peut arriver."
     },
     {
       "type": "demo",
-      "content": "À la poste, tu ne vas pas directement fouiller dans l’entrepôt pour chercher ton colis. Tu donnes ton numéro au guichet, l’employé consulte le système et te rapporte le bon colis."
+      "content": "Imagine le guichet d’une gare. Tu demandes un billet pour une destination précise. L’agent consulte le système. Il te donne le billet ou explique pourquoi la demande échoue."
     },
     {
       "type": "explication",
-      "content": "Le terme API signifie « interface de programmation d’application ». Tu peux surtout retenir qu’elle définit comment un programme doit demander une information ou une action à un autre programme."
-    },
-    {
-      "type": "explication",
-      "content": "Le programme qui a besoin d’une information envoie une demande, appelée requête. Une requête ressemble à un formulaire correctement rempli : elle indique clairement ce que l’on souhaite."
+      "content": "Le guichet impose une manière claire de demander. Tu donnes la destination et la date. Tu ne vas pas fouiller toi-même dans le système de la gare."
     },
     {
       "type": "demo",
-      "content": "Une application météo peut envoyer une requête demandant : donne-moi la météo de Paris pour aujourd’hui. Le service météo traite la demande et prépare le résultat."
+      "content": "Dans AI Academy, la partie visible peut demander : « marque la leçon lesson-1-5 comme terminée ». La partie cachée vérifie, enregistre et répond."
+    },
+    {
+      "type": "explication",
+      "content": "Le vrai mot — Une API définit la manière dont deux programmes se parlent. API signifie « interface de programmation d’application ». Tu n’as pas besoin de retenir ces quatre mots aujourd’hui."
     },
     {
       "type": "schema",
       "diagram": {
-        "kind": "trio",
+        "kind": "flow",
+        "direction": "horizontal",
         "nodes": [
           {
-            "id": "frontend",
-            "label": "Frontend",
-            "color": "#6366F1",
-            "definition": "Il prépare la demande à partir de l’action de l’utilisateur."
+            "id": "demande",
+            "label": "Demande",
+            "definition": "Le frontend précise l’action souhaitée."
           },
           {
-            "id": "api",
-            "label": "API",
-            "color": "#F59E0B",
-            "definition": "Elle définit comment envoyer une demande et recevoir une réponse."
+            "id": "traitement",
+            "label": "Traitement",
+            "definition": "Le backend vérifie et agit."
           },
           {
-            "id": "backend",
-            "label": "Backend",
-            "color": "#14B8A6",
-            "definition": "Il traite la demande et prépare le résultat."
+            "id": "retour",
+            "label": "Réponse",
+            "definition": "Le backend confirme ou explique l’échec."
           }
         ],
         "links": [
-          {
-            "from": "frontend",
-            "to": "api"
-          },
-          {
-            "from": "api",
-            "to": "backend"
-          },
-          {
-            "from": "backend",
-            "to": "frontend"
-          }
+          { "from": "demande", "to": "traitement" },
+          { "from": "traitement", "to": "retour" }
         ]
       },
-      "caption": "Une API organise la communication entre le frontend et le backend."
+      "caption": "Une demande claire reçoit une réponse claire."
     },
     {
       "type": "explication",
-      "content": "Le programme qui reçoit la requête la traite, puis renvoie une réponse. La réponse peut contenir l’information demandée, une confirmation ou une erreur."
+      "content": "Le message envoyé s’appelle une requête. Le message reçu s’appelle une réponse. La réponse peut contenir une information, une confirmation ou une erreur."
     },
     {
       "type": "demo",
-      "content": "Si tu demandes la météo de Paris, la réponse peut contenir la température et la pluie prévue. Si tu écris une ville inconnue, la réponse peut signaler que la recherche a échoué."
+      "content": "Mini-activité — Mets ces trois moments dans l’ordre : AI Academy confirme, tu coches une leçon, AI Academy envoie la demande."
     },
     {
       "type": "explication",
-      "content": "L’analogie du restaurant fonctionne aussi. Le client passe une commande, le serveur la transmet à la cuisine, puis rapporte le plat."
-    },
-    {
-      "type": "demo",
-      "content": "Le client ne donne pas des instructions directement à chaque cuisinier. Il utilise un intermédiaire qui connaît les règles de communication entre la salle et la cuisine."
+      "content": "L’ordre est : tu coches, la demande part, la confirmation revient."
     },
     {
       "type": "explication",
-      "content": "Dans une application, le frontend prépare souvent la requête à partir de l’action de l’utilisateur. L’API définit la forme attendue de cette demande."
-    },
-    {
-      "type": "demo",
-      "content": "Dans le tracker, lorsque tu coches une leçon, le frontend peut envoyer l’identifiant « lesson-1-5 » et le nouvel état « terminée ». Ces informations permettent au backend de comprendre précisément la demande."
-    },
-    {
-      "type": "explication",
-      "content": "Le backend traite ensuite la demande. Il peut vérifier que l’utilisateur a le droit de modifier cette progression avant de l’enregistrer."
-    },
-    {
-      "type": "demo",
-      "content": "Si tout est correct, le backend enregistre la progression et renvoie une réponse de succès. Le frontend peut alors afficher « Progression enregistrée »."
-    },
-    {
-      "type": "explication",
-      "content": "Une erreur n’est pas forcément un problème incompréhensible. C’est souvent une réponse indiquant que la demande ne peut pas être satisfaite."
-    },
-    {
-      "type": "demo",
-      "content": "Si la connexion Internet est coupée, le frontend peut recevoir une erreur au lieu d’une confirmation. Il doit alors afficher un message clair plutôt que prétendre que l’enregistrement a réussi."
-    },
-    {
-      "type": "explication",
-      "content": "Erreur fréquente : croire qu’une API est forcément liée à une intelligence artificielle. Une API est seulement une porte de communication standardisée."
-    },
-    {
-      "type": "demo",
-      "content": "Une API peut fournir la météo, enregistrer un paiement, envoyer un courriel ou accéder à une IA. C’est le service situé derrière l’API qui change."
+      "content": "Tu as peut-être pensé qu’une API était toujours une intelligence artificielle. C’est logique, car les outils d’IA parlent souvent d’API. Mais une API est seulement une façon de communiquer. Elle peut servir à la météo, au paiement ou à AI Academy."
     },
     {
       "type": "exercice",
-      "question": "Remets ces étapes dans le bon ordre : le backend enregistre la progression, le frontend envoie une requête, l’utilisateur coche une leçon, le frontend affiche le résultat et le backend renvoie une réponse.",
+      "question": "Remets dans l’ordre : le backend enregistre, le frontend envoie une requête, tu coches une leçon, le frontend affiche le résultat, le backend répond.",
       "hints": [
-        "Tout commence par l’action de l’utilisateur.",
-        "La requête part du frontend vers le backend.",
-        "L’affichage final se produit après la réponse."
+        "Ton action vient en premier.",
+        "La requête part avant la réponse.",
+        "L’affichage final vient après la réponse."
       ],
-      "solution": "1. L’utilisateur coche une leçon. 2. Le frontend envoie une requête. 3. Le backend enregistre la progression. 4. Le backend renvoie une réponse. 5. Le frontend affiche le résultat."
+      "solution": "1. Tu coches une leçon. 2. Le frontend envoie une requête. 3. Le backend enregistre. 4. Le backend répond. 5. Le frontend affiche le résultat."
     },
     {
       "type": "quiz",
       "questions": [
         {
           "question": "À quoi sert une API ?",
-          "options": [
-            "À organiser la communication entre des programmes",
-            "À choisir uniquement les polices d’écriture",
-            "À éteindre automatiquement l’ordinateur"
-          ],
-          "answer": 0,
-          "explanation": "Une API définit comment des programmes peuvent échanger des demandes et des réponses. Elle n’est pas un outil de design et ne sert pas à éteindre l’ordinateur."
-        },
-        {
-          "question": "Comment appelle-t-on généralement le message envoyé pour demander une action ou une information ?",
-          "options": [
-            "Une requête",
-            "Une couleur",
-            "Un composant visuel"
-          ],
-          "answer": 0,
-          "explanation": "Le message envoyé est une requête. Une couleur et un composant appartiennent à l’interface, pas au mécanisme de communication."
-        },
-        {
-          "question": "Que peut contenir la réponse d’une API ?",
-          "options": [
-            "Des données, une confirmation ou une erreur",
-            "Uniquement une image",
-            "Toujours un mot de passe"
-          ],
-          "answer": 0,
-          "explanation": "Une réponse peut transmettre des données, confirmer une opération ou signaler une erreur. Elle n’est pas limitée aux images et ne doit pas contenir automatiquement un mot de passe."
-        },
-        {
-          "question": "Dans le tracker, quelle information permet d’indiquer précisément la leçon à modifier ?",
-          "options": [
-            "Son identifiant",
-            "La position actuelle de la souris",
-            "La couleur de fond de la page"
-          ],
-          "answer": 0,
-          "explanation": "L’identifiant permet de désigner précisément la leçon concernée. La souris et la couleur de fond ne permettent pas de reconnaître une donnée."
-        },
-        {
-          "question": "Toutes les API utilisent-elles une intelligence artificielle ?",
-          "options": [
-            "Oui",
-            "Non",
-            "Seulement les API gratuites"
-          ],
+          "options": ["À choisir une police", "À organiser la communication", "À éteindre l’ordinateur"],
           "answer": 1,
-          "explanation": "Non. Une API est d’abord un moyen de communication. Elle peut donner accès à une IA, mais aussi à une base de données, un service météo ou un moyen de paiement. Son prix ne change pas sa définition."
+          "explanation": "Une API fixe une manière commune d’envoyer une demande et une réponse."
+        },
+        {
+          "question": "Comment s’appelle le message envoyé ?",
+          "options": ["Une couleur", "Un bouton", "Une requête"],
+          "answer": 2,
+          "explanation": "Une requête décrit l’information ou l’action demandée."
+        },
+        {
+          "question": "Que peut contenir une réponse ?",
+          "options": ["Une information, une confirmation ou une erreur", "Toujours un mot de passe", "Seulement une image"],
+          "answer": 0,
+          "explanation": "La réponse indique ce que le traitement a produit."
+        },
+        {
+          "question": "Qu’est-ce qui désigne précisément la leçon à modifier ?",
+          "options": ["La souris", "Son identifiant", "La couleur de fond"],
+          "answer": 1,
+          "explanation": "L’identifiant indique sans ambiguïté la leçon concernée."
+        },
+        {
+          "question": "Toutes les API donnent-elles accès à une IA ?",
+          "options": ["Oui", "Seulement les gratuites", "Non"],
+          "answer": 2,
+          "explanation": "Une API peut relier de nombreux types de services."
         }
       ]
     },
     {
-      "type": "validation"
-    }
+      "type": "explication",
+      "content": "En langage courant — Une partie demande. Une autre traite. Une réponse revient. L’API fixe les règles de cet échange."
+    },
+    { "type": "validation" }
   ]
 }

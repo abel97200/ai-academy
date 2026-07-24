@@ -4,160 +4,118 @@
   "blocks": [
     {
       "type": "explication",
-      "content": "Un site web et une application web s’ouvrent tous les deux dans un navigateur, comme Chrome, Safari ou Firefox. Visuellement, ils peuvent même se ressembler, mais ils ne servent pas toujours au même usage."
+      "content": "Ton projet — Pendant cette formation, tu vas construire AI Academy. Cette application t’aidera à suivre des leçons, répondre à des quiz et voir ta progression. Claude Code t’aidera à la fabriquer. Tu garderas toujours le dernier mot."
     },
     {
       "type": "demo",
-      "content": "Imagine deux établissements : une affiche placée devant un restaurant et une borne de commande. L’affiche te donne les horaires et le menu. La borne, elle, te laisse choisir un repas, modifier ta commande et la confirmer."
+      "content": "Pourquoi commencer ici ? Avant de construire, tu dois comprendre ce que tu construis. C’est comme regarder le plan d’une maison avant de poser la première pierre."
     },
     {
       "type": "explication",
-      "content": "Un site principalement informatif ressemble à l’affiche du restaurant. Il sert surtout à consulter du contenu déjà préparé : lire une présentation, regarder des photos ou vérifier des horaires."
+      "content": "Imagine une affiche de restaurant. Elle présente le menu et les horaires. Tu peux la lire, mais elle ne réagit pas à tes choix."
+    },
+    {
+      "type": "demo",
+      "content": "Imagine maintenant la borne de commande. Tu choisis un plat. La borne calcule le prix. Elle garde ta commande. Quelque chose change grâce à ton action."
+    },
+    {
+      "type": "explication",
+      "content": "Dans AI Academy, lire le titre d’une leçon ressemble à consulter l’affiche. Cocher une leçon ressemble à utiliser la borne. Ton clic change la progression et cette information peut être conservée."
+    },
+    {
+      "type": "explication",
+      "content": "Les vrais mots — Un site web sert surtout à présenter des informations. Une application web reçoit des actions, applique des règles et produit un résultat. Un même produit peut faire les deux."
     },
     {
       "type": "schema",
       "diagram": {
-        "kind": "trio",
+        "kind": "flow",
+        "direction": "horizontal",
         "nodes": [
           {
-            "id": "visiteur",
-            "label": "Visiteur",
-            "color": "#6366F1",
-            "definition": "La personne ouvre le site pour consulter son contenu."
+            "id": "action",
+            "label": "Tu agis",
+            "definition": "Tu coches une leçon ou réponds à un quiz."
           },
           {
-            "id": "contenu",
-            "label": "Informations",
-            "color": "#14B8A6",
-            "definition": "Le site présente des textes, des images ou des informations pratiques."
+            "id": "reaction",
+            "label": "AI Academy réagit",
+            "definition": "Elle vérifie ton action et calcule un résultat."
           },
           {
-            "id": "consultation",
-            "label": "Consultation",
-            "color": "#F59E0B",
-            "definition": "L’utilisateur lit ou regarde principalement le contenu proposé."
+            "id": "resultat",
+            "label": "Tu vois le résultat",
+            "definition": "La progression ou le score change."
           }
         ],
         "links": [
-          {
-            "from": "visiteur",
-            "to": "contenu"
-          },
-          {
-            "from": "contenu",
-            "to": "consultation"
-          }
+          { "from": "action", "to": "reaction" },
+          { "from": "reaction", "to": "resultat" }
         ]
       },
-      "caption": "Le fonctionnement simplifié d’un site principalement informatif."
+      "caption": "Une application transforme une action en résultat."
     },
     {
       "type": "demo",
-      "content": "Une page présentant les horaires d’une mairie est principalement informative. Tu peux lire les heures d’ouverture, mais la page ne calcule rien pour toi et ne conserve pas une action personnelle."
+      "content": "Mini-activité — Regarde cette page. Repère une information que tu peux seulement lire. Puis repère une action qui fait changer l’écran."
     },
     {
       "type": "explication",
-      "content": "Une application web ressemble davantage à la borne de commande. Elle reçoit une action de l’utilisateur, applique des règles et affiche un nouveau résultat."
-    },
-    {
-      "type": "demo",
-      "content": "Dans une application bancaire, tu saisis un montant puis tu confirmes un virement. L’application vérifie les informations, enregistre l’opération et met à jour ton solde."
+      "content": "Tu peux probablement lire le titre sans agir. En revanche, répondre au quiz produit un score. Voilà la différence utile."
     },
     {
       "type": "explication",
-      "content": "Une application permet donc souvent de créer, modifier ou enregistrer des informations. Elle ne se contente pas de montrer la même chose à tous les visiteurs."
-    },
-    {
-      "type": "demo",
-      "content": "Dans le tracker d’apprentissage, tu peux cocher une leçon, voir ton pourcentage de progression changer et retrouver cet état après avoir rechargé la page. Le tracker réagit à ton action et conserve une information qui te concerne."
-    },
-    {
-      "type": "explication",
-      "content": "La frontière n’est toutefois pas toujours parfaite. Un même produit peut comporter des pages informatives et des fonctions interactives."
-    },
-    {
-      "type": "demo",
-      "content": "Le site d’un cinéma peut présenter les films et leurs horaires comme un site informatif. Dès que tu choisis une séance, sélectionnes des places et règles ta réservation, tu utilises une fonction d’application."
-    },
-    {
-      "type": "explication",
-      "content": "AI Academy fonctionne de la même manière. Elle affiche des explications à lire, mais elle enregistre aussi ta progression, corrige tes quiz et adapte ce qui est affiché selon tes actions."
-    },
-    {
-      "type": "explication",
-      "content": "Erreur fréquente : croire qu’un bouton suffit à transformer un site en application. Un bouton peut simplement ouvrir une autre page ; il faut surtout regarder ce qu’il déclenche réellement."
-    },
-    {
-      "type": "demo",
-      "content": "Un bouton « Nous contacter » qui ouvre une page reste une navigation simple. Un bouton « Valider la leçon » qui vérifie ton score, enregistre ton résultat et actualise ta progression déclenche une véritable logique d’application."
+      "content": "Tu as peut-être pensé qu’un bouton suffit à créer une application. C’est logique, car un bouton invite à agir. Mais certains boutons ouvrent seulement une autre page. Il faut regarder ce qui change après le clic."
     },
     {
       "type": "exercice",
-      "question": "Classe ces exemples en deux groupes : un article de presse, une page affichant les horaires d’un restaurant, un formulaire de réservation et le tracker d’apprentissage.",
+      "question": "Classe ces quatre exemples : un article, une page d’horaires, un formulaire de réservation et le suivi de progression d’AI Academy.",
       "hints": [
-        "Demande-toi si l’utilisateur consulte seulement une information.",
-        "Une application transforme souvent une saisie ou un clic en nouveau résultat.",
-        "Le formulaire de réservation et le tracker traitent des actions de l’utilisateur."
+        "Commence par chercher ce que la personne peut seulement lire.",
+        "Cherche ensuite ce qui reçoit une action et produit un résultat.",
+        "Une réservation et une progression changent grâce à l’utilisateur."
       ],
-      "solution": "L’article de presse et la page d’horaires sont principalement informatifs. Le formulaire de réservation et le tracker correspondent davantage à des fonctions d’application, car ils traitent une action et produisent un résultat. Un même produit peut toutefois combiner les deux catégories."
+      "solution": "L’article et la page d’horaires servent surtout à informer. Le formulaire et le suivi de progression sont des fonctions d’application. Ils reçoivent une action et produisent un nouveau résultat."
     },
     {
       "type": "quiz",
       "questions": [
         {
-          "question": "Quelle est la fonction principale d’un site vitrine ?",
-          "options": [
-            "Présenter des informations",
-            "Enregistrer obligatoirement les données de chaque visiteur",
-            "Installer un programme sur l’ordinateur"
-          ],
+          "question": "Quel exemple sert surtout à présenter une information ?",
+          "options": ["Une page d’horaires", "Un quiz corrigé", "Une progression enregistrée"],
           "answer": 0,
-          "explanation": "Présenter des informations est la bonne réponse. Un site vitrine peut afficher des textes, des images ou des services sans enregistrer les données de chaque visiteur. Il n’a pas non plus besoin d’installer un programme sur l’ordinateur."
+          "explanation": "Une page d’horaires peut être simplement consultée. Le quiz et la progression réagissent à une action."
         },
         {
-          "question": "Quelle caractéristique décrit le mieux une application web ?",
-          "options": [
-            "Elle ne contient jamais de texte",
-            "Elle permet à l’utilisateur d’agir et produit un résultat",
-            "Elle fonctionne uniquement sur téléphone"
-          ],
+          "question": "Que fait une application web ?",
+          "options": ["Elle fonctionne seulement sur téléphone", "Elle reçoit une action et produit un résultat", "Elle ne contient jamais de texte"],
           "answer": 1,
-          "explanation": "Une application web permet à l’utilisateur d’effectuer des actions et d’obtenir un résultat. Elle peut contenir du texte et fonctionner sur ordinateur, téléphone ou tablette."
+          "explanation": "Une application transforme une action en résultat. Elle peut aussi contenir du texte et fonctionner sur plusieurs appareils."
         },
         {
-          "question": "Dans AI Academy, quelle fonction correspond le mieux à une application ?",
-          "options": [
-            "Afficher le logo",
-            "Enregistrer les leçons terminées",
-            "Afficher le titre d’une page"
-          ],
-          "answer": 1,
-          "explanation": "Enregistrer les leçons terminées est une fonction d’application, car une action modifie puis conserve une information. Le logo et le titre sont principalement des éléments affichés."
+          "question": "Quelle fonction d’AI Academy montre le mieux qu’il s’agit d’une application ?",
+          "options": ["Le logo", "Le titre", "Le calcul de progression"],
+          "answer": 2,
+          "explanation": "Le calcul de progression dépend de tes actions. Le logo et le titre sont surtout affichés."
         },
         {
-          "question": "Une application web peut-elle contenir des pages purement informatives ?",
-          "options": [
-            "Non, jamais",
-            "Oui",
-            "Seulement si elle est payante"
-          ],
-          "answer": 1,
-          "explanation": "Oui. Une application peut mélanger des pages informatives et des fonctions interactives. Le fait qu’elle soit gratuite ou payante ne change pas sa nature."
+          "question": "Un produit peut-il informer et permettre d’agir ?",
+          "options": ["Oui", "Non", "Seulement s’il est payant"],
+          "answer": 0,
+          "explanation": "AI Academy combine des explications à lire et des fonctions interactives."
         },
         {
-          "question": "Un bouton visible suffit-il à prouver qu’un site est une application ?",
-          "options": [
-            "Oui, tous les boutons transforment un site en application",
-            "Non, il faut observer ce que le bouton permet réellement de faire",
-            "Oui, uniquement si le bouton est coloré"
-          ],
+          "question": "Comment savoir si un bouton fait partie d’une vraie fonction ?",
+          "options": ["Regarder sa couleur", "Observer ce qui change après le clic", "Mesurer sa taille"],
           "answer": 1,
-          "explanation": "Il faut regarder l’action déclenchée par le bouton. Un bouton qui ouvre simplement une autre page ne suffit pas forcément. Sa couleur n’a aucun rapport avec la nature du produit."
+          "explanation": "Le résultat du clic compte. La couleur et la taille ne disent rien sur le traitement réalisé."
         }
       ]
     },
     {
-      "type": "validation"
-    }
+      "type": "explication",
+      "content": "En langage courant — Un site montre surtout des choses. Une application fait quelque chose avec ton action. AI Academy fera les deux."
+    },
+    { "type": "validation" }
   ]
 }
