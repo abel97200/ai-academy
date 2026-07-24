@@ -1,1 +1,81 @@
-{"id":"agents-ia-lesson-1-1","schemaVersion":2,"title":"Chatbot, assistant et agent : faire la différence","blocks":[{"type":"explication","content":"Brief — Classer trois systèmes sans utiliser le mot agent comme étiquette vague. Résultat attendu : une preuve courte appliquée au futur agent Sentinelle."},{"type":"explication","content":"Un chatbot répond dans une conversation. Un assistant aide une personne à réaliser une tâche. Un agent poursuit un objectif en choisissant et exécutant plusieurs actions dans des limites définies."},{"type":"explication","content":"Analogie — Un guichet répond à une question, un conseiller t’aide à préparer le dossier, un coursier reçoit une destination puis choisit un trajet et effectue la livraison."},{"type":"schema","diagram":{"kind":"flow","direction":"horizontal","nodes":[{"id":"n1","label":"Chatbot : répondre","color":"#6366F1","definition":"Chatbot : répondre est l’étape 1 du raisonnement."},{"id":"n2","label":"Assistant : aider","color":"#F59E0B","definition":"Assistant : aider est l’étape 2 du raisonnement."},{"id":"n3","label":"Agent : agir vers un objectif","color":"#14B8A6","definition":"Agent : agir vers un objectif est l’étape 3 du raisonnement."}],"links":[{"from":"n1","to":"n2"},{"from":"n2","to":"n3"}]},"caption":"Chatbot : répondre → Assistant : aider → Agent : agir vers un objectif : le trajet à observer."},{"type":"demo","content":"Un bot qui explique une leçon est un chatbot. Un copilote qui propose un plan reste un assistant. Un système qui recherche des ressources, les compare et prépare un rapport suit une boucle d’agent."},{"type":"code","filename":"classification.md","language":"markdown","code":"| Système | Objectif persistant | Choix d’actions | Outils |\n| Chatbot FAQ | non | non | aucun |\n| Copilote | guidé par l’humain | proposés | parfois |\n| Agent de veille | oui | oui, dans des limites | recherche et rapport |","explanation":"Le tableau compare des comportements, pas des marques. Tu dois savoir justifier la classification. Claude Code peut aider à analyser un système, mais tu vérifies ce qu’il fait réellement.","focusLines":[1]},{"type":"explication","content":"Erreur fréquente — attribuer à l’agent des capacités ou une autonomie qui ne sont ni définies ni vérifiées. Décris toujours le comportement réel, les limites et la preuve attendue."},{"type":"action","id":"agents-ia-m1-l1-action","title":"Classer trois systèmes","instructions":"Choisis trois outils que tu connais et décris leurs comportements avant de les classer.","successCriteria":"Chaque classement cite objectif, autonomie et actions observables.","evidence":"Note ta décision, sa justification et la preuve utilisée."},{"type":"exercice","question":"Classe un chatbot FAQ, un assistant de rédaction et un agent de veille. Justifie chaque réponse.","hints":["Observe qui fixe chaque étape.","Cherche une suite d’actions.","Vérifie si le système utilise des outils."],"solution":"Le chatbot répond à une question ; l’assistant aide l’humain à rédiger ; l’agent de veille poursuit un objectif, choisit des recherches et prépare un livrable avec ses outils."},{"type":"quiz","questions":[{"question":"Que fait principalement un chatbot ?","options":["Il répond dans une conversation","Il agit toujours sans humain","Il possède forcément une mémoire durable"],"answer":0,"explanation":"La conversation ne suffit pas à créer une autonomie d’agent."},{"question":"Qu’est-ce qui caractérise un agent ?","options":["Une boucle d’actions orientée vers un objectif","Un nom marketing","Une interface de chat"],"answer":0,"explanation":"L’agent observe, décide et agit dans des limites."},{"question":"Un assistant est-il toujours un agent ?","options":["Non","Oui","Seulement s’il écrit beaucoup"],"answer":0,"explanation":"Un assistant peut rester sous direction humaine à chaque étape."},{"question":"Pourquoi observer les outils ?","options":["Ils montrent quelles actions réelles sont possibles","Ils changent la couleur","Ils garantissent la sécurité"],"answer":0,"explanation":"Les outils déterminent la portée concrète des actions."},{"question":"Une étiquette « agent » suffit-elle ?","options":["Non, il faut examiner le comportement","Oui","Seulement sur une page web"],"answer":0,"explanation":"La classification repose sur les capacités et la boucle réelle."}]},{"type":"validation"}]}
+{
+  "id": "agents-ia-lesson-1-1",
+  "schemaVersion": 2,
+  "title": "Chatbot, assistant et agent : faire la différence",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Notion — Un modèle génère une réponse. Un chatbot organise un dialogue. Un assistant aide un humain à accomplir une tâche. Une automatisation suit un enchaînement prédéfini. Un agent poursuit un objectif en observant un état, en choisissant des actions avec des outils, puis en vérifiant le résultat. Le mot « agent » dans une publicité ne prouve rien."
+    },
+    {
+      "type": "explication",
+      "content": "Exemple — Une FAQ conversationnelle reste un chatbot. Un flux qui copie chaque formulaire dans un tableur est une automatisation. Sentinelle devient un agent seulement s’il peut rechercher, comparer, conserver un état et s’arrêter selon des règles. Si une simple automatisation suffit, elle est préférable."
+    },
+    {
+      "type": "demo",
+      "content": "Diagnostic guidé — « Le système reçoit un sujet, recherche trois sources, écarte celles hors périmètre, mémorise ses tentatives et remet un brouillon à valider. » Modèle : composant de raisonnement. Outil : recherche. État : tentatives et sources. Agent : boucle complète. Humain : validation finale."
+    },
+    {
+      "type": "code",
+      "filename": "classification.md",
+      "language": "markdown",
+      "code": "| Système | Objectif | État | Choix d’action | Outil | Validation humaine |\n|---|---|---|---|---|---|\n| FAQ | répondre | conversation | non | non | non |\n| Sentinelle | préparer 3 fiches | sources et tentatives | oui | recherche | oui |",
+      "explanation": "À comprendre — Les capacités observables, pas l’étiquette, déterminent la catégorie. À modifier — Complète la grille avec un système de ton quotidien. Claude Code peut — Aider à structurer ce document en tant qu’assistant de développement ; il n’est ni le modèle ni une composante automatique de Sentinelle. À vérifier — Chaque « oui » est justifié par un comportement réel.",
+      "focusLines": [1]
+    },
+    {
+      "type": "action",
+      "id": "agents-ia-m1-l1-action",
+      "title": "Classer quatre systèmes",
+      "instructions": "Classe une FAQ, un copilote de rédaction, un workflow planifié et Sentinelle. Justifie chaque catégorie par deux comportements observables.",
+      "successCriteria": "Les quatre catégories sont distinctes et aucune justification ne repose sur le nom commercial.",
+      "evidence": "Conserve la grille complétée et une phrase expliquant quand l’automatisation simple est préférable."
+    },
+    {
+      "type": "exercice",
+      "question": "Consigne — Diagnostique le système suivant : « Il reformule une demande et propose une réponse, mais n’utilise aucun outil et ne poursuit aucune étape après sa réponse. » Données d’entrée — Cette description uniquement. Résultat attendu — Une catégorie et deux preuves.",
+      "hints": [
+        "Critères de réussite — La catégorie est choisie parmi modèle, chatbot, assistant, automatisation ou agent, avec deux indices observables.",
+        "Critère bloquant — Appeler le système « agent » uniquement parce que le vendeur le présente ainsi.",
+        "Preuve Sentinelle — Conserve le diagnostic dans la rubrique « vocabulaire » de la future carte d’identité."
+      ],
+      "solution": "Grille — 1 point pour la catégorie, 1 pour l’absence d’outil, 1 pour l’absence de boucle ; 2/3 minimum. Exemple acceptable — « Assistant conversationnel : il aide à répondre, mais n’agit pas et ne vérifie pas. » Exemple insuffisant — « C’est un agent IA car il répond intelligemment. »"
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "Un service répond à une FAQ sans outil ni état durable. Quelle classification est la plus précise ?",
+          "options": ["Un chatbot", "Un agent autonome", "Une automatisation multiétape"],
+          "answer": 0,
+          "explanation": "Correct : le dialogue sans action externe correspond à un chatbot. Les autres choix sont insuffisants car aucun outil, état de tâche ou enchaînement n’est décrit."
+        },
+        {
+          "question": "Quel élément distingue surtout un agent d’un simple modèle appelé une fois ?",
+          "options": ["Une interface colorée", "Une boucle objectif–action–vérification", "Un nom humain"],
+          "answer": 1,
+          "explanation": "Correct : l’agent poursuit un objectif dans une boucle contrôlée. Les autres choix sont insuffisants car l’apparence et le nom ne prouvent aucune capacité."
+        },
+        {
+          "question": "Un formulaire déclenche toujours le même e-mail. Quelle solution décrit le mieux ce cas ?",
+          "options": ["Un modèle généraliste", "Un agent qui planifie", "Une automatisation déterministe"],
+          "answer": 2,
+          "explanation": "Correct : l’enchaînement est prédéfini. Les autres choix sont insuffisants car aucune génération ni décision adaptative n’est nécessaire."
+        },
+        {
+          "question": "Dans Sentinelle, que représente le moteur de recherche ?",
+          "options": ["Un outil", "L’objectif", "La validation humaine"],
+          "answer": 0,
+          "explanation": "Correct : la recherche est une capacité appelée pour agir. Les autres choix sont insuffisants car l’objectif donne la direction et l’humain décide d’accepter."
+        },
+        {
+          "question": "Quand faut-il préférer une automatisation simple à un agent ?",
+          "options": ["Quand le nom paraît moins moderne", "Quand les étapes sont stables et sans décision adaptative", "Quand aucune règle n’est connue"],
+          "answer": 1,
+          "explanation": "Correct : un flux stable est plus prévisible et testable. Les autres choix sont insuffisants car le marketing ne compte pas et l’absence de règles interdit un cadrage fiable."
+        }
+      ]
+    },
+    {"type": "validation"}
+  ]
+}

@@ -1,1 +1,81 @@
-{"id":"agents-ia-lesson-2-4","schemaVersion":2,"title":"Écrire les règles et contraintes","blocks":[{"type":"explication","content":"Brief — Transformer les limites de la mission en règles appliquées à chaque exécution. Résultat attendu : une preuve courte appliquée au futur agent Sentinelle."},{"type":"explication","content":"Une règle indique un comportement attendu. Une contrainte fixe une frontière comme un budget, une source autorisée ou une action interdite."},{"type":"explication","content":"Analogie — Les règles d’un jeu expliquent les actions possibles ; les limites du terrain empêchent la partie de s’étendre partout."},{"type":"schema","diagram":{"kind":"flow","direction":"horizontal","nodes":[{"id":"n1","label":"Règles de qualité","color":"#6366F1","definition":"Règles de qualité est l’étape 1 du raisonnement."},{"id":"n2","label":"Budget et permissions","color":"#F59E0B","definition":"Budget et permissions est l’étape 2 du raisonnement."},{"id":"n3","label":"Refus explicites","color":"#14B8A6","definition":"Refus explicites est l’étape 3 du raisonnement."}],"links":[{"from":"n1","to":"n2"},{"from":"n2","to":"n3"}]},"caption":"Règles de qualité → Budget et permissions → Refus explicites : le trajet à observer."},{"type":"demo","content":"Utiliser seulement des sources accessibles, refuser une ressource sans date, limiter à cinq recherches et demander validation avant publication."},{"type":"code","filename":"agent-rules.md","language":"markdown","code":"DOIT citer chaque source.\nDOIT vérifier la date.\nPEUT lancer au maximum 5 recherches.\nDOIT demander validation avant publication.\nNE DOIT JAMAIS contourner un accès ou révéler un secret.","explanation":"Les mots DOIT, PEUT et NE DOIT JAMAIS rendent les règles testables. Tu dois résoudre les contradictions. Claude Code peut convertir les règles en garde-fous et tests.","focusLines":[1]},{"type":"explication","content":"Erreur fréquente — attribuer à l’agent des capacités ou une autonomie qui ne sont ni définies ni vérifiées. Décris toujours le comportement réel, les limites et la preuve attendue."},{"type":"action","id":"agents-ia-m2-l4-action","title":"Rédiger la politique de mission","instructions":"Écris cinq obligations, trois permissions et trois interdictions.","successCriteria":"Les règles ne se contredisent pas et couvrent qualité, coût, accès et action externe.","evidence":"Note ta décision, sa justification et la preuve utilisée."},{"type":"exercice","question":"Repère le conflit entre « publier automatiquement » et « demander validation avant publication ».","hints":["Deux règles commandent des actions incompatibles.","Le risque externe doit guider la priorité.","Réécris une règle unique."],"solution":"Supprimer la publication automatique : l’agent prépare un brouillon et attend une validation humaine explicite."},{"type":"quiz","questions":[{"question":"À quoi sert une contrainte ?","options":["À fixer une frontière vérifiable","À rendre l’agent infini","À remplacer la mission"],"answer":0,"explanation":"Budget et permissions réduisent le champ d’action."},{"question":"Pourquoi limiter les recherches ?","options":["Pour contrôler coût et boucles","Pour garantir toutes les réponses","Pour supprimer les sources"],"answer":0,"explanation":"Un budget protège l’exécution."},{"question":"Que faire de règles contradictoires ?","options":["Les résoudre avant la construction","Les laisser au modèle","Les cacher"],"answer":0,"explanation":"Une contradiction rend le comportement imprévisible."},{"question":"Quelle interdiction est essentielle ?","options":["Ne jamais révéler un secret","Ne jamais produire de brouillon","Ne jamais s’arrêter"],"answer":0,"explanation":"Les secrets restent hors des sorties et outils non autorisés."},{"question":"Comment tester une règle ?","options":["Créer un scénario qui tente de la respecter ou la violer","Lire son titre","Changer la police"],"answer":0,"explanation":"Un scénario révèle si le garde-fou fonctionne."}]},{"type":"validation"}]}
+{
+  "id": "agents-ia-lesson-2-4",
+  "schemaVersion": 2,
+  "title": "Écrire les règles et contraintes",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Notion — Une règle décrit un comportement testable ; une contrainte borne coût, accès ou impact. Les obligations, permissions, interdictions, refus et arrêts doivent être cohérents. « Publier automatiquement après validation humaine » reste contradictoire si le moment de validation n’est pas défini."
+    },
+    {
+      "type": "explication",
+      "content": "Exemple — Sentinelle doit citer chaque source, peut faire cinq recherches, ne doit jamais contourner un accès, refuse les demandes de publication et s’arrête au budget. Toute action externe exige une nouvelle mission et une validation explicite."
+    },
+    {
+      "type": "demo",
+      "content": "Test de contradiction — R1 « publier dès que trois fiches existent » ; R2 « attendre la validation avant publication ». Correction pour ce parcours : remplacer R1 par « soumettre trois fiches » et interdire la publication."
+    },
+    {
+      "type": "code",
+      "filename": "mission-policy.md",
+      "language": "markdown",
+      "code": "DOIT citer et dater chaque source.\nPEUT effectuer au maximum 5 recherches.\nDOIT demander si le sujet manque.\nREFUSE publication, paiement et contournement d’accès.\nS’ARRÊTE à 3 fiches valides, au budget ou sur contradiction.",
+      "explanation": "À comprendre — Les verbes normatifs rendent les scénarios prévisibles. À modifier — Ajoute le propriétaire et le résultat attendu de chaque refus. Claude Code peut — Convertir les règles en garde-fous et tests, mais pas résoudre seul une priorité métier. À vérifier — Aucune permission ne contredit une interdiction ou un arrêt.",
+      "focusLines": [1, 4, 5]
+    },
+    {
+      "type": "action",
+      "id": "agents-ia-m2-l4-action",
+      "title": "Passer la politique au test de contradiction",
+      "instructions": "Écris obligations, permissions, interdictions, refus et arrêts, puis compare chaque paire susceptible de se contredire.",
+      "successCriteria": "La politique couvre qualité, budget, accès, action externe et comportement d’erreur sans contradiction.",
+      "evidence": "Conserve la table règle → scénario → décision attendue."
+    },
+    {
+      "type": "exercice",
+      "question": "Consigne — Résous le conflit « publier automatiquement » / « demander validation avant publication ». Données d’entrée — Premier agent, sortie brouillon, responsable pédagogique. Résultat attendu — Une règle unique et un scénario de refus.",
+      "hints": [
+        "Critères de réussite — Publication interdite, brouillon autorisé, responsable et réponse de refus nommés.",
+        "Critère bloquant — Laisser les deux règles actives ou déléguer leur priorité au modèle.",
+        "Preuve Sentinelle — Conserve la règle corrigée et le test qui tente de la violer."
+      ],
+      "solution": "Grille — 1 point pour interdiction, brouillon, propriétaire, refus et preuve ; 4/5 minimum. Exemple acceptable — « Sentinelle prépare puis soumet ; toute demande de publication renvoie refused_requires_human. » Exemple insuffisant — « Publier si cela semble sûr. »"
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "À quoi sert une contrainte de cinq recherches ?",
+          "options": ["À borner coût et boucle", "À garantir trois bonnes sources", "À remplacer la mission"],
+          "answer": 0,
+          "explanation": "Correct : le plafond contrôle l’exposition. Les autres choix sont insuffisants car il ne garantit pas la qualité et ne définit pas l’objectif."
+        },
+        {
+          "question": "Quelle règle traite une demande de publication ?",
+          "options": ["Publier si le texte est court", "Refuser et demander une validation hors mission", "Changer la mission silencieusement"],
+          "answer": 1,
+          "explanation": "Correct : l’action externe reste hors périmètre. Les autres choix sont insuffisants car ils contournent l’autorité humaine."
+        },
+        {
+          "question": "Deux règles imposent des actions incompatibles. Que faire ?",
+          "options": ["Les transmettre telles quelles", "Laisser l’outil choisir", "Résoudre le conflit avant construction"],
+          "answer": 2,
+          "explanation": "Correct : le contrat doit être cohérent. Les autres choix sont insuffisants car ils déplacent une décision métier vers l’exécution."
+        },
+        {
+          "question": "Quelle interdiction protège les données et les accès ?",
+          "options": ["Ne jamais contourner un accès ni révéler un secret", "Ne jamais rendre un brouillon", "Ne jamais s’arrêter"],
+          "answer": 0,
+          "explanation": "Correct : elle fixe une frontière de sécurité. Les autres choix sont insuffisants car ils empêchent la mission ou suppriment les limites."
+        },
+        {
+          "question": "Comment prouver qu’une règle de refus est exploitable ?",
+          "options": ["Avec son titre seulement", "Avec un scénario interdit et la sortie attendue", "Avec la couleur du document"],
+          "answer": 1,
+          "explanation": "Correct : le scénario rend la décision observable. Les autres choix sont insuffisants car ils ne testent aucun comportement."
+        }
+      ]
+    },
+    {"type": "validation"}
+  ]
+}

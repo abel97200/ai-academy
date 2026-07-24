@@ -1,1 +1,81 @@
-{"id":"agents-ia-lesson-1-3","schemaVersion":2,"title":"Comprendre objectif, état et action","blocks":[{"type":"explication","content":"Brief — Décrire les trois briques qui permettent à un agent d’avancer. Résultat attendu : une preuve courte appliquée au futur agent Sentinelle."},{"type":"explication","content":"L’objectif décrit le résultat recherché. L’état rassemble ce qui est connu maintenant. Une action modifie l’état ou le monde pour rapprocher l’agent de l’objectif."},{"type":"explication","content":"Analogie — Pour préparer un repas, l’objectif est le plat terminé, l’état est la liste des ingrédients disponibles, et les actions sont couper, cuire ou demander un ingrédient."},{"type":"schema","diagram":{"kind":"flow","direction":"horizontal","nodes":[{"id":"n1","label":"Objectif","color":"#6366F1","definition":"Objectif est l’étape 1 du raisonnement."},{"id":"n2","label":"État courant","color":"#F59E0B","definition":"État courant est l’étape 2 du raisonnement."},{"id":"n3","label":"Action suivante","color":"#14B8A6","definition":"Action suivante est l’étape 3 du raisonnement."}],"links":[{"from":"n1","to":"n2"},{"from":"n2","to":"n3"}]},"caption":"Objectif → État courant → Action suivante : le trajet à observer."},{"type":"demo","content":"Objectif : trouver trois ressources fiables. État : une ressource validée et deux recherches restantes. Action : lancer une nouvelle recherche ciblée."},{"type":"code","filename":"agent-state.json","language":"json","code":"{\"goal\":\"Trouver 3 ressources fiables\",\"validated\":1,\"remainingSearches\":2,\"nextAction\":\"search\"}","explanation":"Le JSON rend l’état observable. Tu dois savoir modifier l’objectif et les limites. Claude Code peut typer et mettre à jour cette structure, mais tu définis ce qui compte comme progrès.","focusLines":[1]},{"type":"explication","content":"Erreur fréquente — attribuer à l’agent des capacités ou une autonomie qui ne sont ni définies ni vérifiées. Décris toujours le comportement réel, les limites et la preuve attendue."},{"type":"action","id":"agents-ia-m1-l3-action","title":"Écrire un état d’agent","instructions":"Crée un petit objet JSON décrivant objectif, progression, budget restant et prochaine action.","successCriteria":"L’objet permet de comprendre la situation sans relire toute la conversation.","evidence":"Note ta décision, sa justification et la preuve utilisée."},{"type":"exercice","question":"Décris objectif, état et prochaine action après deux recherches sans résultat fiable.","hints":["L’objectif ne change pas forcément.","L’état doit retenir les tentatives.","La limite peut imposer un arrêt."],"solution":"L’objectif reste trois ressources fiables ; l’état note zéro résultat et deux tentatives ; l’action peut reformuler une dernière recherche ou arrêter si le budget est atteint."},{"type":"quiz","questions":[{"question":"Que décrit l’objectif ?","options":["Le résultat recherché","La dernière erreur seulement","La mise en page"],"answer":0,"explanation":"L’objectif sert de direction et de critère final."},{"question":"Que contient l’état ?","options":["Les informations utiles à la prochaine décision","Tous les fichiers du monde","Uniquement le nom de l’agent"],"answer":0,"explanation":"Un bon état reste limité et actionnable."},{"question":"Qu’est-ce qu’une action ?","options":["Une opération qui fait évoluer la situation","Une description immobile","Un style CSS"],"answer":0,"explanation":"L’action produit un effet observable."},{"question":"Qui définit ce qui compte comme progrès ?","options":["Le concepteur à partir du besoin","Le modèle seul","Le hasard"],"answer":0,"explanation":"Les règles métier restent une responsabilité humaine."},{"question":"Pourquoi suivre le budget restant ?","options":["Pour limiter coût et boucles","Pour rendre l’agent infini","Pour remplacer l’objectif"],"answer":0,"explanation":"Le budget participe aux conditions d’arrêt."}]},{"type":"validation"}]}
+{
+  "id": "agents-ia-lesson-1-3",
+  "schemaVersion": 2,
+  "title": "Comprendre objectif, état et action",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Notion — L’objectif décrit le résultat à atteindre, l’état rassemble les faits utiles à l’instant présent et l’action transforme cet état. Sans état explicite, l’agent répète, oublie ses échecs ou dépasse ses limites."
+    },
+    {
+      "type": "explication",
+      "content": "Exemple — Objectif : trois fiches fiables. État : sujet reçu, deux fiches valides, quatre recherches consommées. Actions possibles : rechercher une dernière fois, rendre un résultat partiel ou demander une clarification."
+    },
+    {
+      "type": "demo",
+      "content": "On retire « quatre recherches consommées » de l’état : Sentinelle ne sait plus qu’il approche du budget. La même mission devient dangereuse sans avoir changé de modèle ni d’outil."
+    },
+    {
+      "type": "code",
+      "filename": "sentinelle-state.json",
+      "language": "json",
+      "code": "{\"goal\":{\"resourceCount\":3},\"state\":{\"topic\":\"agents IA\",\"acceptedUrls\":[],\"attempts\":0,\"maxAttempts\":5,\"status\":\"running\"},\"allowedActions\":[\"search\",\"ask\",\"stop\"]}",
+      "explanation": "À comprendre — Objectif, état et actions autorisées sont séparés pour rendre la décision inspectable. À modifier — Ajoute un motif d’arrêt et une validation humaine attendue. Claude Code peut — Générer un type et des tests de schéma, comme assistant de développement. À vérifier — L’état contient bien tout ce qui empêche répétition et dépassement.",
+      "focusLines": [1]
+    },
+    {
+      "type": "action",
+      "id": "agents-ia-m1-l3-action",
+      "title": "Dessiner l’état minimal",
+      "instructions": "Liste l’objectif, cinq champs d’état et trois actions autorisées de Sentinelle. Relie chaque champ à une décision.",
+      "successCriteria": "Chaque champ d’état change au moins une décision ou est supprimé comme inutile.",
+      "evidence": "Conserve le tableau champ → décision et un exemple d’état après deux recherches."
+    },
+    {
+      "type": "exercice",
+      "question": "Consigne — Corrige un état qui contient seulement le sujet. Données d’entrée — Objectif de trois fiches, budget de cinq recherches et validation humaine finale. Résultat attendu — Un état minimal complet.",
+      "hints": [
+        "Critères de réussite — L’état suit résultats acceptés, tentatives, statut et attente de validation.",
+        "Critère bloquant — Oublier le compteur de budget ou les résultats déjà acceptés.",
+        "Preuve Sentinelle — Conserve un exemple initial et un exemple après échec."
+      ],
+      "solution": "Grille — 1 point pour sujet, URLs acceptées, tentatives, statut et validation ; 4/5 minimum. Exemple acceptable — « {topic, acceptedUrls, attempts, status, awaitingHumanReview} ». Exemple insuffisant — « {topic} », car la boucle oublie progression et limites."
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "Quel élément décrit le résultat poursuivi ?",
+          "options": ["L’état courant", "Une action", "L’objectif"],
+          "answer": 2,
+          "explanation": "Correct : l’objectif fixe la cible. Les autres choix sont insuffisants car l’état décrit la situation et l’action la transforme."
+        },
+        {
+          "question": "Pourquoi mémoriser les URLs déjà examinées ?",
+          "options": ["Pour éviter les doublons et guider la suite", "Pour remplacer le budget", "Pour autoriser la publication"],
+          "answer": 0,
+          "explanation": "Correct : cette mémoire influence la prochaine recherche. Les autres choix sont insuffisants car elle ne remplace ni une limite ni une permission."
+        },
+        {
+          "question": "La limite de cinq recherches doit apparaître où pour être contrôlable ?",
+          "options": ["Uniquement dans le titre", "Dans les règles et dans l’état des tentatives", "Seulement dans le message final"],
+          "answer": 1,
+          "explanation": "Correct : la règle fixe le plafond et l’état mesure l’usage. Les autres choix sont insuffisants car ils ne permettent pas d’arrêter à temps."
+        },
+        {
+          "question": "Deux sources sont valides et le budget est épuisé. Quelle action est cohérente ?",
+          "options": ["Repartir de zéro", "Publier sans contrôle", "Arrêter avec un résultat partiel expliqué"],
+          "answer": 2,
+          "explanation": "Correct : l’arrêt respecte la limite et rend l’état honnête. Les autres choix sont insuffisants car ils perdent la preuve ou violent la validation."
+        },
+        {
+          "question": "Quel champ d’état est inutile s’il ne change aucune décision ni preuve ?",
+          "options": ["Un champ décoratif", "Le compteur de tentatives", "Les sources acceptées"],
+          "answer": 0,
+          "explanation": "Correct : un champ sans usage augmente la complexité. Les autres choix sont insuffisants car ils pilotent budget et progression."
+        }
+      ]
+    },
+    {"type": "validation"}
+  ]
+}

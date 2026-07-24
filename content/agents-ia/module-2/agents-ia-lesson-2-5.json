@@ -1,1 +1,96 @@
-{"id":"agents-ia-lesson-2-5","schemaVersion":2,"title":"Définir les critères de réussite","blocks":[{"type":"explication","content":"Brief — Décider comment accepter, refuser ou améliorer le résultat de l’agent. Résultat attendu : une preuve courte appliquée au futur agent Sentinelle."},{"type":"explication","content":"Un critère de réussite est une condition observable qui relie la sortie à la mission. Il peut mesurer exactitude, complétude, coût, délai ou respect des règles."},{"type":"explication","content":"Analogie — Une liste de contrôle d’embarquement ne demande pas si l’avion « semble bien » : elle vérifie chaque condition nécessaire."},{"type":"schema","diagram":{"kind":"flow","direction":"horizontal","nodes":[{"id":"n1","label":"Critères binaires","color":"#6366F1","definition":"Critères binaires est l’étape 1 du raisonnement."},{"id":"n2","label":"Mesures","color":"#F59E0B","definition":"Mesures est l’étape 2 du raisonnement."},{"id":"n3","label":"Décision","color":"#14B8A6","definition":"Décision est l’étape 3 du raisonnement."}],"links":[{"from":"n1","to":"n2"},{"from":"n2","to":"n3"}]},"caption":"Critères binaires → Mesures → Décision : le trajet à observer."},{"type":"demo","content":"Réussite : trois ressources accessibles, récentes, distinctes, justifiées, produites en moins de cinq recherches et non publiées."},{"type":"code","filename":"acceptance.md","language":"markdown","code":"- [ ] 3 ressources distinctes\n- [ ] chaque URL est accessible\n- [ ] chaque choix est justifié\n- [ ] 5 recherches maximum\n- [ ] aucune publication automatique\n- [ ] un humain accepte ou refuse la sélection","explanation":"La checklist combine qualité, coût et supervision. Tu dois fixer les seuils. Claude Code peut exécuter les contrôles automatiques et préparer les preuves.","focusLines":[1]},{"type":"explication","content":"Erreur fréquente — attribuer à l’agent des capacités ou une autonomie qui ne sont ni définies ni vérifiées. Décris toujours le comportement réel, les limites et la preuve attendue."},{"type":"action","id":"agents-ia-m2-l5-action","title":"Créer la grille d’acceptation","instructions":"Écris huit critères couvrant résultat, règles, budget et décision humaine.","successCriteria":"Chaque critère peut être coché avec une preuve.","evidence":"Note ta décision, sa justification et la preuve utilisée."},{"type":"exercice","question":"Transforme « les ressources sont bonnes » en critères mesurables.","hints":["Quantifie le nombre.","Définis fraîcheur et accessibilité.","Ajoute la validation humaine."],"solution":"Trois URLs accessibles, publiées depuis moins de douze mois sauf référence fondamentale, sans doublon, chacune accompagnée d’une justification, puis approuvées par le responsable."},{"type":"quiz","questions":[{"question":"Qu’est-ce qu’un critère de réussite ?","options":["Une condition observable d’acceptation","Une préférence cachée","Une action infinie"],"answer":0,"explanation":"Le critère permet une décision reproductible."},{"question":"Pourquoi mesurer le coût ?","options":["Parce qu’un bon résultat peut être trop cher ou trop long","Pour éviter la qualité","Pour supprimer les limites"],"answer":0,"explanation":"L’efficacité fait partie de la fiabilité."},{"question":"Quel critère vérifie la source ?","options":["Chaque URL est accessible","Le rapport est coloré","L’agent a un nom"],"answer":0,"explanation":"L’accessibilité fournit une preuve consultable."},{"question":"Qui prend la décision finale ici ?","options":["Le responsable humain","L’agent seul","Le navigateur"],"answer":0,"explanation":"Le premier système garde une validation humaine."},{"question":"Pourquoi des critères binaires ?","options":["Pour réduire l’ambiguïté d’acceptation","Pour empêcher toute nuance","Pour remplacer l’analyse"],"answer":0,"explanation":"Ils donnent une base claire, complétée par le jugement humain."}]},{"type":"validation"}]}
+{
+  "id": "agents-ia-lesson-2-5",
+  "schemaVersion": 2,
+  "title": "Définir les critères de réussite",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Notion — Une évaluation transforme une mission en scénarios observables. Le jeu v0 de Sentinelle contient au minimum un cas nominal, un cas limite et un refus ; chacun fixe entrée, sortie attendue et mesure de succès. Il est conceptuel aujourd’hui et sera réutilisé au Module 3."
+    },
+    {
+      "type": "explication",
+      "content": "Exemple — Nominal : trois sources valides donnent trois fiches. Limite : seulement deux sources dans le budget donnent un résultat partiel honnête. Refus : une demande de publication produit un refus sans action externe."
+    },
+    {
+      "type": "schema",
+      "diagram": {
+        "kind": "flow",
+        "direction": "horizontal",
+        "nodes": [
+          {"id": "scenario", "label": "Entrée du scénario", "color": "#6366F1", "definition": "Cas nominal, limite ou refus"},
+          {"id": "expected", "label": "Sortie attendue", "color": "#F59E0B", "definition": "Comportement observable"},
+          {"id": "measure", "label": "Mesure", "color": "#14B8A6", "definition": "Critères et bloquants"},
+          {"id": "evidence", "label": "Preuve", "color": "#EC4899", "definition": "Trace conservée"}
+        ],
+        "links": [{"from": "scenario", "to": "expected"}, {"from": "expected", "to": "measure"}, {"from": "measure", "to": "evidence"}]
+      },
+      "caption": "L’évaluation v0 décrit comment juger Sentinelle avant son implémentation."
+    },
+    {
+      "type": "demo",
+      "content": "Critère vague : « les ressources sont bonnes ». Critère observable : « trois URLs accessibles, distinctes, datées, chacune avec justification ; cinq recherches maximum ; aucune publication ; décision humaine conservée »."
+    },
+    {
+      "type": "code",
+      "filename": "sentinelle-evals-v0.json",
+      "language": "json",
+      "code": "{\"type\":\"edge\",\"input\":{\"topic\":\"niche\",\"availableValidSources\":2},\"expectedOutput\":{\"status\":\"partial\",\"resourceCount\":2,\"published\":false},\"successMeasure\":\"statut partiel, motifs et budget visibles\"}",
+      "explanation": "À comprendre — Ce fichier est une spécification d’évaluation persistante, pas un agent exécutable. À modifier — Ajoute des cas propres à ton contexte sans affaiblir les refus. Claude Code peut — Valider le JSON et préparer les futurs tests du Module 3. À vérifier — Chaque cas possède entrée, sortie attendue, mesure et critère bloquant.",
+      "focusLines": [1]
+    },
+    {
+      "type": "action",
+      "id": "agents-ia-m2-l5-action",
+      "title": "Revoir l’évaluation v0",
+      "instructions": "Relis les cas nominal, limite et refus du fichier persistant, puis ajoute une justification à chaque mesure de succès.",
+      "successCriteria": "Les trois familles sont couvertes, les sorties sont observables et aucun critère ne dépend d’une impression.",
+      "evidence": "Conserve la version du fichier et une grille acceptée/refusée par scénario."
+    },
+    {
+      "type": "exercice",
+      "question": "Consigne — Transforme « Sentinelle trouve de bonnes ressources » en trois scénarios d’évaluation. Données d’entrée — Mission de trois fiches, cinq recherches, publication interdite. Résultat attendu — Nominal, limite, refus avec sorties et mesures.",
+      "hints": [
+        "Critères de réussite — Chaque scénario contient entrée, sortie attendue, mesure de succès et preuve.",
+        "Critère bloquant — Employer « bon », « pertinent » ou « fiable » sans indicateur observable.",
+        "Preuve Sentinelle — Conserve les scénarios dans sentinelle-evals-v0.json pour réutilisation au Module 3."
+      ],
+      "solution": "Grille — 2 points par famille complète, 1 pour les bloquants, 1 pour la preuve ; 6/8 minimum. Exemple acceptable — nominal complete/3, edge partial/2 au budget, refusal sans publication. Exemple insuffisant — « Le test réussit si le résultat paraît bon. »"
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "Quel scénario vérifie le fonctionnement attendu avec des données valides ?",
+          "options": ["Un refus", "Un cas limite", "Un cas nominal"],
+          "answer": 2,
+          "explanation": "Correct : le nominal couvre le chemin prévu. Les autres choix sont insuffisants car ils examinent une frontière ou une action interdite."
+        },
+        {
+          "question": "Quel critère est observable ?",
+          "options": ["Des ressources vraiment bonnes", "Trois URLs accessibles avec justification", "Une réponse intelligente"],
+          "answer": 1,
+          "explanation": "Correct : nombre, accessibilité et justification se contrôlent. Les autres choix sont insuffisants car ils reposent sur un jugement non défini."
+        },
+        {
+          "question": "Pourquoi conserver l’évaluation v0 dans le dépôt ?",
+          "options": ["Pour exécuter déjà l’agent", "Pour réutiliser le contrat lors de la construction", "Pour remplacer les leçons"],
+          "answer": 1,
+          "explanation": "Correct : les futurs tests partiront d’attentes stables. Les autres choix sont insuffisants car le fichier n’est ni un agent ni un substitut pédagogique."
+        },
+        {
+          "question": "Deux sources seulement sont trouvées au budget. Quelle sortie est la plus honnête ?",
+          "options": ["Inventer la troisième", "Marquer complete", "Rendre partial avec motifs et preuves"],
+          "answer": 2,
+          "explanation": "Correct : le statut reflète la limite atteinte. Les autres choix sont insuffisants car ils falsifient la sortie."
+        },
+        {
+          "question": "Quel élément doit bloquer un cas de refus ?",
+          "options": ["Le texte est court", "Une publication ou action interdite a eu lieu", "Le titre est différent"],
+          "answer": 1,
+          "explanation": "Correct : violer une interdiction invalide le scénario. Les autres choix sont insuffisants car ils ne concernent pas le comportement attendu."
+        }
+      ]
+    },
+    {"type": "validation"}
+  ]
+}

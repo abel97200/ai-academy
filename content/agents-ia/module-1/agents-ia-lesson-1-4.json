@@ -1,1 +1,95 @@
-{"id":"agents-ia-lesson-1-4","schemaVersion":2,"title":"Observer, décider, agir et vérifier","blocks":[{"type":"explication","content":"Brief — Tracer une boucle complète de l’agent de veille. Résultat attendu : une preuve courte appliquée au futur agent Sentinelle."},{"type":"explication","content":"La boucle d’un agent enchaîne observation, décision, action et vérification jusqu’à une réussite, un refus ou une limite."},{"type":"explication","content":"Analogie — Un navigateur observe la carte, choisit une route, avance, puis vérifie sa nouvelle position avant le prochain choix."},{"type":"schema","diagram":{"kind":"flow","direction":"horizontal","nodes":[{"id":"n1","label":"Observer","color":"#6366F1","definition":"Observer est l’étape 1 du raisonnement."},{"id":"n2","label":"Décider et agir","color":"#F59E0B","definition":"Décider et agir est l’étape 2 du raisonnement."},{"id":"n3","label":"Vérifier puis continuer ou arrêter","color":"#14B8A6","definition":"Vérifier puis continuer ou arrêter est l’étape 3 du raisonnement."}],"links":[{"from":"n1","to":"n2"},{"from":"n2","to":"n3"}]},"caption":"Observer → Décider et agir → Vérifier puis continuer ou arrêter : le trajet à observer."},{"type":"demo","content":"L’agent observe qu’il manque deux ressources, décide de rechercher, appelle l’outil, puis vérifie la fiabilité des résultats avant une nouvelle itération."},{"type":"code","filename":"agent-loop.txt","language":"text","code":"tant que objectif non atteint et budget disponible :\n  observer l’état\n  choisir une action autorisée\n  exécuter l’action\n  vérifier le résultat\nsinon arrêter et produire un rapport","explanation":"Le pseudo-code montre une boucle bornée. Tu dois comprendre les deux conditions. Claude Code peut l’implémenter, mais tu imposes les actions autorisées et la vérification.","focusLines":[1]},{"type":"explication","content":"Erreur fréquente — attribuer à l’agent des capacités ou une autonomie qui ne sont ni définies ni vérifiées. Décris toujours le comportement réel, les limites et la preuve attendue."},{"type":"action","id":"agents-ia-m1-l4-action","title":"Dessiner une boucle","instructions":"Écris quatre étapes pour deux itérations et ajoute les conditions de poursuite et d’arrêt.","successCriteria":"Chaque action met à jour l’état et aucune boucle ne peut être infinie.","evidence":"Note ta décision, sa justification et la preuve utilisée."},{"type":"exercice","question":"Trace deux itérations : une recherche vide puis une recherche réussie.","hints":["Mets à jour l’état après chaque action.","Une recherche vide consomme du budget.","La réussite doit être vérifiée."],"solution":"Première boucle : observer zéro ressource, rechercher, vérifier aucun résultat, réduire le budget. Deuxième : reformuler, rechercher, vérifier une ressource fiable, mettre à jour l’état puis décider de continuer."},{"type":"quiz","questions":[{"question":"Que vient après une action ?","options":["La vérification du résultat","Une confiance aveugle","Toujours la publication"],"answer":0,"explanation":"L’agent doit observer l’effet avant de décider à nouveau."},{"question":"Pourquoi vérifier à chaque tour ?","options":["Pour corriger la trajectoire","Pour ajouter du texte","Pour supprimer l’objectif"],"answer":0,"explanation":"Le résultat réel peut différer de l’attente."},{"question":"Quand continuer ?","options":["Si l’objectif manque et le budget reste disponible","Toujours","Jamais"],"answer":0,"explanation":"Les conditions de boucle doivent être explicites."},{"question":"Que produire à l’arrêt ?","options":["Un résultat ou rapport expliquant l’état final","Rien","Un secret"],"answer":0,"explanation":"La sortie permet à l’humain de comprendre réussite ou limite."},{"question":"Une boucle d’agent doit-elle être bornée ?","options":["Oui","Non","Seulement en démonstration"],"answer":0,"explanation":"Les limites empêchent coût et comportement incontrôlés."}]},{"type":"validation"}]}
+{
+  "id": "agents-ia-lesson-1-4",
+  "schemaVersion": 2,
+  "title": "Observer, décider, agir et vérifier",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Notion — Une boucle fiable sépare quatre moments : observer l’état, décider selon les règles, agir avec un outil autorisé, puis vérifier l’effet. Sans vérification, une action réussie techniquement peut produire un résultat faux ou incomplet."
+    },
+    {
+      "type": "explication",
+      "content": "Exemple — Sentinelle observe qu’il manque une fiche, décide de rechercher, appelle l’outil, puis vérifie l’URL, la date et la pertinence avant de modifier son état. « La recherche a répondu » ne signifie pas « la ressource est acceptable »."
+    },
+    {
+      "type": "schema",
+      "diagram": {
+        "kind": "cycle",
+        "nodes": [
+          {"id": "observe", "label": "Observer", "color": "#6366F1", "definition": "Lire les faits utiles"},
+          {"id": "decide", "label": "Décider", "color": "#F59E0B", "definition": "Choisir selon règles et budget"},
+          {"id": "act", "label": "Agir", "color": "#14B8A6", "definition": "Appeler un outil autorisé"},
+          {"id": "verify", "label": "Vérifier", "color": "#EC4899", "definition": "Contrôler effet et critères"}
+        ],
+        "links": [{"from": "observe", "to": "decide"}, {"from": "decide", "to": "act"}, {"from": "act", "to": "verify"}, {"from": "verify", "to": "observe"}]
+      },
+      "caption": "La vérification referme la boucle et produit l’état suivant."
+    },
+    {
+      "type": "demo",
+      "content": "Simulation — Une URL retourne 200 mais date de quatre ans. L’action « ouvrir » a réussi ; la vérification « récente pour ce sujet » échoue. Sentinelle conserve le motif de rejet et n’ajoute pas la fiche."
+    },
+    {
+      "type": "code",
+      "filename": "loop.md",
+      "language": "markdown",
+      "code": "1. OBSERVER : 2/3 fiches, 4/5 recherches\n2. DÉCIDER : une recherche ciblée reste autorisée\n3. AGIR : appeler search(query)\n4. VÉRIFIER : URL accessible + date + pertinence\n5. METTRE À JOUR : accepter, rejeter ou arrêter",
+      "explanation": "À comprendre — Le succès de l’outil et la qualité du résultat sont deux contrôles différents. À modifier — Ajoute le comportement si la cinquième recherche échoue. Claude Code peut — Transformer ce pseudo-flux en tests, sans choisir les règles métier. À vérifier — Chaque branche termine par une mise à jour ou un arrêt explicite.",
+      "focusLines": [4]
+    },
+    {
+      "type": "action",
+      "id": "agents-ia-m1-l4-action",
+      "title": "Jouer une boucle sur papier",
+      "instructions": "Simule trois itérations avec une source valide, une source périmée et un budget épuisé.",
+      "successCriteria": "Chaque itération documente observation, décision, action, vérification et nouvel état.",
+      "evidence": "Conserve les trois traces et entoure le moment exact où la boucle s’arrête."
+    },
+    {
+      "type": "exercice",
+      "question": "Consigne — Répare la boucle « rechercher → ajouter la première URL → recommencer ». Données d’entrée — Critères : URL accessible, moins de douze mois, pertinente ; budget : cinq recherches. Résultat attendu — Une boucle avec vérification et arrêts.",
+      "hints": [
+        "Critères de réussite — La boucle vérifie trois critères, met à jour l’état et traite réussite, rejet et budget.",
+        "Critère bloquant — Ajouter une URL à l’état avant de l’avoir vérifiée.",
+        "Preuve Sentinelle — Conserve une trace nominale et une trace d’échec."
+      ],
+      "solution": "Grille — 1 point pour observation, décision, action, vérification, mise à jour et arrêt ; 5/6 minimum. Exemple acceptable — « Rejeter avec motif si un critère échoue ; arrêter à 3 fiches ou 5 recherches. » Exemple insuffisant — « Continuer jusqu’à trouver », sans budget ni contrôle."
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "Une API répond sans erreur. Que faut-il faire avant d’accepter son contenu ?",
+          "options": ["Vérifier le contenu contre les critères", "Considérer la mission terminée", "Effacer l’état"],
+          "answer": 0,
+          "explanation": "Correct : le succès technique ne garantit pas la qualité métier. Les autres choix sont insuffisants car ils sautent le contrôle ou détruisent la progression."
+        },
+        {
+          "question": "Quel moment choisit entre rechercher, demander et arrêter ?",
+          "options": ["L’observation seule", "La décision", "L’affichage"],
+          "answer": 1,
+          "explanation": "Correct : la décision applique les règles à l’état observé. Les autres choix sont insuffisants car lire ou afficher ne sélectionne pas l’action."
+        },
+        {
+          "question": "Une ressource est inaccessible. Quelle mise à jour est utile ?",
+          "options": ["La compter comme valide", "Publier son titre", "Enregistrer le rejet et son motif"],
+          "answer": 2,
+          "explanation": "Correct : le motif évite la répétition et fournit une preuve. Les autres choix sont insuffisants car ils falsifient la validation."
+        },
+        {
+          "question": "Quand la boucle nominale de Sentinelle s’arrête-t-elle ?",
+          "options": ["Quand trois fiches satisfont les critères", "Après chaque appel d’outil", "Quand le modèle produit beaucoup de texte"],
+          "answer": 0,
+          "explanation": "Correct : l’arrêt dépend du résultat vérifié. Les autres choix sont insuffisants car appel et longueur ne prouvent pas l’objectif atteint."
+        },
+        {
+          "question": "Pourquoi séparer agir et vérifier ?",
+          "options": ["Pour doubler toutes les étapes", "Pour distinguer exécution technique et acceptation métier", "Pour supprimer l’état"],
+          "answer": 1,
+          "explanation": "Correct : ces deux succès sont différents. Les autres choix sont insuffisants car la séparation vise la fiabilité, pas la complexité gratuite."
+        }
+      ]
+    },
+    {"type": "validation"}
+  ]
+}
