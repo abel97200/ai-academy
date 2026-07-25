@@ -4,27 +4,27 @@
   "blocks": [
     {
       "type": "explication",
-      "content": "Ton projet — Pendant cette formation, tu vas construire AI Academy. Cette application t’aidera à suivre des leçons, répondre à des quiz et voir ta progression. Claude Code t’aidera à la fabriquer. Tu garderas toujours le dernier mot."
+      "content": "Pourquoi commencer ici ? AI Academy est la plateforme où tu apprends. Ce n’est pas ton projet."
     },
     {
       "type": "demo",
-      "content": "Pourquoi commencer ici ? Avant de construire, tu dois comprendre ce que tu construis. C’est comme regarder le plan d’une maison avant de poser la première pierre."
+      "content": "Ton projet sera un tracker : une liste de leçons à cocher. Comprends-le avant de le construire."
     },
     {
       "type": "explication",
-      "content": "Imagine une affiche de restaurant. Elle présente le menu et les horaires. Tu peux la lire, mais elle ne réagit pas à tes choix."
+      "content": "Imagine une affiche de restaurant. Elle présente le menu, mais ne réagit pas à tes choix."
     },
     {
       "type": "demo",
-      "content": "Imagine maintenant la borne de commande. Tu choisis un plat. La borne calcule le prix. Elle garde ta commande. Quelque chose change grâce à ton action."
+      "content": "Prédiction — L’affiche et la borne sont-elles deux outils qui servent seulement à informer ? Réponds oui ou non, puis explique ce qui change quand tu utilises la borne."
     },
     {
       "type": "explication",
-      "content": "Dans AI Academy, lire le titre d’une leçon ressemble à consulter l’affiche. Cocher une leçon ressemble à utiliser la borne. Ton clic change la progression et cette information peut être conservée."
+      "content": "Observation — Non. L’affiche informe. La borne reçoit un choix et calcule un résultat. Dans ton tracker, lire un titre informe ; cocher une leçon fera avancer la progression."
     },
     {
       "type": "explication",
-      "content": "Les vrais mots — Un site web sert surtout à présenter des informations. Une application web reçoit des actions, applique des règles et produit un résultat. Un même produit peut faire les deux."
+      "content": "Les vrais mots — Un site web informe surtout. Une application web reçoit une action et produit un résultat. Un produit peut faire les deux."
     },
     {
       "type": "schema",
@@ -35,17 +35,17 @@
           {
             "id": "action",
             "label": "Tu agis",
-            "definition": "Tu coches une leçon ou réponds à un quiz."
+            "definition": "Tu cliques ou réponds."
           },
           {
             "id": "reaction",
             "label": "AI Academy réagit",
-            "definition": "Elle vérifie ton action et calcule un résultat."
+            "definition": "Elle traite ton action."
           },
           {
             "id": "resultat",
             "label": "Tu vois le résultat",
-            "definition": "La progression ou le score change."
+            "definition": "Le résultat apparaît."
           }
         ],
         "links": [
@@ -53,19 +53,15 @@
           { "from": "reaction", "to": "resultat" }
         ]
       },
-      "caption": "Une application transforme une action en résultat."
+      "caption": "Une action devient un résultat."
     },
     {
       "type": "demo",
-      "content": "Mini-activité — Regarde cette page. Repère une information que tu peux seulement lire. Puis repère une action qui fait changer l’écran."
+      "content": "Prédiction — Écris « information » ou « action » pour chacun de ces éléments : le titre de cette leçon ; une réponse au quiz ; le bouton qui valide la leçon."
     },
     {
       "type": "explication",
-      "content": "Tu peux probablement lire le titre sans agir. En revanche, répondre au quiz produit un score. Voilà la différence utile."
-    },
-    {
-      "type": "explication",
-      "content": "Tu as peut-être pensé qu’un bouton suffit à créer une application. C’est logique, car un bouton invite à agir. Mais certains boutons ouvrent seulement une autre page. Il faut regarder ce qui change après le clic."
+      "content": "Correction — Le titre est une information. Choisir une réponse et valider la leçon sont des actions : elles produisent un score ou changent la progression."
     },
     {
       "type": "exercice",
@@ -82,31 +78,31 @@
       "questions": [
         {
           "question": "Quel exemple sert surtout à présenter une information ?",
-          "options": ["Une page d’horaires", "Un quiz corrigé", "Une progression enregistrée"],
+          "options": ["Une page qui présente les horaires d’un lieu", "Une page qui calcule un score après cinq réponses", "Une page qui garde les leçons cochées"],
           "answer": 0,
           "explanation": "Une page d’horaires peut être simplement consultée. Le quiz et la progression réagissent à une action."
         },
         {
           "question": "Que fait une application web ?",
-          "options": ["Elle fonctionne seulement sur téléphone", "Elle reçoit une action et produit un résultat", "Elle ne contient jamais de texte"],
+          "options": ["Elle présente toujours la même information", "Elle reçoit une action et produit un résultat", "Elle demande forcément de créer un compte"],
           "answer": 1,
           "explanation": "Une application transforme une action en résultat. Elle peut aussi contenir du texte et fonctionner sur plusieurs appareils."
         },
         {
           "question": "Quelle fonction d’AI Academy montre le mieux qu’il s’agit d’une application ?",
-          "options": ["Le logo", "Le titre", "Le calcul de progression"],
+          "options": ["Afficher la liste des modules", "Présenter le titre du parcours", "Recalculer la progression après une validation"],
           "answer": 2,
           "explanation": "Le calcul de progression dépend de tes actions. Le logo et le titre sont surtout affichés."
         },
         {
           "question": "Un produit peut-il informer et permettre d’agir ?",
-          "options": ["Oui", "Non", "Seulement s’il est payant"],
+          "options": ["Oui, les deux peuvent coexister", "Non, il doit choisir un seul rôle", "Oui, mais seulement sur deux pages séparées"],
           "answer": 0,
           "explanation": "AI Academy combine des explications à lire et des fonctions interactives."
         },
         {
           "question": "Comment savoir si un bouton fait partie d’une vraie fonction ?",
-          "options": ["Regarder sa couleur", "Observer ce qui change après le clic", "Mesurer sa taille"],
+          "options": ["Lire uniquement le texte du bouton", "Observer ce qui change après le clic", "Vérifier seulement qu’il ouvre une autre page"],
           "answer": 1,
           "explanation": "Le résultat du clic compte. La couleur et la taille ne disent rien sur le traitement réalisé."
         }
@@ -114,7 +110,7 @@
     },
     {
       "type": "explication",
-      "content": "En langage courant — Un site montre surtout des choses. Une application fait quelque chose avec ton action. AI Academy fera les deux."
+      "content": "En langage courant — AI Academy est ton école. Modules 1 à 3 : tu comprends et prépares le tracker. Modules 4 à 6 : tu construis sa page interactive. Modules 7 à 9 : tu l’organises et sauvegardes. Modules 10 à 12 : tu le testes et le publies. Après le Module 12 vient Wayli, ton application de parcours guidé."
     },
     { "type": "validation" }
   ]

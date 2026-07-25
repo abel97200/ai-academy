@@ -4,7 +4,7 @@
   "blocks": [
     {
       "type": "explication",
-      "content": "Pourquoi apprendre cela ? Quand tu demanderas une modification à Claude Code, tu devras pouvoir montrer l’endroit concerné : ce que l’on voit, la règle qui travaille ou l’information conservée."
+      "content": "Pourquoi apprendre cela ? Pour construire ton tracker, tu dois distinguer ce qui est vu, la règle et l’information utilisée. Tu décriras ainsi le bon changement."
     },
     {
       "type": "demo",
@@ -12,11 +12,11 @@
     },
     {
       "type": "explication",
-      "content": "Le bouton est la partie que tu touches. La vérification du paiement est la règle. La liste des boissons restantes est l’information utilisée par la machine."
+      "content": "Prédiction — Quand tu choisis une boisson, quel élément vois-tu, quelle règle travaille et quelle information la machine doit-elle connaître ? Écris une réponse pour chacun."
     },
     {
       "type": "demo",
-      "content": "Dans AI Academy, tu coches une case. Une règle compte les leçons terminées. L’application conserve la liste des leçons cochées."
+      "content": "Observation — Tu vois le bouton. La machine vérifie le paiement. Elle connaît les boissons disponibles. Dans ton tracker, tu verras une case, une règle comptera et l’état des leçons sera l’information utilisée."
     },
     {
       "type": "explication",
@@ -30,17 +30,17 @@
           {
             "id": "interface",
             "label": "Interface",
-            "definition": "La case, le texte et la barre que tu vois."
+            "definition": "Ce que tu manipules."
           },
           {
             "id": "logique",
             "label": "Logique",
-            "definition": "Les règles qui décident et calculent."
+            "definition": "Les règles et calculs."
           },
           {
             "id": "donnees",
             "label": "Données",
-            "definition": "Les titres, scores et états utilisés par l’application."
+            "definition": "Les informations utilisées."
           }
         ],
         "links": [
@@ -49,23 +49,15 @@
           { "from": "donnees", "to": "interface" }
         ]
       },
-      "caption": "L’action part de l’interface, traverse une règle et produit un nouvel affichage."
+      "caption": "L’interface, la logique et les données coopèrent."
     },
     {
       "type": "demo",
-      "content": "Mini-activité — Associe mentalement ces éléments : la barre de progression, le calcul 3 leçons sur 6 et l’information « lesson-1-1 terminée »."
+      "content": "Prédiction — Note I, L ou D : barre de progression ; calcul « 3 sur 6 » ; état « terminée ». I signifie interface, L logique, D données."
     },
     {
       "type": "explication",
-      "content": "La barre appartient à l’interface. Le calcul appartient à la logique. L’état de la leçon appartient aux données."
-    },
-    {
-      "type": "explication",
-      "content": "Tu as peut-être pensé qu’une case visible reste forcément cochée. C’est logique : tu vois le changement. Mais l’affichage peut disparaître au rechargement si l’information n’a pas été conservée."
-    },
-    {
-      "type": "demo",
-      "content": "C’est comme écrire sur une ardoise. Le message est visible. Il n’est pas durable tant que tu ne le recopies pas dans un carnet."
+      "content": "Correction — Barre : I, car tu la vois. Calcul : L, car c’est une règle. État de la leçon : D, car c’est une information utilisée par le tracker."
     },
     {
       "type": "exercice",
@@ -82,31 +74,31 @@
       "questions": [
         {
           "question": "Quelle partie vois-tu et manipules-tu ?",
-          "options": ["La logique", "L’interface", "Les données seules"],
+          "options": ["La règle qui calcule le score", "La page avec ses boutons et ses textes", "La liste des leçons enregistrées"],
           "answer": 1,
           "explanation": "L’interface contient notamment les textes, boutons et cases."
         },
         {
           "question": "Quelle partie calcule la progression ?",
-          "options": ["La couleur", "Le titre", "La logique"],
+          "options": ["La barre qui montre le résultat", "La liste des leçons terminées", "La règle qui divise le nombre terminé par le total"],
           "answer": 2,
           "explanation": "La logique contient les règles et les calculs."
         },
         {
           "question": "Quel élément est une donnée ?",
-          "options": ["Le titre d’une leçon", "La règle des 75 %", "Le clic"],
+          "options": ["Le titre d’une leçon", "La règle qui exige 75 %", "L’action de sélectionner une réponse"],
           "answer": 0,
           "explanation": "Le titre est une information utilisée et affichée par l’application."
         },
         {
           "question": "Voir une case cochée prouve-t-il que son état est conservé ?",
-          "options": ["Oui, toujours", "Non", "Oui, si elle est verte"],
+          "options": ["Oui, car l’écran montre le changement", "Non, il faut aussi conserver son état", "Oui, si la progression a été recalculée"],
           "answer": 1,
           "explanation": "L’affichage peut changer sans que l’information soit enregistrée."
         },
         {
           "question": "Quel ordre décrit le mieux un clic sur une leçon ?",
-          "options": ["Les données agissent avant toi", "La couleur crée une règle", "L’interface reçoit le clic, la logique traite, l’affichage change"],
+          "options": ["La donnée change seule avant le clic", "L’interface traite tout sans aucune règle", "L’interface reçoit le clic, la logique traite, puis l’affichage change"],
           "answer": 2,
           "explanation": "Ton action entre par l’interface. La logique la traite, puis l’interface montre le résultat."
         }
@@ -114,7 +106,7 @@
     },
     {
       "type": "explication",
-      "content": "En langage courant — Tu agis sur ce que tu vois. Des règles travaillent. Des informations sont lues ou gardées."
+      "content": "En langage courant — Tu agiras sur l’interface. La logique décidera. Les données décriront les leçons. Reconnais ces rôles sans les programmer."
     },
     { "type": "validation" }
   ]

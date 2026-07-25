@@ -4,7 +4,7 @@
   "blocks": [
     {
       "type": "explication",
-      "content": "Pourquoi apprendre cela ? Une application peut avoir une partie visible et une partie cachée. Les distinguer t’aidera à demander à Claude Code de modifier le bon endroit."
+      "content": "Pourquoi apprendre cela ? Ton tracker aura une partie visible. Plus tard, une partie distante traitera certaines demandes. Distinguer ces rôles évite les confusions."
     },
     {
       "type": "demo",
@@ -12,11 +12,11 @@
     },
     {
       "type": "explication",
-      "content": "Dans AI Academy, la liste des modules et les boutons sont la partie visible. Une vérification d’identité ou une règle de sécurité peut travailler dans la partie cachée."
+      "content": "Prédiction — Dans le restaurant, qui montre le menu au client ? Qui vérifie et prépare la commande ? Écris « salle » ou « cuisine » pour chaque rôle."
     },
     {
       "type": "explication",
-      "content": "Les vrais mots — Le frontend est la partie visible dans le navigateur. Le backend est la partie qui traite les demandes et protège les règles sensibles."
+      "content": "Observation — La salle montre et reçoit ; la cuisine traite. Les vrais mots sont frontend pour la partie visible et backend pour la partie distante."
     },
     {
       "type": "schema",
@@ -27,17 +27,17 @@
           {
             "id": "personne",
             "label": "Tu cliques",
-            "definition": "Tu agis sur la page."
+            "definition": "Tu agis."
           },
           {
             "id": "front",
             "label": "Frontend",
-            "definition": "Il reçoit ton action et affiche le résultat."
+            "definition": "Il reçoit et affiche."
           },
           {
             "id": "back",
             "label": "Backend",
-            "definition": "Il peut vérifier, enregistrer et répondre."
+            "definition": "Il traite et répond."
           }
         ],
         "links": [
@@ -46,27 +46,19 @@
           { "from": "back", "to": "front" }
         ]
       },
-      "caption": "La partie visible transmet parfois une demande à la partie cachée."
+      "caption": "Le frontend peut demander au backend."
     },
     {
       "type": "demo",
-      "content": "Mini-activité — Classe ces deux demandes : « agrandir le titre » et « vérifier que cette progression appartient à la bonne personne »."
+      "content": "Pratique — Écris F ou B : agrandir le titre ; vérifier le propriétaire d’une progression ; afficher une carte. F signifie frontend, B backend."
     },
     {
       "type": "explication",
-      "content": "Agrandir le titre concerne le frontend. Vérifier le propriétaire d’une progression concerne le backend."
+      "content": "Correction — Agrandir le titre : F. Vérifier le propriétaire : B. Afficher une carte : F. Ce qui est vu concerne le frontend ; la vérification distante concerne le backend."
     },
     {
       "type": "explication",
-      "content": "Une première version peut fonctionner sans backend. AI Academy peut garder la progression dans ton navigateur. Un backend devient utile pour retrouver cette progression sur plusieurs appareils."
-    },
-    {
-      "type": "explication",
-      "content": "Tu as peut-être pensé que la partie visible pouvait vérifier seule une règle sensible. C’est logique, car elle affiche le résultat. Mais elle peut être observée ou contournée. La vérification importante doit aussi vivre dans la partie cachée."
-    },
-    {
-      "type": "demo",
-      "content": "C’est comme laisser un client écrire lui-même le montant de son addition. Le restaurant doit vérifier le montant dans son propre système."
+      "content": "Ton premier tracker fonctionnera sans backend. Celui-ci reviendra plus tard avec les échanges et la sécurité."
     },
     {
       "type": "exercice",
@@ -83,31 +75,31 @@
       "questions": [
         {
           "question": "Où vois-tu principalement le frontend ?",
-          "options": ["Dans une imprimante", "Dans une base seule", "Dans le navigateur"],
+          "options": ["Dans la partie qui vérifie les comptes", "Dans le rangement des progressions", "Dans la page affichée par le navigateur"],
           "answer": 2,
           "explanation": "Le navigateur affiche la partie visible de l’application."
         },
         {
           "question": "Quel rôle correspond au backend ?",
-          "options": ["Traiter et vérifier des demandes", "Choisir une couleur", "Déplacer ta souris"],
+          "options": ["Vérifier une demande avant de modifier une progression", "Afficher la barre de progression", "Recevoir directement le clic sur une case"],
           "answer": 0,
           "explanation": "Le backend applique notamment des règles et des vérifications."
         },
         {
           "question": "Qui doit vérifier une autorisation sensible ?",
-          "options": ["Le texte du bouton", "Le backend", "La couleur"],
+          "options": ["Le frontend, car il affiche le formulaire", "Le backend, car il contrôle la demande", "Les deux sans règle particulière"],
           "answer": 1,
           "explanation": "Une apparence ne protège rien. Le backend doit vérifier l’autorisation."
         },
         {
           "question": "Une première application peut-elle fonctionner sans backend ?",
-          "options": ["Non, jamais", "Seulement sans bouton", "Oui, pour des fonctions locales"],
+          "options": ["Non, chaque bouton exige un backend", "Oui, mais seulement si elle ne garde aucune information", "Oui, certaines fonctions peuvent rester dans le navigateur"],
           "answer": 2,
           "explanation": "Certaines fonctions peuvent fonctionner uniquement dans le navigateur."
         },
         {
           "question": "Pourquoi ne pas protéger une règle seulement dans le frontend ?",
-          "options": ["Il peut être observé ou contourné", "Il ne montre aucun texte", "Il choisit les couleurs"],
+          "options": ["La partie visible peut être observée ou contournée", "La partie visible ne peut effectuer aucun calcul", "La partie cachée connaît automatiquement toutes les bonnes règles"],
           "answer": 0,
           "explanation": "Le frontend arrive chez l’utilisateur. Une règle sensible doit aussi être vérifiée ailleurs."
         }
@@ -115,7 +107,7 @@
     },
     {
       "type": "explication",
-      "content": "En langage courant — Le frontend est la salle visible. Le backend est la cuisine qui traite et vérifie."
+      "content": "En langage courant — Le frontend est la partie visible de ton tracker. Le backend sera une partie distante pour certaines demandes. Tu dois les reconnaître, pas encore savoir les construire."
     },
     { "type": "validation" }
   ]

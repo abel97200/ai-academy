@@ -4,7 +4,7 @@
   "blocks": [
     {
       "type": "explication",
-      "content": "Pourquoi cette synthèse ? Tu connais maintenant les pièces d’AI Academy. Nous allons suivre une seule action du début à la fin. Tu verras comment elles travaillent ensemble."
+      "content": "Pourquoi cette synthèse ? Tu connais maintenant les rôles utiles pour comprendre ton futur tracker. Nous allons suivre une seule action du début à la fin, sans ajouter de nouvelle technique."
     },
     {
       "type": "demo",
@@ -12,31 +12,27 @@
     },
     {
       "type": "explication",
-      "content": "Étape 1 — Tu coches une leçon dans l’interface. Le navigateur détecte ton clic. Le frontend reconnaît la leçon grâce à son identifiant."
+      "content": "Prédiction — Quand une personne coche une leçon, que doit-il se passer ensuite ? Écris trois actions possibles avant de lire la suite."
     },
     {
       "type": "demo",
-      "content": "Pour cette leçon, l’identifiant est « lesson-1-7 ». Il évite de modifier une autre leçon par erreur."
+      "content": "Observation — Le tracker doit reconnaître la leçon, changer son état, recalculer la progression, conserver le résultat puis mettre l’écran à jour."
     },
     {
       "type": "explication",
-      "content": "Étape 2 — La logique change l’état de la leçon. Elle recompte les leçons terminées. Elle calcule le nouveau pourcentage."
+      "content": "Étape 1 — La personne coche une leçon dans l’interface. Le frontend reçoit cette action et reconnaît la leçon concernée."
     },
     {
       "type": "demo",
-      "content": "Si trois leçons sur sept étaient terminées, cette action fait passer le total à quatre."
+      "content": "Étape 2 — La logique change l’état de la leçon. Elle recompte les leçons terminées et calcule le nouveau pourcentage."
     },
     {
       "type": "explication",
-      "content": "Étape 3 — L’application conserve le nouvel état. Dans une première version, elle peut utiliser un petit rangement fourni par le navigateur."
+      "content": "Étape 3 — Le tracker conserve le nouvel état dans un rangement. Sans cette étape, la case pourrait se décocher au prochain chargement."
     },
     {
       "type": "explication",
-      "content": "Le vrai mot — Ce rangement s’appelle localStorage. Il permet de retrouver une petite information sur le même navigateur après un rechargement."
-    },
-    {
-      "type": "explication",
-      "content": "Plus tard, le frontend pourra envoyer une requête au backend. Le backend pourra enregistrer la progression dans une base de données. Tu la retrouveras alors sur plusieurs appareils."
+      "content": "Le mot à reconnaître — localStorage est un rangement du navigateur. Tu apprendras à l’utiliser au Module 8. Ici, retiens seulement qu’afficher et conserver sont deux actions différentes."
     },
     {
       "type": "schema",
@@ -47,22 +43,22 @@
           {
             "id": "clic",
             "label": "Tu coches",
-            "definition": "L’interface reçoit ton action."
+            "definition": "L’interface reçoit."
           },
           {
             "id": "calcul",
             "label": "La logique calcule",
-            "definition": "L’état et le pourcentage changent."
+            "definition": "La progression change."
           },
           {
             "id": "save",
             "label": "La donnée est gardée",
-            "definition": "Le nouvel état pourra être retrouvé."
+            "definition": "L’état est conservé."
           },
           {
             "id": "view",
             "label": "L’écran change",
-            "definition": "La case et la progression sont mises à jour."
+            "definition": "Le résultat apparaît."
           }
         ],
         "links": [
@@ -71,23 +67,15 @@
           { "from": "save", "to": "view" }
         ]
       },
-      "caption": "Une action traverse plusieurs étapes avant de devenir un résultat visible."
+      "caption": "Du clic au résultat visible."
     },
     {
       "type": "demo",
-      "content": "Mini-activité — Cache le schéma. Essaie de redire les quatre étapes avec tes mots. Puis regarde-le à nouveau."
+      "content": "Petite pratique — Une case se coche, mais se décoche lorsque la page est rouverte. Choisis la partie à vérifier en premier : l’affichage, le calcul du pourcentage ou la conservation de l’état."
     },
     {
       "type": "explication",
-      "content": "Tu as peut-être dit : « la case enregistre la leçon ». C’est logique, car la case est ce que tu vois. Mais elle déclenche seulement le voyage. La logique calcule et un rangement conserve l’information."
-    },
-    {
-      "type": "demo",
-      "content": "Cette distinction aide à trouver une erreur. Si rien ne se passe au clic, regarde l’interface ou la logique. Si la case se décoche après rechargement, regarde l’enregistrement."
-    },
-    {
-      "type": "explication",
-      "content": "Quand tu travailleras avec Claude Code, tu pourras décrire l’étape qui pose problème. Claude Code pourra proposer une modification. Tu vérifieras toujours que le bon résultat apparaît et reste enregistré."
+      "content": "Correction — Vérifie la conservation. Le clic et l’affichage ont fonctionné. L’échec apparaît seulement lorsque le tracker doit retrouver l’état."
     },
     {
       "type": "exercice",
@@ -104,31 +92,31 @@
       "questions": [
         {
           "question": "Quelle est la première étape ?",
-          "options": ["Le frontend reçoit ton clic", "La base efface tout", "Vercel republie le site"],
+          "options": ["Le frontend reçoit l’action de la personne", "La progression est conservée avant toute action", "Le pourcentage change sans connaître la leçon"],
           "answer": 0,
           "explanation": "Le voyage commence par ton action dans l’interface."
         },
         {
           "question": "Qui calcule le nouveau pourcentage ?",
-          "options": ["La couleur", "La logique", "Le nom de domaine"],
+          "options": ["L’interface qui montre la barre", "La logique qui applique la règle", "Le rangement qui conserve l’état"],
           "answer": 1,
           "explanation": "La logique contient la règle de calcul."
         },
         {
           "question": "Pourquoi conserver le nouvel état ?",
-          "options": ["Pour arrondir le bouton", "Pour changer l’écran", "Pour le retrouver plus tard"],
+          "options": ["Pour permettre le calcul pendant le clic seulement", "Pour afficher immédiatement la case cochée", "Pour retrouver l’état après avoir rouvert la page"],
           "answer": 2,
           "explanation": "L’enregistrement rend l’information durable."
         },
         {
-          "question": "Où une première version peut-elle garder la progression ?",
-          "options": ["Dans localStorage", "Dans le logo", "Dans le câble"],
+          "question": "Une case se décoche après avoir rouvert la page. Quelle étape est probablement incomplète ?",
+          "options": ["La conservation de l’état", "La détection du premier clic", "L’affichage du titre de la leçon"],
           "answer": 0,
-          "explanation": "localStorage est un petit rangement fourni par le navigateur."
+          "explanation": "Le clic a bien été reçu puisque la case s’est cochée. L’état n’a probablement pas été retrouvé."
         },
         {
           "question": "Quelle phrase est la plus précise ?",
-          "options": ["La case fait tout", "Le clic déclenche une chaîne d’étapes", "Seule l’apparence compte"],
+          "options": ["Le clic suffit à conserver l’information", "Le clic déclenche plusieurs rôles qui se complètent", "Le rangement calcule et affiche tout seul"],
           "answer": 1,
           "explanation": "L’interface, la logique et les données participent au résultat."
         }
@@ -136,7 +124,7 @@
     },
     {
       "type": "explication",
-      "content": "En langage courant — Tu cliques. AI Academy comprend, calcule, garde l’information et met l’écran à jour. Tu sais maintenant décrire ton application sans te perdre."
+      "content": "Bilan — Un clic traverse interface, logique et données. Tu peux décrire une leçon cochée et situer un problème simple. Tu n’as pas encore à programmer, utiliser localStorage, créer une base ou publier. Tu construiras le tracker, puis Wayli."
     },
     { "type": "validation" }
   ]

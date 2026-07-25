@@ -4,7 +4,7 @@
   "blocks": [
     {
       "type": "explication",
-      "content": "Pourquoi apprendre cela ? AI Academy doit retrouver les leçons, les scores et la progression. Sans rangement fiable, elle repartirait de zéro à chaque visite."
+      "content": "Pourquoi apprendre cela ? Une future version de ton tracker devra retrouver une progression. Avant de choisir un outil, tu dois comprendre l’idée d’un rangement organisé."
     },
     {
       "type": "demo",
@@ -12,11 +12,11 @@
     },
     {
       "type": "explication",
-      "content": "Dans AI Academy, il faut ranger le titre de chaque leçon, son numéro et son état : terminée ou non terminée."
+      "content": "Prédiction — Si les feuilles du classeur sont mélangées, retrouveras-tu facilement la progression d’une leçon ? Réponds oui ou non et donne la raison."
     },
     {
       "type": "explication",
-      "content": "Le vrai mot — Une base de données est un rangement organisé que l’application peut consulter et modifier."
+      "content": "Observation — Non. Chaque information doit avoir une place. Une leçon sera associée à son état. Ce rangement organisé s’appelle une base de données."
     },
     {
       "type": "schema",
@@ -27,17 +27,17 @@
           {
             "id": "demande",
             "label": "AI Academy demande",
-            "definition": "L’application cherche ou modifie une information."
+            "definition": "Elle cherche une information."
           },
           {
             "id": "base",
             "label": "Base de données",
-            "definition": "Elle range et retrouve les informations."
+            "definition": "Elle range et retrouve."
           },
           {
             "id": "reponse",
             "label": "AI Academy affiche",
-            "definition": "L’application montre le résultat retrouvé."
+            "definition": "Elle montre le résultat."
           }
         ],
         "links": [
@@ -45,27 +45,19 @@
           { "from": "base", "to": "reponse" }
         ]
       },
-      "caption": "L’application demande une information rangée, puis affiche la réponse."
-    },
-    {
-      "type": "explication",
-      "content": "Dans un tableau, une colonne indique le type d’information : titre, durée ou état. Une ligne décrit un élément précis : une leçon."
+      "caption": "L’application demande, retrouve puis affiche."
     },
     {
       "type": "demo",
-      "content": "Mini-activité — Imagine une ligne pour cette leçon. Elle pourrait contenir « lesson-1-4 », « La base de données » et « terminée »."
+      "content": "Prédiction — Pour retrouver une progression, choisis les deux informations indispensables parmi : le nom de la personne ; la leçon concernée ; la couleur de la case ; l’état terminé ou non."
     },
     {
       "type": "explication",
-      "content": "Le vrai mot — « lesson-1-4 » est un identifiant. C’est un numéro unique. Il permet de reconnaître la bonne leçon même si son titre change."
+      "content": "Correction — Il faut la leçon et son état. Avec plusieurs comptes, il faut aussi la personne. La couleur n’est qu’un affichage."
     },
     {
       "type": "explication",
-      "content": "Tu as peut-être pensé qu’il suffisait d’enregistrer le titre. C’est logique, car il est facile à lire. Mais deux leçons peuvent avoir des titres proches et un titre peut changer. L’identifiant reste le repère fiable."
-    },
-    {
-      "type": "demo",
-      "content": "C’est comme un numéro de dossier. Le nom écrit sur le dossier peut être corrigé. Son numéro continue de désigner le même dossier."
+      "content": "Le vrai mot — Un identifiant est un repère unique, comme un numéro de dossier. Savoir le reconnaître suffit ici."
     },
     {
       "type": "exercice",
@@ -82,31 +74,31 @@
       "questions": [
         {
           "question": "À quoi sert une base de données ?",
-          "options": ["À ranger et retrouver des informations", "À choisir les couleurs", "À remplacer le navigateur"],
+          "options": ["À organiser des informations pour les retrouver", "À calculer seule toute la progression", "À afficher directement les boutons du tracker"],
           "answer": 0,
           "explanation": "La base organise les informations utilisées par l’application."
         },
         {
-          "question": "Que décrit une colonne ?",
-          "options": ["L’application entière", "Un type d’information", "Un clic"],
+          "question": "La progression apparaît puis disparaît après la réouverture. Que peux-tu conclure ?",
+          "options": ["La base a forcément supprimé la leçon", "L’affichage a fonctionné, mais l’état n’a pas été conservé", "Le titre de la leçon est incorrect"],
           "answer": 1,
-          "explanation": "Une colonne peut décrire un titre, une durée ou un état."
+          "explanation": "Voir le résultat ne prouve pas qu’il a été conservé."
         },
         {
-          "question": "Que représente une ligne dans la liste des leçons ?",
-          "options": ["Toutes les applications", "Une couleur", "Une leçon précise"],
+          "question": "Deux leçons portent presque le même titre. Quel repère est le plus fiable ?",
+          "options": ["Leur position actuelle à l’écran", "La longueur de leur titre", "Leur identifiant unique"],
           "answer": 2,
-          "explanation": "Chaque ligne rassemble les informations d’un élément précis."
+          "explanation": "L’identifiant reste stable même si un titre ou un affichage change."
         },
         {
           "question": "Pourquoi utiliser un identifiant ?",
-          "options": ["Pour reconnaître un élément sans ambiguïté", "Pour agrandir le texte", "Pour colorer la page"],
+          "options": ["Pour reconnaître la même leçon même si son titre change", "Pour expliquer à lui seul le contenu de la leçon", "Pour calculer automatiquement le pourcentage"],
           "answer": 0,
           "explanation": "L’identifiant reste un repère stable et unique."
         },
         {
           "question": "Une information visible est-elle forcément conservée ?",
-          "options": ["Oui", "Non", "Seulement en gras"],
+          "options": ["Oui, tout affichage est automatiquement enregistré", "Non, l’affichage et la conservation sont deux actions différentes", "Oui, si l’information vient d’un calcul"],
           "answer": 1,
           "explanation": "Une information peut être affichée sans avoir été enregistrée."
         }
@@ -114,7 +106,7 @@
     },
     {
       "type": "explication",
-      "content": "En langage courant — La base est le rangement de l’application. Les colonnes disent quoi ranger. Les lignes décrivent chaque élément. L’identifiant évite les confusions."
+      "content": "En langage courant — Une base organise les informations. Un identifiant retrouve le bon élément. Reconnaître ces idées suffit pour l’instant."
     },
     { "type": "validation" }
   ]

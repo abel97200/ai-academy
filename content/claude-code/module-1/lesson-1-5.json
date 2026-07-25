@@ -4,7 +4,7 @@
   "blocks": [
     {
       "type": "explication",
-      "content": "Pourquoi apprendre cela ? La partie visible d’AI Academy devra parfois demander une information à une autre partie. Tu dois comprendre ce voyage pour savoir où une erreur peut arriver."
+      "content": "Pourquoi apprendre cela ? Plus tard, ton tracker enverra une progression à une partie distante. Comprends seulement le trajet de la demande et de la réponse."
     },
     {
       "type": "demo",
@@ -12,15 +12,15 @@
     },
     {
       "type": "explication",
-      "content": "Le guichet impose une manière claire de demander. Tu donnes la destination et la date. Tu ne vas pas fouiller toi-même dans le système de la gare."
+      "content": "Prédiction — Pour obtenir le bon billet, suffit-il de dire « je veux voyager » ? Réponds oui ou non, puis note les deux précisions qui manquent."
     },
     {
       "type": "demo",
-      "content": "Dans AI Academy, la partie visible peut demander : « marque la leçon lesson-1-5 comme terminée ». La partie cachée vérifie, enregistre et répond."
+      "content": "Observation — Non. Il faut au moins une destination et une date. De même, le tracker devra préciser la leçon et le nouvel état avant qu’une autre partie puisse traiter puis répondre."
     },
     {
       "type": "explication",
-      "content": "Le vrai mot — Une API définit la manière dont deux programmes se parlent. API signifie « interface de programmation d’application ». Tu n’as pas besoin de retenir ces quatre mots aujourd’hui."
+      "content": "Le vrai mot — Une API organise les demandes et réponses entre deux parties. Reconnaître ce rôle suffit ; tu en construiras une plus tard."
     },
     {
       "type": "schema",
@@ -31,17 +31,17 @@
           {
             "id": "demande",
             "label": "Demande",
-            "definition": "Le frontend précise l’action souhaitée."
+            "definition": "Une action est demandée."
           },
           {
             "id": "traitement",
             "label": "Traitement",
-            "definition": "Le backend vérifie et agit."
+            "definition": "La demande est traitée."
           },
           {
             "id": "retour",
             "label": "Réponse",
-            "definition": "Le backend confirme ou explique l’échec."
+            "definition": "Le résultat revient."
           }
         ],
         "links": [
@@ -49,7 +49,7 @@
           { "from": "traitement", "to": "retour" }
         ]
       },
-      "caption": "Une demande claire reçoit une réponse claire."
+      "caption": "Demande, traitement, réponse."
     },
     {
       "type": "explication",
@@ -57,15 +57,11 @@
     },
     {
       "type": "demo",
-      "content": "Mini-activité — Mets ces trois moments dans l’ordre : AI Academy confirme, tu coches une leçon, AI Academy envoie la demande."
+      "content": "Prédiction — Numérote ces trois étapes : le tracker affiche « progression enregistrée » ; tu coches une leçon ; le tracker envoie la demande."
     },
     {
       "type": "explication",
-      "content": "L’ordre est : tu coches, la demande part, la confirmation revient."
-    },
-    {
-      "type": "explication",
-      "content": "Tu as peut-être pensé qu’une API était toujours une intelligence artificielle. C’est logique, car les outils d’IA parlent souvent d’API. Mais une API est seulement une façon de communiquer. Elle peut servir à la météo, au paiement ou à AI Academy."
+      "content": "Correction — 1. Tu coches. 2. La demande part. 3. La confirmation revient et le tracker l’affiche. Une réponse ne peut pas précéder la demande."
     },
     {
       "type": "exercice",
@@ -82,31 +78,31 @@
       "questions": [
         {
           "question": "À quoi sert une API ?",
-          "options": ["À choisir une police", "À organiser la communication", "À éteindre l’ordinateur"],
+          "options": ["À enregistrer automatiquement toute information", "À définir comment une demande et une réponse sont échangées", "À afficher directement l’interface du tracker"],
           "answer": 1,
           "explanation": "Une API fixe une manière commune d’envoyer une demande et une réponse."
         },
         {
           "question": "Comment s’appelle le message envoyé ?",
-          "options": ["Une couleur", "Un bouton", "Une requête"],
+          "options": ["Une réponse", "Une validation", "Une requête"],
           "answer": 2,
           "explanation": "Une requête décrit l’information ou l’action demandée."
         },
         {
           "question": "Que peut contenir une réponse ?",
-          "options": ["Une information, une confirmation ou une erreur", "Toujours un mot de passe", "Seulement une image"],
+          "options": ["Une information, une confirmation ou une erreur", "Uniquement la demande d’origine", "Toujours la confirmation d’un succès"],
           "answer": 0,
           "explanation": "La réponse indique ce que le traitement a produit."
         },
         {
           "question": "Qu’est-ce qui désigne précisément la leçon à modifier ?",
-          "options": ["La souris", "Son identifiant", "La couleur de fond"],
+          "options": ["Sa position dans la liste affichée", "Son identifiant", "Son titre uniquement"],
           "answer": 1,
           "explanation": "L’identifiant indique sans ambiguïté la leçon concernée."
         },
         {
           "question": "Toutes les API donnent-elles accès à une IA ?",
-          "options": ["Oui", "Seulement les gratuites", "Non"],
+          "options": ["Oui, une API est toujours liée à un modèle", "Seulement lorsqu’elle renvoie du texte", "Non, elle peut relier de nombreux services"],
           "answer": 2,
           "explanation": "Une API peut relier de nombreux types de services."
         }
@@ -114,7 +110,7 @@
     },
     {
       "type": "explication",
-      "content": "En langage courant — Une partie demande. Une autre traite. Une réponse revient. L’API fixe les règles de cet échange."
+      "content": "En langage courant — Une partie demande, une autre traite, une réponse revient. Raconte ce trajet sans encore écrire de requête."
     },
     { "type": "validation" }
   ]

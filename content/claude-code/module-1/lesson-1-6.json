@@ -4,27 +4,27 @@
   "blocks": [
     {
       "type": "explication",
-      "content": "Pourquoi apprendre cela ? Tu verras AI Academy sur ton ordinateur avant de la publier. Tu dois distinguer la version privée que tu testes et la version que d’autres personnes peuvent ouvrir."
+      "content": "Pourquoi apprendre cela ? Quand tu ouvres AI Academy, ton écran demande les éléments nécessaires à une autre machine. Comprendre cet aller-retour suffit."
     },
     {
       "type": "demo",
-      "content": "Imagine une répétition de théâtre. La troupe travaille dans une salle fermée. Plus tard, elle joue dans une salle ouverte au public."
+      "content": "Imagine une bibliothèque. Tu demandes un livre au comptoir. Une personne va le chercher dans la réserve et te le remet."
     },
     {
       "type": "explication",
-      "content": "Pendant la construction, AI Academy fonctionne sur ton ordinateur. Après sa publication, elle fonctionne sur des machines disponibles en permanence."
+      "content": "Prédiction — Quand tu ouvres une leçon, est-ce ton navigateur qui possède déjà tout le contenu, ou doit-il demander les éléments de la page ? Choisis une réponse avant de continuer."
     },
     {
       "type": "explication",
-      "content": "Le premier vrai mot — Le navigateur est l’application qui ouvre les pages web. Chrome, Safari, Firefox et Edge sont des navigateurs."
+      "content": "Observation — Le navigateur demande les éléments de la page, les reçoit, puis les affiche. Il ne possède pas à l’avance toutes les leçons de toutes les plateformes."
     },
     {
       "type": "demo",
-      "content": "Le navigateur reçoit les éléments d’AI Academy et les transforme en textes, boutons et images que tu peux utiliser."
+      "content": "Le premier vrai mot — Le navigateur est l’application qui ouvre et affiche les pages web. Chrome, Safari, Firefox et Edge sont des navigateurs."
     },
     {
       "type": "explication",
-      "content": "Le deuxième vrai mot — Un serveur est une machine ou un service qui répond à des demandes. Il peut fournir une page, chercher une donnée ou effectuer une vérification."
+      "content": "Le deuxième vrai mot — Un serveur est une machine ou un service qui répond aux demandes du navigateur. Ici, retiens seulement : le navigateur demande, le serveur répond."
     },
     {
       "type": "schema",
@@ -35,17 +35,17 @@
           {
             "id": "browser",
             "label": "Navigateur",
-            "definition": "Il demande puis affiche AI Academy."
+            "definition": "Il demande et affiche."
           },
           {
             "id": "server",
             "label": "Serveur",
-            "definition": "Il répond avec les éléments demandés."
+            "definition": "Il répond."
           },
           {
             "id": "hosting",
             "label": "Hébergement",
-            "definition": "Il garde l’application disponible en ligne."
+            "definition": "Il garde l’application disponible."
           }
         ],
         "links": [
@@ -54,76 +54,68 @@
           { "from": "server", "to": "hosting" }
         ]
       },
-      "caption": "Le navigateur demande l’application à un serveur disponible en ligne."
+      "caption": "Le navigateur demande, le serveur répond."
     },
     {
       "type": "explication",
-      "content": "Le troisième vrai mot — L’hébergement est le service qui garde l’application accessible sur Internet. Vercel peut héberger AI Academy."
+      "content": "L’hébergement garde une application disponible sur Internet. Tu l’utiliseras pour publier ton tracker au Module 12."
     },
     {
       "type": "demo",
-      "content": "Mini-activité — Demande-toi qui peut ouvrir une adresse affichée seulement sur ton ordinateur : toi, ou tout le monde ?"
+      "content": "Petite pratique — Remets dans l’ordre : le serveur renvoie la page ; le navigateur affiche la page ; le navigateur demande la page."
     },
     {
       "type": "explication",
-      "content": "Une adresse contenant localhost désigne généralement ton propre ordinateur. Le mot signifie « cet ordinateur-ci ». Cette version n’est pas encore publique."
-    },
-    {
-      "type": "explication",
-      "content": "Tu rencontreras aussi un terminal. C’est une zone où l’on écrit une instruction courte à l’ordinateur. Par exemple, « npm run dev » lui demande de lancer la version de travail d’AI Academy. Claude Code pourra écrire et lancer cette instruction avec toi."
-    },
-    {
-      "type": "explication",
-      "content": "Publier l’application sur un hébergement s’appelle déployer. Tu as peut-être pensé que localhost était déjà visible partout. C’est logique, car la page s’ouvre bien. Mais elle s’ouvre dans ta salle de répétition, pas encore dans la salle publique."
+      "content": "Correction — 1. Le navigateur demande. 2. Le serveur renvoie. 3. Le navigateur affiche. Si l’écran reste vide, le problème peut se situer dans la demande, la réponse ou l’affichage."
     },
     {
       "type": "exercice",
-      "question": "Explique la différence entre AI Academy ouverte sur localhost et AI Academy ouverte sur une adresse Vercel.",
+      "question": "Remets dans l’ordre le trajet d’ouverture d’une leçon : le serveur répond, le navigateur affiche, la personne choisit la leçon, le navigateur demande.",
       "hints": [
-        "Cherche sur quelle machine la version fonctionne.",
-        "Localhost désigne ton ordinateur.",
-        "Vercel rend la version accessible en ligne."
+        "Tout commence par le choix de la personne.",
+        "Une réponse arrive après une demande.",
+        "L’affichage vient lorsque les éléments ont été reçus."
       ],
-      "solution": "Sur localhost, la version de travail fonctionne sur ton ordinateur. Sur Vercel, la version déployée est hébergée et peut être ouverte depuis Internet."
+      "solution": "1. La personne choisit la leçon. 2. Le navigateur la demande. 3. Le serveur répond. 4. Le navigateur affiche les éléments reçus."
     },
     {
       "type": "quiz",
       "questions": [
         {
           "question": "Quel outil affiche AI Academy ?",
-          "options": ["La base seule", "Le cahier des charges", "Le navigateur"],
+          "options": ["Le service qui conserve la progression", "Le serveur qui prépare la réponse", "Le navigateur qui reçoit puis affiche la page"],
           "answer": 2,
           "explanation": "Le navigateur transforme les éléments reçus en page utilisable."
         },
         {
           "question": "Que fait un serveur ?",
-          "options": ["Il répond à des demandes", "Il choisit une couleur", "Il remplace tous les tests"],
+          "options": ["Il répond aux demandes du navigateur", "Il affiche directement la page sur ton écran", "Il conserve forcément toutes les données"],
           "answer": 0,
           "explanation": "Un serveur fournit des éléments ou effectue des traitements demandés."
         },
         {
           "question": "À quoi sert l’hébergement ?",
-          "options": ["À écrire les leçons", "À garder l’application accessible en ligne", "À remplacer le navigateur"],
+          "options": ["À préparer chaque clic dans le navigateur", "À garder l’application accessible en ligne", "À remplacer le serveur et le navigateur"],
           "answer": 1,
           "explanation": "L’hébergement maintient la version publiée disponible."
         },
         {
-          "question": "Que désigne localhost ?",
-          "options": ["Une publication mondiale", "Une base obligatoire", "Ton propre ordinateur"],
+          "question": "Quel ordre décrit l’ouverture d’une page ?",
+          "options": ["Le serveur affiche, puis le navigateur demande", "Le navigateur affiche avant toute réponse", "Le navigateur demande, le serveur répond, le navigateur affiche"],
           "answer": 2,
-          "explanation": "Localhost indique que le service fonctionne sur ta machine."
+          "explanation": "La demande précède la réponse, puis le navigateur peut afficher les éléments reçus."
         },
         {
-          "question": "Que signifie déployer ?",
-          "options": ["Publier une version sur un hébergement", "Fermer le navigateur", "Effacer le projet"],
+          "question": "Que dois-tu savoir sur le mot « hébergement » à ce stade ?",
+          "options": ["Il garde une application disponible en ligne", "Le configurer seul dès maintenant", "Il remplace la construction de l’application"],
           "answer": 0,
-          "explanation": "Déployer rend une version prête accessible grâce à un hébergement."
+          "explanation": "Reconnaître ce rôle suffit. La publication sera pratiquée au Module 12."
         }
       ]
     },
     {
       "type": "explication",
-      "content": "En langage courant — Ton navigateur montre l’application. Un serveur répond. L’hébergement garde la version publique disponible."
+      "content": "En langage courant — Le navigateur demande et affiche. Le serveur répond. L’hébergement garde l’application disponible. Le serveur local et la publication viendront plus tard."
     },
     { "type": "validation" }
   ]
