@@ -1,1 +1,262 @@
-{"id":"lesson-9-1","schemaVersion":2,"title":"Comprendre le rôle d’une API","blocks":[{"type":"explication","content":"Brief — Repérer pourquoi le tracker aurait besoin d’une API avant d’en créer une. Résultat attendu : une preuve concrète appliquée au tracker."},{"type":"explication","content":"Une API est une porte d’échange définie entre deux parties d’une application. Elle précise quelles demandes sont acceptées et quelles réponses sont renvoyées."},{"type":"explication","content":"Analogie — Dans un restaurant, le menu décrit les demandes possibles, le serveur transmet la commande et la cuisine renvoie un résultat. Le client n’entre pas modifier directement la cuisine."},{"type":"schema","diagram":{"kind":"flow","direction":"horizontal","nodes":[{"id":"n1","label":"Interface","color":"#6366F1","definition":"Interface est l’étape 1 du chemin observé."},{"id":"n2","label":"API","color":"#F59E0B","definition":"API est l’étape 2 du chemin observé."},{"id":"n3","label":"Logique serveur","color":"#14B8A6","definition":"Logique serveur est l’étape 3 du chemin observé."}],"links":[{"from":"n1","to":"n2"},{"from":"n2","to":"n3"}]},"caption":"Interface → API → Logique serveur : le trajet à comprendre et à vérifier."},{"type":"demo","content":"Le tracker peut demander « donne-moi la progression » à une route API. La route lit les informations autorisées puis renvoie une réponse structurée, sans exposer son fonctionnement interne."},{"type":"code","filename":"app/api/progress/route.ts","language":"ts","code":"import { NextResponse } from \"next/server\";\n\nexport async function GET() {\n  return NextResponse.json({ completedIds: [\"lesson-1\"] });\n}","explanation":"La fonction GET répond à une demande de lecture avec du JSON. Tu dois comprendre le contrat entrée-réponse et savoir modifier la forme retournée. Claude Code peut créer la route et ses imports, mais tu vérifies qu’aucun secret n’est exposé.","focusLines":[1]},{"type":"explication","content":"Erreur fréquente — confondre un exemple qui fonctionne avec une solution sûre et complète. Vérifie toujours les entrées, les cas refusés, les effets réels et les informations exposées."},{"type":"action","id":"m9-l1-action","title":"Tracer un échange API","instructions":"Écris une demande utile du tracker, la réponse attendue et une information qui ne doit jamais apparaître dans cette réponse.","successCriteria":"La demande et la réponse sont précises, et un secret ou détail interne est explicitement exclu.","evidence":"Note ce que tu as réalisé, la preuve observée et ce que tu as refusé ou corrigé."},{"type":"exercice","question":"Explique la différence entre l’interface du tracker, sa route API et la logique serveur.","hints":["L’interface affiche et collecte des actions.","L’API définit un passage contrôlé.","Le serveur traite les règles non exposées."],"solution":"L’interface présente la progression. La route API reçoit une demande précise et renvoie une réponse. La logique serveur vérifie et prépare les données sans donner au navigateur un accès direct aux ressources internes."},{"type":"quiz","questions":[{"question":"Quel est le rôle d’une API ?","options":["Définir un échange contrôlé entre deux parties","Dessiner uniquement l’interface","Remplacer Git"],"answer":0,"explanation":"Une API décrit des demandes et réponses autorisées. Elle ne remplace ni l’interface ni l’historique Git."},{"question":"Pourquoi utiliser une porte contrôlée ?","options":["Pour appliquer des règles avant d’accéder aux données","Pour publier tous les secrets","Pour éviter toute réponse"],"answer":0,"explanation":"Le serveur peut vérifier la demande avant de produire une réponse limitée."},{"question":"Que renvoie la route de l’exemple ?","options":["Un objet JSON de progression","Un mot de passe","Un commit"],"answer":0,"explanation":"NextResponse.json transforme l’objet de progression en réponse HTTP structurée."},{"question":"L’API doit-elle révéler son fonctionnement interne ?","options":["Non, seulement le contrat et les données nécessaires","Oui, toujours","Seulement dans le CSS"],"answer":0,"explanation":"Limiter la réponse réduit les fuites et rend le contrat plus clair."},{"question":"Que vérifier après la création d’une route ?","options":["La réponse, les erreurs et l’absence de secret","Uniquement son nom","Rien si Claude Code l’a créée"],"answer":0,"explanation":"Une route doit être testée avec les cas attendus et refusés, même si l’IA l’a produite."}]},{"type":"validation"}]}
+{
+  "id": "lesson-9-1",
+  "schemaVersion": 2,
+  "layout": "sequence",
+  "title": "Comment tes applications se parlent-elles ?",
+  "blocks": [
+    {
+      "type": "situation",
+      "context": "AI Academy veut afficher la météo du jour à Paris, directement sur ton tableau de bord.",
+      "question": "À ton avis, où l'application va-t-elle chercher cette information ?",
+      "options": [
+        {
+          "label": "Elle l'invente à chaque fois, au hasard.",
+          "feedback": "Ça semble peu probable : la météo change vraiment d'un jour à l'autre, et AI Academy n'a aucun capteur pour la deviner toute seule."
+        },
+        {
+          "label": "Elle a déjà toutes les météos du monde stockées dans son code.",
+          "feedback": "Ce serait énorme à stocker, et surtout : la météo change en permanence. Un fichier figé serait faux au bout de quelques heures."
+        },
+        {
+          "label": "Elle demande l'information à un autre service, quelque part sur internet.",
+          "feedback": "Bonne intuition à garder en tête : il existe des services spécialisés dans la météo, et une application peut leur demander l'info directement."
+        },
+        {
+          "label": "Elle attend que toi, l'utilisateur, tu la lui donnes.",
+          "feedback": "Ça marcherait, mais ce serait un comble : le but est justement que l'application t'évite cette recherche."
+        }
+      ]
+    },
+    {
+      "type": "schema",
+      "diagram": {
+        "kind": "flow",
+        "direction": "horizontal",
+        "nodes": [
+          {
+            "id": "toi",
+            "label": "Toi",
+            "color": "#6366F1",
+            "definition": "Tu ouvres AI Academy et tu regardes ton tableau de bord."
+          },
+          {
+            "id": "aiacademy",
+            "label": "AI Academy",
+            "color": "#14B8A6",
+            "definition": "L'application affiche les informations, mais elle ne connaît pas la météo par elle-même."
+          },
+          {
+            "id": "mystere",
+            "label": "?",
+            "color": "#F59E0B",
+            "definition": "Bonne question : il manque quelque chose ici. C'est justement ce qu'on va découvrir ensemble dans cette leçon, en manipulant plutôt qu'en lisant une définition."
+          },
+          {
+            "id": "service",
+            "label": "Service météo",
+            "color": "#22C55E",
+            "definition": "Un service, ailleurs sur internet, qui connaît la météo en temps réel et peut la transmettre à qui la lui demande correctement."
+          }
+        ],
+        "links": [
+          { "from": "toi", "to": "aiacademy" },
+          { "from": "aiacademy", "to": "mystere" },
+          { "from": "mystere", "to": "service" }
+        ]
+      },
+      "caption": "Clique sur chaque étape du trajet, en particulier sur le \"?\"."
+    },
+    {
+      "type": "simulation",
+      "prompt": "Voyons ce qui se passe vraiment. Clique pour lancer la demande.",
+      "actionLabel": "Demander la météo de Paris",
+      "scenarios": [
+        {
+          "id": "meteo",
+          "label": "Météo",
+          "emoji": "🌦️",
+          "serviceLabel": "Service météo",
+          "serviceEmoji": "🌦️",
+          "requestLabel": "Quelle est la météo à Paris aujourd'hui ?",
+          "responseLabel": "18°C, ensoleillé.",
+          "resultLabel": "☀️ 18°C à Paris"
+        }
+      ]
+    },
+    {
+      "type": "simulation",
+      "prompt": "Essayons un deuxième cas, pour voir si le même mécanisme se répète.",
+      "actionLabel": "Demander un itinéraire",
+      "scenarios": [
+        {
+          "id": "itineraire",
+          "label": "Itinéraire",
+          "emoji": "🗺️",
+          "serviceLabel": "Service de cartes",
+          "serviceEmoji": "🗺️",
+          "requestLabel": "Quel est le trajet entre la gare et le musée ?",
+          "responseLabel": "12 minutes à pied, par la rue principale.",
+          "resultLabel": "🚶 12 min à pied via la rue principale"
+        }
+      ]
+    },
+    {
+      "type": "simulation",
+      "prompt": "Le même mécanisme se retrouve presque partout. Essaie plusieurs cas :",
+      "actionLabel": "Envoyer la demande",
+      "scenarios": [
+        {
+          "id": "google",
+          "label": "Connexion Google",
+          "emoji": "🔐",
+          "serviceLabel": "Compte Google",
+          "serviceEmoji": "🔐",
+          "requestLabel": "Est-ce bien le compte de cette personne ?",
+          "responseLabel": "Oui, identité confirmée.",
+          "resultLabel": "✅ Connecté avec Google"
+        },
+        {
+          "id": "paiement",
+          "label": "Paiement",
+          "emoji": "💳",
+          "serviceLabel": "Service de paiement",
+          "serviceEmoji": "💳",
+          "requestLabel": "Débiter 12€ sur cette carte.",
+          "responseLabel": "Paiement accepté.",
+          "resultLabel": "💳 Paiement de 12€ validé"
+        },
+        {
+          "id": "chatgpt",
+          "label": "ChatGPT",
+          "emoji": "🤖",
+          "serviceLabel": "Modèle de langage",
+          "serviceEmoji": "🤖",
+          "requestLabel": "Résume ce texte en une phrase.",
+          "responseLabel": "Voici un résumé en une phrase.",
+          "resultLabel": "💬 Réponse générée"
+        },
+        {
+          "id": "carte",
+          "label": "Carte",
+          "emoji": "📍",
+          "serviceLabel": "Service de cartographie",
+          "serviceEmoji": "📍",
+          "requestLabel": "Affiche cette adresse sur la carte.",
+          "responseLabel": "Position trouvée.",
+          "resultLabel": "📍 Adresse localisée"
+        },
+        {
+          "id": "traduction",
+          "label": "Traduction",
+          "emoji": "🌐",
+          "serviceLabel": "Service de traduction",
+          "serviceEmoji": "🌐",
+          "requestLabel": "Traduis ce mot en anglais.",
+          "responseLabel": "\"Bonjour\" → \"Hello\".",
+          "resultLabel": "🌐 Traduction affichée"
+        }
+      ]
+    },
+    {
+      "type": "explication",
+      "content": "Tu viens d'utiliser plusieurs fois le même mécanisme : une application en contacte une autre, lui envoie une demande précise, et reçoit une réponse en retour — c'est exactement ce que représentait le \"?\" du schéma. Cet intermédiaire a un nom : une `API`. C'est une porte d'entrée qu'un service ouvre pour qu'une autre application puisse lui parler, sans jamais avoir accès à son fonctionnement interne. Le service météo a son API, le service de paiement a la sienne, et ainsi de suite."
+    },
+    {
+      "type": "tri",
+      "instruction": "Pour chacune de ces situations, l'application a-t-elle besoin d'une API pour fonctionner ?",
+      "categories": [
+        { "id": "necessaire", "label": "API nécessaire" },
+        { "id": "pasnecessaire", "label": "Pas besoin d'API" }
+      ],
+      "items": [
+        {
+          "id": "meteo",
+          "label": "Afficher la météo du jour",
+          "emoji": "🌦️",
+          "correctCategoryId": "necessaire",
+          "explanation": "La météo vient d'un service extérieur à l'application : il faut la lui demander via son API."
+        },
+        {
+          "id": "paiement",
+          "label": "Encaisser un paiement par carte",
+          "emoji": "💳",
+          "correctCategoryId": "necessaire",
+          "explanation": "Le paiement passe par un prestataire spécialisé, séparé de l'application : c'est encore un échange via une API."
+        },
+        {
+          "id": "carte",
+          "label": "Afficher une adresse sur une carte",
+          "emoji": "📍",
+          "correctCategoryId": "necessaire",
+          "explanation": "Dessiner une vraie carte du monde vient d'un service de cartographie externe, contacté via son API."
+        },
+        {
+          "id": "basededonnees",
+          "label": "Retrouver la liste des leçons déjà cochées, stockée par l'application elle-même",
+          "emoji": "🗄️",
+          "correctCategoryId": "pasnecessaire",
+          "explanation": "Ici, l'information vient de l'application elle-même, pas d'un autre service : pas besoin de passer par une API pour se parler à soi-même."
+        },
+        {
+          "id": "calcul",
+          "label": "Calculer un pourcentage de progression à partir des leçons cochées",
+          "emoji": "🧮",
+          "correctCategoryId": "pasnecessaire",
+          "explanation": "C'est un simple calcul, fait directement par l'application avec les données qu'elle a déjà : aucun autre service à contacter."
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "Une API est un site internet que l'on peut visiter dans un navigateur.",
+          "options": ["Vrai", "Faux"],
+          "answer": 1,
+          "explanation": "Faux : une API n'est pas une page à visiter, mais un moyen pour deux applications de se parler entre elles, sans interface destinée à un humain."
+        },
+        {
+          "question": "Une API est une intelligence artificielle.",
+          "options": ["Vrai", "Faux"],
+          "answer": 1,
+          "explanation": "Faux, et c'est une confusion fréquente à cause du sigle. Une API existe depuis bien avant l'intelligence artificielle : c'est un intermédiaire entre deux applications, quel que soit ce qu'il y a derrière."
+        },
+        {
+          "question": "Quand une application utilise une API, elle copie et garde pour toujours les données de l'autre service.",
+          "options": ["Vrai", "Faux"],
+          "answer": 1,
+          "explanation": "Faux en général : la plupart du temps, l'application redemande l'information à chaque fois qu'elle en a besoin (la météo, par exemple, est redemandée le lendemain) plutôt que de la stocker définitivement."
+        },
+        {
+          "question": "Une API ne sert que pour la météo.",
+          "options": ["Vrai", "Faux"],
+          "answer": 1,
+          "explanation": "Faux : tu as vu la même mécanique fonctionner pour un itinéraire, une connexion, un paiement, une traduction... Le principe se généralise à énormément de services différents."
+        },
+        {
+          "question": "Un même service (par exemple un service de paiement) peut répondre à plusieurs applications différentes, pas seulement à une seule.",
+          "options": ["Vrai", "Faux"],
+          "answer": 0,
+          "explanation": "Vrai : c'est tout l'intérêt d'une API. Le même service de paiement peut être contacté par des dizaines d'applications différentes, chacune lui envoyant ses propres demandes."
+        }
+      ]
+    },
+    {
+      "type": "exercice",
+      "question": "Imagine une application de covoiturage qui affiche le trajet du conducteur sur une carte, en temps réel. D'après ce que tu viens de comprendre : où part la demande, qui y répond, et qui affiche le résultat final ?",
+      "hints": [
+        "Repense au schéma du début : Toi → l'application → ? → un service.",
+        "Ici, l'application de covoiturage a besoin d'un type de service bien précis pour dessiner une carte.",
+        "La demande part de l'application de covoiturage vers un service de cartographie, qui lui répond avec les informations du trajet."
+      ],
+      "solution": "La demande part de l'application de covoiturage. Elle est envoyée à l'API d'un service de cartographie, qui connaît les rues et les trajets. Ce service répond avec les informations du trajet, et c'est l'application de covoiturage qui affiche ensuite le résultat à l'écran, sous forme de carte avec le trajet tracé."
+    },
+    {
+      "type": "resume",
+      "content": "Une API, c'est un intermédiaire : une porte par laquelle une application peut envoyer une demande précise à une autre, et recevoir une réponse en retour — sans jamais entrer directement dans son fonctionnement interne. Météo, itinéraire, paiement, connexion, traduction : à chaque fois qu'une application obtient une information qu'elle ne pourrait pas connaître toute seule, il y a probablement une API derrière."
+    },
+    {
+      "type": "validation"
+    }
+  ]
+}

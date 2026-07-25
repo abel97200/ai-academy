@@ -135,6 +135,82 @@ export type AssessmentBlock = {
   requirements: string[];
 };
 
+// --- Nouveaux blocs (leçon pilote "Comprendre ce qu'est une API") ------
+// Ces 4 blocs sont nés d'un besoin concret : faire découvrir une notion
+// abstraite (l'API) par la manipulation, sans jamais l'ouvrir sur sa
+// définition. Voir docs/CONTENT-SCHEMA-V2.md pour le détail et
+// docs/AI_ACADEMY_PEDAGOGY.md pour la justification pédagogique.
+
+// Une situation de départ (un problème concret), suivie d'une question à
+// choix. Chaque option a son propre retour ("feedback"), affiché
+// immédiatement au clic : ce bloc est exploratoire, pas noté — il sert à
+// faire émerger une intuition, pas à sanctionner une réponse.
+export type SituationOption = {
+  label: string;
+  feedback: string;
+};
+
+export type SituationBlock = {
+  type: "situation";
+  context: string;
+  question: string;
+  options: SituationOption[];
+};
+
+// Une simulation de requête/réponse entre l'apprenant, l'application, un
+// intermédiaire encore désigné par "?", et un service externe. Un même
+// bloc peut proposer plusieurs scénarios (météo, itinéraire...), affichés
+// comme des puces : l'apprenant peut en essayer plusieurs pour comprendre
+// que le mécanisme se généralise, avant même de savoir comment il s'appelle.
+export type SimulationScenario = {
+  id: string;
+  label: string;
+  emoji?: string;
+  serviceLabel: string;
+  serviceEmoji?: string;
+  requestLabel: string;
+  responseLabel: string;
+  resultLabel: string;
+};
+
+export type SimulationBlock = {
+  type: "simulation";
+  prompt: string;
+  actionLabel: string;
+  scenarios: SimulationScenario[];
+};
+
+// Un jeu de tri : classer chaque élément dans l'une de deux catégories, en
+// cliquant (pas de glisser-déposer, pour rester simple au clavier comme au
+// tactile). Chaque item révèle son verdict et son explication au clic.
+export type TriCategory = {
+  id: string;
+  label: string;
+};
+
+export type TriItem = {
+  id: string;
+  label: string;
+  emoji?: string;
+  correctCategoryId: string;
+  explanation: string;
+};
+
+export type TriBlock = {
+  type: "tri";
+  instruction: string;
+  categories: [TriCategory, TriCategory];
+  items: TriItem[];
+};
+
+// Une carte de synthèse courte (une minute maximum, sans jargon), utilisée
+// pour clore une leçon : le résumé standard réutilisable par toute future
+// leçon, pensé comme pendant de "explication" mais pour l'étape Vérifier.
+export type ResumeBlock = {
+  type: "resume";
+  content: string;
+};
+
 // Un "Block" est forcément l'un de ces types (union discriminée par "type").
 // TypeScript s'en sert pour vérifier qu'on n'oublie aucun cas au moment
 // d'afficher un bloc.
@@ -148,15 +224,27 @@ export type Block =
   | CodeBlock
   | ActionBlock
   | ProjectBlock
-  | AssessmentBlock;
+  | AssessmentBlock
+  | SituationBlock
+  | SimulationBlock
+  | TriBlock
+  | ResumeBlock;
 
 // Une leçon complète : un identifiant, un titre, et une liste de blocs.
 // "schemaVersion" est informatif (voir docs/CONTENT-SCHEMA-V2.md) : le
 // moteur reconnaît chaque bloc par son "type", donc un fichier sans
 // schemaVersion (ancien contenu) continue de fonctionner à l'identique.
+// "layout" choisit comment le lecteur présente les blocs :
+// - "stages" (défaut) : regroupés en 5 onglets par TYPE de bloc
+//   (Comprendre/Observer/Essayer/Corriger/Vérifier) — voir lessonStages.ts.
+// - "sequence" : affichés un par un, strictement dans l'ordre du JSON,
+//   sans regroupement. Nécessaire quand la pédagogie exige un ordre
+//   narratif précis (ex: ne nommer un terme qu'après plusieurs
+//   manipulations), ce que le regroupement par type ne peut pas garantir.
 export type Lesson = {
   id: string;
   schemaVersion?: number;
+  layout?: "stages" | "sequence";
   title: string;
   blocks: Block[];
 };

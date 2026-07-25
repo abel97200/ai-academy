@@ -14,6 +14,12 @@ const supportedTypes = new Set([
   "action",
   "project",
   "assessment",
+  // Ajoutés par la leçon pilote "Comprendre ce qu'est une API" (lesson-9-1) :
+  // voir docs/CONTENT-SCHEMA-V2.md et docs/AI_ACADEMY_PEDAGOGY.md.
+  "situation",
+  "simulation",
+  "tri",
+  "resume",
 ]);
 
 function emptyProgress(): ProgressSnapshot {

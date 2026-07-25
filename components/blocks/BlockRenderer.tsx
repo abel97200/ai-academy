@@ -23,6 +23,10 @@ import CodeBlock from "@/components/blocks/CodeBlock";
 import ActionBlock from "@/components/blocks/ActionBlock";
 import ProjectBlock from "@/components/blocks/ProjectBlock";
 import AssessmentBlock from "@/components/blocks/AssessmentBlock";
+import SituationBlock from "@/components/blocks/SituationBlock";
+import SimulationBlock from "@/components/blocks/SimulationBlock";
+import TriBlock from "@/components/blocks/TriBlock";
+import ResumeBlock from "@/components/blocks/ResumeBlock";
 
 type BlockRendererProps = {
   block: Block;
@@ -97,6 +101,36 @@ export default function BlockRenderer({ block, blockId }: BlockRendererProps) {
       return (
         <AssessmentBlock id={blockId} title={block.title} requirements={block.requirements} />
       );
+
+    case "situation":
+      return (
+        <SituationBlock
+          context={block.context}
+          question={block.question}
+          options={block.options}
+        />
+      );
+
+    case "simulation":
+      return (
+        <SimulationBlock
+          prompt={block.prompt}
+          actionLabel={block.actionLabel}
+          scenarios={block.scenarios}
+        />
+      );
+
+    case "tri":
+      return (
+        <TriBlock
+          instruction={block.instruction}
+          categories={block.categories}
+          items={block.items}
+        />
+      );
+
+    case "resume":
+      return <ResumeBlock content={block.content} />;
 
     default:
       // Si un type de bloc inconnu apparaît un jour dans le JSON,

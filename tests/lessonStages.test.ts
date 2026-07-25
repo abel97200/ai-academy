@@ -2,7 +2,7 @@
 // (Comprendre / Observer / Essayer / Corriger / Vérifier).
 
 import { describe, expect, it } from "vitest";
-import { groupBlocksByStage } from "@/lib/lessonStages";
+import { getStageForBlockType, groupBlocksByStage } from "@/lib/lessonStages";
 import type { Block } from "@/lib/contentTypes";
 
 describe("groupBlocksByStage", () => {
@@ -89,5 +89,42 @@ describe("groupBlocksByStage", () => {
     expect(stages).toHaveLength(1);
     expect(stages[0].key).toBe("verifier");
     expect(stages[0].blocks).toHaveLength(2);
+  });
+
+  it("place les blocs 'situation', 'simulation', 'tri' et 'resume' dans la bonne étape", () => {
+    const blocks: Block[] = [
+      { type: "situation", context: "...", question: "...", options: [] },
+      { type: "simulation", prompt: "...", actionLabel: "...", scenarios: [] },
+      {
+        type: "tri",
+        instruction: "...",
+        categories: [
+          { id: "a", label: "A" },
+          { id: "b", label: "B" },
+        ],
+        items: [],
+      },
+      { type: "resume", content: "..." },
+    ];
+
+    const stages = groupBlocksByStage(blocks);
+
+    expect(stages.map((s) => s.key)).toEqual(["comprendre", "essayer", "verifier"]);
+    expect(stages.find((s) => s.key === "essayer")?.blocks).toHaveLength(2);
+  });
+});
+
+describe("getStageForBlockType", () => {
+  it("donne l'étape pédagogique de chaque nouveau type de bloc, sans regrouper", () => {
+    expect(getStageForBlockType("situation").key).toBe("comprendre");
+    expect(getStageForBlockType("simulation").key).toBe("essayer");
+    expect(getStageForBlockType("tri").key).toBe("essayer");
+    expect(getStageForBlockType("resume").key).toBe("verifier");
+  });
+
+  it("reste cohérent avec le regroupement par étapes pour les types existants", () => {
+    expect(getStageForBlockType("explication").key).toBe("comprendre");
+    expect(getStageForBlockType("quiz").key).toBe("corriger");
+    expect(getStageForBlockType("validation").key).toBe("verifier");
   });
 });
