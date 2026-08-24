@@ -23,6 +23,11 @@ import CodeBlock from "@/components/blocks/CodeBlock";
 import ActionBlock from "@/components/blocks/ActionBlock";
 import ProjectBlock from "@/components/blocks/ProjectBlock";
 import AssessmentBlock from "@/components/blocks/AssessmentBlock";
+import SituationBlock from "@/components/blocks/SituationBlock";
+import TriBlock from "@/components/blocks/TriBlock";
+import ResumeBlock from "@/components/blocks/ResumeBlock";
+import WorkflowBlock from "@/components/blocks/WorkflowBlock";
+import OrdreBlock from "@/components/blocks/OrdreBlock";
 
 type BlockRendererProps = {
   block: Block;
@@ -96,6 +101,39 @@ export default function BlockRenderer({ block, blockId }: BlockRendererProps) {
       // automatiquement pour ce bloc, comme pour les quiz.
       return (
         <AssessmentBlock id={blockId} title={block.title} requirements={block.requirements} />
+      );
+
+    case "situation":
+      return (
+        <SituationBlock context={block.context} question={block.question} options={block.options} />
+      );
+
+    case "tri":
+      return (
+        <TriBlock instruction={block.instruction} categories={block.categories} items={block.items} />
+      );
+
+    case "resume":
+      return <ResumeBlock content={block.content} />;
+
+    case "workflow":
+      return (
+        <WorkflowBlock
+          prompt={block.prompt}
+          payloadLabel={block.payloadLabel}
+          actionLabel={block.actionLabel}
+          steps={block.steps}
+          completionLabel={block.completionLabel}
+        />
+      );
+
+    case "ordre":
+      return (
+        <OrdreBlock
+          instruction={block.instruction}
+          items={block.items}
+          correctOrder={block.correctOrder}
+        />
       );
 
     default:

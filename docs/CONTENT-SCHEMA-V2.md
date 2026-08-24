@@ -182,6 +182,94 @@ Le fichier `course.json` décrit maintenant des **niveaux**, chacun listant ses 
 
 ---
 
+---
+
+## Blocs "pilote" (Module 1 — Automatiser de A à Z)
+
+Nés d'un besoin concret : faire découvrir une notion par la manipulation
+(observer une répétition, classer un cas, remettre une suite dans l'ordre,
+suivre une donnée qui circule) plutôt que par la lecture d'une définition.
+
+### `situation`
+
+Une situation de départ, suivie d'une question à choix. Contrairement à un
+quiz, chaque option a son propre retour ("feedback"), affiché immédiatement
+au clic : ce bloc est exploratoire, pas noté — il sert à faire émerger une
+intuition avant toute définition.
+
+| Champ | Type | Obligatoire | Description |
+|---|---|---|---|
+| `type` | `"situation"` | oui | |
+| `context` | `string` | oui | La situation de départ |
+| `question` | `string` | oui | La question posée |
+| `options` | `{ label, feedback }[]` | oui | Chaque option a son propre retour |
+
+### `tri`
+
+Un jeu de tri : classer chaque élément dans l'une de 2 à 4 catégories, en
+cliquant (pas de glisser-déposer). Chaque item révèle son verdict et son
+explication au clic, et reste modifiable.
+
+| Champ | Type | Obligatoire | Description |
+|---|---|---|---|
+| `type` | `"tri"` | oui | |
+| `instruction` | `string` | oui | |
+| `categories` | `{ id, label }[]` | oui | 2 à 4 catégories |
+| `items` | `{ id, label, emoji?, correctCategoryId, explanation }[]` | oui | |
+
+### `resume`
+
+Carte de synthèse courte (une minute maximum, sans jargon), pour clore une
+leçon. Pendant de `explication` mais pour l'étape Vérifier.
+
+| Champ | Type | Obligatoire | Description |
+|---|---|---|---|
+| `type` | `"resume"` | oui | |
+| `content` | `string` | oui | |
+
+### `workflow`
+
+Anime une donnée (le "payload") qui circule à travers une chaîne d'étapes
+réelles (ex : Formulaire web → CRM → Gmail → Google Sheets). Contrairement
+à `schema` (statique), ce bloc anime le trajet, étape par étape, avec un
+temps de pause sur chaque étape pour expliquer ce qui arrive à la donnée.
+Chaque étape reste aussi cliquable indépendamment de l'animation, pour une
+exploration libre au clavier.
+
+| Champ | Type | Obligatoire | Description |
+|---|---|---|---|
+| `type` | `"workflow"` | oui | |
+| `prompt` | `string` | oui | Texte d'intro |
+| `payloadLabel` | `string` | oui | Ce qui circule, ex : `"🗂️ Fiche client"` |
+| `actionLabel` | `string` | oui | Libellé du bouton qui lance l'animation |
+| `steps` | `{ id, label, emoji?, detail }[]` | oui | Au moins 2 étapes, dans l'ordre du trajet |
+| `completionLabel` | `string` | oui | Message affiché une fois le trajet terminé |
+
+### `ordre`
+
+Exercice de remise en ordre : l'apprenant clique les éléments dans l'ordre
+qu'il pense correct (jamais de glisser-déposer), peut annuler son dernier
+choix, puis vérifie sa séquence complète.
+
+| Champ | Type | Obligatoire | Description |
+|---|---|---|---|
+| `type` | `"ordre"` | oui | |
+| `instruction` | `string` | oui | |
+| `items` | `{ id, label, emoji? }[]` | oui | Présentés dans un ordre mélangé |
+| `correctOrder` | `string[]` | oui | Identifiants des items, dans l'ordre attendu |
+
+### `layout` (leçon)
+
+Une leçon peut porter `"layout": "sequence"` à la racine pour afficher ses
+blocs un par un, strictement dans l'ordre du JSON, au lieu du regroupement
+par étape par défaut (`"stages"`). Nécessaire quand la pédagogie exige un
+ordre narratif précis (ex : observer une répétition avant de nommer le
+mécanisme) — un regroupement par TYPE de bloc ne peut pas le garantir,
+puisqu'un bloc `explication` finirait toujours dans l'onglet "Comprendre"
+quelle que soit sa place réelle dans le déroulé écrit.
+
+---
+
 ## Progression (localStorage)
 
 En plus de `completedLessons` et `activityDates` (existants), la progression retient maintenant :
