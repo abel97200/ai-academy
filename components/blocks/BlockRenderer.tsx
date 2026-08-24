@@ -24,6 +24,7 @@ import ActionBlock from "@/components/blocks/ActionBlock";
 import ProjectBlock from "@/components/blocks/ProjectBlock";
 import AssessmentBlock from "@/components/blocks/AssessmentBlock";
 import SituationBlock from "@/components/blocks/SituationBlock";
+import Lesson11IntroPrototype from "@/components/blocks/prototype/Lesson11IntroPrototype";
 import TriBlock from "@/components/blocks/TriBlock";
 import ResumeBlock from "@/components/blocks/ResumeBlock";
 import WorkflowBlock from "@/components/blocks/WorkflowBlock";
@@ -104,6 +105,19 @@ export default function BlockRenderer({ block, blockId }: BlockRendererProps) {
       );
 
     case "situation":
+      // PROTOTYPE VISUEL — voir components/blocks/prototype/Lesson11IntroPrototype.tsx.
+      // Cas spécial temporaire, câblé sur le tout premier bloc de la leçon
+      // 1.1 uniquement, pour tester une nouvelle direction visuelle sans
+      // toucher au composant générique ni aux autres leçons.
+      if (blockId === "automatisation-lesson-1-1-block-0") {
+        return (
+          <Lesson11IntroPrototype
+            context={block.context}
+            question={block.question}
+            options={block.options}
+          />
+        );
+      }
       return (
         <SituationBlock context={block.context} question={block.question} options={block.options} />
       );
