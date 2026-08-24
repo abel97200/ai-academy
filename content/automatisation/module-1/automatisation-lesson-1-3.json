@@ -1,0 +1,238 @@
+{
+  "id": "automatisation-lesson-1-3",
+  "schemaVersion": 2,
+  "layout": "sequence",
+  "title": "Déclencheur, action et données",
+  "blocks": [
+    {
+      "type": "situation",
+      "context": "Un visiteur remplit le formulaire de contact du site d'une agence immobilière : il indique son prénom, son email, le type de bien recherché, et son budget.",
+      "question": "D'après toi, que va-t-il se passer juste après qu'il clique sur « Envoyer » ?",
+      "options": [
+        {
+          "label": "Rien, le formulaire attend qu'un humain vienne le consulter un jour.",
+          "feedback": "C'est possible dans certains sites très simples, mais on va voir qu'ici, plusieurs choses s'enchaînent automatiquement juste après."
+        },
+        {
+          "label": "Plusieurs applications vont se transmettre sa fiche, les unes après les autres.",
+          "feedback": "Bonne intuition — c'est exactement ce qu'on va observer juste après."
+        },
+        {
+          "label": "Le visiteur reçoit immédiatement un appel téléphonique.",
+          "feedback": "Peu probable aussi vite ! Ce qui se passe d'abord, c'est un échange entre applications, pas un appel humain immédiat."
+        }
+      ]
+    },
+    {
+      "type": "workflow",
+      "prompt": "Voici ce qui se passe, dans cette agence, juste après l'envoi du formulaire. Observe le trajet de la fiche du client.",
+      "payloadLabel": "🗂️ Fiche client",
+      "actionLabel": "Suivre la fiche client",
+      "steps": [
+        {
+          "id": "formulaire",
+          "label": "Formulaire web",
+          "emoji": "🖥️",
+          "detail": "Le visiteur remplit et envoie le formulaire : prénom, email, type de demande, budget."
+        },
+        {
+          "id": "crm",
+          "label": "CRM",
+          "emoji": "🗃️",
+          "detail": "Le CRM enregistre automatiquement une nouvelle fiche avec ces informations."
+        },
+        {
+          "id": "gmail",
+          "label": "Gmail",
+          "emoji": "📧",
+          "detail": "Un email de confirmation part automatiquement vers le visiteur : « Merci, nous revenons vers vous rapidement »."
+        },
+        {
+          "id": "sheets",
+          "label": "Google Sheets",
+          "emoji": "📊",
+          "detail": "Une ligne est ajoutée dans le tableau de suivi partagé par l'équipe commerciale."
+        }
+      ],
+      "completionLabel": "La fiche du client vient de circuler à travers 3 applications, sans qu'aucun humain n'intervienne."
+    },
+    {
+      "type": "situation",
+      "context": "Reprends ce trajet : Formulaire web → CRM → Gmail → Google Sheets.",
+      "question": "Qu'est-ce qui démarre tout ce processus ?",
+      "options": [
+        {
+          "label": "Le formulaire rempli et envoyé par le visiteur",
+          "feedback": "Exactement : c'est cet évènement précis qui déclenche toute la suite."
+        },
+        {
+          "label": "L'ajout de la ligne dans Google Sheets",
+          "feedback": "Non — ça, c'est l'une des dernières choses qui se passent, pas ce qui démarre le processus."
+        },
+        {
+          "label": "L'email de confirmation envoyé",
+          "feedback": "Non plus : cet email est une conséquence du formulaire rempli, pas son point de départ."
+        }
+      ]
+    },
+    {
+      "type": "situation",
+      "context": "Toujours le même trajet : Formulaire web → CRM → Gmail → Google Sheets.",
+      "question": "Qu'est-ce qui CIRCULE d'une application à l'autre, dans ce cas ?",
+      "options": [
+        {
+          "label": "Le design du site web",
+          "feedback": "Non, le design ne bouge pas d'une application à l'autre ici."
+        },
+        {
+          "label": "La fiche du client : prénom, email, type de demande, budget",
+          "feedback": "Exactement — ce sont ces informations précises qui passent d'une application à la suivante."
+        },
+        {
+          "label": "Le mot de passe du CRM",
+          "feedback": "Non, aucun mot de passe ne circule dans ce processus."
+        }
+      ]
+    },
+    {
+      "type": "situation",
+      "context": "Toujours le même trajet : Formulaire web → CRM → Gmail → Google Sheets.",
+      "question": "Et quelles sont les ACTIONS réalisées par les applications, dans ce trajet ?",
+      "options": [
+        {
+          "label": "Enregistrer la fiche, envoyer un email, ajouter une ligne",
+          "feedback": "Exactement : ce sont les 3 actions réalisées automatiquement, une par application."
+        },
+        {
+          "label": "Appeler le client au téléphone",
+          "feedback": "Aucune application ne peut faire ça toute seule — ce serait une action humaine, pas automatique."
+        },
+        {
+          "label": "Supprimer le formulaire",
+          "feedback": "Non, rien n'indique que le formulaire soit supprimé dans ce trajet."
+        }
+      ]
+    },
+    {
+      "type": "explication",
+      "content": "Tu viens d'identifier les 3 rôles : le DÉCLENCHEUR démarre tout (le formulaire envoyé), les DONNÉES sont ce qui circule (la fiche du client), et les ACTIONS sont ce que chaque application fait avec ces données (enregistrer, envoyer, ajouter une ligne)."
+    },
+    {
+      "type": "tri",
+      "instruction": "Pour chaque élément de ce cas, indique s'il s'agit d'un déclencheur, d'une donnée, ou d'une action.",
+      "categories": [
+        {
+          "id": "declencheur",
+          "label": "Déclencheur"
+        },
+        {
+          "id": "donnee",
+          "label": "Donnée"
+        },
+        {
+          "id": "action",
+          "label": "Action"
+        }
+      ],
+      "items": [
+        {
+          "id": "formulaire-envoye",
+          "label": "Le formulaire envoyé par le visiteur",
+          "emoji": "🖥️",
+          "correctCategoryId": "declencheur",
+          "explanation": "C'est l'évènement qui démarre tout le reste : rien ne se passe avant lui."
+        },
+        {
+          "id": "budget",
+          "label": "Le budget indiqué par le client",
+          "emoji": "💶",
+          "correctCategoryId": "donnee",
+          "explanation": "C'est une information qui circule et qui est utilisée par les applications suivantes."
+        },
+        {
+          "id": "email-confirmation",
+          "label": "L'email de confirmation envoyé automatiquement",
+          "emoji": "📧",
+          "correctCategoryId": "action",
+          "explanation": "C'est quelque chose que Gmail FAIT avec les données reçues, pas une information qui circule."
+        },
+        {
+          "id": "prenom",
+          "label": "Le prénom du client",
+          "emoji": "🙋",
+          "correctCategoryId": "donnee",
+          "explanation": "Encore une information qui circule d'une application à l'autre — une donnée."
+        },
+        {
+          "id": "ligne-sheets",
+          "label": "La ligne ajoutée dans Google Sheets",
+          "emoji": "📊",
+          "correctCategoryId": "action",
+          "explanation": "C'est ce que fait Google Sheets avec la fiche reçue — une action, pas la donnée elle-même."
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "Sur le trajet Formulaire → CRM → Gmail → Google Sheets, qu'est-ce qui joue le rôle de déclencheur ?",
+          "options": [
+            "L'ajout de la ligne dans Sheets",
+            "L'envoi du formulaire par le visiteur",
+            "L'enregistrement dans le CRM"
+          ],
+          "answer": 1,
+          "explanation": "Correct : le déclencheur est le tout premier évènement, celui qui démarre la suite — ici, l'envoi du formulaire. Les deux autres options arrivent après, elles sont des conséquences, pas le point de départ."
+        },
+        {
+          "question": "Le prénom, l'email, le type de demande et le budget du client : comment appelle-t-on ces éléments dans le processus ?",
+          "options": [
+            "Des déclencheurs",
+            "Des actions",
+            "Des données"
+          ],
+          "answer": 2,
+          "explanation": "Correct : ce sont des informations qui circulent et sont utilisées à chaque étape — donc des données. Il n'y a qu'un seul déclencheur (l'envoi du formulaire), et une action est ce qu'une application FAIT, pas une information."
+        },
+        {
+          "question": "Le CRM enregistre automatiquement la fiche reçue. De quoi s'agit-il ?",
+          "options": [
+            "D'une action",
+            "D'un déclencheur",
+            "D'une donnée"
+          ],
+          "answer": 0,
+          "explanation": "Correct : « enregistrer » est quelque chose que le CRM FAIT avec les données reçues — c'est une action. Ce n'est ni l'évènement de départ (déclencheur), ni une information qui circule (donnée)."
+        },
+        {
+          "question": "Une boutique en ligne : dès qu'une commande est passée, un email de confirmation part automatiquement au client. Ici, quelle est l'action ?",
+          "options": [
+            "La commande passée par le client",
+            "L'envoi automatique de l'email de confirmation",
+            "Le numéro de la commande"
+          ],
+          "answer": 1,
+          "explanation": "Correct : envoyer l'email est ce que le système FAIT en réponse à la commande — c'est l'action. La commande passée est le déclencheur, et le numéro de commande est une donnée."
+        },
+        {
+          "question": "Pourquoi est-il utile de distinguer déclencheur, données et action dans un cas qu'on ne connaît pas encore ?",
+          "options": [
+            "Parce que Make l'exige avant de commencer",
+            "Parce que sans cette distinction, aucune automatisation n'est légale",
+            "Parce que ça permet de comprendre comment n'importe quel processus fonctionne, même sans connaître l'outil utilisé pour l'automatiser"
+          ],
+          "answer": 2,
+          "explanation": "Correct : ces 3 rôles décrivent le mécanisme d'un processus, indépendamment de tout outil précis — utile pour analyser un cas avant même de choisir comment l'automatiser. Ce n'est ni une exigence technique de Make, ni une question légale."
+        }
+      ]
+    },
+    {
+      "type": "resume",
+      "content": "Un déclencheur démarre le processus, les données sont ce qui circule d'une étape à l'autre, et une action est ce qu'une application fait avec ces données. Ces 3 rôles se retrouvent dans presque toutes les automatisations."
+    },
+    {
+      "type": "validation"
+    }
+  ]
+}

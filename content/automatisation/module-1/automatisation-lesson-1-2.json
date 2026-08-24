@@ -1,0 +1,208 @@
+{
+  "id": "automatisation-lesson-1-2",
+  "schemaVersion": 2,
+  "layout": "sequence",
+  "title": "Tâche, processus et workflow",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Chez Atelier Bois & Co, un petit fabricant de meubles sur mesure, un client qui veut un meuble envoie une demande de devis. Plusieurs étapes se suivent avant qu'il reçoive une réponse — les voici, dans le désordre."
+    },
+    {
+      "type": "ordre",
+      "instruction": "Remets ces 5 étapes dans l'ordre où elles se déroulent réellement, du début à la fin.",
+      "items": [
+        {
+          "id": "redaction",
+          "label": "Le devis est rédigé",
+          "emoji": "📝"
+        },
+        {
+          "id": "envoi",
+          "label": "Le devis est envoyé au client",
+          "emoji": "📤"
+        },
+        {
+          "id": "demande",
+          "label": "Le client envoie sa demande de devis",
+          "emoji": "✉️"
+        },
+        {
+          "id": "calcul",
+          "label": "Le prix est calculé selon les besoins",
+          "emoji": "🧮"
+        },
+        {
+          "id": "besoins",
+          "label": "Le commercial relève les besoins du client",
+          "emoji": "📋"
+        }
+      ],
+      "correctOrder": [
+        "demande",
+        "besoins",
+        "calcul",
+        "redaction",
+        "envoi"
+      ]
+    },
+    {
+      "type": "explication",
+      "content": "Une seule de ces étapes, comme « calculer le prix », s'appelle une TÂCHE. Le fil complet, de la demande du client à l'envoi du devis, forme un PROCESSUS. Et quand ce processus est décrit avec des étapes assez précises pour être reproduites à l'identique, on parle de WORKFLOW."
+    },
+    {
+      "type": "schema",
+      "diagram": {
+        "kind": "trio",
+        "nodes": [
+          {
+            "id": "tache",
+            "label": "Tâche",
+            "color": "#F59E0B",
+            "definition": "Une action unique et précise. Exemple : calculer le prix d'un meuble."
+          },
+          {
+            "id": "processus",
+            "label": "Processus",
+            "color": "#6366F1",
+            "definition": "Un enchaînement de tâches qui mène à un résultat. Exemple : de la demande du client jusqu'au devis envoyé."
+          },
+          {
+            "id": "workflow",
+            "label": "Workflow",
+            "color": "#22C55E",
+            "definition": "Ce même processus, décrit avec des étapes claires et reproductibles, prêt à être automatisé."
+          }
+        ],
+        "links": [
+          {
+            "from": "tache",
+            "to": "processus"
+          },
+          {
+            "from": "processus",
+            "to": "workflow"
+          },
+          {
+            "from": "workflow",
+            "to": "tache"
+          }
+        ]
+      },
+      "caption": "Clique sur chaque mot pour voir sa définition, appliquée à Atelier Bois & Co."
+    },
+    {
+      "type": "tri",
+      "instruction": "Pour chacun de ces éléments d'une entreprise : s'agit-il d'une tâche unique, ou d'un processus complet ?",
+      "categories": [
+        {
+          "id": "tache",
+          "label": "Tâche"
+        },
+        {
+          "id": "processus",
+          "label": "Processus"
+        }
+      ],
+      "items": [
+        {
+          "id": "prix",
+          "label": "Calculer un prix",
+          "emoji": "🧮",
+          "correctCategoryId": "tache",
+          "explanation": "C'est une action unique et précise, pas un enchaînement de plusieurs étapes."
+        },
+        {
+          "id": "besoins",
+          "label": "Relever les besoins d'un client",
+          "emoji": "📋",
+          "correctCategoryId": "tache",
+          "explanation": "Là aussi, une seule action ciblée — pas encore tout le chemin vers le résultat final."
+        },
+        {
+          "id": "devis-complet",
+          "label": "Du premier email du client jusqu'à l'envoi du devis",
+          "emoji": "🔁",
+          "correctCategoryId": "processus",
+          "explanation": "Plusieurs tâches enchaînées (relever les besoins, calculer, rédiger, envoyer) vers un même but : c'est un processus."
+        },
+        {
+          "id": "redaction",
+          "label": "Rédiger un devis",
+          "emoji": "📝",
+          "correctCategoryId": "tache",
+          "explanation": "Une action précise et isolée, même si elle s'insère dans un processus plus large."
+        },
+        {
+          "id": "livraison-complete",
+          "label": "De la réception d'une commande jusqu'à sa livraison chez le client",
+          "emoji": "🚚",
+          "correctCategoryId": "processus",
+          "explanation": "Un enchaînement de plusieurs étapes (préparer, emballer, expédier, livrer) : encore un processus complet."
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "« Rédiger un devis » : est-ce une tâche, un processus ou un workflow ?",
+          "options": [
+            "Un processus",
+            "Un workflow",
+            "Une tâche"
+          ],
+          "answer": 2,
+          "explanation": "Correct : c'est une action unique et précise, donc une tâche. Ce n'est ni un enchaînement de plusieurs actions (processus), ni sa version formalisée en étapes reproductibles (workflow)."
+        },
+        {
+          "question": "« De la demande du client jusqu'à l'envoi du devis » regroupe plusieurs tâches à la suite, vers un même but. De quoi s'agit-il ?",
+          "options": [
+            "Un processus",
+            "Une seule tâche",
+            "Un déclencheur"
+          ],
+          "answer": 0,
+          "explanation": "Correct : un enchaînement de plusieurs tâches organisées vers un même résultat est un processus. Ce n'est pas une tâche unique (il y en a plusieurs), ni un déclencheur (qui ne concerne que le tout début)."
+        },
+        {
+          "question": "Qu'est-ce qui différencie surtout un processus d'un workflow ?",
+          "options": [
+            "Le processus est toujours plus rapide",
+            "Le workflow est ce même processus décrit avec des étapes précises et reproductibles",
+            "Un workflow n'a besoin d'aucun humain"
+          ],
+          "answer": 1,
+          "explanation": "Correct : un workflow n'est pas un objet différent du processus, c'est sa version formalisée, avec des étapes assez précises pour être reproduites (et automatisées si besoin). Rien n'indique que ce soit plus rapide, et un workflow peut très bien inclure des étapes humaines."
+        },
+        {
+          "question": "Une boulangère prépare chaque matin ses croissants : elle pèse la farine, pétrit, façonne, laisse lever, puis enfourne. Comment appelle-t-on l'ensemble de ces étapes enchaînées ?",
+          "options": [
+            "Une tâche",
+            "Un déclencheur",
+            "Un processus"
+          ],
+          "answer": 2,
+          "explanation": "Correct : plusieurs tâches (peser, pétrir, façonner...) enchaînées vers un même résultat (des croissants prêts) forment un processus. Chaque étape prise seule serait une tâche, mais l'ensemble organisé est bien un processus."
+        },
+        {
+          "question": "Pourquoi est-il utile de distinguer tâche, processus et workflow avant de vouloir automatiser quelque chose ?",
+          "options": [
+            "Parce que ça aide à savoir si on parle d'une seule action, d'un enchaînement, ou d'une version assez précise pour être reproduite",
+            "Parce que seules les tâches peuvent être automatisées",
+            "Parce que les processus n'existent que dans les grandes entreprises"
+          ],
+          "answer": 0,
+          "explanation": "Correct : cette distinction évite les malentendus sur ce qu'on cherche vraiment à automatiser — une seule action, tout un enchaînement, ou sa version déjà formalisée en étapes. Une tâche seule n'est pas la seule chose automatisable, et un processus peut exister dans une entreprise de toute taille, y compris chez un artisan seul."
+        }
+      ]
+    },
+    {
+      "type": "resume",
+      "content": "Une tâche est une action unique. Un processus est l'enchaînement de plusieurs tâches vers un but. Un workflow est ce même processus, décrit étape par étape de façon assez précise pour être reproduit — et donc, potentiellement, automatisé."
+    },
+    {
+      "type": "validation"
+    }
+  ]
+}

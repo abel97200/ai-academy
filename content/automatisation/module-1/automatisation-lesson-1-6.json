@@ -1,0 +1,256 @@
+{
+  "id": "automatisation-lesson-1-6",
+  "schemaVersion": 2,
+  "layout": "sequence",
+  "title": "Première enquête d'automatisation",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Aujourd'hui, on observe une vraie journée à l'Atelier Bois & Co, un petit atelier de meubles sur mesure. Son fondateur, Karim, note tout ce qu'il fait dans sa journée."
+    },
+    {
+      "type": "situation",
+      "context": "Voici la journée de Karim : il répond à plusieurs emails de demande de devis très similaires — il copie chaque nouvelle commande reçue par email vers son tableur de suivi — il publie une photo d'un meuble terminé sur Instagram — il relance par email les clients en retard de paiement depuis plus de 8 jours — il répond au téléphone à un client mécontent d'un retard de livraison — il commande du bois chez son fournisseur habituel.",
+      "question": "Avant de continuer, qu'est-ce qui te frappe le plus dans cette journée ?",
+      "options": [
+        {
+          "label": "Certaines tâches semblent se répéter, presque à l'identique",
+          "feedback": "Bon œil — c'est justement ce qu'on va vérifier précisément dans l'exercice suivant."
+        },
+        {
+          "label": "Karim n'a pas assez de travail",
+          "feedback": "Ce n'est pas vraiment le sujet ici : regarde plutôt la NATURE des tâches, pas leur quantité."
+        },
+        {
+          "label": "Toutes ces tâches sont uniques et différentes",
+          "feedback": "Regarde à nouveau : au moins deux ou trois de ces tâches reviennent avec la même suite d'actions. On va les repérer précisément juste après."
+        }
+      ]
+    },
+    {
+      "type": "tri",
+      "instruction": "Pour chaque tâche de la journée de Karim : est-elle répétitive (presque la même suite d'actions à chaque fois), ou non répétitive (chaque cas est vraiment différent) ?",
+      "categories": [
+        {
+          "id": "repetitive",
+          "label": "Répétitive"
+        },
+        {
+          "id": "non-repetitive",
+          "label": "Non répétitive"
+        }
+      ],
+      "items": [
+        {
+          "id": "devis-emails",
+          "label": "Répondre aux emails de demande de devis très similaires",
+          "emoji": "✉️",
+          "correctCategoryId": "repetitive",
+          "explanation": "C'est presque le même échange à chaque fois, pour des clients différents : le signe classique d'une tâche répétitive."
+        },
+        {
+          "id": "copie-commande",
+          "label": "Copier chaque commande reçue par email vers le tableur",
+          "emoji": "📋",
+          "correctCategoryId": "repetitive",
+          "explanation": "Même geste recommencé à l'identique à chaque nouvelle commande : une copie répétitive."
+        },
+        {
+          "id": "instagram",
+          "label": "Publier une photo d'un meuble terminé sur Instagram",
+          "emoji": "📸",
+          "correctCategoryId": "non-repetitive",
+          "explanation": "Chaque publication est différente (photo, texte, moment choisi) — ce n'est pas une suite d'actions identiques."
+        },
+        {
+          "id": "relance-paiement",
+          "label": "Relancer les clients en retard de paiement depuis plus de 8 jours",
+          "emoji": "⏰",
+          "correctCategoryId": "repetitive",
+          "explanation": "Le même type de message revient à chaque client en retard, selon la même règle (plus de 8 jours) : c'est répétitif."
+        },
+        {
+          "id": "telephone-client",
+          "label": "Répondre au téléphone à un client mécontent d'un retard de livraison",
+          "emoji": "📞",
+          "correctCategoryId": "non-repetitive",
+          "explanation": "Chaque situation, chaque client et chaque ton sont différents — ça demande une vraie écoute, pas une réponse identique."
+        },
+        {
+          "id": "commande-bois",
+          "label": "Commander du bois chez le fournisseur habituel",
+          "emoji": "🪵",
+          "correctCategoryId": "non-repetitive",
+          "explanation": "Ici, la commande dépend du niveau de stock du moment, pas d'un enchaînement identique à chaque fois."
+        }
+      ]
+    },
+    {
+      "type": "explication",
+      "content": "Une tâche répétitive n'est pas automatiquement une bonne candidate à l'automatisation complète. Comme dans la leçon précédente, il faut se demander : quel est le risque, et un vrai jugement humain est-il nécessaire ?"
+    },
+    {
+      "type": "tri",
+      "instruction": "Parmi les tâches répétitives (et une tâche fréquente mais pas répétitive, pour vérifier), que ferais-tu : automatiser, assister, ou garder humain ?",
+      "categories": [
+        {
+          "id": "automatiser",
+          "label": "AUTOMATISER"
+        },
+        {
+          "id": "assister",
+          "label": "ASSISTER"
+        },
+        {
+          "id": "humain",
+          "label": "GARDER HUMAIN"
+        }
+      ],
+      "items": [
+        {
+          "id": "devis-emails-2",
+          "label": "Répondre aux emails de demande de devis très similaires",
+          "emoji": "✉️",
+          "correctCategoryId": "assister",
+          "explanation": "Un modèle de réponse peut préparer une base utile, mais chaque devis dépend des besoins précis du client : une relecture humaine reste utile avant l'envoi."
+        },
+        {
+          "id": "copie-commande-2",
+          "label": "Copier chaque commande reçue par email vers le tableur",
+          "emoji": "📋",
+          "correctCategoryId": "automatiser",
+          "explanation": "Une simple copie de données, sans jugement à exercer : un cas parfait pour l'automatisation complète."
+        },
+        {
+          "id": "relance-paiement-2",
+          "label": "Relancer les clients en retard de paiement de plus de 8 jours",
+          "emoji": "⏰",
+          "correctCategoryId": "automatiser",
+          "explanation": "La règle est claire et fixe (plus de 8 jours de retard) : l'automatisation complète convient bien, avec la possibilité pour Karim de garder un œil sur les cas particuliers."
+        },
+        {
+          "id": "telephone-client-2",
+          "label": "Répondre au téléphone à un client mécontent",
+          "emoji": "📞",
+          "correctCategoryId": "humain",
+          "explanation": "Même si ça revient régulièrement, chaque situation est différente, et l'enjeu (relation client, ton, contexte) exige un vrai jugement humain."
+        }
+      ]
+    },
+    {
+      "type": "ordre",
+      "instruction": "Karim choisit d'automatiser la copie des commandes reçues par email vers son tableur. Remets les étapes de ce futur workflow dans le bon ordre.",
+      "items": [
+        {
+          "id": "ligne",
+          "label": "Une nouvelle ligne est ajoutée dans le tableau de suivi",
+          "emoji": "📊"
+        },
+        {
+          "id": "confirmation",
+          "label": "Karim reçoit une confirmation que la ligne a bien été ajoutée",
+          "emoji": "✅"
+        },
+        {
+          "id": "email",
+          "label": "Un email de nouvelle commande arrive dans la boîte mail",
+          "emoji": "📩"
+        },
+        {
+          "id": "lecture",
+          "label": "Le nom du client et le détail de la commande sont relevés dans l'email",
+          "emoji": "🔎"
+        }
+      ],
+      "correctOrder": [
+        "email",
+        "lecture",
+        "ligne",
+        "confirmation"
+      ]
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "Parmi les tâches de la journée de Karim, laquelle est la MEILLEURE candidate à une automatisation complète ?",
+          "options": [
+            "Répondre au téléphone à un client mécontent",
+            "Copier chaque commande reçue par email vers le tableur",
+            "Publier une photo sur Instagram"
+          ],
+          "answer": 1,
+          "explanation": "Correct : c'est une copie de données répétitive, sans jugement à exercer — un cas idéal pour une automatisation complète. Le téléphone exige un vrai jugement humain, et la publication Instagram change à chaque fois : ni l'une ni l'autre n'est un bon candidat."
+        },
+        {
+          "question": "Pourquoi la relance des clients en retard de paiement peut-elle être automatisée, même si l'argent est en jeu ?",
+          "options": [
+            "Parce que l'argent n'a jamais d'importance en automatisation",
+            "Parce qu'il ne s'agit jamais de vraies sommes",
+            "Parce que la règle est claire et fixe (plus de 8 jours), et le risque d'une relance standard reste faible et facilement corrigeable"
+          ],
+          "answer": 2,
+          "explanation": "Correct : ce qui compte, c'est que la règle soit claire et le risque limité — une relance standard n'est pas une décision lourde. Ça ne veut pas dire que l'argent n'a jamais d'importance : à un montant ou un enjeu plus élevé (comme un remboursement exceptionnel), la réponse serait différente."
+        },
+        {
+          "question": "Dans le futur workflow de copie des commandes, qu'est-ce qui joue le rôle de déclencheur ?",
+          "options": [
+            "L'arrivée d'un nouvel email de commande",
+            "L'ajout de la ligne dans le tableau",
+            "La confirmation reçue par Karim"
+          ],
+          "answer": 0,
+          "explanation": "Correct : c'est l'évènement qui démarre tout le reste. L'ajout de la ligne et la confirmation arrivent après, ce sont des conséquences, pas le point de départ."
+        },
+        {
+          "question": "Pourquoi le fait de répondre au téléphone à un client mécontent doit-il rester une tâche humaine, même si Karim la fait régulièrement ?",
+          "options": [
+            "Parce que le téléphone ne peut techniquement pas être automatisé",
+            "Parce que chaque situation, chaque ton et chaque contexte sont différents, et exigent un vrai jugement humain",
+            "Parce que les clients mécontents ne méritent pas d'attention particulière"
+          ],
+          "answer": 1,
+          "explanation": "Correct : la fréquence ne suffit pas à justifier l'automatisation — c'est la nature de la tâche (jugement, écoute, contexte variable) qui compte ici. Ce n'est pas non plus une question de faisabilité technique pure, ni de considération pour le client."
+        },
+        {
+          "question": "Une tâche revient tous les jours, mais chaque cas est différent et demande une vraie appréciation. Que peut-on en conclure ?",
+          "options": [
+            "Elle doit forcément être automatisée, puisqu'elle revient souvent",
+            "Elle ne peut jamais être améliorée par un outil",
+            "Sa fréquence seule ne suffit pas à en faire un bon candidat à l'automatisation complète"
+          ],
+          "answer": 2,
+          "explanation": "Correct : la fréquence est un indice utile, mais pas suffisant à elle seule — il faut aussi regarder si un vrai jugement humain est nécessaire à chaque fois. Un outil peut malgré tout aider (assister), même si l'automatisation complète n'est pas adaptée."
+        }
+      ]
+    },
+    {
+      "type": "action",
+      "id": "automatisation-m1-l6-transfert",
+      "title": "Analyse un nouveau cas avec tes propres mots",
+      "instructions": "Voici un nouveau commerce : une petite librairie reçoit des commandes en ligne, répond par chat aux mêmes questions sur les délais de livraison, et doit parfois accorder un remboursement important en cas de litige avec un client. Identifie ce qui se répète, ce qui est automatisable, ce qui devrait rester humain, puis décris le déclencheur, les données, l'action et le résultat attendu pour LA tâche que tu choisirais d'automatiser en premier.",
+      "successCriteria": "Tu identifies au moins une tâche répétitive automatisable et une tâche qui doit rester humaine, en justifiant pourquoi, puis tu décris clairement le déclencheur, les données, l'action et le résultat de ton choix.",
+      "evidence": "Écris ton analyse ici (5 à 8 phrases)…"
+    },
+    {
+      "type": "assessment",
+      "title": "Évaluation finale du Module 1",
+      "requirements": [
+        "Je sais expliquer avec mes propres mots ce qu'est une automatisation.",
+        "Je sais reconnaître une tâche répétitive.",
+        "Je sais distinguer une tâche, un processus et un workflow.",
+        "Je sais identifier un déclencheur, des données, une action et un résultat dans un cas nouveau.",
+        "Je sais distinguer une automatisation classique, un usage pertinent de l'IA, et un cas plus agentique.",
+        "Je sais que tout ce qui est automatisable ne doit pas forcément l'être, et pourquoi.",
+        "Je sais observer une situation professionnelle et proposer une première automatisation simple."
+      ]
+    },
+    {
+      "type": "resume",
+      "content": "Une bonne enquête d'automatisation suit toujours le même chemin : repérer ce qui se répète, décider ce qui mérite d'être automatisé, assisté ou gardé humain, puis décrire clairement le déclencheur, les données, l'action et le résultat attendu."
+    },
+    {
+      "type": "validation"
+    }
+  ]
+}

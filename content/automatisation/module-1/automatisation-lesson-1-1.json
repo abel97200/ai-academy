@@ -1,0 +1,188 @@
+{
+  "id": "automatisation-lesson-1-1",
+  "schemaVersion": 2,
+  "layout": "sequence",
+  "title": "Une automatisation, c'est quoi ?",
+  "blocks": [
+    {
+      "type": "situation",
+      "context": "Léa travaille au service client d'une boutique en ligne. Chaque jour, elle reçoit des dizaines d'emails de clients qui posent presque toujours la même question : « Où en est ma commande ? »",
+      "question": "Pour chaque email, Léa fait toujours la même chose : elle ouvre l'email, cherche le numéro de commande, va le vérifier dans son tableau de suivi, puis répond avec le statut. Que remarques-tu ?",
+      "options": [
+        {
+          "label": "Elle fait un travail différent à chaque fois, adapté à chaque client.",
+          "feedback": "Regarde de plus près : les 4 étapes qu'elle suit (ouvrir l'email, chercher le numéro, vérifier le statut, répondre) sont exactement les mêmes à chaque fois. Seul le nom du client change."
+        },
+        {
+          "label": "Elle répète presque exactement la même suite d'actions, encore et encore.",
+          "feedback": "Exactement. C'est ce genre de répétition, identique ou presque à chaque fois, qui est le signe d'une tâche automatisable."
+        },
+        {
+          "label": "Elle perd son temps, elle devrait embaucher quelqu'un d'autre.",
+          "feedback": "Peut-être, mais ce n'est pas la question ici : ce qui nous intéresse, c'est CE QU'ELLE FAIT, pas qui devrait le faire. Regarde la suite d'actions elle-même."
+        }
+      ]
+    },
+    {
+      "type": "explication",
+      "content": "Une tâche répétitive, c'est une suite d'actions presque identiques que quelqu'un refait sans arrêt, pour des situations différentes en apparence (des clients différents) mais qui se traitent toujours de la même façon."
+    },
+    {
+      "type": "workflow",
+      "prompt": "Voici précisément ce que fait Léa, à chaque email. Clique sur le bouton pour observer le déroulé, ou clique directement sur une étape.",
+      "payloadLabel": "📧 Email client",
+      "actionLabel": "Lancer le déroulé",
+      "steps": [
+        {
+          "id": "email",
+          "label": "Email reçu",
+          "emoji": "📩",
+          "detail": "Un client envoie un email : « Bonjour, où en est ma commande n°4521 ? »"
+        },
+        {
+          "id": "recherche",
+          "label": "N° de commande recherché",
+          "emoji": "🔎",
+          "detail": "Léa relève le numéro de commande dans l'email, puis le cherche dans le tableau de suivi."
+        },
+        {
+          "id": "statut",
+          "label": "Statut vérifié",
+          "emoji": "📊",
+          "detail": "Elle trouve la ligne correspondante : la commande est « en cours de livraison »."
+        },
+        {
+          "id": "reponse",
+          "label": "Réponse envoyée",
+          "emoji": "✉️",
+          "detail": "Elle répond au client avec le statut trouvé, presque avec les mêmes mots à chaque fois."
+        }
+      ],
+      "completionLabel": "Léa vient de refaire, à l'identique, ce qu'elle fait des dizaines de fois par jour."
+    },
+    {
+      "type": "explication",
+      "content": "Ce déroulé peut se décrire de façon plus générale, avec 4 mots qui reviendront tout au long de cette formation : un DÉCLENCHEUR démarre le tout, des DONNÉES sont utilisées, une ACTION est réalisée, et on obtient un RÉSULTAT."
+    },
+    {
+      "type": "schema",
+      "diagram": {
+        "kind": "flow",
+        "direction": "horizontal",
+        "nodes": [
+          {
+            "id": "declencheur",
+            "label": "Déclencheur",
+            "color": "#6366F1",
+            "definition": "L'évènement qui démarre tout. Ici : un nouvel email reçu par Léa."
+          },
+          {
+            "id": "donnees",
+            "label": "Données",
+            "color": "#F59E0B",
+            "definition": "Les informations utilisées pendant le traitement. Ici : le numéro de commande, et le statut trouvé dans le tableau."
+          },
+          {
+            "id": "action",
+            "label": "Action",
+            "color": "#14B8A6",
+            "definition": "Ce qui est fait avec ces données. Ici : chercher le statut, puis rédiger une réponse."
+          },
+          {
+            "id": "resultat",
+            "label": "Résultat",
+            "color": "#22C55E",
+            "definition": "Ce qu'on obtient à la fin. Ici : le client reçoit sa réponse."
+          }
+        ],
+        "links": [
+          {
+            "from": "declencheur",
+            "to": "donnees"
+          },
+          {
+            "from": "donnees",
+            "to": "action"
+          },
+          {
+            "from": "action",
+            "to": "resultat"
+          }
+        ]
+      },
+      "caption": "Clique sur chaque étape pour voir sa définition, appliquée au cas de Léa."
+    },
+    {
+      "type": "exercice",
+      "question": "Un client remplit un formulaire de contact sur le site pour signaler un article cassé à la réception. D'après ce que tu viens de voir : quel est le déclencheur ? Quelles sont les données ? Quelle action pourrait suivre ?",
+      "hints": [
+        "Le déclencheur est toujours ce qui démarre le processus — cherche l'évènement de départ.",
+        "Les données sont les informations disponibles une fois que ça démarre : que contient un formulaire de contact ?",
+        "L'action, c'est ce que quelqu'un (ou quelque chose) fait ENSUITE, à partir de ces données."
+      ],
+      "solution": "Déclencheur : le formulaire rempli par le client. Données : son nom, son email, la description du problème (« article cassé »), peut-être une photo. Action possible : créer un dossier de réclamation et prévenir le service client. Résultat : le client reçoit un accusé de réception, et l'équipe est prévenue."
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "Léa reçoit un email, cherche le numéro de commande, vérifie le statut, puis répond — presque à l'identique, plusieurs fois par jour. Comment appelle-t-on ce genre de suite d'actions ?",
+          "options": [
+            "Une tâche répétitive",
+            "Une tâche créative",
+            "Une erreur de méthode"
+          ],
+          "answer": 0,
+          "explanation": "Correct : une suite d'actions presque identique, refaite encore et encore pour des cas différents en apparence, est justement le signe d'une tâche répétitive. Ce n'est pas une erreur (Léa fait bien son travail), et il n'y a rien de créatif là-dedans : c'est exactement pour ça que ce cas est intéressant à automatiser."
+        },
+        {
+          "question": "Un client remplit un formulaire sur un site pour demander un devis. Qu'est-ce qui joue ici le rôle de DÉCLENCHEUR ?",
+          "options": [
+            "Le devis final envoyé au client",
+            "Le formulaire rempli par le client",
+            "Le prix calculé pour la demande"
+          ],
+          "answer": 1,
+          "explanation": "Correct : le déclencheur est ce qui démarre le processus — ici, c'est le moment où le client valide son formulaire. Le devis final est le résultat, et le prix calculé fait partie des données utilisées en cours de route, pas du point de départ."
+        },
+        {
+          "question": "Dans le cas de Léa, quelles sont les DONNÉES qu'elle utilise pour répondre au client ?",
+          "options": [
+            "Son horaire de travail et sa boîte mail",
+            "Le nombre total de commandes du magasin",
+            "Le numéro de commande et le statut trouvé dans le tableau"
+          ],
+          "answer": 2,
+          "explanation": "Correct : les données sont les informations concrètes utilisées pendant le traitement — ici, le numéro de commande relevé dans l'email, et le statut retrouvé dans le tableau de suivi. Son horaire de travail n'entre pas en jeu, et le nombre total de commandes du magasin n'est utile à aucun moment de CE traitement précis."
+        },
+        {
+          "question": "Une boulangerie reçoit une commande en ligne, prépare le pain, puis le client vient le récupérer. Quelle est l'ACTION dans ce déroulé ?",
+          "options": [
+            "Préparer le pain commandé",
+            "La commande passée en ligne",
+            "Le client qui récupère son pain"
+          ],
+          "answer": 0,
+          "explanation": "Correct : l'action est ce qui est fait à partir des données reçues — ici, préparer le pain commandé. La commande en ligne est le déclencheur (ce qui démarre tout), et la récupération par le client est le résultat final."
+        },
+        {
+          "question": "Pourquoi est-il utile de repérer un déclencheur, des données, une action et un résultat dans une situation, avant même de parler d'outils comme Make ?",
+          "options": [
+            "Parce que c'est le seul moyen d'utiliser Make",
+            "Parce que ça permet de comprendre le mécanisme d'une automatisation, quel que soit l'outil utilisé ensuite",
+            "Parce que ça permet de deviner si Léa aime son travail"
+          ],
+          "answer": 1,
+          "explanation": "Correct : ces 4 éléments décrivent le mécanisme d'une automatisation, indépendamment de tout outil précis — c'est ce qui permet ensuite de la reconnaître n'importe où, avant même de savoir comment la construire. Ce n'est pas spécifique à Make, et ça ne dit rien des ressentis de Léa."
+        }
+      ]
+    },
+    {
+      "type": "resume",
+      "content": "Une automatisation, c'est repérer une suite d'actions qui se répète, puis la décrire en 4 blocs : un DÉCLENCHEUR qui démarre tout, des DONNÉES utilisées en chemin, une ACTION réalisée, et un RÉSULTAT obtenu à la fin."
+    },
+    {
+      "type": "validation"
+    }
+  ]
+}

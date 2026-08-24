@@ -1,0 +1,152 @@
+{
+  "id": "automatisation-lesson-1-4",
+  "schemaVersion": 2,
+  "layout": "sequence",
+  "title": "Automatisation, IA ou agent IA ?",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Pour un même besoin, plusieurs approches existent : une règle fixe et prévisible, une IA capable de comprendre un texte libre, ou un agent IA capable d'enchaîner plusieurs décisions tout seul. Elles ne se valent pas dans toutes les situations."
+    },
+    {
+      "type": "tri",
+      "instruction": "Classe chacun de ces cas selon l'approche la plus adaptée.",
+      "categories": [
+        {
+          "id": "auto",
+          "label": "Automatisation classique"
+        },
+        {
+          "id": "ia",
+          "label": "IA (compréhension)"
+        },
+        {
+          "id": "agent",
+          "label": "Agent IA"
+        }
+      ],
+      "items": [
+        {
+          "id": "email-bienvenue",
+          "label": "Envoyer automatiquement un email de bienvenue dès qu'un formulaire est validé",
+          "emoji": "📧",
+          "correctCategoryId": "auto",
+          "explanation": "La règle est fixe et prévisible : à chaque fois qu'un formulaire est validé, le même email part. Pas besoin de comprendre ni de décider quoi que ce soit."
+        },
+        {
+          "id": "relance-3j",
+          "label": "Relancer automatiquement un client qui n'a pas répondu depuis 3 jours",
+          "emoji": "⏰",
+          "correctCategoryId": "auto",
+          "explanation": "Là encore, une simple règle suffit : « si 3 jours sont passés sans réponse, alors envoyer une relance ». Aucune compréhension de texte n'est nécessaire."
+        },
+        {
+          "id": "tri-email",
+          "label": "Comprendre le sujet d'un email rédigé librement par un client, pour le trier dans la bonne catégorie",
+          "emoji": "💬",
+          "correctCategoryId": "ia",
+          "explanation": "Ici, il faut comprendre un texte écrit librement, avec ses propres mots — une règle fixe ne peut pas prévoir toutes les façons possibles de formuler la même demande. C'est le type de tâche où l'IA apporte une vraie valeur."
+        },
+        {
+          "id": "reclamation-agent",
+          "label": "Traiter une réclamation en cherchant plusieurs informations, en comparant plusieurs options, et en décidant seul de la marche à suivre à chaque étape",
+          "emoji": "🧭",
+          "correctCategoryId": "agent",
+          "explanation": "Ici, il ne s'agit plus d'une seule décision, mais d'un enchaînement de plusieurs décisions et actions successives, sans étapes fixées à l'avance : c'est le cas typique d'un agent IA."
+        },
+        {
+          "id": "copie-tableur",
+          "label": "Copier chaque nouvelle ligne d'un formulaire vers un tableur",
+          "emoji": "📋",
+          "correctCategoryId": "auto",
+          "explanation": "Une règle simple et fixe suffit amplement ici : aucune compréhension ni décision n'est nécessaire."
+        }
+      ]
+    },
+    {
+      "type": "explication",
+      "content": "Tu remarques peut-être que l'IA n'a pas toujours été la meilleure option — et c'est voulu. La règle est : utiliser la solution la plus simple capable de résoudre correctement le problème. Une règle fixe, quand elle suffit, est souvent plus fiable, plus rapide et moins coûteuse qu'une IA."
+    },
+    {
+      "type": "situation",
+      "context": "Une entreprise doit rembourser automatiquement un client si sa commande arrive avec plus de 5 jours de retard — une règle simple et connue à l'avance.",
+      "question": "Quelle approche choisirais-tu pour ce cas précis ?",
+      "options": [
+        {
+          "label": "Une automatisation classique, avec une règle claire",
+          "feedback": "Exactement : la règle est fixe et connue à l'avance, aucune IA n'est nécessaire ici. Utiliser une IA pour ça ajouterait de la complexité sans aucun bénéfice."
+        },
+        {
+          "label": "Une IA, parce que c'est toujours plus moderne",
+          "feedback": "Attention à ce réflexe : « plus moderne » n'est pas un critère. Ici, une règle simple suffit très bien, et sera plus fiable qu'une IA."
+        },
+        {
+          "label": "Un agent IA capable de décider tout seul",
+          "feedback": "C'est disproportionné pour ce cas : il n'y a qu'une seule règle simple à appliquer, pas plusieurs décisions à enchaîner."
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "Un formulaire déclenche toujours le même email, sans aucune exception. Quelle approche est la plus adaptée ?",
+          "options": [
+            "Un agent IA",
+            "Une IA qui comprend le texte du formulaire",
+            "Une automatisation classique, avec une règle fixe"
+          ],
+          "answer": 2,
+          "explanation": "Correct : la situation est toujours identique et prévisible, une règle fixe suffit très bien. Ni l'IA ni un agent ne sont nécessaires : ils ajouteraient de la complexité sans bénéfice."
+        },
+        {
+          "question": "Un client écrit un email dans ses propres mots pour expliquer un problème. L'entreprise veut trier automatiquement cet email dans la bonne catégorie (facturation, livraison, autre). Quelle approche est la plus adaptée ?",
+          "options": [
+            "Une automatisation classique avec une règle fixe",
+            "Une IA capable de comprendre un texte libre",
+            "Un agent IA qui décide de rembourser le client"
+          ],
+          "answer": 1,
+          "explanation": "Correct : comprendre un texte rédigé librement dépasse ce qu'une règle fixe peut couvrir — c'est exactement le type de tâche où l'IA apporte une vraie valeur. Un agent IA serait disproportionné : il ne s'agit ici que d'une seule décision de tri, pas d'un enchaînement."
+        },
+        {
+          "question": "Un système doit rechercher plusieurs informations, les comparer, puis décider seul des actions à mener, étape par étape, sans suite fixée à l'avance. De quoi s'agit-il ?",
+          "options": [
+            "D'un agent IA",
+            "D'une automatisation classique",
+            "D'une simple règle « si...alors »"
+          ],
+          "answer": 0,
+          "explanation": "Correct : un enchaînement de plusieurs décisions et actions successives, non fixées à l'avance, correspond à un agent IA. Une automatisation classique ou une simple règle ne peuvent gérer qu'un cas prévu à l'avance, pas une suite de décisions à construire au fur et à mesure."
+        },
+        {
+          "question": "Pourquoi ne faut-il jamais choisir l'IA uniquement parce que « c'est plus moderne » ?",
+          "options": [
+            "Parce que l'IA n'existe pas encore vraiment",
+            "Parce qu'une règle fixe, quand elle suffit, est souvent plus fiable, plus rapide et moins coûteuse",
+            "Parce que l'IA est interdite dans les entreprises"
+          ],
+          "answer": 1,
+          "explanation": "Correct : le critère de choix n'est jamais la modernité, mais l'adéquation avec le problème. Quand une règle fixe suffit, elle est en général plus fiable et moins coûteuse à faire tourner qu'une IA."
+        },
+        {
+          "question": "Quelle est la bonne règle de décision entre automatisation classique, IA et agent IA ?",
+          "options": [
+            "Toujours préférer l'agent IA, il peut tout faire",
+            "Toujours préférer une règle fixe, l'IA est trop risquée",
+            "Utiliser la solution la plus simple capable de résoudre correctement le problème"
+          ],
+          "answer": 2,
+          "explanation": "Correct : c'est le principe central de cette leçon. Ni « toujours l'agent IA » ni « toujours la règle fixe » ne sont vrais dans l'absolu — tout dépend du problème, et la solution la plus simple qui le résout correctement doit être préférée."
+        }
+      ]
+    },
+    {
+      "type": "resume",
+      "content": "Trois approches existent : une règle fixe (automatisation classique) quand le cas est prévisible, une IA quand il faut comprendre un texte libre, un agent IA quand plusieurs décisions doivent s'enchaîner. La meilleure approche est toujours la plus simple qui résout correctement le problème — pas la plus impressionnante."
+    },
+    {
+      "type": "validation"
+    }
+  ]
+}
