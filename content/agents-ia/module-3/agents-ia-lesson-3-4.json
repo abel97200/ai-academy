@@ -1,0 +1,60 @@
+{
+  "id": "agents-ia-lesson-3-4",
+  "schemaVersion": 2,
+  "title": "Obtenir une sortie structurée",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Mission — Définir le contrat exécutable de la proposition. Notion — JSON décrit une forme de données ; Zod vérifie à l’exécution que chaque champ, type et limite respecte le contrat. Un JSON parseable peut rester invalide."
+    },
+    {
+      "type": "explication",
+      "content": "Exemple — `relevanceScore: 120` est un nombre et le JSON est correct, mais le domaine accepte seulement 0 à 100. `needsHumanReview: \"oui\"` ressemble à une réponse humaine mais n’est pas un booléen."
+    },
+    {
+      "type": "demo",
+      "content": "Observer — `ResourceProposalSchema.safeParse` retourne soit la donnée typée, soit une liste d’issues avec le chemin fautif. Sentinelle n’utilise jamais un objet partiellement valide."
+    },
+    {
+      "type": "code",
+      "filename": "examples/agents/sentinelle/src/domain/resource.ts",
+      "language": "typescript",
+      "code": "export const ResourceProposalSchema = z.object({\n  title: z.string().trim().min(3),\n  summary: z.string().trim().min(20),\n  relevanceScore: z.number().min(0).max(100),\n  sourceType: z.enum([\"article\", \"course\", \"documentation\", \"video\", \"other\"]),\n  needsHumanReview: z.boolean(),\n}).strict();",
+      "explanation": "À comprendre — Chaque ligne transforme une attente pédagogique en contrôle exécutable. À modifier — Ajuste une limite seulement avec un cas d’évaluation. Claude Code peut — Générer le schéma et les types dérivés. À vérifier — Les cinq champs, plages, enum, booléen et rejet des champs inconnus correspondent au cahier.",
+      "focusLines": [1, 4, 5, 6]
+    },
+    {
+      "type": "explication",
+      "content": "Échec provoqué — Le code fait seulement `JSON.parse` et accepte un score à 120. Correction : analyser le JSON, puis valider l’objet avec Zod avant de l’exposer comme `ResourceProposal`."
+    },
+    {
+      "type": "action",
+      "id": "agents-ia-m3-l4-action",
+      "title": "Relier chaque champ à une règle",
+      "instructions": "Pour les cinq champs, écris le type, la limite, un exemple valide et une erreur que le schéma doit refuser.",
+      "successCriteria": "Les cinq règles sont observables et au moins un test existe pour une limite métier.",
+      "evidence": "Conserve la table champ → règle → exemple → test."
+    },
+    {
+      "type": "exercice",
+      "question": "Consigne — Valide quatre objets : valide, champ manquant, score 120 et booléen en texte. Données d’entrée — Les quatre sorties simulées. Résultat attendu — Un succès typé et trois diagnostics nommés.",
+      "hints": [
+        "Critères de réussite — Aucun objet invalide n’est renvoyé partiellement et chaque erreur cite le champ.",
+        "Critère bloquant — Accepter la sortie parce que `JSON.parse` réussit.",
+        "Preuve Sentinelle — Conserve le rapport Vitest des quatre cas."
+      ],
+      "solution": "Grille — 1 point par cas correctement classé et 1 pour l’absence d’objet partiel ; 5/5 attendu. Exemple acceptable — `safeParse` puis `ModelOutputError` avec chemins. Exemple insuffisant — Corriger silencieusement 120 en 100."
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {"question": "Un JSON contient tous les champs mais `relevanceScore` vaut 120. Quel résultat ?", "options": ["Refus par le schéma", "Acceptation car c’est un nombre", "Publication automatique"], "answer": 0, "explanation": "Correct : la plage 0–100 fait partie du contrat. Les autres choix sont insuffisants car type correct ne signifie pas valeur valide."},
+        {"question": "Quel outil fournit une validation à l’exécution dans l’exemple ?", "options": ["TypeScript seul", "Zod", "Git"], "answer": 1, "explanation": "Correct : Zod inspecte la donnée réelle. Les autres choix sont insuffisants car TypeScript disparaît à l’exécution et Git versionne seulement."},
+        {"question": "Pourquoi utiliser `.strict()` sur l’objet ?", "options": ["Pour convertir tout texte", "Pour appeler le réseau", "Pour refuser les champs inattendus"], "answer": 2, "explanation": "Correct : les ajouts non prévus sont détectés. Les autres choix sont insuffisants car strict ne convertit ni n’appelle une API."},
+        {"question": "Quel champ impose une décision explicite de revue ?", "options": ["needsHumanReview", "sourceType", "title"], "answer": 0, "explanation": "Correct : le booléen porte cette information. Les autres choix sont insuffisants car ils décrivent catégorie et libellé."},
+        {"question": "Que faire d’un objet partiellement valide ?", "options": ["Utiliser les champs corrects", "Refuser l’objet entier avec un diagnostic", "Inventer les champs manquants"], "answer": 1, "explanation": "Correct : le domaine exige un contrat complet. Les autres choix sont insuffisants car ils introduisent incohérence ou données inventées."}
+      ]
+    },
+    {"type": "validation"}
+  ]
+}

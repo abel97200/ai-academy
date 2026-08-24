@@ -1,0 +1,138 @@
+{
+  "id": "agents-ia-lesson-4-6",
+  "schemaVersion": 2,
+  "title": "Intégrer la boucle bornée dans Sentinelle",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Mission — Assembler l’état, le modèle, les limites et les traces. Notion — Sentinelle forme désormais un agent minimal complet : objectif, état, adaptateur, décision, boucle bornée et preuve observable."
+    },
+    {
+      "type": "explication",
+      "content": "Explication courte — Le runner dépend de ResourceModel, pas directement d’OpenAI. Le mode simulé reste le chemin par défaut ; le mode réel est volontaire, optionnel et configuré par environnement."
+    },
+    {
+      "type": "schema",
+      "diagram": {
+        "kind": "flow",
+        "direction": "horizontal",
+        "nodes": [
+          { "id": "cli", "label": "CLI" },
+          { "id": "model", "label": "Mock ou OpenAI" },
+          { "id": "runner", "label": "Runner borné" },
+          { "id": "result", "label": "Résultat + trace" }
+        ],
+        "links": [
+          { "from": "cli", "to": "model" },
+          { "from": "model", "to": "runner" },
+          { "from": "runner", "to": "result" }
+        ]
+      },
+      "caption": "Les dépendances sont injectées à la frontière ; le runner conserve un contrat stable."
+    },
+    {
+      "type": "demo",
+      "content": "Démonstration — Lance Sentinelle en mode simulé, affiche le statut final et la trace, puis exécute les tests. Montre ensuite le scénario needsHumanReview=true sans effectuer d’appel réel."
+    },
+    {
+      "type": "code",
+      "filename": "src/cli.ts",
+      "language": "ts",
+      "code": "const model = live\n  ? new OpenAIResourceModel(process.env.OPENAI_API_KEY)\n  : new MockResourceModel();\n\nconst result = await runSentinelle({\n  topic,\n  model,\n  maxIterations: 3,\n  relevanceThreshold: 70\n});\n\nconsole.log(JSON.stringify(result, null, 2));",
+      "explanation": "À comprendre — Le modèle est choisi à la frontière de l’application. À modifier — Personnalise le thème et la borne, pas le contrat de sécurité. Claude Code peut — Exécuter le mode simulé et rapprocher un test d’une trace. À vérifier — Le défaut est hors ligne, le mode réel exige l’environnement et la sortie conserve son statut."
+    },
+    {
+      "type": "explication",
+      "content": "Échec provoqué — Une ressource demande une revue humaine. Résultat attendu — Sentinelle s’arrête immédiatement avec human_review ; aucune décision automatique ni itération supplémentaire n’est effectuée."
+    },
+    {
+      "type": "action",
+      "id": "agents-ia-m4-l6-action",
+      "title": "Présenter la preuve d’exécution",
+      "instructions": "Exécute la démonstration simulée et les tests, puis explique le statut, les itérations et le dernier événement.",
+      "successCriteria": "Le mode hors ligne réussit et les quatre chemins d’arrêt sont démontrés sans secret.",
+      "evidence": "Conserve les commandes, les résultats et une trace commentée."
+    },
+    {
+      "type": "exercice",
+      "question": "Consigne — Livre Sentinelle bornée et observable. Données d’entrée — Un thème, maxIterations=3, seuil=70 et les mocks fournis. Résultat attendu — Code exécutable, tests verts et trace expliquée.",
+      "hints": [
+        "Critères de réussite — Démonstration, tests et explication des statuts sont fournis.",
+        "Critère bloquant — Le projet exige une clé réelle ou peut dépasser la borne.",
+        "Preuve Sentinelle — Les tests vérifient statut, nombre d’appels et dernier événement."
+      ],
+      "solution": "Grille — 1 point pour fonctionnement, sûreté, observabilité, tests et explication ; 4/5 minimum. Exemple acceptable — Démo simulée et suite complète. Exemple insuffisant — Capture d’une sortie sans code ni assertions."
+    },
+    {
+      "type": "project",
+      "id": "agents-ia-m4-project",
+      "title": "Sentinelle bornée et observable",
+      "brief": "Finaliser le runner de Sentinelle avec modèle simulé par défaut et adaptateur OpenAI optionnel.",
+      "deliverables": [
+        "Commande TypeScript exécutable hors ligne",
+        "État d’exécution explicite et validé",
+        "Boucle limitée par maxIterations",
+        "Statuts success, limit_reached, error et human_review",
+        "Trace structurée sans secret",
+        "Tests déterministes couvrant chaque chemin"
+      ],
+      "successCriteria": [
+        "Niveau maîtrisé — Chaque décision est justifiée par une trace cohérente",
+        "Niveau acceptable — La démonstration et tous les chemins passent hors ligne",
+        "Niveau insuffisant — Un seul chemin est testé ou la trace ne permet pas le diagnostic",
+        "Bloquant — La boucle peut être infinie, masque une erreur ou ignore la revue humaine"
+      ],
+      "hints": [
+        "Injecte toujours le modèle dans le runner.",
+        "Le dernier événement doit expliquer le statut final."
+      ]
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "Où choisir entre modèle simulé et réel ?",
+          "options": ["Dans chaque condition", "À la frontière avant le runner", "Dans le schéma Zod"],
+          "answer": 1,
+          "explanation": "L’injection garde le runner indépendant du fournisseur."
+        },
+        {
+          "question": "Quel comportement doit rester par défaut ?",
+          "options": ["Un appel payant", "Une boucle sans limite", "Le mode simulé hors ligne"],
+          "answer": 2,
+          "explanation": "Il rend l’apprentissage reproductible et sûr."
+        },
+        {
+          "question": "Quelle preuve confirme la revue humaine ?",
+          "options": ["human_review et arrêt immédiat", "Un retry automatique", "Une sortie non validée"],
+          "answer": 0,
+          "explanation": "L’automatisation cède explicitement la main."
+        },
+        {
+          "question": "Que doit vérifier un test de trace ?",
+          "options": ["Seulement sa longueur", "La cohérence événements, itérations et statut", "La présence d’une clé"],
+          "answer": 1,
+          "explanation": "La trace est une preuve causale."
+        },
+        {
+          "question": "Quand activer le mode réel ?",
+          "options": ["Dans tous les tests", "Automatiquement", "Explicitement avec l’environnement configuré"],
+          "answer": 2,
+          "explanation": "L’activation volontaire évite les appels inattendus."
+        }
+      ]
+    },
+    {
+      "type": "assessment",
+      "title": "Validation pratique du Module 4",
+      "requirements": [
+        "Critère de réussite — La boucle termine toujours dans la borne et son statut correspond à sa trace.",
+        "Bloquant — Une exécution peut boucler sans fin, masquer une erreur ou poursuivre après human_review.",
+        "Niveau insuffisant — Le succès fonctionne mais les chemins d’échec ne sont pas démontrés.",
+        "Niveau acceptable — Succès, limite, erreur et revue humaine ont chacun un test déterministe.",
+        "Niveau maîtrisé — Les limites sont justifiées et chaque décision est reconstructible."
+      ]
+    },
+    { "type": "validation" }
+  ]
+}

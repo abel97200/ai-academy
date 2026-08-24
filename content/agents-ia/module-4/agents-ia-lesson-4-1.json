@@ -1,0 +1,75 @@
+{
+  "id": "agents-ia-lesson-4-1",
+  "schemaVersion": 2,
+  "title": "Distinguer appel unique et boucle agentique",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Mission — Décider si Sentinelle doit répéter une étape. Notion — Un appel unique reçoit une entrée et produit une sortie. Une boucle agentique observe un état, choisit une étape, exécute, vérifie puis recommence seulement si l’objectif et les limites l’exigent. Plusieurs lignes de code ne suffisent pas à justifier une boucle."
+    },
+    {
+      "type": "explication",
+      "content": "Exemple — Produire une proposition structurée demande un appel unique. Rejeter une proposition trop faible puis retenter sous une limite demande une boucle. Si la règle est entièrement déterministe, une automatisation simple reste préférable."
+    },
+    {
+      "type": "schema",
+      "diagram": {
+        "kind": "flow",
+        "direction": "horizontal",
+        "nodes": [
+          {"id": "state", "label": "État courant", "color": "#6366F1", "definition": "Sujet, itération et résultat"},
+          {"id": "step", "label": "Exécuter une étape", "color": "#F59E0B", "definition": "Générer puis valider"},
+          {"id": "check", "label": "Vérifier", "color": "#14B8A6", "definition": "Réussir, retenter ou escalader"},
+          {"id": "stop", "label": "Arrêt explicite", "color": "#EC4899", "definition": "Résultat et motif"}
+        ],
+        "links": [{"from": "state", "to": "step"}, {"from": "step", "to": "check"}, {"from": "check", "to": "state"}, {"from": "check", "to": "stop"}]
+      },
+      "caption": "La boucle ne continue que si l’état progresse et qu’une limite reste disponible."
+    },
+    {
+      "type": "demo",
+      "content": "Observer — Score 35 au premier tour : Sentinelle rejette et retente. Score 88 au second : elle s’arrête sur réussite ou validation humaine. Le même modèle est appelé, mais l’état et la décision relient les tours."
+    },
+    {
+      "type": "code",
+      "filename": "examples/agents/sentinelle/src/runner/runSentinelle.ts",
+      "language": "typescript",
+      "code": "while (state.status === \"running\") {\n  assertConsistentState(state);\n  if (state.iteration >= state.maxIterations) return stopOnLimit(state);\n  const proposal = await generateResource(state.topic, model);\n  state = decideNextState(state, proposal);\n}",
+      "explanation": "À comprendre — La condition, l’invariant et la décision rendent chaque nouveau tour explicite. À modifier — Change le seuil ou la limite dans les options, pas en supprimant l’arrêt. Claude Code peut — Proposer le squelette de boucle. À vérifier — Chaque chemin progresse, s’arrête ou produit une erreur contrôlée.",
+      "focusLines": [1, 2, 3, 5]
+    },
+    {
+      "type": "explication",
+      "content": "Échec provoqué — Une boucle est ajoutée autour d’un appel qui réussit toujours au premier tour. Elle n’apporte aucune décision et augmente coût et risque. Correction : revenir à l’appel unique tant qu’aucun scénario d’évaluation ne justifie une répétition."
+    },
+    {
+      "type": "action",
+      "id": "agents-ia-m4-l1-action",
+      "title": "Choisir appel ou boucle",
+      "instructions": "Classe six scénarios entre appel unique, automatisation ou boucle bornée et justifie chaque répétition.",
+      "successCriteria": "Chaque boucle possède une décision variable, un état qui progresse et un arrêt mesurable.",
+      "evidence": "Conserve la matrice scénario → solution → justification."
+    },
+    {
+      "type": "exercice",
+      "question": "Consigne — Compare « générer une proposition » et « retenter jusqu’au seuil sous trois tours ». Données d’entrée — Les deux scénarios et un score minimum de 70. Résultat attendu — Architecture choisie, état et arrêts.",
+      "hints": [
+        "Critères de réussite — L’appel unique reste simple ; la boucle possède itération, score et limite.",
+        "Critère bloquant — Ajouter une répétition sans condition d’arrêt.",
+        "Preuve Sentinelle — Conserve le diagramme et la raison de chaque transition."
+      ],
+      "solution": "Grille — 1 point pour chaque choix, état, condition de réussite et limite ; 4/5 minimum. Exemple acceptable — Appel unique pour générer ; boucle bornée pour retenter un score faible. Exemple insuffisant — `while(true)` parce qu’un agent doit boucler."
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {"question": "Quel scénario justifie une boucle ?", "options": ["Retenter une proposition insuffisante sous une limite", "Afficher un objet déjà validé", "Lire une constante"], "answer": 0, "explanation": "Correct : une décision répétée dépend de l’état. Les autres choix sont insuffisants car une seule opération déterministe suffit."},
+        {"question": "Qu’est-ce qui distingue deux appels indépendants d’une boucle ?", "options": ["Le nom Sentinelle", "Un état partagé qui guide le tour suivant", "La longueur du fichier"], "answer": 1, "explanation": "Correct : l’état relie décision et progression. Les autres choix sont insuffisants car étiquette et taille ne prouvent aucun comportement."},
+        {"question": "Une tâche réussit toujours en un appel. Quelle solution privilégier ?", "options": ["Une boucle infinie", "Trois agents", "Un appel unique"], "answer": 2, "explanation": "Correct : la simplicité réduit coût et erreurs. Les autres choix sont insuffisants car ils ajoutent une complexité sans besoin."},
+        {"question": "Quel élément doit exister avant de répéter ?", "options": ["Une condition observable de continuation", "Une clé dans le code", "Une publication automatique"], "answer": 0, "explanation": "Correct : la continuation doit être décidée par une règle. Les autres choix sont insuffisants et créent des risques hors périmètre."},
+        {"question": "Qui valide que la boucle apporte une valeur réelle ?", "options": ["Le mot agent", "L’apprenant avec les scénarios et mesures", "Le compilateur seul"], "answer": 1, "explanation": "Correct : la décision repose sur les preuves du besoin. Les autres choix sont insuffisants car nom et compilation ne mesurent pas l’utilité."}
+      ]
+    },
+    {"type": "validation"}
+  ]
+}

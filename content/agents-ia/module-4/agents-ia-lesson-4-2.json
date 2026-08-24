@@ -1,0 +1,60 @@
+{
+  "id": "agents-ia-lesson-4-2",
+  "schemaVersion": 2,
+  "title": "Représenter l’état d’une exécution",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Mission — Décrire exactement ce que la boucle sait. Notion — L’état d’exécution rassemble uniquement les faits nécessaires au prochain choix : sujet, itération, limite, statut, proposition éventuelle, erreur et trace. Il ne doit pas contredire sa propre histoire."
+    },
+    {
+      "type": "explication",
+      "content": "Exemple — `iteration: 2` avec une trace vide est incohérent. `status: completed` sans proposition ni motif d’arrêt est incomplet. Les invariants rendent ces contradictions détectables avant un nouvel appel."
+    },
+    {
+      "type": "demo",
+      "content": "Observer — L’état initial contient itération 0 et trace vide. Après un rejet, l’itération vaut 1 et la trace contient exactement une entrée. Le compteur et la preuve progressent ensemble."
+    },
+    {
+      "type": "code",
+      "filename": "examples/agents/sentinelle/src/runner/state.ts",
+      "language": "typescript",
+      "code": "export type SentinelleState = {\n  topic: string;\n  iteration: number;\n  maxIterations: number;\n  status: SentinelleStatus;\n  proposal?: ResourceProposal;\n  lastError?: string;\n  trace: SentinelleTraceEntry[];\n};",
+      "explanation": "À comprendre — Chaque champ influence une décision ou conserve une preuve. À modifier — Ajuste la limite via `createInitialState`, jamais par mutation cachée. Claude Code peut — Générer le type et des exemples d’état. À vérifier — `iteration`, `trace`, `status`, proposition et motif d’arrêt restent cohérents.",
+      "focusLines": [1, 3, 4, 5, 8]
+    },
+    {
+      "type": "explication",
+      "content": "Échec provoqué — Le compteur vaut 2 mais aucune transition n’est tracée. `assertConsistentState` lève `INCONSISTENT_STATE` avant l’appel modèle. Correction : mettre à jour état et trace dans la même fonction de transition."
+    },
+    {
+      "type": "action",
+      "id": "agents-ia-m4-l2-action",
+      "title": "Comparer trois états",
+      "instructions": "Audite un état initial, un état après rejet et un état volontairement incohérent. Liste les invariants.",
+      "successCriteria": "Au moins quatre invariants sont formulés et l’état fautif est refusé avant toute étape.",
+      "evidence": "Conserve les trois JSON annotés et le diagnostic `INCONSISTENT_STATE`."
+    },
+    {
+      "type": "exercice",
+      "question": "Consigne — Répare `{iteration:2,maxIterations:3,status:'running',trace:[]}`. Données d’entrée — Deux tours annoncés, aucune preuve. Résultat attendu — État cohérent ou refus contrôlé avant appel.",
+      "hints": [
+        "Critères de réussite — Le nombre de traces correspond à l’itération et aucune valeur ne dépasse la limite.",
+        "Critère bloquant — Continuer en ignorant la contradiction.",
+        "Preuve Sentinelle — Conserve l’état fautif, le code d’erreur et l’état corrigé."
+      ],
+      "solution": "Grille — 1 point pour compteur, trace, limite, statut et refus préalable ; 4/5 minimum. Exemple acceptable — Lever `INCONSISTENT_STATE` ou fournir deux traces réelles. Exemple insuffisant — Vider le compteur sans expliquer la perte d’historique."
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {"question": "Un état annonce deux itérations et zéro trace. Quel diagnostic ?", "options": ["État complet", "Simple détail visuel", "État incohérent"], "answer": 2, "explanation": "Correct : progression et preuve se contredisent. Les autres choix sont insuffisants car la boucle ne peut pas expliquer ses décisions."},
+        {"question": "Quel champ borne le nombre de tours ?", "options": ["maxIterations", "title", "sourceType"], "answer": 0, "explanation": "Correct : `maxIterations` fixe la limite. Les autres choix sont insuffisants car ils appartiennent à la proposition, pas au contrôle."},
+        {"question": "Pourquoi conserver `status` dans l’état ?", "options": ["Pour stocker une clé", "Pour décider si la boucle continue ou s’arrête", "Pour remplacer les tests"], "answer": 1, "explanation": "Correct : le statut pilote le cycle de vie. Les autres choix sont insuffisants car secret et preuve automatique ont d’autres rôles."},
+        {"question": "Quel état ne doit jamais lancer une nouvelle étape ?", "options": ["running sous limite", "running à zéro", "completed"], "answer": 2, "explanation": "Correct : un état final interdit un nouvel appel. Les autres choix sont insuffisants car ils peuvent encore être valides selon la limite."},
+        {"question": "Que doit faire le code devant un état impossible ?", "options": ["Lever une erreur contrôlée avant l’action", "Inventer une trace", "Augmenter automatiquement la limite"], "answer": 0, "explanation": "Correct : refuser préserve l’intégrité. Les autres choix sont insuffisants car ils falsifient la preuve ou contournent le budget."}
+      ]
+    },
+    {"type": "validation"}
+  ]
+}

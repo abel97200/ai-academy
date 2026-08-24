@@ -1,0 +1,60 @@
+{
+  "id": "agents-ia-lesson-3-3",
+  "schemaVersion": 2,
+  "title": "Appeler le modèle avec une requête simple",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Mission — Comprendre l’adaptateur d’appel réel sans l’utiliser dans les tests. Notion — L’API Responses reçoit un modèle, des messages et un format attendu. Le SDK lit la clé depuis l’environnement. Chaque appel réel peut coûter de l’argent et échouer pour une clé absente, le réseau, un quota ou le fournisseur."
+    },
+    {
+      "type": "explication",
+      "content": "Exemple — Le mode simulé reste la valeur par défaut. Le mode `--live` exige `OPENAI_API_KEY` et lit `OPENAI_MODEL`, afin que le choix du modèle reste une configuration remplaçable et non une règle du domaine."
+    },
+    {
+      "type": "demo",
+      "content": "Observer — `createOpenAIResourceModel` instancie le SDK avec la clé mais ne l’affiche jamais. Il transmet séparément le message système et l’entrée utilisateur, puis retourne seulement la donnée analysée."
+    },
+    {
+      "type": "code",
+      "filename": "examples/agents/sentinelle/src/model/openAIResourceModel.ts",
+      "language": "typescript",
+      "code": "const response = await client.responses.parse({\n  model,\n  input: [\n    { role: \"system\", content: request.systemInstruction },\n    { role: \"user\", content: request.userInput },\n  ],\n  text: { format: zodTextFormat(ResourceProposalSchema, \"resource\") },\n});",
+      "explanation": "À comprendre — L’adaptateur isole le SDK et demande une sortie conforme au schéma. À modifier — Change `OPENAI_MODEL` ou les instructions après évaluation, pas la clé dans le code. Claude Code peut — Écrire l’adaptateur d’après la documentation officielle. À vérifier — Aucune clé dans Git ou les traces, coût accepté et erreur fournisseur traitée.",
+      "focusLines": [1, 2, 7]
+    },
+    {
+      "type": "explication",
+      "content": "Échec provoqué — `OPENAI_API_KEY` est absente. Le programme doit s’arrêter avant l’appel avec un message contrôlé, sans inventer une valeur ni afficher l’environnement. Une erreur réseau ne doit jamais être confondue avec une sortie métier invalide."
+    },
+    {
+      "type": "action",
+      "id": "agents-ia-m3-l3-action",
+      "title": "Auditer la frontière API",
+      "instructions": "Repère où entrent la clé, le modèle, les messages et le format ; marque ce qui peut coûter et ce qui doit être mocké.",
+      "successCriteria": "Les quatre éléments sont localisés et aucun secret ne traverse le domaine, les tests ou les traces.",
+      "evidence": "Conserve le schéma de frontière et le résultat d’un scan de secret."
+    },
+    {
+      "type": "exercice",
+      "question": "Consigne — Corrige un appel qui contient une clé littérale et que les tests exécutent sur le réseau. Données d’entrée — Adaptateur OpenAI et suite Vitest. Résultat attendu — Variable d’environnement, interface locale et doublure.",
+      "hints": [
+        "Critères de réussite — La clé vient uniquement de l’environnement et les tests injectent `ResourceModel` simulé.",
+        "Critère bloquant — Conserver une vraie clé, même dans un fichier d’exemple ou un test ignoré.",
+        "Preuve Sentinelle — Conserve le test hors réseau et la commande de scan sans valeur sensible."
+      ],
+      "solution": "Grille — 1 point pour environnement, `.env.example` factice, interface, mock et scan ; 5/5 sans secret. Exemple acceptable — `apiKey: process.env.OPENAI_API_KEY` et test avec `createMockResourceModel`. Exemple insuffisant — Une clé committée puis supprimée plus tard."
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {"question": "La clé API manque. Quelle réaction est correcte ?", "options": ["Utiliser une clé factice sur le réseau", "Continuer sans authentification", "S’arrêter avec une erreur contrôlée"], "answer": 2, "explanation": "Correct : l’appel réel ne doit pas partir sans secret configuré. Les autres choix sont insuffisants car ils produisent un échec confus ou une mauvaise pratique."},
+        {"question": "Où stocker une vraie clé pendant un essai local ?", "options": ["Dans une variable d’environnement locale", "Dans le JSON de leçon", "Dans un message de trace"], "answer": 0, "explanation": "Correct : l’environnement sépare le secret du dépôt. Les autres choix sont insuffisants car ils exposent la clé."},
+        {"question": "Pourquoi placer l’appel OpenAI derrière `ResourceModel` ?", "options": ["Pour supprimer la validation", "Pour remplacer le fournisseur et tester sans réseau", "Pour rendre la clé publique"], "answer": 1, "explanation": "Correct : l’adaptateur garde le domaine portable et mockable. Les autres choix sont insuffisants car validation et secret restent obligatoires."},
+        {"question": "Un test échoue à cause d’un quota API. Quel diagnostic ?", "options": ["Le schéma Zod est faux", "La ressource est non pertinente", "Le test dépend à tort du réseau"], "answer": 2, "explanation": "Correct : un test unitaire doit employer une doublure déterministe. Les autres choix sont insuffisants car le quota ne juge ni contrat ni contenu."},
+        {"question": "Avant `--live`, quelle décision humaine est nécessaire ?", "options": ["Accepter le coût et vérifier la configuration secrète", "Désactiver tous les tests", "Publier automatiquement la réponse"], "answer": 0, "explanation": "Correct : coût et secret exigent une décision consciente. Les autres choix sont insuffisants car ils retirent contrôle et sécurité."}
+      ]
+    },
+    {"type": "validation"}
+  ]
+}

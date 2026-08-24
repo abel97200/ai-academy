@@ -1,0 +1,103 @@
+{
+  "id": "agents-ia-lesson-4-4",
+  "schemaVersion": 2,
+  "title": "Provoquer une boucle mal bornée",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Mission — Observer volontairement une boucle qui ne sait pas s’arrêter. Notion — Une boucle agentique doit combiner un critère métier explicite et une limite technique stricte. Un résultat acceptable n’étant jamais garanti, aucun de ces garde-fous ne remplace l’autre."
+    },
+    {
+      "type": "explication",
+      "content": "Explication courte — Une condition comme « continuer tant que le résultat n’est pas parfait » est invérifiable. Une expérience hors ligne permet d’observer la répétition des décisions sans générer de coût réel."
+    },
+    {
+      "type": "schema",
+      "diagram": {
+        "kind": "flow",
+        "direction": "horizontal",
+        "nodes": [
+          { "id": "score", "label": "Score 42" },
+          { "id": "retry", "label": "Relancer" },
+          { "id": "same", "label": "Même état" },
+          { "id": "limit", "label": "Limite absente", "color": "#DC2626" }
+        ],
+        "links": [
+          { "from": "score", "to": "retry" },
+          { "from": "retry", "to": "same" },
+          { "from": "same", "to": "limit" }
+        ]
+      },
+      "caption": "Sans progression ni borne, le même choix peut être répété indéfiniment."
+    },
+    {
+      "type": "demo",
+      "content": "Démonstration — Configure le mock pour renvoyer trois fois un score de 42. Compare les traces : même étape, même score et même décision retry. Le numéro d’itération rend la stagnation visible."
+    },
+    {
+      "type": "code",
+      "filename": "src/runner/badLoop.ts",
+      "language": "ts",
+      "code": "let accepted = false;\n\nwhile (!accepted) {\n  const resource = await generateResource(topic);\n  accepted = resource.relevanceScore >= 70;\n}",
+      "explanation": "À comprendre — La condition ne garantit aucune fin si le modèle reste sous 70. À modifier — Ajoute un compteur et une borne validée. Claude Code peut — Repérer l’absence de garde et proposer un test de stagnation. À vérifier — La boucle quitte toujours après un nombre fini d’appels."
+    },
+    {
+      "type": "explication",
+      "content": "Échec provoqué — Le mock renvoie toujours score 42 et needsHumanReview false. Diagnostic attendu — la boucle ne progresse pas et aucune borne ne l’arrête. Correction — refuser une limite invalide, compter les appels et retourner limit_reached."
+    },
+    {
+      "type": "action",
+      "id": "agents-ia-m4-l4-action",
+      "title": "Rendre la stagnation reproductible",
+      "instructions": "Décris la condition actuelle, les sorties répétées et les deux protections manquantes sans exécuter de modèle réel.",
+      "successCriteria": "Le diagnostic nomme le critère métier, maxIterations et le statut limit_reached.",
+      "evidence": "Conserve une trace de trois décisions retry suivies d’un arrêt par limite."
+    },
+    {
+      "type": "exercice",
+      "question": "Consigne — Analyse la boucle défectueuse et propose deux protections distinctes. Données d’entrée — Un mock retourne toujours score 42 et needsHumanReview false. Résultat attendu — Cause, borne maximale et statut final explicite.",
+      "hints": [
+        "Critères de réussite — La limite technique et le critère métier sont tous deux nommés.",
+        "Critère bloquant — Proposer seulement d’allonger le prompt ou de modifier le seuil.",
+        "Preuve Sentinelle — Une trace finale indique que la limite a été atteinte."
+      ],
+      "solution": "Grille — 1 point pour la cause, maxIterations, limit_reached et la trace ; 3/4 minimum. Exemple acceptable — Arrêter après trois essais et tracer les trois décisions. Exemple insuffisant — Réessayer jusqu’à obtenir une bonne réponse."
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "Quelle protection garantit techniquement que la boucle finit ?",
+          "options": ["Une valeur maximale d’itérations", "Un prompt plus long", "Un score toujours supérieur à 70"],
+          "answer": 0,
+          "explanation": "La borne est indépendante du comportement du modèle."
+        },
+        {
+          "question": "Pourquoi un critère métier seul peut-il être insuffisant ?",
+          "options": ["Il interdit les traces", "Il peut ne jamais être satisfait", "Il supprime le modèle"],
+          "answer": 1,
+          "explanation": "Une sortie acceptable n’est jamais garantie."
+        },
+        {
+          "question": "Quel motif de trace signale une stagnation ?",
+          "options": ["Un statut success", "Une seule itération", "Le même état et la même décision répétés"],
+          "answer": 2,
+          "explanation": "La répétition sans progression rend la boucle suspecte."
+        },
+        {
+          "question": "Quel statut décrit une fin imposée par la borne ?",
+          "options": ["limit_reached", "success", "not_started"],
+          "answer": 0,
+          "explanation": "Le statut conserve la vraie raison de l’arrêt."
+        },
+        {
+          "question": "Où provoquer cet échec ?",
+          "options": ["En production", "Dans un test hors ligne déterministe", "Avec une vraie clé apprenant"],
+          "answer": 1,
+          "explanation": "Le mock rend l’expérience sûre et reproductible."
+        }
+      ]
+    },
+    { "type": "validation" }
+  ]
+}

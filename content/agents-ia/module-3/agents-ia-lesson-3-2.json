@@ -1,0 +1,60 @@
+{
+  "id": "agents-ia-lesson-3-2",
+  "schemaVersion": 2,
+  "title": "Préparer un premier script TypeScript exécutable",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Mission — Lancer Sentinelle sans réseau. Notion — Un point d’entrée TypeScript lit les arguments, choisit une dépendance et affiche un résultat. `tsx` exécute le fichier sans demander une compilation manuelle, mais les erreurs TypeScript et d’exécution restent à diagnostiquer."
+    },
+    {
+      "type": "explication",
+      "content": "Exemple — `npm run sentinelle:demo -- \"agents IA\"` appelle `cli.ts`, utilise une doublure locale, exécute la boucle puis affiche un JSON. Aucun secret ni appel payant n’est nécessaire."
+    },
+    {
+      "type": "demo",
+      "content": "Observer — La commande produit un état `needs_human_review`, une seule trace et une proposition structurée. Le code de sortie vaut 0 : la démonstration s’est terminée proprement, même si une décision humaine reste attendue."
+    },
+    {
+      "type": "code",
+      "filename": "examples/agents/sentinelle/src/cli.ts",
+      "language": "typescript",
+      "code": "async function main() {\n  const topic = process.argv[2] ?? \"agents IA\";\n  const state = createInitialState(topic, 3);\n  const result = await runSentinelle(state, createMockResourceModel());\n  console.log(JSON.stringify(result, null, 2));\n}\n\nmain().catch(handleControlledFailure);",
+      "explanation": "À comprendre — `main()` rend l’ordre d’exécution visible et le `catch` empêche une erreur silencieuse. À modifier — Change le sujet ou la limite, dans la plage autorisée. Claude Code peut — Préparer le script et les imports. À vérifier — La commande, le code de sortie et le JSON affiché correspondent au résultat attendu.",
+      "focusLines": [1, 8]
+    },
+    {
+      "type": "explication",
+      "content": "Échec provoqué — Un `await` est placé au niveau racine alors que le dépôt est exécuté en CommonJS. `tsx` signale « Top-level await is not supported ». Correction : envelopper l’exécution dans `async function main()` puis traiter son rejet."
+    },
+    {
+      "type": "action",
+      "id": "agents-ia-m3-l2-action",
+      "title": "Lancer et lire le script",
+      "instructions": "Exécute la démonstration avec un sujet de ton choix, relève le statut, l’itération, le motif d’arrêt et le code de sortie.",
+      "successCriteria": "La commande se termine sans réseau et les quatre observations correspondent au JSON affiché.",
+      "evidence": "Conserve la commande et un extrait anonymisé de la sortie terminal."
+    },
+    {
+      "type": "exercice",
+      "question": "Consigne — Corrige un script avec `await` racine et aucune gestion d’erreur. Données d’entrée — Un appel asynchrone et un dépôt non ESM. Résultat attendu — Une fonction `main`, un `catch` et une commande réussie.",
+      "hints": [
+        "Critères de réussite — L’ordre lecture → exécution → affichage est visible et l’échec fixe `process.exitCode`.",
+        "Critère bloquant — Ignorer la promesse rejetée ou masquer l’erreur.",
+        "Preuve Sentinelle — Conserve la sortie avant/après et le code de sortie."
+      ],
+      "solution": "Grille — 1 point pour `async main`, `await`, affichage, `catch` et exit code ; 4/5 minimum. Exemple acceptable — `main().catch(error => { console.error(...); process.exitCode = 1; })`. Exemple insuffisant — Supprimer `await` sans attendre le résultat."
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {"question": "Que prouve le succès de `npm run sentinelle:demo` ?", "options": ["La commande locale et le point d’entrée fonctionnent", "L’API OpenAI est gratuite", "La ressource est vraie"], "answer": 0, "explanation": "Correct : la preuve concerne l’exécution locale. Les autres choix sont insuffisants car aucun réseau ni vérification de contenu n’a eu lieu."},
+        {"question": "Pourquoi utiliser une doublure dans la première exécution ?", "options": ["Pour cacher TypeScript", "Pour obtenir un résultat déterministe sans coût réseau", "Pour stocker la clé"], "answer": 1, "explanation": "Correct : le mock rend l’apprentissage reproductible. Les autres choix sont insuffisants car il ne masque ni le langage ni un secret."},
+        {"question": "Quel correctif traite l’erreur d’`await` racine en CommonJS ?", "options": ["Ajouter une boucle infinie", "Supprimer toutes les promesses", "Appeler une fonction `async main()`"], "answer": 2, "explanation": "Correct : la fonction fournit un contexte asynchrone compatible. Les autres choix sont insuffisants car ils cassent le contrôle du flux."},
+        {"question": "Une erreur est affichée mais le processus termine avec 0. Que manque-t-il ?", "options": ["Un code de sortie non nul", "Une vraie clé dans le fichier", "Un second modèle"], "answer": 0, "explanation": "Correct : l’échec doit être observable par le terminal et l’automatisation. Les autres choix sont insuffisants et introduisent risque ou complexité."},
+        {"question": "Quel artefact est la meilleure preuve d’exécution ?", "options": ["Une promesse orale", "Commande, sortie et code de sortie", "Le nombre de lignes du fichier"], "answer": 1, "explanation": "Correct : ces éléments sont reproductibles. Les autres choix sont insuffisants car ils ne démontrent pas le fonctionnement."}
+      ]
+    },
+    {"type": "validation"}
+  ]
+}

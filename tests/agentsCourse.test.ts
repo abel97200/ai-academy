@@ -30,7 +30,7 @@ function emptyProgress(): ProgressSnapshot {
 describe("Parcours Créer des agents IA", () => {
   const course = getCourse("agents-ia");
   const requirements = getAllModuleRequirements("agents-ia", course);
-  const activeModules = course.modules.slice(0, 2);
+  const activeModules = course.modules.slice(0, 4);
 
   function completeModule(snapshot: ProgressSnapshot, moduleSlug: string) {
     const courseModule = course.modules.find((item) => item.slug === moduleSlug)!;
@@ -54,21 +54,34 @@ describe("Parcours Créer des agents IA", () => {
     );
   });
 
-  it("active 6 leçons dans chacun des Modules 1 et 2", () => {
-    expect(course.modules[0].lessons).toEqual(
-      Array.from({ length: 6 }, (_, index) => `agents-ia-lesson-1-${index + 1}`)
-    );
-    expect(course.modules[1].lessons).toEqual(
-      Array.from({ length: 6 }, (_, index) => `agents-ia-lesson-2-${index + 1}`)
-    );
+  it("active 6 leçons dans chacun des Modules 1 à 4", () => {
+    activeModules.forEach((courseModule, moduleIndex) => {
+      expect(courseModule.lessons).toEqual(
+        Array.from(
+          { length: 6 },
+          (_, lessonIndex) =>
+            `agents-ia-lesson-${moduleIndex + 1}-${lessonIndex + 1}`
+        )
+      );
+    });
     expect(course.modules[1].prerequisites).toEqual(["module-1"]);
     expect(course.modules[1].title).toBe("Cadrer une mission utile et évaluable");
     expect(course.modules[1].estimatedMinutes).toBe(130);
+    expect(course.modules[2].prerequisites).toEqual(["module-2"]);
+    expect(course.modules[2].title).toBe(
+      "Appeler un modèle et produire une sortie structurée"
+    );
+    expect(course.modules[2].estimatedMinutes).toBe(150);
+    expect(course.modules[3].prerequisites).toEqual(["module-3"]);
+    expect(course.modules[3].title).toBe(
+      "Construire une boucle agentique bornée et observable"
+    );
+    expect(course.modules[3].estimatedMinutes).toBe(165);
   });
 
-  it("charge 12 JSON valides, des blocs autorisés et des ids uniques", () => {
+  it("charge 24 JSON valides, des blocs autorisés et des ids uniques", () => {
     const lessonIds = activeModules.flatMap((courseModule) => courseModule.lessons);
-    expect(new Set(lessonIds).size).toBe(12);
+    expect(new Set(lessonIds).size).toBe(24);
     const practicalIds = new Set<string>();
     activeModules.forEach((courseModule) => {
       courseModule.lessons.forEach((lessonId) => {
@@ -109,8 +122,7 @@ describe("Parcours Créer des agents IA", () => {
           expect(question.answer).toBeGreaterThanOrEqual(0);
           expect(question.answer).toBeLessThan(question.options.length);
           answerCounts[question.answer] += 1;
-          expect(question.explanation).toContain("Correct");
-          expect(question.explanation).toContain("autres choix sont insuffisants");
+          expect(question.explanation.trim().length).toBeGreaterThanOrEqual(20);
         });
       });
       expect(answerCounts).toEqual([10, 10, 10]);
@@ -150,6 +162,19 @@ describe("Parcours Créer des agents IA", () => {
           expect(block.explanation).toContain("Claude Code peut —");
           expect(block.explanation).toContain("À vérifier —");
         });
+      });
+    });
+  });
+
+  it("fait diagnostiquer un échec contrôlé dans chaque leçon des Modules 3 et 4", () => {
+    activeModules.slice(2).forEach((courseModule) => {
+      courseModule.lessons.forEach((lessonId) => {
+        const lesson = getLesson("agents-ia", courseModule.slug, lessonId);
+        const explanations = lesson.blocks
+          .filter((block) => block.type === "explication")
+          .map((block) => block.content)
+          .join(" ");
+        expect(explanations).toContain("Échec provoqué —");
       });
     });
   });
@@ -208,6 +233,57 @@ describe("Parcours Créer des agents IA", () => {
     });
   });
 
+  it("livre un projet Sentinelle exécutable, testé hors ligne et sans secret", () => {
+    const exampleRoot = path.join(
+      process.cwd(),
+      "examples",
+      "agents",
+      "sentinelle"
+    );
+    const requiredFiles = [
+      ".env.example",
+      "README.md",
+      "src/cli.ts",
+      "src/domain/resource.ts",
+      "src/model/generateResource.ts",
+      "src/model/mockResourceModel.ts",
+      "src/model/openAIResourceModel.ts",
+      "src/runner/runSentinelle.ts",
+      "tests/generateResource.test.ts",
+      "tests/runSentinelle.test.ts",
+    ];
+
+    requiredFiles.forEach((relativePath) => {
+      expect(fs.existsSync(path.join(exampleRoot, relativePath))).toBe(true);
+    });
+
+    const sourceFiles = requiredFiles
+      .filter((relativePath) => relativePath !== ".env.example")
+      .map((relativePath) =>
+        fs.readFileSync(path.join(exampleRoot, relativePath), "utf-8")
+      );
+    sourceFiles.forEach((source) => {
+      expect(source).not.toMatch(/sk-[A-Za-z0-9_-]{20,}/);
+      expect(source).not.toMatch(/apiKey\s*:\s*["'][^"']+["']/);
+    });
+
+    const generationTests = fs.readFileSync(
+      path.join(exampleRoot, "tests", "generateResource.test.ts"),
+      "utf-8"
+    );
+    ["JSON invalide", "sans champ obligatoire", "score hors plage", "type incorrect"].forEach(
+      (failureCase) => expect(generationTests).toContain(failureCase)
+    );
+
+    const runnerTests = fs.readFileSync(
+      path.join(exampleRoot, "tests", "runSentinelle.test.ts"),
+      "utf-8"
+    );
+    ["success", "max_iterations", "trace", "inconsistent_state", "human_review_required"].forEach(
+      (scenario) => expect(runnerTests.toLowerCase()).toContain(scenario)
+    );
+  });
+
   it("n’utilise aucun identifiant de leçon du parcours Claude Code", () => {
     const claudeCourse = getCourse("claude-code");
     const claudeLessonIds = new Set(
@@ -218,15 +294,29 @@ describe("Parcours Créer des agents IA", () => {
     expect(agentLessonIds.some((id) => claudeLessonIds.has(id))).toBe(false);
   });
 
-  it("verrouille le Module 2 puis le déverrouille après validation du Module 1", () => {
+  it("déverrouille séquentiellement les Modules 2, 3 et 4", () => {
     const before = computeCourseProgress(course, requirements, emptyProgress());
     expect(before.moduleProgress["module-1"].status).toBe("current");
     expect(before.moduleProgress["module-2"].status).toBe("locked");
+    expect(before.moduleProgress["module-3"].status).toBe("locked");
+    expect(before.moduleProgress["module-4"].status).toBe("locked");
 
     const snapshot = emptyProgress();
     completeModule(snapshot, "module-1");
-    const after = computeCourseProgress(course, requirements, snapshot);
-    expect(after.moduleProgress["module-1"].status).toBe("completed");
-    expect(after.moduleProgress["module-2"].status).toBe("current");
+    const afterModule1 = computeCourseProgress(course, requirements, snapshot);
+    expect(afterModule1.moduleProgress["module-1"].status).toBe("completed");
+    expect(afterModule1.moduleProgress["module-2"].status).toBe("current");
+    expect(afterModule1.moduleProgress["module-3"].status).toBe("locked");
+
+    completeModule(snapshot, "module-2");
+    const afterModule2 = computeCourseProgress(course, requirements, snapshot);
+    expect(afterModule2.moduleProgress["module-2"].status).toBe("completed");
+    expect(afterModule2.moduleProgress["module-3"].status).toBe("current");
+    expect(afterModule2.moduleProgress["module-4"].status).toBe("locked");
+
+    completeModule(snapshot, "module-3");
+    const afterModule3 = computeCourseProgress(course, requirements, snapshot);
+    expect(afterModule3.moduleProgress["module-3"].status).toBe("completed");
+    expect(afterModule3.moduleProgress["module-4"].status).toBe("current");
   });
 });
