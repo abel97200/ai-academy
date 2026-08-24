@@ -21,13 +21,21 @@ Le lecteur regroupe automatiquement les blocs d'une leçon en 5 étapes (pas bes
 
 | Étape | Blocs qui y apparaissent |
 |---|---|
-| 1. Comprendre | `explication` |
+| 1. Comprendre | `explication`, `situation` |
 | 2. Observer | `schema`, `demo` |
-| 3. Essayer | `exercice`, `action`, `code`, `project` |
+| 3. Essayer | `exercice`, `action`, `code`, `project`, `simulation`, `tri` |
 | 4. Corriger | `quiz` |
-| 5. Vérifier | `assessment`, `validation` |
+| 5. Vérifier | `assessment`, `validation`, `resume` |
 
 Une leçon n'a pas besoin d'avoir un bloc dans chaque étape : seules les étapes qui contiennent au moins un bloc sont affichées.
+
+## Champ `layout` (leçon)
+
+Une leçon peut porter `"layout": "sequence"` à la racine, à côté de `schemaVersion`. Par défaut (champ absent, ou `"stages"`), le lecteur regroupe les blocs par étape comme décrit ci-dessus — c'est le comportement historique, inchangé pour tout le contenu existant.
+
+En mode `"sequence"`, les blocs sont affichés **un par un, strictement dans l'ordre du JSON**, sans regroupement par type (voir `components/lesson/LessonSequence.tsx`). C'est nécessaire quand la pédagogie exige un déroulé narratif précis qu'un regroupement par type casserait — typiquement, ne nommer un terme technique qu'après plusieurs manipulations : avec le mode `"stages"`, un bloc `explication` finit toujours dans l'onglet "Comprendre", même écrit après des blocs "Essayer" dans le JSON. Voir `content/claude-code/module-9/lesson-9-1.json` ("Comprendre ce qu'est une API") pour un exemple de référence, et `docs/AI_ACADEMY_PEDAGOGY.md` pour la justification pédagogique.
+
+Chaque bloc garde néanmoins une étiquette d'étape (déduite du tableau ci-dessus via `getStageForBlockType`, dans `lib/lessonStages.ts`), affichée au-dessus du bloc courant — pour rester lisible au regard du même modèle pédagogique, sans réordonner le contenu.
 
 ---
 
@@ -130,6 +138,56 @@ L'évaluation finale d'un module : une checklist que l'apprenant confirme avoir 
   ]
 }
 ```
+
+---
+
+## Nouveaux blocs (leçon pilote "Comprendre ce qu'est une API")
+
+Ces 4 blocs sont nés d'un besoin concret : faire découvrir une notion abstraite par la manipulation, sans jamais l'ouvrir sur sa définition. Voir `content/claude-code/module-9/lesson-9-1.json` pour un exemple complet, et `docs/AI_ACADEMY_PEDAGOGY.md` pour la justification pédagogique de chaque choix.
+
+### `situation`
+
+Une situation de départ (un problème concret), suivie d'une question à choix. Contrairement à `quiz`, il n'y a pas de bonne/mauvaise réponse imposée : chaque option a son propre retour, affiché immédiatement au clic. Ce bloc est exploratoire, jamais noté — il sert à faire émerger une intuition avant toute définition.
+
+| Champ | Type | Obligatoire | Description |
+|---|---|---|---|
+| `type` | `"situation"` | oui | |
+| `context` | `string` | oui | Le problème concret posé à l'apprenant |
+| `question` | `string` | oui | La question qui suit |
+| `options` | `{ label, feedback }[]` | oui | Chaque option a son propre retour, affiché au clic |
+
+### `simulation`
+
+Une simulation de requête/réponse entre l'apprenant, l'application, un intermédiaire (typiquement encore désigné par `"?"` tant que le terme n'a pas été nommé) et un service externe. Un même bloc peut proposer plusieurs scénarios, affichés comme des puces : l'apprenant peut en essayer plusieurs pour comprendre que le mécanisme se généralise.
+
+| Champ | Type | Obligatoire | Description |
+|---|---|---|---|
+| `type` | `"simulation"` | oui | |
+| `prompt` | `string` | oui | Consigne affichée au-dessus de la simulation |
+| `actionLabel` | `string` | oui | Texte du bouton qui déclenche la simulation |
+| `scenarios` | `SimulationScenario[]` | oui | Un ou plusieurs scénarios (voir ci-dessous) |
+
+Chaque `SimulationScenario` : `id`, `label` (puce), `emoji?`, `serviceLabel`, `serviceEmoji?`, `requestLabel` (ce qui est demandé), `responseLabel` (ce qui est répondu), `resultLabel` (ce que l'application affiche finalement).
+
+### `tri`
+
+Un jeu de tri : classer chaque élément dans l'une de deux catégories, en cliquant (pas de glisser-déposer, pour rester simple au clavier comme au tactile). Chaque item révèle son verdict et son explication au clic, et reste modifiable.
+
+| Champ | Type | Obligatoire | Description |
+|---|---|---|---|
+| `type` | `"tri"` | oui | |
+| `instruction` | `string` | oui | |
+| `categories` | `[{ id, label }, { id, label }]` | oui | Exactement deux catégories |
+| `items` | `{ id, label, emoji?, correctCategoryId, explanation }[]` | oui | Chaque mauvaise réponse doit correspondre à une confusion plausible, pas à un piège gratuit |
+
+### `resume`
+
+Une carte de synthèse courte (une minute maximum, sans jargon), utilisée pour clore une leçon — la clôture standard, réutilisable par toute future leçon.
+
+| Champ | Type | Obligatoire | Description |
+|---|---|---|---|
+| `type` | `"resume"` | oui | |
+| `content` | `string` | oui | Le résumé, formulé simplement |
 
 ---
 

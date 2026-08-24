@@ -44,6 +44,10 @@ const STAGE_BY_BLOCK_TYPE: Record<Block["type"], StageKey> = {
   quiz: "corriger",
   assessment: "verifier",
   validation: "verifier",
+  situation: "comprendre",
+  simulation: "essayer",
+  tri: "essayer",
+  resume: "verifier",
 };
 
 // Regroupe les blocs d'une leçon par étape, dans l'ordre Comprendre →
@@ -66,4 +70,17 @@ export function groupBlocksByStage(blocks: Block[]): Stage[] {
       blocks: blocksByStage.get(stage.key)!,
     })
   );
+}
+
+// Donne l'étape pédagogique d'UN type de bloc, sans regrouper la leçon
+// entière. Utilisé par le lecteur "séquence" (voir components/lesson/
+// LessonSequence.tsx) : il affiche les blocs un par un, dans l'ordre du
+// JSON, mais garde une étiquette d'étape par bloc pour rester lisible au
+// regard du même modèle pédagogique (Comprendre/Observer/Essayer/
+// Corriger/Vérifier) que le mode "stages".
+export function getStageForBlockType(
+  type: Block["type"]
+): { key: StageKey; label: string } {
+  const key = STAGE_BY_BLOCK_TYPE[type];
+  return STAGE_ORDER.find((stage) => stage.key === key)!;
 }
