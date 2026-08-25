@@ -12,7 +12,7 @@
 // 2. créer son composant (ex: components/blocks/SchemaBlock.tsx),
 // 3. ajouter un "case" ici.
 
-import type { Block } from "@/lib/contentTypes";
+import type { Block, LessonTheme } from "@/lib/contentTypes";
 import ExplicationBlock from "@/components/blocks/ExplicationBlock";
 import SchemaBlock from "@/components/blocks/SchemaBlock";
 import DemoBlock from "@/components/blocks/DemoBlock";
@@ -23,21 +23,29 @@ import CodeBlock from "@/components/blocks/CodeBlock";
 import ActionBlock from "@/components/blocks/ActionBlock";
 import ProjectBlock from "@/components/blocks/ProjectBlock";
 import AssessmentBlock from "@/components/blocks/AssessmentBlock";
+import SituationBlock from "@/components/blocks/SituationBlock";
+import TriBlock from "@/components/blocks/TriBlock";
+import ResumeBlock from "@/components/blocks/ResumeBlock";
+import WorkflowBlock from "@/components/blocks/WorkflowBlock";
+import OrdreBlock from "@/components/blocks/OrdreBlock";
 
 type BlockRendererProps = {
   block: Block;
   // Identifiant unique du bloc dans la leçon (utile pour les quiz et
   // évaluations, qui doivent savoir "qui" a été réussi/confirmé).
   blockId: string;
+  // Thème visuel de la leçon (voir Lesson["theme"]). Absent = rendu par
+  // défaut (thème sombre historique) pour tous les blocs.
+  theme?: LessonTheme;
 };
 
-export default function BlockRenderer({ block, blockId }: BlockRendererProps) {
+export default function BlockRenderer({ block, blockId, theme }: BlockRendererProps) {
   switch (block.type) {
     case "explication":
-      return <ExplicationBlock content={block.content} />;
+      return <ExplicationBlock content={block.content} visual={block.visual} theme={theme} />;
 
     case "schema":
-      return <SchemaBlock diagram={block.diagram} caption={block.caption} />;
+      return <SchemaBlock diagram={block.diagram} caption={block.caption} theme={theme} />;
 
     case "demo":
       return <DemoBlock content={block.content} />;
@@ -48,14 +56,15 @@ export default function BlockRenderer({ block, blockId }: BlockRendererProps) {
           question={block.question}
           hints={block.hints}
           solution={block.solution}
+          theme={theme}
         />
       );
 
     case "quiz":
-      return <QuizBlock id={blockId} questions={block.questions} />;
+      return <QuizBlock id={blockId} questions={block.questions} theme={theme} />;
 
     case "validation":
-      return <ValidationBlock />;
+      return <ValidationBlock theme={theme} />;
 
     case "code":
       return (
@@ -76,6 +85,7 @@ export default function BlockRenderer({ block, blockId }: BlockRendererProps) {
           instructions={block.instructions}
           successCriteria={block.successCriteria}
           evidence={block.evidence}
+          theme={theme}
         />
       );
 
@@ -95,7 +105,60 @@ export default function BlockRenderer({ block, blockId }: BlockRendererProps) {
       // (voir docs/CONTENT-SCHEMA-V2.md) : on utilise l'identifiant généré
       // automatiquement pour ce bloc, comme pour les quiz.
       return (
-        <AssessmentBlock id={blockId} title={block.title} requirements={block.requirements} />
+        <AssessmentBlock
+          id={blockId}
+          title={block.title}
+          requirements={block.requirements}
+          theme={theme}
+        />
+      );
+
+    case "situation":
+      return (
+        <SituationBlock
+          context={block.context}
+          question={block.question}
+          options={block.options}
+          illustration={block.illustration}
+          kicker={block.kicker}
+          theme={theme}
+        />
+      );
+
+    case "tri":
+      return (
+        <TriBlock
+          instruction={block.instruction}
+          categories={block.categories}
+          items={block.items}
+          illustration={block.illustration}
+          theme={theme}
+        />
+      );
+
+    case "resume":
+      return <ResumeBlock content={block.content} theme={theme} />;
+
+    case "workflow":
+      return (
+        <WorkflowBlock
+          prompt={block.prompt}
+          payloadLabel={block.payloadLabel}
+          actionLabel={block.actionLabel}
+          steps={block.steps}
+          completionLabel={block.completionLabel}
+          theme={theme}
+        />
+      );
+
+    case "ordre":
+      return (
+        <OrdreBlock
+          instruction={block.instruction}
+          items={block.items}
+          correctOrder={block.correctOrder}
+          theme={theme}
+        />
       );
 
     default:

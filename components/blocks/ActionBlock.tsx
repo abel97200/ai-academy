@@ -5,9 +5,12 @@
 // réussite, écrit une trace de ce qu'il a fait, puis confirme. Cette
 // confirmation est enregistrée dans le localStorage et compte dans les
 // conditions de validation du module.
+//
+// Thème sombre par défaut (historique) ou thème "light-elearning".
 
 import { useEffect, useState } from "react";
 import { markActionDone, getActionsDone } from "@/lib/progress";
+import type { LessonTheme } from "@/lib/content";
 
 type ActionBlockProps = {
   id: string;
@@ -15,6 +18,7 @@ type ActionBlockProps = {
   instructions: string;
   successCriteria: string;
   evidence: string;
+  theme?: LessonTheme;
 };
 
 export default function ActionBlock({
@@ -23,6 +27,7 @@ export default function ActionBlock({
   instructions,
   successCriteria,
   evidence,
+  theme,
 }: ActionBlockProps) {
   const [reponse, setReponse] = useState("");
   const [confirmed, setConfirmed] = useState(false);
@@ -41,6 +46,46 @@ export default function ActionBlock({
   function handleConfirmer() {
     markActionDone(id);
     setConfirmed(true);
+  }
+
+  if (theme === "light-elearning") {
+    return (
+      <div className="rounded-3xl border-2 border-violet-100 bg-white p-6 shadow-[0_8px_30px_rgba(124,58,237,0.08)] sm:p-8">
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-violet-600 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
+          🎯 Action
+        </span>
+        <p className="mt-3 text-lg font-semibold text-slate-900">{title}</p>
+        <p className="mt-2 text-sm leading-relaxed text-slate-600">{instructions}</p>
+        <p className="mt-3 rounded-2xl border-2 border-blue-100 bg-blue-50 px-4 py-3 text-sm text-blue-900">
+          <span className="font-semibold">Critère de réussite : </span>
+          {successCriteria}
+        </p>
+
+        {confirmed ? (
+          <div className="mt-4 flex items-center gap-2 rounded-2xl border-2 border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-800">
+            ✅ Action confirmée
+          </div>
+        ) : (
+          <div className="mt-4 flex flex-col items-start gap-3">
+            <textarea
+              value={reponse}
+              onChange={(event) => setReponse(event.target.value)}
+              placeholder={evidence}
+              rows={4}
+              className="w-full rounded-2xl border-2 border-slate-200 bg-white p-3.5 text-sm text-slate-800 placeholder:text-slate-400 transition-colors duration-150 focus:border-violet-400 focus:outline-none"
+            />
+            <button
+              type="button"
+              onClick={handleConfirmer}
+              disabled={!aEcrit}
+              className="rounded-full bg-violet-600 px-5 py-2.5 text-sm font-semibold text-white transition-all duration-150 hover:bg-violet-700 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 disabled:active:scale-100"
+            >
+              Confirmer l&apos;action
+            </button>
+          </div>
+        )}
+      </div>
+    );
   }
 
   return (

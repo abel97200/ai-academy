@@ -12,6 +12,7 @@ import { groupBlocksByStage } from "@/lib/lessonStages";
 import { LessonProvider } from "@/components/lesson/LessonContext";
 import LessonHeader from "@/components/lesson/LessonHeader";
 import LessonStages from "@/components/lesson/LessonStages";
+import LessonSequence from "@/components/lesson/LessonSequence";
 import LessonFooterNav from "@/components/lesson/LessonFooterNav";
 import Breadcrumb from "@/components/navigation/Breadcrumb";
 import CourseProgress from "@/components/parcours/CourseProgress";
@@ -58,7 +59,11 @@ export default async function LessonPage({ params }: LessonPageProps) {
         <LessonProvider lessonId={lesson.id} totalQuizzes={totalQuizzes}>
           <LessonHeader title={lesson.title} />
 
-          <LessonStages lessonId={lesson.id} stages={stages} />
+          {lesson.layout === "sequence" ? (
+            <LessonSequence lessonId={lesson.id} blocks={lesson.blocks} theme={lesson.theme} />
+          ) : (
+            <LessonStages lessonId={lesson.id} stages={stages} theme={lesson.theme} />
+          )}
 
           <LessonFooterNav moduleHref={moduleHref} nextLessonHref={nextLessonHref} />
         </LessonProvider>

@@ -1,0 +1,163 @@
+{
+  "id": "automatisation-lesson-1-5",
+  "schemaVersion": 2,
+  "layout": "sequence",
+  "title": "Tout ce qui peut être automatisé ne doit pas l'être",
+  "blocks": [
+    {
+      "type": "explication",
+      "content": "Techniquement, presque tout peut être automatisé. Mais automatiser une décision importante, risquée ou difficile à annuler peut créer plus de problèmes que ça n'en résout. Avant d'automatiser, demande-toi : quel est le risque si ça se trompe ? Est-ce facile à corriger après coup ? Un vrai jugement humain est-il nécessaire ?",
+      "visual": "decision-trio"
+    },
+    {
+      "type": "tri",
+      "instruction": "Pour chacune de ces situations, que ferais-tu : automatiser complètement, assister un humain qui garde la main, ou garder la tâche entièrement humaine ?",
+      "categories": [
+        {
+          "id": "automatiser",
+          "label": "AUTOMATISER",
+          "color": "#22C55E"
+        },
+        {
+          "id": "assister",
+          "label": "ASSISTER",
+          "color": "#F59E0B"
+        },
+        {
+          "id": "humain",
+          "label": "GARDER HUMAIN",
+          "color": "#6366F1"
+        }
+      ],
+      "items": [
+        {
+          "id": "confirmation",
+          "label": "Envoyer un email de confirmation après un achat en ligne",
+          "emoji": "✅",
+          "correctCategoryId": "automatiser",
+          "explanation": "Risque très faible, aucune vraie décision à prendre, et facilement corrigeable si besoin : un cas parfait pour l'automatisation complète."
+        },
+        {
+          "id": "copie-commandes",
+          "label": "Copier chaque nouvelle commande reçue par email vers un tableau de suivi",
+          "emoji": "📋",
+          "correctCategoryId": "automatiser",
+          "explanation": "Une simple copie de données, répétitive et sans enjeu de jugement : automatiser complètement fait gagner du temps sans risque particulier."
+        },
+        {
+          "id": "horaires",
+          "label": "Répondre à une question fréquente sur les horaires d'ouverture",
+          "emoji": "🕒",
+          "correctCategoryId": "automatiser",
+          "explanation": "C'est une information fixe et sans ambiguïté : aucune décision n'est nécessaire, l'automatisation complète est appropriée."
+        },
+        {
+          "id": "brouillon-reclamation",
+          "label": "Proposer une réponse à une réclamation client, avant qu'un humain ne la valide et l'envoie",
+          "emoji": "✍️",
+          "correctCategoryId": "assister",
+          "explanation": "Un outil peut préparer un premier brouillon utile, mais l'enjeu de ton et de contexte mérite qu'un humain relise et valide avant l'envoi : c'est de l'assistance, pas une automatisation complète."
+        },
+        {
+          "id": "remboursement-exceptionnel",
+          "label": "Décider d'un remboursement exceptionnel de 3 000€",
+          "emoji": "💶",
+          "correctCategoryId": "humain",
+          "explanation": "Le montant est élevé, l'enjeu financier est important, et une erreur serait coûteuse et pas toujours réversible : une vraie décision humaine reste nécessaire."
+        },
+        {
+          "id": "decision-rh",
+          "label": "Décider d'une sanction ou d'un licenciement",
+          "emoji": "⚖️",
+          "correctCategoryId": "humain",
+          "explanation": "C'est une décision RH aux conséquences humaines et légales importantes, qui exige un jugement humain, du contexte et de la responsabilité : elle ne doit jamais être automatisée."
+        },
+        {
+          "id": "validation-juridique",
+          "label": "Valider la conformité juridique d'un contrat avant signature",
+          "emoji": "📜",
+          "correctCategoryId": "humain",
+          "explanation": "Une erreur juridique peut avoir des conséquences graves et difficiles à annuler : ce type de validation exige une expertise et une responsabilité humaines."
+        }
+      ]
+    },
+    {
+      "type": "situation",
+      "context": "Une entreprise hésite entre deux montants de remboursement automatique : 20€ (achat déçu, cas standard) et 15 000€ (litige commercial important).",
+      "question": "Penses-tu que la même règle d'automatisation devrait s'appliquer aux deux cas ?",
+      "options": [
+        {
+          "label": "Oui, une règle c'est une règle, peu importe le montant",
+          "feedback": "Attention : le montant change complètement le niveau de risque. Ce qui est raisonnable à automatiser à 20€ ne l'est plus du tout à 15 000€."
+        },
+        {
+          "label": "Non, plus l'enjeu est élevé, plus une décision humaine devient nécessaire",
+          "feedback": "Exactement. Le niveau de risque et de réversibilité doit guider la limite entre ce qu'on automatise et ce qu'on garde humain — pas seulement la nature générale de la tâche."
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": "Envoyer un email de confirmation après chaque achat en ligne : que choisirais-tu ?",
+          "options": [
+            "Automatiser complètement",
+            "Assister un humain qui valide",
+            "Garder entièrement humain"
+          ],
+          "answer": 0,
+          "explanation": "Correct : le risque est très faible, il n'y a aucune vraie décision à prendre, et une erreur serait facilement corrigeable. C'est un cas parfait pour une automatisation complète."
+        },
+        {
+          "question": "Décider d'un remboursement exceptionnel de plusieurs milliers d'euros : que choisirais-tu ?",
+          "options": [
+            "Automatiser complètement",
+            "Assister un humain qui valide",
+            "Garder entièrement humain"
+          ],
+          "answer": 2,
+          "explanation": "Correct : l'enjeu financier est important et une erreur serait coûteuse et difficile à annuler — une vraie décision humaine reste nécessaire ici. Automatiser complètement (même avec assistance) prendrait un risque trop élevé."
+        },
+        {
+          "question": "Un outil prépare un premier brouillon de réponse à une réclamation client, mais un humain la relit avant de l'envoyer. Comment qualifier cette organisation ?",
+          "options": [
+            "Une automatisation complète",
+            "De l'assistance, avec validation humaine",
+            "Une décision entièrement humaine"
+          ],
+          "answer": 1,
+          "explanation": "Correct : l'outil aide à préparer le travail, mais la décision finale (envoyer ou non, ajuster le ton) reste humaine — c'est exactement la définition de l'assistance. Ce n'est ni une automatisation complète (un humain intervient encore), ni un travail entièrement humain (l'outil a préparé un brouillon)."
+        },
+        {
+          "question": "Quel critère est le PLUS utile pour décider si une tâche doit rester humaine ?",
+          "options": [
+            "Le nombre d'années d'existence de l'entreprise",
+            "Le fait que la tâche soit techniquement automatisable ou non",
+            "Le risque, la réversibilité de l'erreur, et si un vrai jugement humain est nécessaire"
+          ],
+          "answer": 2,
+          "explanation": "Correct : ce sont ces critères qui guident vraiment la décision. Le fait qu'une tâche soit techniquement automatisable ne dit rien de si elle DEVRAIT l'être — c'est justement le piège que cette leçon cherche à éviter."
+        },
+        {
+          "question": "Pourquoi la validation juridique d'un contrat ne devrait-elle presque jamais être entièrement automatisée ?",
+          "options": [
+            "Parce qu'une erreur peut avoir des conséquences graves et difficiles à annuler",
+            "Parce que les contrats sont toujours écrits à la main",
+            "Parce qu'un outil ne peut techniquement pas lire un contrat"
+          ],
+          "answer": 0,
+          "explanation": "Correct : c'est le niveau de risque et la difficulté à annuler une erreur qui justifient de garder un humain sur ce type de décision — pas une limite technique d'un outil en particulier, ni la façon dont le contrat est rédigé."
+        }
+      ]
+    },
+    {
+      "type": "resume",
+      "content": "Avant d'automatiser, il faut évaluer le risque, la réversibilité et si un vrai jugement humain est nécessaire. Une tâche peut être automatisée complètement, assistée par un outil avec validation humaine, ou rester entièrement humaine — le critère n'est jamais « est-ce techniquement possible ? » mais « est-ce que ça devrait l'être ? »."
+    },
+    {
+      "type": "validation"
+    }
+  ],
+  "theme": "light-elearning"
+}

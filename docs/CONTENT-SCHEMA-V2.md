@@ -182,6 +182,159 @@ Le fichier `course.json` décrit maintenant des **niveaux**, chacun listant ses 
 
 ---
 
+---
+
+## Blocs "pilote" (Module 1 — Automatiser de A à Z)
+
+Nés d'un besoin concret : faire découvrir une notion par la manipulation
+(observer une répétition, classer un cas, remettre une suite dans l'ordre,
+suivre une donnée qui circule) plutôt que par la lecture d'une définition.
+
+### `situation`
+
+Une situation de départ, suivie d'une question à choix. Contrairement à un
+quiz, chaque option a son propre retour ("feedback"), affiché immédiatement
+au clic : ce bloc est exploratoire, pas noté — il sert à faire émerger une
+intuition avant toute définition.
+
+| Champ | Type | Obligatoire | Description |
+|---|---|---|---|
+| `type` | `"situation"` | oui | |
+| `context` | `string` | oui | La situation de départ |
+| `question` | `string` | oui | La question posée |
+| `options` | `{ label, feedback }[]` | oui | Chaque option a son propre retour |
+
+### `tri`
+
+Un jeu de tri : classer chaque élément dans l'une de 2 à 4 catégories, en
+cliquant (pas de glisser-déposer). Chaque item révèle son verdict et son
+explication au clic, et reste modifiable.
+
+| Champ | Type | Obligatoire | Description |
+|---|---|---|---|
+| `type` | `"tri"` | oui | |
+| `instruction` | `string` | oui | |
+| `categories` | `{ id, label }[]` | oui | 2 à 4 catégories |
+| `items` | `{ id, label, emoji?, correctCategoryId, explanation }[]` | oui | |
+
+### `resume`
+
+Carte de synthèse courte (une minute maximum, sans jargon), pour clore une
+leçon. Pendant de `explication` mais pour l'étape Vérifier.
+
+| Champ | Type | Obligatoire | Description |
+|---|---|---|---|
+| `type` | `"resume"` | oui | |
+| `content` | `string` | oui | |
+
+### `workflow`
+
+Anime une donnée (le "payload") qui circule à travers une chaîne d'étapes
+réelles (ex : Formulaire web → CRM → Gmail → Google Sheets). Contrairement
+à `schema` (statique), ce bloc anime le trajet, étape par étape, avec un
+temps de pause sur chaque étape pour expliquer ce qui arrive à la donnée.
+Chaque étape reste aussi cliquable indépendamment de l'animation, pour une
+exploration libre au clavier.
+
+| Champ | Type | Obligatoire | Description |
+|---|---|---|---|
+| `type` | `"workflow"` | oui | |
+| `prompt` | `string` | oui | Texte d'intro |
+| `payloadLabel` | `string` | oui | Ce qui circule, ex : `"🗂️ Fiche client"` |
+| `actionLabel` | `string` | oui | Libellé du bouton qui lance l'animation |
+| `steps` | `{ id, label, emoji?, detail }[]` | oui | Au moins 2 étapes, dans l'ordre du trajet |
+| `completionLabel` | `string` | oui | Message affiché une fois le trajet terminé |
+
+### `ordre`
+
+Exercice de remise en ordre : l'apprenant clique les éléments dans l'ordre
+qu'il pense correct (jamais de glisser-déposer), peut annuler son dernier
+choix, puis vérifie sa séquence complète.
+
+| Champ | Type | Obligatoire | Description |
+|---|---|---|---|
+| `type` | `"ordre"` | oui | |
+| `instruction` | `string` | oui | |
+| `items` | `{ id, label, emoji? }[]` | oui | Présentés dans un ordre mélangé |
+| `correctOrder` | `string[]` | oui | Identifiants des items, dans l'ordre attendu |
+
+### `layout` (leçon)
+
+Une leçon peut porter `"layout": "sequence"` à la racine pour afficher ses
+blocs un par un, strictement dans l'ordre du JSON, au lieu du regroupement
+par étape par défaut (`"stages"`). Nécessaire quand la pédagogie exige un
+ordre narratif précis (ex : observer une répétition avant de nommer le
+mécanisme) — un regroupement par TYPE de bloc ne peut pas le garantir,
+puisqu'un bloc `explication` finirait toujours dans l'onglet "Comprendre"
+quelle que soit sa place réelle dans le déroulé écrit.
+
+---
+
+---
+
+## Thème visuel d'une leçon (`theme`)
+
+Une leçon peut porter `"theme": "light-elearning"` à la racine, en plus de
+`layout`. Absent (défaut), le rendu reste le thème sombre historique,
+inchangé pour toutes les leçons existantes. `"light-elearning"` est un
+pilote de direction visuelle (Module 1 / leçon 1.1 du parcours
+Automatisation) : fond clair, coloré, illustré, plutôt que des cartes
+sombres uniformes.
+
+Le thème est transmis par `LessonSequence`/`LessonStages` à
+`BlockRenderer`, qui le transmet à chaque composant de bloc. **Chaque
+composant choisit lui-même sa mise en forme selon le thème** — un bloc qui
+ne propose pas encore de variante claire retombe simplement sur son rendu
+par défaut. Ce champ est donc sûr à ajouter progressivement, leçon par
+leçon, sans risque de régression sur les leçons qui ne l'utilisent pas.
+
+Palette fonctionnelle du thème clair (une couleur = une fonction, jamais
+décorative pure) :
+
+| Couleur | Fonction |
+|---|---|
+| Violet / indigo | Identité AI Academy, éléments de navigation du bloc |
+| Bleu | Information, explication |
+| Jaune / ambre | Observation, indice, attention |
+| Vert (émeraude) | Validation, réussite |
+| Rouge doux (rose) | Erreur, seulement pour une vraie mauvaise réponse de quiz |
+
+### Champs additifs sur `situation` (thème clair uniquement)
+
+| Champ | Type | Description |
+|---|---|---|
+| `illustration` | `string` | Identifiant d'une illustration du registre partagé (`components/illustrations/registry.tsx`), ex : `"lea-desk"` |
+| `kicker` | `string` | Courte phrase affichée au-dessus de la question |
+| `options[].tone` | `"insight" \| "neutral"` | `"insight"` met en avant l'observation clé attendue (feedback vert) ; par défaut (`"neutral"`), le feedback guide sans jamais afficher "faux" — un bloc `situation` reste exploratoire |
+
+### Champ additif sur `explication` (thème clair uniquement)
+
+| Champ | Type | Description |
+|---|---|---|
+| `visual` | `string` | Identifiant d'un visuel (`components/blocks/ExplicationVisuals.tsx`) qui illustre réellement le propos — une icône décorative seule ne suffit pas au standard visuel. Optionnel : une explication de transition très courte peut rester texte seul. |
+
+Identifiants disponibles pour `explication.visual` et `situation`/`tri`.`illustration` (Module 1, réutilisables par de futures leçons) :
+
+| Identifiant | Type | Contenu |
+|---|---|---|
+| `lea-desk`, `client-form`, `workshop` | scène (registre `components/illustrations/registry.tsx`) | Léa à son poste ; un client remplit un formulaire web ; un artisan à son établi (Atelier Bois & Co) |
+| `repeat-pattern` | `explication.visual` uniquement | Boîte mail qui déborde d'emails presque identiques |
+| `chain-preview`, `chain-preview-dat` | `explication.visual` uniquement | Aperçu iconographique de la chaîne déclencheur→donnée→action→résultat (4 ou 3 rôles) |
+| `process-trio` | `explication.visual` uniquement | Icônes tâche/processus/workflow |
+| `approach-trio` | `explication.visual` uniquement | Icônes automatisation classique/IA/agent IA |
+| `decision-trio` | `explication.visual` uniquement | Icônes automatiser/assister/garder humain |
+
+Les pictogrammes eux-mêmes viennent de deux petits registres réutilisables : `components/illustrations/RoleIcon.tsx` (déclencheur/donnée/action/résultat) et `components/illustrations/ConceptIcon.tsx` (formes génériques : checklist, loop, gear, chat, network, robot, handshake, hand — chacune colorable via une prop `color`). `LightVocabularyCards` (bloc `schema`) réutilise automatiquement ces mêmes icônes quand les identifiants de nœuds correspondent (`declencheur`/`donnees`/`action`/`resultat` ou `tache`/`processus`/`workflow`).
+
+### Champs additifs sur `tri` (thème clair uniquement)
+
+| Champ | Type | Description |
+|---|---|---|
+| `categories[].color` | `string` (hex) | Relie visuellement une catégorie à sa couleur ailleurs dans la leçon (ex : les mêmes rôles qu'un bloc `schema` vu juste avant) |
+| `illustration` | `string` | Identifiant d'une illustration du registre partagé, pour ancrer visuellement le cas à classer (comme le fait `situation.illustration`) |
+
+---
+
 ## Progression (localStorage)
 
 En plus de `completedLessons` et `activityDates` (existants), la progression retient maintenant :

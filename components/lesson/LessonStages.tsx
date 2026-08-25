@@ -8,14 +8,16 @@
 import { useState } from "react";
 import BlockRenderer from "@/components/blocks/BlockRenderer";
 import { getBlockId } from "@/lib/contentTypes";
+import type { LessonTheme } from "@/lib/contentTypes";
 import type { Stage } from "@/lib/lessonStages";
 
 type LessonStagesProps = {
   lessonId: string;
   stages: Stage[];
+  theme?: LessonTheme;
 };
 
-export default function LessonStages({ lessonId, stages }: LessonStagesProps) {
+export default function LessonStages({ lessonId, stages, theme }: LessonStagesProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const currentStage = stages[currentIndex];
   const isFirst = currentIndex === 0;
@@ -52,7 +54,12 @@ export default function LessonStages({ lessonId, stages }: LessonStagesProps) {
       {/* Blocs de l'étape en cours */}
       <div className="flex flex-col gap-4">
         {currentStage.blocks.map(({ block, index }) => (
-          <BlockRenderer key={index} block={block} blockId={getBlockId(lessonId, index)} />
+          <BlockRenderer
+            key={index}
+            block={block}
+            blockId={getBlockId(lessonId, index)}
+            theme={theme}
+          />
         ))}
       </div>
 
