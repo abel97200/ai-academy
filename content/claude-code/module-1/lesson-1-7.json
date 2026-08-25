@@ -4,196 +4,128 @@
   "blocks": [
     {
       "type": "explication",
-      "content": "Tu connais maintenant les principales parties d’une application. Nous allons les relier à travers une action très simple : cocher une leçon dans le tracker."
+      "content": "Pourquoi cette synthèse ? Tu connais maintenant les rôles utiles pour comprendre ton futur tracker. Nous allons suivre une seule action du début à la fin, sans ajouter de nouvelle technique."
     },
     {
       "type": "demo",
-      "content": "Imagine une chaîne de livraison. Tu passes une commande, elle est vérifiée, préparée, enregistrée puis livrée. Cocher une leçon déclenche aussi plusieurs étapes, même si elles se déroulent très vite."
+      "content": "Imagine un colis. Tu le déposes. Il reçoit une étiquette. Il est trié, transporté et livré. Une action simple traverse elle aussi plusieurs étapes invisibles."
     },
     {
       "type": "explication",
-      "content": "Première étape : l’utilisateur agit sur l’interface. Le navigateur détecte le clic sur la case associée à une leçon précise."
+      "content": "Prédiction — Quand une personne coche une leçon, que doit-il se passer ensuite ? Écris trois actions possibles avant de lire la suite."
     },
     {
       "type": "demo",
-      "content": "Tu coches la leçon « Frontend et backend ». La case visible appartient à l’interface et possède un identifiant permettant de reconnaître cette leçon."
+      "content": "Observation — Le tracker doit reconnaître la leçon, changer son état, recalculer la progression, conserver le résultat puis mettre l’écran à jour."
     },
     {
       "type": "explication",
-      "content": "Le frontend reçoit donc ton action. Il joue un rôle proche du vendeur qui note correctement ta commande avant de la transmettre."
+      "content": "Étape 1 — La personne coche une leçon dans l’interface. Le frontend reçoit cette action et reconnaît la leçon concernée."
     },
     {
       "type": "demo",
-      "content": "Le frontend comprend que l’action concerne « lesson-1-3 » et que son nouvel état doit devenir « terminée ». Il transmet ensuite cette information à la logique."
+      "content": "Étape 2 — La logique change l’état de la leçon. Elle recompte les leçons terminées et calcule le nouveau pourcentage."
     },
     {
       "type": "explication",
-      "content": "Deuxième étape : la logique détermine ce qui doit changer. Elle applique les règles prévues par le développeur."
-    },
-    {
-      "type": "demo",
-      "content": "La logique transforme l’état de la leçon de non terminée à terminée. Elle vérifie aussi combien de leçons sont maintenant achevées."
+      "content": "Étape 3 — Le tracker conserve le nouvel état dans un rangement. Sans cette étape, la case pourrait se décocher au prochain chargement."
     },
     {
       "type": "explication",
-      "content": "La logique recalcule ensuite la progression. C’est comparable à un professeur qui compte les exercices terminés pour calculer ton avancement."
-    },
-    {
-      "type": "demo",
-      "content": "Si deux leçons sur sept étaient terminées, le total passe maintenant à trois. Le calcul donne environ 43 % de progression."
+      "content": "Le mot à reconnaître — localStorage est un rangement du navigateur. Tu apprendras à l’utiliser au Module 8. Ici, retiens seulement qu’afficher et conserver sont deux actions différentes."
     },
     {
       "type": "schema",
       "diagram": {
-        "kind": "trio",
+        "kind": "flow",
+        "direction": "horizontal",
         "nodes": [
           {
-            "id": "action",
-            "label": "Action utilisateur",
-            "color": "#6366F1",
-            "definition": "L’utilisateur coche une leçon."
+            "id": "clic",
+            "label": "Tu coches",
+            "definition": "L’interface reçoit."
           },
           {
-            "id": "traitement",
-            "label": "Traitement",
-            "color": "#F59E0B",
-            "definition": "L’application modifie l’état et recalcule la progression."
+            "id": "calcul",
+            "label": "La logique calcule",
+            "definition": "La progression change."
           },
           {
-            "id": "resultat",
-            "label": "Résultat",
-            "color": "#14B8A6",
-            "definition": "Le nouvel état est enregistré puis affiché."
+            "id": "save",
+            "label": "La donnée est gardée",
+            "definition": "L’état est conservé."
+          },
+          {
+            "id": "view",
+            "label": "L’écran change",
+            "definition": "Le résultat apparaît."
           }
         ],
         "links": [
-          {
-            "from": "action",
-            "to": "traitement"
-          },
-          {
-            "from": "traitement",
-            "to": "resultat"
-          }
+          { "from": "clic", "to": "calcul" },
+          { "from": "calcul", "to": "save" },
+          { "from": "save", "to": "view" }
         ]
       },
-      "caption": "Une action est traitée avant de devenir un résultat visible."
-    },
-    {
-      "type": "explication",
-      "content": "Troisième étape : l’application conserve éventuellement le nouvel état. Sans cette étape, la progression pourrait disparaître après le rechargement."
+      "caption": "Du clic au résultat visible."
     },
     {
       "type": "demo",
-      "content": "C’est comme cocher une liste sur une feuille puis jeter la feuille. Pour retrouver l’information plus tard, il faut conserver la liste dans un endroit durable."
+      "content": "Petite pratique — Une case se coche, mais se décoche lorsque la page est rouverte. Choisis la partie à vérifier en premier : l’affichage, le calcul du pourcentage ou la conservation de l’état."
     },
     {
       "type": "explication",
-      "content": "Dans le MVP, AI Academy peut utiliser localStorage. Il s’agit d’un petit espace de rangement fourni par le navigateur."
-    },
-    {
-      "type": "demo",
-      "content": "Le navigateur enregistre localement que « lesson-1-3 » est terminée. Lorsque tu reviens, l’application lit cette information et recochera la bonne case."
-    },
-    {
-      "type": "explication",
-      "content": "Dans une version avec comptes utilisateurs, le frontend pourrait envoyer une requête API au backend. Le backend enregistrerait ensuite la progression dans une base de données."
-    },
-    {
-      "type": "demo",
-      "content": "Ce fonctionnement permettrait de cocher une leçon sur ton ordinateur puis de retrouver le même état sur ton téléphone, car les données ne seraient plus limitées à un seul navigateur."
-    },
-    {
-      "type": "explication",
-      "content": "Quatrième étape : l’interface se met à jour. Elle reçoit le nouvel état et transforme cette information en résultat visible."
-    },
-    {
-      "type": "demo",
-      "content": "La case apparaît cochée, la barre de progression avance et le nouveau pourcentage s’affiche. L’utilisateur voit immédiatement que son action a été prise en compte."
-    },
-    {
-      "type": "explication",
-      "content": "Le trajet complet est donc : action dans l’interface, traitement par la logique, enregistrement des données, puis nouvel affichage. Chaque étape possède un rôle précis."
-    },
-    {
-      "type": "demo",
-      "content": "Si la case ne réagit pas, le problème peut venir du frontend. Si elle réagit mais se décoche après rechargement, le problème vient probablement de l’enregistrement. Cette décomposition aide à chercher un bug."
-    },
-    {
-      "type": "explication",
-      "content": "Erreur fréquente : dire simplement « le bouton enregistre la leçon ». C’est comme dire que le bouton d’un ascenseur déplace seul la cabine."
-    },
-    {
-      "type": "demo",
-      "content": "Le bouton déclenche l’action, mais plusieurs mécanismes prennent ensuite le relais. Comprendre cette chaîne t’aidera à formuler des demandes précises à Claude Code."
+      "content": "Correction — Vérifie la conservation. Le clic et l’affichage ont fonctionné. L’échec apparaît seulement lorsque le tracker doit retrouver l’état."
     },
     {
       "type": "exercice",
-      "question": "Explique avec tes propres mots le trajet complet suivi lorsque tu coches une leçon. Mentionne au minimum l’interface, la logique, les données et l’affichage final.",
+      "question": "Explique avec tes mots le trajet suivi quand tu coches une leçon. Mentionne l’interface, la logique, les données et l’affichage final.",
       "hints": [
-        "Commence par l’action réalisée dans l’interface.",
-        "Explique ensuite ce que la logique modifie ou calcule.",
+        "Commence par ton clic.",
+        "Explique ensuite le changement et le calcul.",
         "Termine par l’enregistrement et le nouvel affichage."
       ],
-      "solution": "L’utilisateur coche une leçon dans l’interface. Le frontend détecte le clic et transmet l’information à la logique. La logique modifie l’état de la leçon et recalcule la progression. Le nouvel état est enregistré localement ou envoyé vers un backend et une base de données. L’interface reçoit ensuite les nouvelles informations et affiche la case cochée ainsi que le pourcentage actualisé."
+      "solution": "Tu coches une leçon dans l’interface. Le frontend reconnaît son identifiant. La logique change son état et recalcule la progression. L’information est conservée. L’interface affiche enfin la case cochée et le nouveau pourcentage."
     },
     {
       "type": "quiz",
       "questions": [
         {
-          "question": "Quelle est la première étape lorsque l’utilisateur coche une leçon ?",
-          "options": [
-            "Le frontend reçoit l’action",
-            "La base supprime toutes les données",
-            "Le serveur publie une nouvelle application"
-          ],
+          "question": "Quelle est la première étape ?",
+          "options": ["Le frontend reçoit l’action de la personne", "La progression est conservée avant toute action", "Le pourcentage change sans connaître la leçon"],
           "answer": 0,
-          "explanation": "Le clic est d’abord reçu par le frontend. La base ne doit pas supprimer toutes les données et aucune nouvelle publication n’est nécessaire pour chaque clic."
+          "explanation": "Le voyage commence par ton action dans l’interface."
         },
         {
-          "question": "Quelle partie calcule le nouveau pourcentage de progression ?",
-          "options": [
-            "La logique de l’application",
-            "Le nom de domaine",
-            "La police d’écriture"
-          ],
-          "answer": 0,
-          "explanation": "La logique contient la règle de calcul. Le nom de domaine sert à accéder à l’application et la police modifie seulement l’apparence du texte."
-        },
-        {
-          "question": "Pourquoi enregistrer le nouvel état de la leçon ?",
-          "options": [
-            "Pour le retrouver après la fermeture ou le rechargement",
-            "Pour changer la taille de l’écran",
-            "Pour rendre le bouton plus arrondi"
-          ],
-          "answer": 0,
-          "explanation": "L’enregistrement permet de retrouver la progression plus tard. Les autres réponses concernent l’affichage et n’ont aucun lien avec la conservation des données."
-        },
-        {
-          "question": "Dans une version simple sans compte, où la progression peut-elle être conservée ?",
-          "options": [
-            "Dans localStorage",
-            "Dans la couleur du logo",
-            "Dans le câble de recharge"
-          ],
-          "answer": 0,
-          "explanation": "localStorage permet au navigateur de conserver de petites informations localement. Une couleur ou un câble ne peut pas stocker la progression de l’application."
-        },
-        {
-          "question": "Quelle affirmation est la plus précise ?",
-          "options": [
-            "Le bouton fait tout tout seul",
-            "Le clic déclenche plusieurs étapes entre l’interface, la logique et les données",
-            "Une application n’a besoin que d’une belle interface"
-          ],
+          "question": "Qui calcule le nouveau pourcentage ?",
+          "options": ["L’interface qui montre la barre", "La logique qui applique la règle", "Le rangement qui conserve l’état"],
           "answer": 1,
-          "explanation": "Un clic déclenche une chaîne de traitements. Le bouton n’agit pas seul : du code traite l’action. Une belle interface est utile, mais elle ne suffit pas à créer une application fonctionnelle."
+          "explanation": "La logique contient la règle de calcul."
+        },
+        {
+          "question": "Pourquoi conserver le nouvel état ?",
+          "options": ["Pour permettre le calcul pendant le clic seulement", "Pour afficher immédiatement la case cochée", "Pour retrouver l’état après avoir rouvert la page"],
+          "answer": 2,
+          "explanation": "L’enregistrement rend l’information durable."
+        },
+        {
+          "question": "Une case se décoche après avoir rouvert la page. Quelle étape est probablement incomplète ?",
+          "options": ["La conservation de l’état", "La détection du premier clic", "L’affichage du titre de la leçon"],
+          "answer": 0,
+          "explanation": "Le clic a bien été reçu puisque la case s’est cochée. L’état n’a probablement pas été retrouvé."
+        },
+        {
+          "question": "Quelle phrase est la plus précise ?",
+          "options": ["Le clic suffit à conserver l’information", "Le clic déclenche plusieurs rôles qui se complètent", "Le rangement calcule et affiche tout seul"],
+          "answer": 1,
+          "explanation": "L’interface, la logique et les données participent au résultat."
         }
       ]
     },
     {
-      "type": "validation"
-    }
+      "type": "explication",
+      "content": "Bilan — Un clic traverse interface, logique et données. Tu peux décrire une leçon cochée et situer un problème simple. Tu n’as pas encore à programmer, utiliser localStorage, créer une base ou publier. Tu construiras le tracker, puis Wayli."
+    },
+    { "type": "validation" }
   ]
 }

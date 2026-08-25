@@ -4,184 +4,119 @@
   "blocks": [
     {
       "type": "explication",
-      "content": "Le navigateur est le logiciel que tu utilises pour ouvrir une application web. Chrome, Safari, Firefox et Edge sont des navigateurs."
+      "content": "Pourquoi apprendre cela ? Quand tu ouvres AI Academy, ton écran demande les éléments nécessaires à une autre machine. Comprendre cet aller-retour suffit."
     },
     {
       "type": "demo",
-      "content": "Le navigateur ressemble à une fenêtre donnant accès au Web. Tu saisis une adresse, puis il récupère et assemble les éléments nécessaires pour afficher la page."
+      "content": "Imagine une bibliothèque. Tu demandes un livre au comptoir. Une personne va le chercher dans la réserve et te le remet."
     },
     {
       "type": "explication",
-      "content": "Le navigateur reçoit les fichiers de l’application, exécute le code du frontend et affiche le résultat. Il transforme donc du code en boutons, textes, images et formulaires utilisables."
+      "content": "Prédiction — Quand tu ouvres une leçon, est-ce ton navigateur qui possède déjà tout le contenu, ou doit-il demander les éléments de la page ? Choisis une réponse avant de continuer."
+    },
+    {
+      "type": "explication",
+      "content": "Observation — Le navigateur demande les éléments de la page, les reçoit, puis les affiche. Il ne possède pas à l’avance toutes les leçons de toutes les plateformes."
     },
     {
       "type": "demo",
-      "content": "Lorsque tu ouvres AI Academy, tu ne vois pas directement les fichiers TypeScript ou CSS. Le navigateur les interprète et te présente une interface lisible."
+      "content": "Le premier vrai mot — Le navigateur est l’application qui ouvre et affiche les pages web. Chrome, Safari, Firefox et Edge sont des navigateurs."
+    },
+    {
+      "type": "explication",
+      "content": "Le deuxième vrai mot — Un serveur est une machine ou un service qui répond aux demandes du navigateur. Ici, retiens seulement : le navigateur demande, le serveur répond."
     },
     {
       "type": "schema",
       "diagram": {
-        "kind": "trio",
+        "kind": "flow",
+        "direction": "horizontal",
         "nodes": [
           {
-            "id": "navigateur",
+            "id": "browser",
             "label": "Navigateur",
-            "color": "#6366F1",
-            "definition": "Il affiche et exécute l’interface de l’application."
+            "definition": "Il demande et affiche."
           },
           {
-            "id": "serveur",
+            "id": "server",
             "label": "Serveur",
-            "color": "#14B8A6",
-            "definition": "Il fournit des fichiers, des données ou des traitements."
+            "definition": "Il répond."
           },
           {
-            "id": "hebergement",
+            "id": "hosting",
             "label": "Hébergement",
-            "color": "#F59E0B",
-            "definition": "Il permet au projet de rester accessible en ligne."
+            "definition": "Il garde l’application disponible."
           }
         ],
         "links": [
-          {
-            "from": "navigateur",
-            "to": "serveur"
-          },
-          {
-            "from": "serveur",
-            "to": "navigateur"
-          },
-          {
-            "from": "serveur",
-            "to": "hebergement"
-          }
+          { "from": "browser", "to": "server" },
+          { "from": "server", "to": "browser" },
+          { "from": "server", "to": "hosting" }
         ]
       },
-      "caption": "Le navigateur demande l’application à un serveur accessible grâce à un hébergement."
+      "caption": "Le navigateur demande, le serveur répond."
     },
     {
       "type": "explication",
-      "content": "Un serveur est un ordinateur ou un service qui répond à des demandes. Imagine le stock d’un magasin : lorsque la boutique demande un produit, le stock le retrouve et l’envoie."
+      "content": "L’hébergement garde une application disponible sur Internet. Tu l’utiliseras pour publier ton tracker au Module 12."
     },
     {
       "type": "demo",
-      "content": "Lorsque ton navigateur demande la page d’accueil d’AI Academy, le serveur lui fournit les fichiers nécessaires. Le navigateur les reçoit puis construit la page."
+      "content": "Petite pratique — Remets dans l’ordre : le serveur renvoie la page ; le navigateur affiche la page ; le navigateur demande la page."
     },
     {
       "type": "explication",
-      "content": "Un serveur peut aussi exécuter le backend. Il peut vérifier une connexion, chercher une donnée ou enregistrer une modification avant de répondre."
-    },
-    {
-      "type": "demo",
-      "content": "Si AI Academy possédait des comptes, le serveur pourrait vérifier ton mot de passe puis récupérer ta progression avant d’envoyer la page."
-    },
-    {
-      "type": "explication",
-      "content": "L’hébergement est le service qui garde l’application disponible sur Internet. C’est un peu comme louer un local ouvert en permanence pour que les visiteurs puissent venir."
-    },
-    {
-      "type": "demo",
-      "content": "Vercel héberge AI Academy. Même lorsque ton ordinateur personnel est éteint, les serveurs de Vercel continuent de rendre l’application accessible."
-    },
-    {
-      "type": "explication",
-      "content": "Pendant le développement, l’application fonctionne souvent uniquement sur ton ordinateur. Tu utilises alors un serveur local."
-    },
-    {
-      "type": "demo",
-      "content": "C’est comparable à préparer une boutique témoin dans ton garage avant d’ouvrir le véritable magasin. Tu peux tester tranquillement sans que le public voie chaque modification."
-    },
-    {
-      "type": "explication",
-      "content": "Une adresse comme localhost indique que le navigateur communique avec ton propre ordinateur. Le mot local signifie que le service fonctionne près de toi, sur ta machine."
-    },
-    {
-      "type": "demo",
-      "content": "Avec la commande « npm run dev », Node.js lance généralement un serveur local. Tu peux ensuite ouvrir « http://localhost:3000 » pour voir l’application en cours de développement."
-    },
-    {
-      "type": "explication",
-      "content": "Déployer une application signifie envoyer une version prête sur un hébergement. Elle reçoit alors une adresse accessible depuis Internet."
-    },
-    {
-      "type": "demo",
-      "content": "Quand Claude Code envoie le projet sur GitHub, Vercel peut récupérer le code, construire l’application et publier la nouvelle version sur l’adresse vercel.app."
-    },
-    {
-      "type": "explication",
-      "content": "Erreur fréquente : croire que localhost est déjà accessible à tout le monde. C’est comme une répétition dans une salle privée : le public ne la voit pas encore."
-    },
-    {
-      "type": "demo",
-      "content": "Tant que l’application n’est pas déployée sur un hébergement, une personne située ailleurs ne peut généralement pas ouvrir ton adresse localhost."
+      "content": "Correction — 1. Le navigateur demande. 2. Le serveur renvoie. 3. Le navigateur affiche. Si l’écran reste vide, le problème peut se situer dans la demande, la réponse ou l’affichage."
     },
     {
       "type": "exercice",
-      "question": "Explique la différence entre ouvrir AI Academy sur localhost et l’ouvrir sur son adresse vercel.app.",
+      "question": "Remets dans l’ordre le trajet d’ouverture d’une leçon : le serveur répond, le navigateur affiche, la personne choisit la leçon, le navigateur demande.",
       "hints": [
-        "Demande-toi où le serveur fonctionne.",
-        "Localhost correspond à ton ordinateur.",
-        "Vercel permet l’accès depuis Internet."
+        "Tout commence par le choix de la personne.",
+        "Une réponse arrive après une demande.",
+        "L’affichage vient lorsque les éléments ont été reçus."
       ],
-      "solution": "Sur localhost, le serveur de développement fonctionne sur ton ordinateur et l’application est généralement accessible uniquement localement. Sur l’adresse vercel.app, l’application a été déployée sur un service d’hébergement et peut être consultée depuis Internet."
+      "solution": "1. La personne choisit la leçon. 2. Le navigateur la demande. 3. Le serveur répond. 4. Le navigateur affiche les éléments reçus."
     },
     {
       "type": "quiz",
       "questions": [
         {
-          "question": "Quel est le rôle principal du navigateur ?",
-          "options": [
-            "Afficher et exécuter le frontend",
-            "Remplacer toutes les bases de données",
-            "Créer automatiquement le cahier des charges"
-          ],
-          "answer": 0,
-          "explanation": "Le navigateur affiche et exécute le frontend. Il peut conserver quelques données locales, mais ne remplace pas toutes les bases. Il ne définit pas non plus automatiquement le besoin produit."
+          "question": "Quel outil affiche AI Academy ?",
+          "options": ["Le service qui conserve la progression", "Le serveur qui prépare la réponse", "Le navigateur qui reçoit puis affiche la page"],
+          "answer": 2,
+          "explanation": "Le navigateur transforme les éléments reçus en page utilisable."
         },
         {
-          "question": "Qu’est-ce qu’un serveur ?",
-          "options": [
-            "Un système qui répond à des demandes",
-            "Une couleur d’interface",
-            "Un type de bouton"
-          ],
+          "question": "Que fait un serveur ?",
+          "options": ["Il répond aux demandes du navigateur", "Il affiche directement la page sur ton écran", "Il conserve forcément toutes les données"],
           "answer": 0,
-          "explanation": "Un serveur répond à des demandes et peut fournir des fichiers, des données ou des traitements. Les autres options appartiennent à l’interface."
+          "explanation": "Un serveur fournit des éléments ou effectue des traitements demandés."
         },
         {
           "question": "À quoi sert l’hébergement ?",
-          "options": [
-            "À rendre l’application accessible en ligne",
-            "À remplacer toutes les étapes de test",
-            "À écrire automatiquement toutes les leçons"
-          ],
-          "answer": 0,
-          "explanation": "L’hébergement rend l’application disponible sur Internet. Il ne remplace ni les tests ni la création pédagogique du contenu."
-        },
-        {
-          "question": "Que signifie généralement localhost ?",
-          "options": [
-            "Un serveur qui fonctionne sur ton propre ordinateur",
-            "Une application déjà publiée mondialement",
-            "Une base de données obligatoire"
-          ],
-          "answer": 0,
-          "explanation": "Localhost désigne ta propre machine. L’application n’est pas automatiquement publique et localhost n’est pas une base de données."
-        },
-        {
-          "question": "Une application visible sur localhost est-elle forcément accessible à une autre personne sur Internet ?",
-          "options": [
-            "Oui",
-            "Non",
-            "Seulement si son écran est grand"
-          ],
+          "options": ["À préparer chaque clic dans le navigateur", "À garder l’application accessible en ligne", "À remplacer le serveur et le navigateur"],
           "answer": 1,
-          "explanation": "Non. Il faut généralement déployer l’application sur un hébergement pour qu’elle soit accessible en ligne. La taille de l’écran n’a aucun rapport."
+          "explanation": "L’hébergement maintient la version publiée disponible."
+        },
+        {
+          "question": "Quel ordre décrit l’ouverture d’une page ?",
+          "options": ["Le serveur affiche, puis le navigateur demande", "Le navigateur affiche avant toute réponse", "Le navigateur demande, le serveur répond, le navigateur affiche"],
+          "answer": 2,
+          "explanation": "La demande précède la réponse, puis le navigateur peut afficher les éléments reçus."
+        },
+        {
+          "question": "Que dois-tu savoir sur le mot « hébergement » à ce stade ?",
+          "options": ["Il garde une application disponible en ligne", "Le configurer seul dès maintenant", "Il remplace la construction de l’application"],
+          "answer": 0,
+          "explanation": "Reconnaître ce rôle suffit. La publication sera pratiquée au Module 12."
         }
       ]
     },
     {
-      "type": "validation"
-    }
+      "type": "explication",
+      "content": "En langage courant — Le navigateur demande et affiche. Le serveur répond. L’hébergement garde l’application disponible. Le serveur local et la publication viendront plus tard."
+    },
+    { "type": "validation" }
   ]
 }
