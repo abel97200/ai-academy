@@ -6,7 +6,8 @@
   "blocks": [
     {
       "type": "explication",
-      "content": "Aujourd'hui, on observe une vraie journée à l'Atelier Bois & Co, un petit atelier de meubles sur mesure. Son fondateur, Karim, note tout ce qu'il fait dans sa journée."
+      "content": "Aujourd'hui, on observe une vraie journée à l'Atelier Bois & Co, un petit atelier de meubles sur mesure. Son fondateur, Karim, note tout ce qu'il fait dans sa journée.",
+      "visual": "workshop"
     },
     {
       "type": "situation",
@@ -33,11 +34,13 @@
       "categories": [
         {
           "id": "repetitive",
-          "label": "Répétitive"
+          "label": "Répétitive",
+          "color": "#6366F1"
         },
         {
           "id": "non-repetitive",
-          "label": "Non répétitive"
+          "label": "Non répétitive",
+          "color": "#94A3B8"
         }
       ],
       "items": [
@@ -87,7 +90,8 @@
     },
     {
       "type": "explication",
-      "content": "Une tâche répétitive n'est pas automatiquement une bonne candidate à l'automatisation complète. Comme dans la leçon précédente, il faut se demander : quel est le risque, et un vrai jugement humain est-il nécessaire ?"
+      "content": "Une tâche répétitive n'est pas automatiquement une bonne candidate à l'automatisation complète. Comme dans la leçon précédente, il faut se demander : quel est le risque, et un vrai jugement humain est-il nécessaire ?",
+      "visual": "decision-trio"
     },
     {
       "type": "tri",
@@ -95,15 +99,18 @@
       "categories": [
         {
           "id": "automatiser",
-          "label": "AUTOMATISER"
+          "label": "AUTOMATISER",
+          "color": "#22C55E"
         },
         {
           "id": "assister",
-          "label": "ASSISTER"
+          "label": "ASSISTER",
+          "color": "#F59E0B"
         },
         {
           "id": "humain",
-          "label": "GARDER HUMAIN"
+          "label": "GARDER HUMAIN",
+          "color": "#6366F1"
         }
       ],
       "items": [
@@ -252,5 +259,6 @@
     {
       "type": "validation"
     }
-  ]
+  ],
+  "theme": "light-elearning"
 }

@@ -11,8 +11,9 @@
 
 import LeaAtDeskScene from "@/components/illustrations/LeaAtDeskScene";
 import ClientFormScene from "@/components/illustrations/ClientFormScene";
+import WorkshopScene from "@/components/illustrations/WorkshopScene";
 
-export type IllustrationId = "lea-desk" | "client-form";
+export type IllustrationId = "lea-desk" | "client-form" | "workshop";
 
 export function RegisteredIllustration({ id }: { id: string | undefined }) {
   switch (id as IllustrationId | undefined) {
@@ -20,6 +21,8 @@ export function RegisteredIllustration({ id }: { id: string | undefined }) {
       return <LeaAtDeskScene />;
     case "client-form":
       return <ClientFormScene />;
+    case "workshop":
+      return <WorkshopScene />;
     default:
       return null;
   }

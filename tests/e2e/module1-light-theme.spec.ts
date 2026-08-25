@@ -1,9 +1,9 @@
-// Garde-fou visuel spécifique à la refonte "light-elearning" de la leçon
-// 1.1 (voir docs/CONTENT-SCHEMA-V2.md § Thème visuel d'une leçon) : vérifie
-// que les zones principales attendues sont bien présentes, que le thème
-// clair est réellement appliqué (pas juste que la page se charge), que les
-// cartes de réponse restent interactives, et qu'aucune leçon voisine n'a
-// été affectée par erreur.
+// Garde-fou visuel pour le thème "light-elearning" (voir
+// docs/CONTENT-SCHEMA-V2.md § Thème visuel d'une leçon), maintenant
+// appliqué aux 6 leçons du Module 1 : vérifie que les zones principales de
+// la leçon 1.1 sont bien présentes et interactives, puis que chacune des
+// leçons 1.2 à 1.6 affiche réellement le thème clair (pas seulement
+// qu'elle se charge), sans débordement ni erreur.
 
 import { test, expect } from "@playwright/test";
 import { goToNextBlock, watchForErrors } from "./helpers";
@@ -68,17 +68,40 @@ test("leçon 1.1 : le thème clair est bien appliqué, avec ses zones principale
   expect(errors).toEqual([]);
 });
 
-test("leçon 1.2 n'est pas affectée par le thème clair de la leçon 1.1", async ({ page }) => {
+const OTHER_LESSONS: Array<{ id: string; firstBlockPill: string }> = [
+  { id: "automatisation-lesson-1-2", firstBlockPill: "💡 À comprendre" },
+  { id: "automatisation-lesson-1-3", firstBlockPill: "🔎 Situation" },
+  { id: "automatisation-lesson-1-4", firstBlockPill: "💡 À comprendre" },
+  { id: "automatisation-lesson-1-5", firstBlockPill: "💡 À comprendre" },
+  { id: "automatisation-lesson-1-6", firstBlockPill: "💡 À comprendre" },
+];
+
+for (const lesson of OTHER_LESSONS) {
+  test(`${lesson.id} affiche bien le thème clair, sans débordement`, async ({ page }) => {
+    const { errors } = watchForErrors(page);
+    await page.goto(`/parcours/automatisation/module-1/${lesson.id}`);
+    await expect(page.getByText(lesson.firstBlockPill)).toBeVisible();
+
+    const hasHorizontalOverflow = await page.evaluate(
+      () => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1
+    );
+    expect(hasHorizontalOverflow, `${lesson.id} déborde horizontalement`).toBe(false);
+    expect(errors).toEqual([]);
+  });
+}
+
+test("leçon 1.2 : le schéma tâche/processus/workflow utilise les cartes vocabulaire claires (pas le SVG sombre historique)", async ({
+  page,
+}) => {
   const { errors } = watchForErrors(page);
   await page.goto("/parcours/automatisation/module-1/automatisation-lesson-1-2");
-  // Le schéma de la leçon 1.2 doit rester le SVG historique à nœuds/liens
-  // (pas les cartes "Vocabulaire" du thème clair, pas de pill de thème).
   await goToNextBlock(page);
   await goToNextBlock(page);
   await goToNextBlock(page);
-  await expect(page.getByText("📘 Vocabulaire")).not.toBeVisible();
+  await expect(page.getByText("📘 Vocabulaire")).toBeVisible();
+  await page.getByRole("button", { name: "Workflow", exact: true }).click();
   await expect(
-    page.getByRole("img", { name: /Schéma reliant : Tâche, Processus, Workflow/ })
+    page.getByText("Ce même processus, décrit avec des étapes claires et reproductibles")
   ).toBeVisible();
   expect(errors).toEqual([]);
 });

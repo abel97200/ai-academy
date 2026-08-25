@@ -6,7 +6,8 @@
   "blocks": [
     {
       "type": "explication",
-      "content": "Pour un même besoin, plusieurs approches existent : une règle fixe et prévisible, une IA capable de comprendre un texte libre, ou un agent IA capable d'enchaîner plusieurs décisions tout seul. Elles ne se valent pas dans toutes les situations."
+      "content": "Pour un même besoin, plusieurs approches existent : une règle fixe et prévisible, une IA capable de comprendre un texte libre, ou un agent IA capable d'enchaîner plusieurs décisions tout seul. Elles ne se valent pas dans toutes les situations.",
+      "visual": "approach-trio"
     },
     {
       "type": "tri",
@@ -14,15 +15,18 @@
       "categories": [
         {
           "id": "auto",
-          "label": "Automatisation classique"
+          "label": "Automatisation classique",
+          "color": "#14B8A6"
         },
         {
           "id": "ia",
-          "label": "IA (compréhension)"
+          "label": "IA (compréhension)",
+          "color": "#3B82F6"
         },
         {
           "id": "agent",
-          "label": "Agent IA"
+          "label": "Agent IA",
+          "color": "#8B5CF6"
         }
       ],
       "items": [
@@ -148,5 +152,6 @@
     {
       "type": "validation"
     }
-  ]
+  ],
+  "theme": "light-elearning"
 }

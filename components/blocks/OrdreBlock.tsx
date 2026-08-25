@@ -6,18 +6,21 @@
 // la fin de sa séquence ; "Annuler le dernier" retire uniquement le
 // dernier choisi. Une fois tous les éléments placés, "Vérifier l'ordre"
 // compare la séquence à l'ordre attendu et colore chaque position.
+//
+// Thème sombre par défaut (historique) ou thème "light-elearning".
 
 import { useState } from "react";
 import InlineText from "@/components/blocks/InlineText";
-import type { OrdreItem } from "@/lib/content";
+import type { LessonTheme, OrdreItem } from "@/lib/content";
 
 type OrdreBlockProps = {
   instruction: string;
   items: OrdreItem[];
   correctOrder: string[];
+  theme?: LessonTheme;
 };
 
-export default function OrdreBlock({ instruction, items, correctOrder }: OrdreBlockProps) {
+export default function OrdreBlock({ instruction, items, correctOrder, theme }: OrdreBlockProps) {
   const [sequence, setSequence] = useState<string[]>([]);
   const [checked, setChecked] = useState(false);
 
@@ -26,6 +29,7 @@ export default function OrdreBlock({ instruction, items, correctOrder }: OrdreBl
   const isComplete = sequence.length === items.length;
   const correctCount = sequence.filter((id, index) => id === correctOrder[index]).length;
   const allCorrect = checked && correctCount === items.length;
+  const light = theme === "light-elearning";
 
   function handleChoose(itemId: string) {
     if (checked || sequence.includes(itemId)) return;
@@ -44,6 +48,114 @@ export default function OrdreBlock({ instruction, items, correctOrder }: OrdreBl
 
   function handleVerifier() {
     setChecked(true);
+  }
+
+  if (light) {
+    return (
+      <div className="rounded-3xl border-2 border-violet-100 bg-white p-6 shadow-[0_8px_30px_rgba(124,58,237,0.08)] sm:p-8">
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-violet-600 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
+          🔢 Remettre dans l&apos;ordre
+        </span>
+        <p className="mt-3 text-base leading-relaxed text-slate-700">
+          <InlineText text={instruction} />
+        </p>
+
+        <div className="mt-5 flex flex-col gap-2.5">
+          {sequence.length === 0 && (
+            <p className="text-sm text-slate-400">
+              Clique les étapes ci-dessous, dans l&apos;ordre où tu penses qu&apos;elles se déroulent.
+            </p>
+          )}
+          {sequence.map((itemId, index) => {
+            const item = itemsById.get(itemId)!;
+            const isRight = checked && itemId === correctOrder[index];
+            const isWrong = checked && itemId !== correctOrder[index];
+            return (
+              <div
+                key={itemId}
+                className={`flex items-center gap-3 rounded-2xl border-2 px-4 py-3 text-sm font-medium transition-colors duration-150 ${
+                  isRight
+                    ? "border-emerald-300 bg-emerald-50 text-emerald-800"
+                    : isWrong
+                      ? "border-rose-300 bg-rose-50 text-rose-700"
+                      : "border-violet-200 bg-violet-50 text-slate-800"
+                }`}
+              >
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white text-xs font-bold shadow-sm">
+                  {index + 1}
+                </span>
+                <span>
+                  {item.emoji ? `${item.emoji} ` : ""}
+                  <InlineText text={item.label} />
+                </span>
+                {isRight && <span className="ml-auto">✅</span>}
+                {isWrong && <span className="ml-auto">✗</span>}
+              </div>
+            );
+          })}
+        </div>
+
+        {remaining.length > 0 && (
+          <div className="mt-4 flex flex-wrap gap-2">
+            {remaining.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => handleChoose(item.id)}
+                className="rounded-2xl border-2 border-slate-200 bg-slate-50 px-4 py-2.5 text-left text-sm font-medium text-slate-700 transition-all duration-150 hover:border-slate-300 hover:bg-white active:scale-[0.98]"
+              >
+                {item.emoji ? `${item.emoji} ` : ""}
+                <InlineText text={item.label} />
+              </button>
+            ))}
+          </div>
+        )}
+
+        <div className="mt-5 flex flex-wrap items-center gap-3">
+          {sequence.length > 0 && !checked && (
+            <button
+              type="button"
+              onClick={handleUndo}
+              className="rounded-full border-2 border-slate-200 px-4 py-2 text-sm font-semibold text-slate-600 transition-all duration-150 hover:border-slate-300 active:scale-95"
+            >
+              ← Annuler le dernier
+            </button>
+          )}
+          {isComplete && !checked && (
+            <button
+              type="button"
+              onClick={handleVerifier}
+              className="rounded-full bg-violet-600 px-5 py-2.5 text-sm font-semibold text-white transition-all duration-150 hover:bg-violet-700 active:scale-95"
+            >
+              Vérifier l&apos;ordre
+            </button>
+          )}
+          {checked && (
+            <button
+              type="button"
+              onClick={handleReset}
+              className="rounded-full border-2 border-slate-200 px-4 py-2 text-sm font-semibold text-slate-600 transition-all duration-150 hover:border-slate-300 active:scale-95"
+            >
+              Recommencer
+            </button>
+          )}
+        </div>
+
+        {checked && (
+          <div
+            className={`schema-animate mt-4 rounded-2xl border-2 px-4 py-3 text-sm font-semibold ${
+              allCorrect
+                ? "border-emerald-200 bg-emerald-50 text-emerald-800"
+                : "border-amber-200 bg-amber-50 text-amber-800"
+            }`}
+          >
+            {allCorrect
+              ? "✅ Exactement le bon ordre !"
+              : `${correctCount}/${items.length} bien placés — regarde les ✗ et recommence.`}
+          </div>
+        )}
+      </div>
+    );
   }
 
   return (

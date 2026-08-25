@@ -8,6 +8,7 @@
 
 import { useState } from "react";
 import RoleIcon, { type Role } from "@/components/illustrations/RoleIcon";
+import ConceptIcon, { type ConceptShape } from "@/components/illustrations/ConceptIcon";
 import type { DiagramNode } from "@/lib/content";
 
 type LightVocabularyCardsProps = {
@@ -28,6 +29,14 @@ const NODE_ID_TO_ROLE: Record<string, Role> = {
   resultat: "resultat",
 };
 
+// Même principe pour un second vocabulaire à 3 concepts (tâche/processus/
+// workflow, leçon 1.2) : réutilise ConceptIcon plutôt qu'un simple point.
+const NODE_ID_TO_CONCEPT_SHAPE: Record<string, ConceptShape> = {
+  tache: "checklist",
+  processus: "loop",
+  workflow: "gear",
+};
+
 // Convertit une couleur hex "#RRGGBB" en sa version avec une opacité donnée
 // (ex: "1A" ≈ 10%), pour un fond de carte doux dérivé de la couleur du nœud.
 function withAlpha(hex: string, alpha: string): string {
@@ -45,6 +54,7 @@ export default function LightVocabularyCards({ nodes }: LightVocabularyCardsProp
           const color = node.color ?? DEFAULT_COLOR;
           const isSelected = selectedId === node.id;
           const role = NODE_ID_TO_ROLE[node.id];
+          const conceptShape = NODE_ID_TO_CONCEPT_SHAPE[node.id];
           return (
             <div key={node.id} className="flex items-center gap-2 sm:gap-3">
               <button
@@ -61,6 +71,8 @@ export default function LightVocabularyCards({ nodes }: LightVocabularyCardsProp
               >
                 {role ? (
                   <RoleIcon role={role} size={32} decorative />
+                ) : conceptShape ? (
+                  <ConceptIcon shape={conceptShape} color={color} size={32} decorative />
                 ) : (
                   <span
                     aria-hidden="true"

@@ -6,7 +6,8 @@
   "blocks": [
     {
       "type": "explication",
-      "content": "Techniquement, presque tout peut être automatisé. Mais automatiser une décision importante, risquée ou difficile à annuler peut créer plus de problèmes que ça n'en résout. Avant d'automatiser, demande-toi : quel est le risque si ça se trompe ? Est-ce facile à corriger après coup ? Un vrai jugement humain est-il nécessaire ?"
+      "content": "Techniquement, presque tout peut être automatisé. Mais automatiser une décision importante, risquée ou difficile à annuler peut créer plus de problèmes que ça n'en résout. Avant d'automatiser, demande-toi : quel est le risque si ça se trompe ? Est-ce facile à corriger après coup ? Un vrai jugement humain est-il nécessaire ?",
+      "visual": "decision-trio"
     },
     {
       "type": "tri",
@@ -14,15 +15,18 @@
       "categories": [
         {
           "id": "automatiser",
-          "label": "AUTOMATISER"
+          "label": "AUTOMATISER",
+          "color": "#22C55E"
         },
         {
           "id": "assister",
-          "label": "ASSISTER"
+          "label": "ASSISTER",
+          "color": "#F59E0B"
         },
         {
           "id": "humain",
-          "label": "GARDER HUMAIN"
+          "label": "GARDER HUMAIN",
+          "color": "#6366F1"
         }
       ],
       "items": [
@@ -154,5 +158,6 @@
     {
       "type": "validation"
     }
-  ]
+  ],
+  "theme": "light-elearning"
 }

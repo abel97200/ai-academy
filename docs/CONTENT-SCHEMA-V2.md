@@ -311,7 +311,20 @@ décorative pure) :
 
 | Champ | Type | Description |
 |---|---|---|
-| `visual` | `string` | Identifiant d'un micro-diagramme (`components/blocks/ExplicationVisuals.tsx`) qui illustre réellement le propos — une icône décorative seule ne suffit pas au standard visuel. Optionnel : une explication de transition très courte peut rester texte seul. |
+| `visual` | `string` | Identifiant d'un visuel (`components/blocks/ExplicationVisuals.tsx`) qui illustre réellement le propos — une icône décorative seule ne suffit pas au standard visuel. Optionnel : une explication de transition très courte peut rester texte seul. |
+
+Identifiants disponibles pour `explication.visual` et `situation`/`tri`.`illustration` (Module 1, réutilisables par de futures leçons) :
+
+| Identifiant | Type | Contenu |
+|---|---|---|
+| `lea-desk`, `client-form`, `workshop` | scène (registre `components/illustrations/registry.tsx`) | Léa à son poste ; un client remplit un formulaire web ; un artisan à son établi (Atelier Bois & Co) |
+| `repeat-pattern` | `explication.visual` uniquement | Boîte mail qui déborde d'emails presque identiques |
+| `chain-preview`, `chain-preview-dat` | `explication.visual` uniquement | Aperçu iconographique de la chaîne déclencheur→donnée→action→résultat (4 ou 3 rôles) |
+| `process-trio` | `explication.visual` uniquement | Icônes tâche/processus/workflow |
+| `approach-trio` | `explication.visual` uniquement | Icônes automatisation classique/IA/agent IA |
+| `decision-trio` | `explication.visual` uniquement | Icônes automatiser/assister/garder humain |
+
+Les pictogrammes eux-mêmes viennent de deux petits registres réutilisables : `components/illustrations/RoleIcon.tsx` (déclencheur/donnée/action/résultat) et `components/illustrations/ConceptIcon.tsx` (formes génériques : checklist, loop, gear, chat, network, robot, handshake, hand — chacune colorable via une prop `color`). `LightVocabularyCards` (bloc `schema`) réutilise automatiquement ces mêmes icônes quand les identifiants de nœuds correspondent (`declencheur`/`donnees`/`action`/`resultat` ou `tache`/`processus`/`workflow`).
 
 ### Champs additifs sur `tri` (thème clair uniquement)
 

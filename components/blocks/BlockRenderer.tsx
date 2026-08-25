@@ -85,6 +85,7 @@ export default function BlockRenderer({ block, blockId, theme }: BlockRendererPr
           instructions={block.instructions}
           successCriteria={block.successCriteria}
           evidence={block.evidence}
+          theme={theme}
         />
       );
 
@@ -104,7 +105,12 @@ export default function BlockRenderer({ block, blockId, theme }: BlockRendererPr
       // (voir docs/CONTENT-SCHEMA-V2.md) : on utilise l'identifiant généré
       // automatiquement pour ce bloc, comme pour les quiz.
       return (
-        <AssessmentBlock id={blockId} title={block.title} requirements={block.requirements} />
+        <AssessmentBlock
+          id={blockId}
+          title={block.title}
+          requirements={block.requirements}
+          theme={theme}
+        />
       );
 
     case "situation":
@@ -151,6 +157,7 @@ export default function BlockRenderer({ block, blockId, theme }: BlockRendererPr
           instruction={block.instruction}
           items={block.items}
           correctOrder={block.correctOrder}
+          theme={theme}
         />
       );
 

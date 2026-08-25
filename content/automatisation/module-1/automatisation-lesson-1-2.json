@@ -6,7 +6,8 @@
   "blocks": [
     {
       "type": "explication",
-      "content": "Chez Atelier Bois & Co, un petit fabricant de meubles sur mesure, un client qui veut un meuble envoie une demande de devis. Plusieurs étapes se suivent avant qu'il reçoive une réponse — les voici, dans le désordre."
+      "content": "Chez Atelier Bois & Co, un petit fabricant de meubles sur mesure, un client qui veut un meuble envoie une demande de devis. Plusieurs étapes se suivent avant qu'il reçoive une réponse — les voici, dans le désordre.",
+      "visual": "workshop"
     },
     {
       "type": "ordre",
@@ -48,7 +49,8 @@
     },
     {
       "type": "explication",
-      "content": "Une seule de ces étapes, comme « calculer le prix », s'appelle une TÂCHE. Le fil complet, de la demande du client à l'envoi du devis, forme un PROCESSUS. Et quand ce processus est décrit avec des étapes assez précises pour être reproduites à l'identique, on parle de WORKFLOW."
+      "content": "Une seule de ces étapes, comme « calculer le prix », s'appelle une TÂCHE. Le fil complet, de la demande du client à l'envoi du devis, forme un PROCESSUS. Et quand ce processus est décrit avec des étapes assez précises pour être reproduites à l'identique, on parle de WORKFLOW.",
+      "visual": "process-trio"
     },
     {
       "type": "schema",
@@ -97,11 +99,13 @@
       "categories": [
         {
           "id": "tache",
-          "label": "Tâche"
+          "label": "Tâche",
+          "color": "#F59E0B"
         },
         {
           "id": "processus",
-          "label": "Processus"
+          "label": "Processus",
+          "color": "#6366F1"
         }
       ],
       "items": [
@@ -204,5 +208,6 @@
     {
       "type": "validation"
     }
-  ]
+  ],
+  "theme": "light-elearning"
 }

@@ -21,7 +21,8 @@
           "label": "Le visiteur reçoit immédiatement un appel téléphonique.",
           "feedback": "Peu probable aussi vite ! Ce qui se passe d'abord, c'est un échange entre applications, pas un appel humain immédiat."
         }
-      ]
+      ],
+      "illustration": "client-form"
     },
     {
       "type": "workflow",
@@ -115,7 +116,8 @@
     },
     {
       "type": "explication",
-      "content": "Tu viens d'identifier les 3 rôles : le DÉCLENCHEUR démarre tout (le formulaire envoyé), les DONNÉES sont ce qui circule (la fiche du client), et les ACTIONS sont ce que chaque application fait avec ces données (enregistrer, envoyer, ajouter une ligne)."
+      "content": "Tu viens d'identifier les 3 rôles : le DÉCLENCHEUR démarre tout (le formulaire envoyé), les DONNÉES sont ce qui circule (la fiche du client), et les ACTIONS sont ce que chaque application fait avec ces données (enregistrer, envoyer, ajouter une ligne).",
+      "visual": "chain-preview-dat"
     },
     {
       "type": "tri",
@@ -123,15 +125,18 @@
       "categories": [
         {
           "id": "declencheur",
-          "label": "Déclencheur"
+          "label": "Déclencheur",
+          "color": "#6366F1"
         },
         {
           "id": "donnee",
-          "label": "Donnée"
+          "label": "Donnée",
+          "color": "#F59E0B"
         },
         {
           "id": "action",
-          "label": "Action"
+          "label": "Action",
+          "color": "#14B8A6"
         }
       ],
       "items": [
@@ -234,5 +239,6 @@
     {
       "type": "validation"
     }
-  ]
+  ],
+  "theme": "light-elearning"
 }
