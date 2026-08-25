@@ -207,6 +207,11 @@ export type TriBlock = {
   instruction: string;
   categories: TriCategory[]; // au moins 2
   items: TriItem[];
+  // Identifiant d'une illustration du registre partagé (voir
+  // components/illustrations/registry.tsx), utilisée seulement par le
+  // thème "light-elearning" pour ancrer visuellement le cas à classer.
+  // Optionnel : sans thème clair, ignoré.
+  illustration?: string;
 };
 
 // Une carte de synthèse courte (une minute maximum, sans jargon), utilisée

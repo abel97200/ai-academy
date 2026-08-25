@@ -178,7 +178,8 @@
           "correctCategoryId": "resultat",
           "explanation": "C'est ce qu'on obtient à la fin, comme la réponse reçue par le client de Léa."
         }
-      ]
+      ],
+      "illustration": "client-form"
     },
     {
       "type": "quiz",

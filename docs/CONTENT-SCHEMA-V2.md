@@ -313,11 +313,12 @@ décorative pure) :
 |---|---|---|
 | `visual` | `string` | Identifiant d'un micro-diagramme (`components/blocks/ExplicationVisuals.tsx`) qui illustre réellement le propos — une icône décorative seule ne suffit pas au standard visuel. Optionnel : une explication de transition très courte peut rester texte seul. |
 
-### Champ additif sur `tri` (thème clair uniquement)
+### Champs additifs sur `tri` (thème clair uniquement)
 
 | Champ | Type | Description |
 |---|---|---|
 | `categories[].color` | `string` (hex) | Relie visuellement une catégorie à sa couleur ailleurs dans la leçon (ex : les mêmes rôles qu'un bloc `schema` vu juste avant) |
+| `illustration` | `string` | Identifiant d'une illustration du registre partagé, pour ancrer visuellement le cas à classer (comme le fait `situation.illustration`) |
 
 ---
 

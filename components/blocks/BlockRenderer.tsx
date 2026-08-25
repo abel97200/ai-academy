@@ -125,6 +125,7 @@ export default function BlockRenderer({ block, blockId, theme }: BlockRendererPr
           instruction={block.instruction}
           categories={block.categories}
           items={block.items}
+          illustration={block.illustration}
           theme={theme}
         />
       );

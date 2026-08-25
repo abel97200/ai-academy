@@ -12,12 +12,14 @@
 
 import { useState } from "react";
 import InlineText from "@/components/blocks/InlineText";
+import { RegisteredIllustration } from "@/components/illustrations/registry";
 import type { LessonTheme, TriCategory, TriItem } from "@/lib/content";
 
 type TriBlockProps = {
   instruction: string;
   categories: TriCategory[];
   items: TriItem[];
+  illustration?: string;
   theme?: LessonTheme;
 };
 
@@ -29,7 +31,13 @@ function withAlpha(hex: string, alpha: string): string {
   return /^#[0-9a-fA-F]{6}$/.test(hex) ? `${hex}${alpha}` : hex;
 }
 
-export default function TriBlock({ instruction, categories, items, theme }: TriBlockProps) {
+export default function TriBlock({
+  instruction,
+  categories,
+  items,
+  illustration,
+  theme,
+}: TriBlockProps) {
   const [answers, setAnswers] = useState<Record<string, Answer>>({});
 
   function handleChoose(item: TriItem, categoryId: string) {
@@ -49,7 +57,14 @@ export default function TriBlock({ instruction, categories, items, theme }: TriB
         <span className="inline-flex items-center gap-1.5 rounded-full bg-indigo-600 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
           🗂️ Classement
         </span>
-        <p className="mt-3 text-base leading-relaxed text-slate-700">
+
+        {illustration && (
+          <div className="mt-5">
+            <RegisteredIllustration id={illustration} />
+          </div>
+        )}
+
+        <p className="mt-4 text-base leading-relaxed text-slate-700">
           <InlineText text={instruction} />
         </p>
 

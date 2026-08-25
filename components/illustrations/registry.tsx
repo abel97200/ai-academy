@@ -10,13 +10,16 @@
 // react-hooks/static-components.
 
 import LeaAtDeskScene from "@/components/illustrations/LeaAtDeskScene";
+import ClientFormScene from "@/components/illustrations/ClientFormScene";
 
-export type IllustrationId = "lea-desk";
+export type IllustrationId = "lea-desk" | "client-form";
 
 export function RegisteredIllustration({ id }: { id: string | undefined }) {
   switch (id as IllustrationId | undefined) {
     case "lea-desk":
       return <LeaAtDeskScene />;
+    case "client-form":
+      return <ClientFormScene />;
     default:
       return null;
   }
