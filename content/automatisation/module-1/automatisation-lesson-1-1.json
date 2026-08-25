@@ -28,7 +28,8 @@
     },
     {
       "type": "explication",
-      "content": "Une tâche répétitive, c'est une suite d'actions presque identiques que quelqu'un refait sans arrêt, pour des situations différentes en apparence (des clients différents) mais qui se traitent toujours de la même façon."
+      "content": "Une tâche répétitive, c'est une suite d'actions presque identiques que quelqu'un refait sans arrêt, pour des situations différentes en apparence (des clients différents) mais qui se traitent toujours de la même façon.",
+      "visual": "repeat-pattern"
     },
     {
       "type": "workflow",
@@ -65,7 +66,8 @@
     },
     {
       "type": "explication",
-      "content": "Ce déroulé peut se décrire de façon plus générale, avec 4 mots qui reviendront tout au long de cette formation : un DÉCLENCHEUR démarre le tout, des DONNÉES sont utilisées, une ACTION est réalisée, et on obtient un RÉSULTAT."
+      "content": "Ce déroulé peut se décrire de façon plus générale, avec 4 mots qui reviendront tout au long de cette formation : un DÉCLENCHEUR démarre le tout, des DONNÉES sont utilisées, une ACTION est réalisée, et on obtient un RÉSULTAT.",
+      "visual": "chain-preview"
     },
     {
       "type": "schema",
@@ -116,14 +118,67 @@
       "caption": "Clique sur chaque étape pour voir sa définition, appliquée au cas de Léa."
     },
     {
-      "type": "exercice",
-      "question": "Un client remplit un formulaire de contact sur le site pour signaler un article cassé à la réception. D'après ce que tu viens de voir : quel est le déclencheur ? Quelles sont les données ? Quelle action pourrait suivre ?",
-      "hints": [
-        "Le déclencheur est toujours ce qui démarre le processus — cherche l'évènement de départ.",
-        "Les données sont les informations disponibles une fois que ça démarre : que contient un formulaire de contact ?",
-        "L'action, c'est ce que quelqu'un (ou quelque chose) fait ENSUITE, à partir de ces données."
+      "type": "tri",
+      "instruction": "Nouveau cas : un client remplit le formulaire de contact du site pour signaler un article cassé à la réception. Classe chaque élément de cette situation dans son rôle.",
+      "categories": [
+        {
+          "id": "declencheur",
+          "label": "Déclencheur",
+          "color": "#6366F1"
+        },
+        {
+          "id": "donnee",
+          "label": "Donnée",
+          "color": "#F59E0B"
+        },
+        {
+          "id": "action",
+          "label": "Action",
+          "color": "#14B8A6"
+        },
+        {
+          "id": "resultat",
+          "label": "Résultat",
+          "color": "#22C55E"
+        }
       ],
-      "solution": "Déclencheur : le formulaire rempli par le client. Données : son nom, son email, la description du problème (« article cassé »), peut-être une photo. Action possible : créer un dossier de réclamation et prévenir le service client. Résultat : le client reçoit un accusé de réception, et l'équipe est prévenue."
+      "items": [
+        {
+          "id": "formulaire",
+          "label": "Le formulaire de contact rempli et envoyé par le client",
+          "emoji": "🖥️",
+          "correctCategoryId": "declencheur",
+          "explanation": "C'est l'évènement qui démarre tout le reste — exactement comme l'email reçu par Léa."
+        },
+        {
+          "id": "description",
+          "label": "La description du problème : « article cassé à la réception »",
+          "emoji": "📝",
+          "correctCategoryId": "donnee",
+          "explanation": "C'est une information qui circule et qui sera utilisée pour traiter la demande."
+        },
+        {
+          "id": "coordonnees",
+          "label": "Le nom et l'email du client",
+          "emoji": "🙋",
+          "correctCategoryId": "donnee",
+          "explanation": "Encore des informations qui circulent, nécessaires pour recontacter le client ensuite."
+        },
+        {
+          "id": "creation-dossier",
+          "label": "Créer un dossier de réclamation et prévenir le service client",
+          "emoji": "📁",
+          "correctCategoryId": "action",
+          "explanation": "C'est ce qui est FAIT à partir des données reçues — l'action du processus."
+        },
+        {
+          "id": "accuse-reception",
+          "label": "Le client reçoit un accusé de réception, et l'équipe est prévenue",
+          "emoji": "✅",
+          "correctCategoryId": "resultat",
+          "explanation": "C'est ce qu'on obtient à la fin, comme la réponse reçue par le client de Léa."
+        }
+      ]
     },
     {
       "type": "quiz",

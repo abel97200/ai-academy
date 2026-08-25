@@ -307,6 +307,18 @@ décorative pure) :
 | `kicker` | `string` | Courte phrase affichée au-dessus de la question |
 | `options[].tone` | `"insight" \| "neutral"` | `"insight"` met en avant l'observation clé attendue (feedback vert) ; par défaut (`"neutral"`), le feedback guide sans jamais afficher "faux" — un bloc `situation` reste exploratoire |
 
+### Champ additif sur `explication` (thème clair uniquement)
+
+| Champ | Type | Description |
+|---|---|---|
+| `visual` | `string` | Identifiant d'un micro-diagramme (`components/blocks/ExplicationVisuals.tsx`) qui illustre réellement le propos — une icône décorative seule ne suffit pas au standard visuel. Optionnel : une explication de transition très courte peut rester texte seul. |
+
+### Champ additif sur `tri` (thème clair uniquement)
+
+| Champ | Type | Description |
+|---|---|---|
+| `categories[].color` | `string` (hex) | Relie visuellement une catégorie à sa couleur ailleurs dans la leçon (ex : les mêmes rôles qu'un bloc `schema` vu juste avant) |
+
 ---
 
 ## Progression (localStorage)

@@ -13,6 +13,12 @@
 export type ExplicationBlock = {
   type: "explication";
   content: string;
+  // Identifiant d'un micro-diagramme (voir components/blocks/
+  // ExplicationVisuals.tsx) qui illustre le propos — utilisé seulement par
+  // le thème "light-elearning". Optionnel : sans thème clair, ignoré, et
+  // une explication sans "visual" reste un texte simple (acceptable pour
+  // une phrase de transition courte).
+  visual?: string;
 };
 
 // --- Schémas dessinés par le code (pas d'image à fournir) --------------
@@ -181,6 +187,11 @@ export type SituationBlock = {
 export type TriCategory = {
   id: string;
   label: string;
+  // Couleur (hex) utilisée seulement par le thème "light-elearning", pour
+  // relier visuellement une catégorie à sa couleur ailleurs dans la leçon
+  // (ex: les mêmes 4 rôles que le bloc "schema" qui les a introduits).
+  // Optionnelle : sans thème clair, ignorée.
+  color?: string;
 };
 
 export type TriItem = {

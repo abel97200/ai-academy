@@ -1,6 +1,6 @@
 // Parcours détaillé de la leçon 1.1, qui utilise presque tous les types de
-// blocs du Module 1 (situation, explication, workflow, schema, exercice,
-// quiz, resume, validation) : vérifie que chaque interaction annoncée est
+// blocs du Module 1 (situation, explication, workflow, schema, tri, quiz,
+// resume, validation) : vérifie que chaque interaction annoncée est
 // réellement utilisable, avec un retour visible après action — pas
 // seulement que la page s'affiche. Tourne sur desktop ET mobile.
 
@@ -25,7 +25,9 @@ test("leçon 1.1 : chaque bloc réagit réellement à l'interaction, jusqu'à la
   ).toBeVisible();
   await goToNextBlock(page);
 
-  // 2) Explication : simple lecture, on avance.
+  // 2) Explication : le micro-diagramme "répétition" illustre réellement
+  //    le propos (pas juste une icône décorative), puis on avance.
+  await expect(page.getByText("encore et encore, toute la journée")).toBeVisible();
   await expect(page.getByText("Une tâche répétitive, c'est une suite d'actions")).toBeVisible();
   await goToNextBlock(page);
 
@@ -40,24 +42,27 @@ test("leçon 1.1 : chaque bloc réagit réellement à l'interaction, jusqu'à la
   ).toBeVisible({ timeout: 10_000 });
   await goToNextBlock(page);
 
-  // 4) Explication (vocabulaire) : on avance.
+  // 4) Explication : l'aperçu abstrait de la chaîne (4 points reliés)
+  //    précède son nom, puis on avance.
   await expect(page.getByText("un DÉCLENCHEUR démarre le tout")).toBeVisible();
   await goToNextBlock(page);
 
   // 5) Schema : cliquer un nœud affiche sa définition.
-  await page.getByText("Résultat", { exact: true }).click();
+  await page.getByRole("button", { name: "Résultat", exact: true }).click();
   await expect(page.getByText("Ce qu'on obtient à la fin. Ici : le client reçoit sa réponse.")).toBeVisible();
   await goToNextBlock(page);
 
-  // 6) Exercice : la correction n'est accessible qu'après avoir écrit une
-  //    tentative (pas un bouton "Voir le résultat" gratuit).
-  const solutionButton = page.getByRole("button", { name: "Voir la correction" });
-  await page.getByRole("button", { name: "Je tente ma réponse" }).click();
-  await expect(solutionButton).toBeDisabled();
-  await page.getByPlaceholder("Écris ta réponse ici…").fill("Le formulaire rempli déclenche tout.");
-  await expect(solutionButton).toBeEnabled();
-  await solutionButton.click();
-  await expect(page.getByText("Déclencheur : le formulaire rempli par le client.")).toBeVisible();
+  // 6) Tri : nouveau cas transféré à un classement en 4 rôles — un choix
+  //    reste modifiable et donne un retour explicatif, juste ou faux.
+  await expect(page.getByText("Nouveau cas : un client remplit le formulaire")).toBeVisible();
+  const formulaireItem = page
+    .locator("div")
+    .filter({ hasText: "Le formulaire de contact rempli et envoyé par le client" })
+    .last();
+  await formulaireItem.getByRole("button", { name: "Action" }).click();
+  await expect(page.getByText("🧭 Pas tout à fait —")).toBeVisible();
+  await formulaireItem.getByRole("button", { name: "Déclencheur" }).click();
+  await expect(page.getByText("✅ Bien vu —")).toBeVisible();
   await goToNextBlock(page);
 
   // 7) Quiz : 5 questions, réponses correctes réparties (voir

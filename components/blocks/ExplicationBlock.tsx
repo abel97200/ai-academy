@@ -1,24 +1,37 @@
-// Composant qui affiche un bloc de type "explication" : un simple texte,
-// mis en valeur dans une carte. En thème sombre par défaut, style neutre
-// historique. En thème "light-elearning", un encadré théorique clair
-// (information = bleu, voir docs/CONTENT-SCHEMA-V2.md).
+// Composant qui affiche un bloc de type "explication" : un texte, mis en
+// valeur dans une carte, éventuellement accompagné d'un micro-diagramme
+// (voir ExplicationVisuals.tsx) qui illustre réellement le propos — une
+// simple icône à côté du texte ne suffit pas au standard visuel (voir
+// docs/AI_ACADEMY_VISUAL_LEARNING_STANDARD.md).
+//
+// Thème sombre par défaut (historique, texte seul) ou thème
+// "light-elearning" (information = bleu).
 
 import InlineText from "@/components/blocks/InlineText";
+import { ExplicationVisual } from "@/components/blocks/ExplicationVisuals";
 import type { LessonTheme } from "@/lib/content";
 
 type ExplicationBlockProps = {
   content: string;
+  visual?: string;
   theme?: LessonTheme;
 };
 
-export default function ExplicationBlock({ content, theme }: ExplicationBlockProps) {
+export default function ExplicationBlock({ content, visual, theme }: ExplicationBlockProps) {
   if (theme === "light-elearning") {
     return (
-      <div className="flex gap-4 rounded-2xl border-2 border-blue-100 bg-blue-50 p-5 sm:p-6">
-        <span className="text-2xl" aria-hidden="true">
-          💡
+      <div className="rounded-3xl border-2 border-blue-100 bg-blue-50 p-6 sm:p-8">
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-600 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
+          💡 À comprendre
         </span>
-        <p className="text-base leading-relaxed text-blue-900">
+
+        {visual && (
+          <div className="mt-5">
+            <ExplicationVisual visual={visual} />
+          </div>
+        )}
+
+        <p className="mt-4 text-base leading-relaxed text-blue-900">
           <InlineText text={content} />
         </p>
       </div>

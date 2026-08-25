@@ -42,7 +42,7 @@ type BlockRendererProps = {
 export default function BlockRenderer({ block, blockId, theme }: BlockRendererProps) {
   switch (block.type) {
     case "explication":
-      return <ExplicationBlock content={block.content} theme={theme} />;
+      return <ExplicationBlock content={block.content} visual={block.visual} theme={theme} />;
 
     case "schema":
       return <SchemaBlock diagram={block.diagram} caption={block.caption} theme={theme} />;
@@ -121,7 +121,12 @@ export default function BlockRenderer({ block, blockId, theme }: BlockRendererPr
 
     case "tri":
       return (
-        <TriBlock instruction={block.instruction} categories={block.categories} items={block.items} />
+        <TriBlock
+          instruction={block.instruction}
+          categories={block.categories}
+          items={block.items}
+          theme={theme}
+        />
       );
 
     case "resume":
