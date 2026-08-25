@@ -270,6 +270,45 @@ quelle que soit sa place réelle dans le déroulé écrit.
 
 ---
 
+---
+
+## Thème visuel d'une leçon (`theme`)
+
+Une leçon peut porter `"theme": "light-elearning"` à la racine, en plus de
+`layout`. Absent (défaut), le rendu reste le thème sombre historique,
+inchangé pour toutes les leçons existantes. `"light-elearning"` est un
+pilote de direction visuelle (Module 1 / leçon 1.1 du parcours
+Automatisation) : fond clair, coloré, illustré, plutôt que des cartes
+sombres uniformes.
+
+Le thème est transmis par `LessonSequence`/`LessonStages` à
+`BlockRenderer`, qui le transmet à chaque composant de bloc. **Chaque
+composant choisit lui-même sa mise en forme selon le thème** — un bloc qui
+ne propose pas encore de variante claire retombe simplement sur son rendu
+par défaut. Ce champ est donc sûr à ajouter progressivement, leçon par
+leçon, sans risque de régression sur les leçons qui ne l'utilisent pas.
+
+Palette fonctionnelle du thème clair (une couleur = une fonction, jamais
+décorative pure) :
+
+| Couleur | Fonction |
+|---|---|
+| Violet / indigo | Identité AI Academy, éléments de navigation du bloc |
+| Bleu | Information, explication |
+| Jaune / ambre | Observation, indice, attention |
+| Vert (émeraude) | Validation, réussite |
+| Rouge doux (rose) | Erreur, seulement pour une vraie mauvaise réponse de quiz |
+
+### Champs additifs sur `situation` (thème clair uniquement)
+
+| Champ | Type | Description |
+|---|---|---|
+| `illustration` | `string` | Identifiant d'une illustration du registre partagé (`components/illustrations/registry.tsx`), ex : `"lea-desk"` |
+| `kicker` | `string` | Courte phrase affichée au-dessus de la question |
+| `options[].tone` | `"insight" \| "neutral"` | `"insight"` met en avant l'observation clé attendue (feedback vert) ; par défaut (`"neutral"`), le feedback guide sans jamais afficher "faux" — un bloc `situation` reste exploratoire |
+
+---
+
 ## Progression (localStorage)
 
 En plus de `completedLessons` et `activityDates` (existants), la progression retient maintenant :

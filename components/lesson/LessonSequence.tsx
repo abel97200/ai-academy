@@ -20,14 +20,15 @@ import { useState } from "react";
 import BlockRenderer from "@/components/blocks/BlockRenderer";
 import { getBlockId } from "@/lib/contentTypes";
 import { getStageForBlockType } from "@/lib/lessonStages";
-import type { Block } from "@/lib/contentTypes";
+import type { Block, LessonTheme } from "@/lib/contentTypes";
 
 type LessonSequenceProps = {
   lessonId: string;
   blocks: Block[];
+  theme?: LessonTheme;
 };
 
-export default function LessonSequence({ lessonId, blocks }: LessonSequenceProps) {
+export default function LessonSequence({ lessonId, blocks, theme }: LessonSequenceProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [furthestReached, setFurthestReached] = useState(0);
 
@@ -82,7 +83,11 @@ export default function LessonSequence({ lessonId, blocks }: LessonSequenceProps
       </div>
 
       {/* Bloc en cours */}
-      <BlockRenderer block={currentBlock} blockId={getBlockId(lessonId, currentIndex)} />
+      <BlockRenderer
+        block={currentBlock}
+        blockId={getBlockId(lessonId, currentIndex)}
+        theme={theme}
+      />
 
       {/* Navigation précédent/suivant */}
       <div className="flex items-center justify-between gap-3">

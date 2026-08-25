@@ -149,6 +149,12 @@ export type AssessmentBlock = {
 export type SituationOption = {
   label: string;
   feedback: string;
+  // Ton du feedback quand ce choix est sélectionné, utilisé seulement par
+  // le thème "light-elearning" (voir Lesson["theme"]) : "insight" met en
+  // avant l'observation clé attendue (succès, vert) ; "neutral" (défaut)
+  // guide vers cette observation sans la présenter comme une erreur — un
+  // bloc "situation" reste exploratoire, jamais noté juste/faux.
+  tone?: "insight" | "neutral";
 };
 
 export type SituationBlock = {
@@ -156,6 +162,14 @@ export type SituationBlock = {
   context: string;
   question: string;
   options: SituationOption[];
+  // Identifiant d'une illustration du petit registre partagé (voir
+  // components/illustrations/registry.tsx), utilisée seulement par le
+  // thème "light-elearning". Optionnel : sans thème clair, ignoré.
+  illustration?: string;
+  // Courte phrase affichée au-dessus de la question (ex: "Avant de parler
+  // d'outil, observons une situation très courante."), utilisée seulement
+  // par le thème "light-elearning". Optionnel.
+  kicker?: string;
 };
 
 // Un jeu de tri : classer chaque élément dans l'une de 2 à 4 catégories, en
@@ -265,13 +279,27 @@ export type Block =
 //   que le regroupement par type ne peut pas garantir : un bloc
 //   "explication" finirait toujours dans l'onglet "Comprendre", quelle que
 //   soit sa place réelle dans le déroulé écrit.
+//
+// "theme" choisit la direction visuelle des blocs de la leçon :
+// - absent (défaut) : thème sombre historique, inchangé.
+// - "light-elearning" : thème clair, coloré et illustré (pilote : Module 1
+//   / leçon 1.1 du parcours Automatisation). Chaque composant de bloc
+//   reçoit ce thème et choisit sa propre mise en forme ; un bloc qui ne
+//   propose pas encore de variante claire retombe simplement sur son
+//   rendu par défaut, donc ce champ est sûr à ajouter progressivement,
+//   leçon par leçon.
 export type Lesson = {
   id: string;
   schemaVersion?: number;
   layout?: "stages" | "sequence";
+  theme?: "light-elearning";
   title: string;
   blocks: Block[];
 };
+
+// Raccourci de type pour les composants de bloc, qui reçoivent tous ce
+// même thème en prop (voir Lesson["theme"] ci-dessus).
+export type LessonTheme = Lesson["theme"];
 
 // Identifiant unique d'un bloc au sein d'une leçon. Utilisé à la fois par
 // le lecteur de leçon (pour savoir quel quiz/action/évaluation a été

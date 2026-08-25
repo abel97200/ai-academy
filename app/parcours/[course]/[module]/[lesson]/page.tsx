@@ -60,9 +60,9 @@ export default async function LessonPage({ params }: LessonPageProps) {
           <LessonHeader title={lesson.title} />
 
           {lesson.layout === "sequence" ? (
-            <LessonSequence lessonId={lesson.id} blocks={lesson.blocks} />
+            <LessonSequence lessonId={lesson.id} blocks={lesson.blocks} theme={lesson.theme} />
           ) : (
-            <LessonStages lessonId={lesson.id} stages={stages} />
+            <LessonStages lessonId={lesson.id} stages={stages} theme={lesson.theme} />
           )}
 
           <LessonFooterNav moduleHref={moduleHref} nextLessonHref={nextLessonHref} />

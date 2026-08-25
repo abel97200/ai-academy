@@ -15,13 +15,16 @@
         },
         {
           "label": "Elle répète presque exactement la même suite d'actions, encore et encore.",
-          "feedback": "Exactement. C'est ce genre de répétition, identique ou presque à chaque fois, qui est le signe d'une tâche automatisable."
+          "feedback": "Exactement. C'est ce genre de répétition, identique ou presque à chaque fois, qui est le signe d'une tâche automatisable.",
+          "tone": "insight"
         },
         {
           "label": "Elle perd son temps, elle devrait embaucher quelqu'un d'autre.",
           "feedback": "Peut-être, mais ce n'est pas la question ici : ce qui nous intéresse, c'est CE QU'ELLE FAIT, pas qui devrait le faire. Regarde la suite d'actions elle-même."
         }
-      ]
+      ],
+      "illustration": "lea-desk",
+      "kicker": "Avant de parler d'outil, observons une situation très courante."
     },
     {
       "type": "explication",
@@ -30,7 +33,7 @@
     {
       "type": "workflow",
       "prompt": "Voici précisément ce que fait Léa, à chaque email. Clique sur le bouton pour observer le déroulé, ou clique directement sur une étape.",
-      "payloadLabel": "📧 Email client",
+      "payloadLabel": "📦 Commande #4521",
       "actionLabel": "Lancer le déroulé",
       "steps": [
         {
@@ -184,5 +187,6 @@
     {
       "type": "validation"
     }
-  ]
+  ],
+  "theme": "light-elearning"
 }

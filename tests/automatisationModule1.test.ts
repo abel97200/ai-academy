@@ -70,6 +70,18 @@ describe("Parcours Automatiser de A à Z — Module 1 (pilote)", () => {
     ]);
   });
 
+  it("cantonne le thème visuel light-elearning au pilote (leçon 1.1 uniquement)", () => {
+    const lesson11 = getLesson("automatisation", "module-1", "automatisation-lesson-1-1");
+    expect(lesson11.theme).toBe("light-elearning");
+
+    module1.lessons
+      .filter((id) => id !== "automatisation-lesson-1-1")
+      .forEach((lessonId) => {
+        const lesson = getLesson("automatisation", "module-1", lessonId);
+        expect(lesson.theme).toBeUndefined();
+      });
+  });
+
   it("déclare les modules 2 à 9 sans contenu (à venir), pour ne développer que le Module 1", () => {
     const otherModules = course.modules.filter((m) => m.slug !== "module-1");
     expect(otherModules).toHaveLength(8);
